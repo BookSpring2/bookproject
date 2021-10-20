@@ -40,7 +40,7 @@
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="#">홈</a></li>
-                            <li><a href="../book/book_list.do">도서</a></li>
+                            <li><a href="../book/list.do">도서</a></li>
                             <li><a href="#">베스트셀러</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="#">Shop Details</a></li>
