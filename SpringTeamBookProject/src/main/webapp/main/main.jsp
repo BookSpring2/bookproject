@@ -18,7 +18,7 @@
 <body>
   <%-- 메뉴  --%>
   <jsp:include page="header.jsp"></jsp:include>
-  <%-- 페이지 변경(변수명) --%>
+  <%-- 페이지변경(변수명) --%>
   <jsp:include page="${main_jsp }"></jsp:include>
   <%-- Footer --%>
   <jsp:include page="footer.jsp"></jsp:include>
