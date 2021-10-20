@@ -20,7 +20,7 @@
   <jsp:include page="header.jsp"></jsp:include>
   <%-- 페이지 변경(변수명) --%>
   <jsp:include page="${main_jsp }"></jsp:include>
-  <%-- Footer    --%>
+  <%-- Footer --%>
   <jsp:include page="footer.jsp"></jsp:include>
   <script src="../ogani-master/js/jquery-3.3.1.min.js"></script>
   <script src="../ogani-master/js/bootstrap.min.js"></script>
