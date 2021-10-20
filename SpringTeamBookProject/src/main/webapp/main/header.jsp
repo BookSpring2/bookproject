@@ -14,15 +14,15 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                                <li>Free Shipping for all Order of $99</li>
+                                <li><i class="fa fa-envelope"></i> springproject2@naver.com</li>
+                                <li>1만원 이상 구매 시 무료배송</li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
                           <div class="header__top__right__auth">
-                            <a href="#"><i class="fa fa-user"></i> Login</a>
+                            <a href="#"><i class="fa fa-user"></i>로그인</a>
                           </div>
                         </div>
                     </div>
@@ -33,24 +33,24 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                        <a href="./index.html"><img src="../ogani-master/img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Home</a></li>
-                            <li><a href="./shop-grid.html">Book</a></li>
-                            <li><a href="#">Pages</a>
+                            <li class="active"><a href="#">홈</a></li>
+                            <li><a href="../ogani-master/shop-grid.html">도서</a></li>
+                            <li><a href="#">베스트셀러</a>
                                 <ul class="header__menu__dropdown">
-                                    <li><a href="./shop-details.html">Shop Details</a></li>
-                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                    <li><a href="./checkout.html">Check Out</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
+                                    <li><a href="../ogani-master/shop-details.html">Shop Details</a></li>
+                                    <li><a href="../ogani-master/shoping-cart.html">Shoping Cart</a></li>
+                                    <li><a href="../ogani-master/checkout.html">Check Out</a></li>
+                                    <li><a href="../ogani-master/blog-details.html">Blog Details</a></li>
                                 </ul>
                             </li>
-                            <li><a href="./blog.html">Blog</a></li>
-                            <li><a href="./contact.html">Contact</a></li>
+                            <li><a href="../ogani-master/blog.html">신간도서</a></li>
+                            <li><a href="../ogani-master/contact.html">마이페이지</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -60,7 +60,7 @@
                             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                             <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
+                        <div class="header__cart__price">item: <span>0원</span></div>
                     </div>
                 </div>
             </div>
