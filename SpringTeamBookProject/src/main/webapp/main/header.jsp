@@ -40,13 +40,13 @@
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="#">홈</a></li>
-                            <li><a href="../ogani-master/shop-grid.html">도서</a></li>
+                            <li><a href="../book/book_list.do">도서</a></li>
                             <li><a href="#">베스트셀러</a>
                                 <ul class="header__menu__dropdown">
-                                    <li><a href="../ogani-master/shop-details.html">Shop Details</a></li>
-                                    <li><a href="../ogani-master/shoping-cart.html">Shoping Cart</a></li>
-                                    <li><a href="../ogani-master/checkout.html">Check Out</a></li>
-                                    <li><a href="../ogani-master/blog-details.html">Blog Details</a></li>
+                                    <li><a href="#">Shop Details</a></li>
+                                    <li><a href="#">Shoping Cart</a></li>
+                                    <li><a href="#">Check Out</a></li>
+                                    <li><a href="#">Blog Details</a></li>
                                 </ul>
                             </li>
                             <li><a href="../ogani-master/blog.html">신간도서</a></li>
