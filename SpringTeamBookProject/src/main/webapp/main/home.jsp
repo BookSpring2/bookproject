@@ -18,17 +18,17 @@
                             <span>분야보기</span>
                         </div>
                         <ul>
-                            <li><a href="#">소실/시/희곡</a></li>
-                            <li><a href="#">장르소설</a></li>
+                            <li><a href="#">국내도서</a></li>
+                            <li><a href="#">외국도서</a></li>
+                            <li><a href="#">eBook</a></li>
+                            <li><a href="#">소설/시</a></li>
                             <li><a href="#">에세이</a></li>
-                            <li><a href="#">인문학</a></li>
-                            <li><a href="#">사회과학</a></li>
-                            <li><a href="#">역사</a></li>
-                            <li><a href="#">과학</a></li>
-                            <li><a href="#">예술/대중문화</a></li>
-                            <li><a href="#">종교/역학</a></li>
-                            <li><a href="#">경제경영</a></li>
-                            <li><a href="#">자기계발</a></li>
+                            <li><a href="#">인문</a></li>
+                            <li><a href="#">경제/경영</a></li>
+                            <li><a href="#">어린이</a></li>
+                            <li><a href="#">외국어</a></li>
+                            <li><a href="#">참고서</a></li>
+                            <li><a href="#">요리</a></li>
                         </ul>
                     </div>
                 </div>

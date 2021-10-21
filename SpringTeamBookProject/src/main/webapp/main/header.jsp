@@ -39,9 +39,10 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="#">홈</a></li>
+                            <li class="active"><a href="../main/main.do">홈</a></li>
                             <li><a href="../book/list.do">도서</a></li>
                             <li><a href="#">베스트셀러</a>
+                            <li><a href="#">빠른분야찾기</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="#">Shop Details</a></li>
                                     <li><a href="#">Shoping Cart</a></li>
@@ -49,8 +50,9 @@
                                     <li><a href="#">Blog Details</a></li>
                                 </ul>
                             </li>
-                            <li><a href="../ogani-master/blog.html">신간도서</a></li>
-                            <li><a href="../ogani-master/contact.html">마이페이지</a></li>
+                            <li><a href="#">신간도서</a></li>
+                            <li><a href="#">블로그</a></li>
+                            <li><a href="#">마이페이지</a></li>
                         </ul>
                     </nav>
                 </div>
