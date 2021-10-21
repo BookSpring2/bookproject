@@ -59,7 +59,7 @@
                             <i class="fa fa-star-half-o"></i>
                             <span>(18 개의 리뷰)</span>
                         </div>
-                        <div class="product__details__price">xxx원</div>
+                        <div class="product__details__price">xx원</div>
                         <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
                             vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
                             quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p>

@@ -19,6 +19,7 @@ public class MainController {
 		return "main/main";
 	}
 	
+	/**/
 	@RequestMapping("book/detail.do")
 	public String book_detail(Model model)
 	{
