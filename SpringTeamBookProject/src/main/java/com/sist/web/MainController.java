@@ -12,4 +12,10 @@ public class MainController {
 		model.addAttribute("main_jsp", "../main/home.jsp");
 		return "main/main";
 	}
+	@RequestMapping("book/list.do")
+	public String book_list(Model model)
+	{
+		model.addAttribute("main_jsp", "../book/list.jsp");
+		return "main/main";
+	}
 }
