@@ -23,9 +23,9 @@
                           <div class="header__top__right__auth">
                             <a href="#"><i class="fa fa-user"></i>로그인</a>
                             <a href="#"><i class="fa fa-user"></i>로그아웃</a>
-                            <a href="#"><i class="fa fa-user"></i>회원가입</a>
-                            <a href="#"><i class="fa fa-user"></i>마이페이지</a>
-                            <a href="#"><i class="fa fa-user"></i>고객센터</a>
+                            <a href="#"><i class=""></i>회원가입</a>
+                            <a href="#"><i class=""></i>마이페이지</a>
+                            <a href="#"><i class=""></i>고객센터</a>    
                           </div>
                         </div>
                     </div>
