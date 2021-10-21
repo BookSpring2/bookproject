@@ -14,8 +14,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i class="fa fa-envelope"></i> springproject2@naver.com</li>
-                                <li>1만원 이상 구매 시 무료배송</li>
+                                <li>1권만 주문해도 무료배송</li>
                             </ul>
                         </div>
                     </div>
@@ -23,6 +22,10 @@
                         <div class="header__top__right">
                           <div class="header__top__right__auth">
                             <a href="#"><i class="fa fa-user"></i>로그인</a>
+                            <a href="#"><i class="fa fa-user"></i>로그아웃</a>
+                            <a href="#"><i class="fa fa-user"></i>회원가입</a>
+                            <a href="#"><i class="fa fa-user"></i>마이페이지</a>
+                            <a href="#"><i class="fa fa-user"></i>고객센터</a>
                           </div>
                         </div>
                     </div>
@@ -39,20 +42,17 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="../main/main.do">홈</a></li>
-                            <li><a href="../book/list.do">도서</a></li>
-                            <li><a href="#">베스트셀러</a>
-                            <li><a href="#">빠른분야찾기</a>
+                        	<li><a href="#">빠른분야찾기</a>
                                 <ul class="header__menu__dropdown">
-                                    <li><a href="#">Shop Details</a></li>
-                                    <li><a href="#">Shoping Cart</a></li>
-                                    <li><a href="#">Check Out</a></li>
-                                    <li><a href="#">Blog Details</a></li>
+                                    <li><a href="#">국내도서</a></li>
+                                    <li><a href="#">외국도서</a></li>
+                                    <li><a href="#">eBook</a></li>
                                 </ul>
                             </li>
+                            <li class="active"><a href="../main/main.do">홈</a></li>
+                            <li><a href="../book/list.do">베스트셀러</a></li>
                             <li><a href="#">신간도서</a></li>
                             <li><a href="#">블로그</a></li>
-                            <li><a href="#">마이페이지</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -62,7 +62,6 @@
                             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                             <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>0원</span></div>
                     </div>
                 </div>
             </div>
