@@ -193,7 +193,7 @@
                             </ul>
                         </div>
                         <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
+                            <h6><a href="../book/detail.do">Crab Pool Security</a></h6>
                             <h5>$30.00</h5>
                         </div>
                     </div>
@@ -208,7 +208,7 @@
                             </ul>
                         </div>
                         <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
+                            <h6><a href="../book/detail.do">Crab Pool Security</a></h6>
                             <h5>$30.00</h5>
                         </div>
                     </div>
@@ -223,7 +223,7 @@
                             </ul>
                         </div>
                         <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
+                            <h6><a href="../book/detail.do">Crab Pool Security</a></h6>
                             <h5>$30.00</h5>
                         </div>
                     </div>
@@ -238,7 +238,7 @@
                             </ul>
                         </div>
                         <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
+                            <h6><a href="../book/detail.do">Crab Pool Security</a></h6>
                             <h5>$30.00</h5>
                         </div>
                     </div>
