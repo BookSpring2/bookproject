@@ -17,7 +17,7 @@
                         <div class="breadcrumb__option">
                             <a href="../main/main.do">Home</a>
                             <a href="#">대분류</a>
-                            <span>소분류</span>
+                            <span>중분류</span>
                         </div>
                     </div>
                 </div>
