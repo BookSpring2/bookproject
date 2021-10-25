@@ -53,6 +53,12 @@
                             <li><a href="../book/list.do">베스트셀러</a></li>
                             <li><a href="#">신간도서</a></li>
                             <li><a href="../blog/list.do">블로그</a></li>
+                            <li><a href="#">게시판</a>
+                                <ul class="header__menu__dropdown">
+                                    <li><a href="#">자유게시판</a></li>
+                                    <li><a href="#">공지사항</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </nav>
                 </div>
