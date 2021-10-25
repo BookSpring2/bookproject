@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,31 +74,13 @@
         <div class="container">
             <div class="row">
                 <div class="categories__slider owl-carousel">
+                <c:forEach var="vo" items="${list }">
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="../ogani-master/img/categories/cat-1.jpg">
-                            <h5><a href="#">텍스트1</a></h5>
+                        <div class="categories__item set-bg" data-setbg="${vo.image }">
+                            <h5><a href="#">${vo.title }</a></h5>
                         </div>
                     </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="../ogani-master/img/categories/cat-2.jpg">
-                            <h5><a href="#">텍스트2</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="../ogani-master/img/categories/cat-3.jpg">
-                            <h5><a href="#">텍스트3</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="../ogani-master/img/categories/cat-4.jpg">
-                            <h5><a href="#">텍스트4</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="../ogani-master/img/categories/cat-5.jpg">
-                            <h5><a href="#">텍스트5</a></h5>
-                        </div>
-                    </div>
+                </c:forEach>    
                 </div>
             </div>
         </div>
