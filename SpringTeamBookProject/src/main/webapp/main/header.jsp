@@ -39,7 +39,7 @@
                         <a href="../main/main.do"><img src="../ogani-master/img/logo.png" alt=""></a>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-7">
                     <nav class="header__menu">
                         <ul>
                         	<li><a href="#">빠른분야찾기</a>
@@ -62,7 +62,7 @@
                         </ul>
                     </nav>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-2">
                     <div class="header__cart">
                         <ul>
                             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
