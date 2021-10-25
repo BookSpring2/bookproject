@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <section class="hero hero-normal">
         <div class="container">
             <div class="row">
@@ -50,25 +51,21 @@
         </div>
     </section>
     <!-- Hero Section End -->
-
-    <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
+	<section class="breadcrumb-section set-bg" data-setbg="../ogani-master/img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Blog</h2>
+                        <h2>Organi Shop</h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
-                            <span>Blog</span>
+                            <a href="../main/list.do">Home</a>
+                            <span>블로그</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Breadcrumb Section End -->
-
+</section>
     <!-- Blog Section Begin -->
     <section class="blog spad">
         <div class="container">

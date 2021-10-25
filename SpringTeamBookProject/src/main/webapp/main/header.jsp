@@ -23,7 +23,7 @@
                           <div class="header__top__right__auth">
                             <a href="#"><i class="fa fa-user"></i>로그인</a>
                             <a href="#"><i class="fa fa-user"></i>로그아웃</a>
-                            <a href="#"><i class=""></i>회원가입</a>
+                            <a href="../member/join.do"><i class=""></i>회원가입</a>
                             <a href="#"><i class=""></i>마이페이지</a>
                             <a href="#"><i class=""></i>고객센터</a>    
                           </div>
@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="../ogani-master/img/logo.png" alt=""></a>
+                        <a href="../main/main.do"><img src="../ogani-master/img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -52,7 +52,7 @@
                             <li class="active"><a href="../main/main.do">홈</a></li>
                             <li><a href="../book/list.do">베스트셀러</a></li>
                             <li><a href="#">신간도서</a></li>
-                            <li><a href="#">블로그</a></li>
+                            <li><a href="../blog/list.do">블로그</a></li>
                         </ul>
                     </nav>
                 </div>

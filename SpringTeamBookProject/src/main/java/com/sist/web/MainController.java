@@ -26,4 +26,23 @@ public class MainController {
 		model.addAttribute("main_jsp", "../book/detail.jsp");
 		return "main/main";
 	}
+	
+	@RequestMapping("blog/list.do")
+	public String blog_list(Model model)
+	{
+		model.addAttribute("main_jsp", "../blog/list.jsp");
+		return "main/main";
+	}
+	@RequestMapping("blog/detail.do")
+	public String blog_detail(Model model)
+	{
+		model.addAttribute("main_jsp", "../blog/detail.jsp");
+		return "main/main";
+	}
+	@RequestMapping("member/join.do")
+	public String member_join(Model model)
+	{
+		model.addAttribute("main_jsp", "../member/join.jsp");
+		return "main/main";
+	}
 }
