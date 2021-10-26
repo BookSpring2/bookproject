@@ -12,5 +12,10 @@ public class MyPageController {
 	@Autowired
 	private MyPageDAO dao;
 	
-	
+	@RequestMapping("mypage/cart.do")
+	public String mypage_cart(Model model)
+	{
+		model.addAttribute("main_jsp", "../mypage/cart.do");
+		return "main/main";
+	}
 }
