@@ -1,6 +1,7 @@
 package com.sist.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Select;
 
@@ -23,7 +24,11 @@ public interface BookMapper {
 	@Select("SELECT bno,title,image,sale,num "
 			+"FROM (SELECT bno,title,image,sale,rownum as num "
 			+"FROM (SELECT bno,title,image,sale "
-			+"FROM book_data WHERE SALE>0 AND RANK IS NOT NULL ORDER BY sale DESC)) WHERE num<=8")
-	public List<BookVO> bookBestListData();
+			+"FROM book_data WHERE SALE>0 AND RANK IS NOT NULL ORDER BY sale DESC)) "
+			+ "WHERE num BETWEEN #{start} AND #{end}")
+	public List<BookVO> bookBestListData(Map map);
+	
+	@Select("SELECT CEIL(COUNT(*)/12.0) FROM ${table_name}")
+	public int bookTotalPage(Map map);
 	
 }

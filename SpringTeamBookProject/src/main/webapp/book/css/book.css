@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+div.product__pagination{
+	margin : 0 auto;
+	width: max-content;
+}
+div.product__pagination ul{
+	list-style: none;
+}
+div.product__pagination ul li{
+	float: left;
+}

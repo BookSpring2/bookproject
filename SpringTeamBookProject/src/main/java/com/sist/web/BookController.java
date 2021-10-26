@@ -1,7 +1,10 @@
 package com.sist.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,13 +23,37 @@ public class BookController {
 	
 	// 목록 페이지 :1026 틀만 만들어둠. 페이징 처리 해야함.
 	@RequestMapping("book/list.do")
-	public String book_list(Model model)
+	public String book_list(String page, Model model, HttpServletRequest request)
 	{
-		model.addAttribute("main_jsp", "../book/list.jsp");	
 		
-		List<BookVO> list = dao.bookBestListData();
+		if(page==null)
+			page="1";
+		int curpage=Integer.parseInt(page);
+		Map map=new HashMap();
+		int rowSize=12;
+		int start=(rowSize*curpage)-(rowSize-1);
+		int end=(rowSize*curpage);
+		map.put("start", start);
+		map.put("end", end);
+		List<BookVO> list=dao.bookBestListData(map);
+		// 총페이지 
+		    map.put("table_name", "seoul_location"); //"seoul_location"
+			int totalpage=dao.bookTotalPage(map);
+		final int BLOCK=10;
+		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+		int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+		if(endPage>totalpage)
+			endPage=totalpage;
+		
+		model.addAttribute("curpage", curpage);
+		model.addAttribute("totalpage",totalpage);
+		model.addAttribute("BLOCK", BLOCK);
+		model.addAttribute("startPage",startPage);
+		model.addAttribute("endPage", endPage);
 		model.addAttribute("list", list);
+		model.addAttribute("main_jsp", "../book/list.jsp");				
 		return "main/main";
+		
 	}
 	// 상세 페이지 : 아직 건드리지 않음.
 	@RequestMapping("book/detail.do")

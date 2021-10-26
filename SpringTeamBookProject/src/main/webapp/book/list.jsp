@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="../book/css/book.css">
 
 </head>
 <body>
@@ -338,9 +339,15 @@
                         
                             <div class="product__item">
                             
-                                <div class="product__item__pic set-bg" data-setbg="${vo.image }">
-                                <a href="../book/detail.do">
-                                <!-- 임시로 데이터만 출력해둠. 페이징 처리 해야함.-->
+                                <div class="product__item__pic set-bg" data-setbg="">
+                               
+                                <a href="detail.do?no=${vo.bno }&page=${curpage}">
+                                <img src="${vo.image}">
+                                </a>
+                                <!-- 임시로 데이터만 출력해둠. 페이징 처리 해야함.
+                                 <a href="../book/detail.do?mno=${vo.bno}">
+                                href="../event/event_detail.do?bno=${vo.bno}"
+                                -->
                                 </a>
                                     <ul class="product__item__pic__hover">
                                         <li><a href="#"><i class="fa fa-heart"></i></a></li>
@@ -359,11 +366,30 @@
                         </c:forEach> 
                     </div>
                     <div class="product__pagination">
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-                    </div>
+						<ul>
+							<c:if test="${startPage>1 }">
+								<li><a href="../book/list.do?page=${startPage-1 }">&laquo;
+										Previous</a></li>
+							</c:if>
+							<c:forEach var="i" begin="${startPage }" end="${endPage }">
+								<c:if test="${i==curpage }">
+									<li class="current"><a
+										href="../book/list.do?page=${i }">${i }</a></li>
+								</c:if>
+								<c:if test="${i!=curpage }">
+									<li><a href="../book/list.do?page=${i }">${i }</a></li>
+								</c:if>
+							</c:forEach>
+							<c:if test="${endPage<totalpage }">
+								<li>
+									<a href="../book/list.do?page=${endPage+1 }">
+										<i class="fa fa-long-arrow-right"></i>
+									</a>
+								</li>
+							</c:if>
+						</ul>
+
+					</div>
                 </div>
             </div>
         </div>
