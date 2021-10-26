@@ -98,18 +98,21 @@
                     <div class="featured__controls">
                         <ul>
                             <li class="active" data-filter="*">전체</li>
-                            <li data-filter=".oranges">인문학</li>
-                            <li data-filter=".fresh-meat">사회과학</li>
-                            <li data-filter=".vegetables">역사</li>
-                            <li data-filter=".fastfood">과학</li>
+                            <li data-filter=".improvment">자기계발</li>
+                            <li data-filter=".literature">문학</li>
+                            <li data-filter=".science">인문/사회/과학</li>
+                            <li data-filter=".economics">경제경영</li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="row featured__filter">
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+            	<c:forEach var="mvo" items="${mlist }">
+            	<c:choose>
+            	<c:when test="${mvo.genre eq '가정과 생활' }">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix science">           
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="../ogani-master/img/featured/feature-1.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="${mvo.image }" style="width:270px;height:400px;cursor:pointer">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -117,14 +120,16 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h6><a href="#">${mvo.title }</a></h6>
+                            <h5>${mvo.price }</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
+                </c:when>
+            	<c:when test="${mvo.genre eq '역사와 문화' }">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix improvment science">           
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="../ogani-master/img/featured/feature-2.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="${mvo.image }" style="width:270px;height:400px;cursor:pointer">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -132,14 +137,16 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h6><a href="#">${mvo.title }</a></h6>
+                            <h5>${mvo.price }</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
+                </c:when>
+            	<c:when test="${mvo.genre eq '인문' }">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix science">           
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="../ogani-master/img/featured/feature-3.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="${mvo.image }" style="width:270px;height:400px;cursor:pointer">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -147,14 +154,16 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h6><a href="#">${mvo.title }</a></h6>
+                            <h5>${mvo.price }</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood oranges">
+                </c:when>
+            	<c:when test="${mvo.genre eq '경제경영' }">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix improvment economics">           
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="../ogani-master/img/featured/feature-4.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="${mvo.image }" style="width:270px;height:400px;cursor:pointer">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -162,14 +171,16 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h6><a href="#">${mvo.title }</a></h6>
+                            <h5>${mvo.price }</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
+                </c:when>
+            	<c:when test="${mvo.genre eq '아동' }">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix improvment science">           
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="../ogani-master/img/featured/feature-5.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="${mvo.image }" style="width:270px;height:400px;cursor:pointer">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -177,14 +188,16 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h6><a href="#">${mvo.title }</a></h6>
+                            <h5>${mvo.price }</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood">
+                </c:when>
+            	<c:when test="${mvo.genre eq '자기계발' }">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix improvment">           
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="../ogani-master/img/featured/feature-6.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="${mvo.image }" style="width:270px;height:400px;cursor:pointer">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -192,14 +205,16 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h6><a href="#">${mvo.title }</a></h6>
+                            <h5>${mvo.price }</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
+                </c:when>
+            	<c:when test="${mvo.genre eq '전공도서/대학교재' }">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix improvment">           
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="../ogani-master/img/featured/feature-7.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="${mvo.image }" style="width:270px;height:400px;cursor:pointer">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -207,14 +222,16 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h6><a href="#">${mvo.title }</a></h6>
+                            <h5>${mvo.price }</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood vegetables">
+                </c:when>
+            	<c:when test="${mvo.genre eq '소설' }">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix literature">           
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="../ogani-master/img/featured/feature-8.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="${mvo.image }" style="width:270px;height:400px;cursor:pointer">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -222,11 +239,14 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h6><a href="#">${mvo.title }</a></h6>
+                            <h5>${mvo.price }</h5>
                         </div>
                     </div>
                 </div>
+                </c:when>
+                </c:choose> 
+                </c:forEach>    
             </div>
         </div>
     </section>
@@ -260,62 +280,30 @@
                         <h4>화제의 신간</h4>
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
+                            	<c:forEach var="bnvo" items="${bnlist }" begin="0" end="2">
                                 <a href="#" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="../ogani-master/img/latest-product/lp-1.jpg" alt="">
+                                        <img src="${bnvo.image }" alt="">
                                     </div>
                                     <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
+                                        <h6>${bnvo.title }</h6>
+                                        <span>${bnvo.price }</span>
                                     </div>
                                 </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="../ogani-master/img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="../ogani-master/img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+                                </c:forEach>
                             </div>
                             <div class="latest-prdouct__slider__item">
+                            	<c:forEach var="bnvo" items="${bnlist }" begin="3" end="5">
                                 <a href="#" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="../ogani-master/img/latest-product/lp-1.jpg" alt="">
+                                        <img src="${bnvo.image }" alt="">
                                     </div>
                                     <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
+                                        <h6>${bnvo.title }</h6>
+                                        <span>${bnvo.price }</span>
                                     </div>
                                 </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="../ogani-master/img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="../ogani-master/img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+                                </c:forEach>
                             </div>
                         </div>
                     </div>
@@ -325,62 +313,30 @@
                         <h4>베스트셀러</h4>
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
+                                <c:forEach var="bbvo" items="${bblist }" begin="0" end="2">
                                 <a href="#" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="../ogani-master/img/latest-product/lp-1.jpg" alt="">
+                                        <img src="${bbvo.image }" alt="">
                                     </div>
                                     <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
+                                        <h6>${bbvo.title }</h6>
+                                        <span>${bbvo.price }</span>
                                     </div>
                                 </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="../ogani-master/img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="../ogani-master/img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+                                </c:forEach>
                             </div>
                             <div class="latest-prdouct__slider__item">
+                                <c:forEach var="bbvo" items="${bblist }" begin="3" end="5">
                                 <a href="#" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="../ogani-master/img/latest-product/lp-1.jpg" alt="">
+                                        <img src="${bbvo.image }" alt="">
                                     </div>
                                     <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
+                                        <h6>${bbvo.title }</h6>
+                                        <span>${bbvo.price }</span>
                                     </div>
                                 </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="../ogani-master/img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="../ogani-master/img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+                                </c:forEach>
                             </div>
                         </div>
                     </div>
@@ -390,62 +346,30 @@
                         <h4>추천도서</h4>
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
+                                <c:forEach var="brvo" items="${brlist }" begin="0" end="2">
                                 <a href="#" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="../ogani-master/img/latest-product/lp-1.jpg" alt="">
+                                        <img src="${brvo.image }" alt="">
                                     </div>
                                     <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
+                                        <h6>${brvo.title }</h6>
+                                        <span>${brvo.price }</span>
                                     </div>
                                 </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="../ogani-master/img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="../ogani-master/img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+                                </c:forEach>
                             </div>
                             <div class="latest-prdouct__slider__item">
+                                <c:forEach var="brvo" items="${brlist }" begin="3" end="5">
                                 <a href="#" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="../ogani-master/img/latest-product/lp-1.jpg" alt="">
+                                        <img src="${brvo.image }" alt="">
                                     </div>
                                     <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
+                                        <h6>${brvo.title }</h6>
+                                        <span>${brvo.price }</span>
                                     </div>
                                 </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="../ogani-master/img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="../ogani-master/img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+                                </c:forEach>         
                             </div>
                         </div>
                     </div>

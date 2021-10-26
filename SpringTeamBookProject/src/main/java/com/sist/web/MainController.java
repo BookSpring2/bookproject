@@ -15,8 +15,22 @@ public class MainController {
 	@RequestMapping("main/main.do")
 	public String main_main(Model model)
 	{
-		List<BookVO> list=dao.MainTopListData();
-		model.addAttribute("list", list);
+		// 상단 리스트(SALE 높은순)
+		List<BookVO> tlist=dao.MainTopListData();
+		// 중단 리스트(가장 최근 발매된 책 순으로 8개 장르별 분류)
+		List<BookVO> mlist=dao.MainMiddleListData();
+		// 신간도서 중 SALE이 높은 것 6개
+		List<BookVO> bnlist=dao.MainBotNewListData();
+		// 도서 중 rank가 가장 높은 도서 6개
+		List<BookVO> bblist=dao.MainBotBestListData();
+		// 도서 중 평점이 가장 높은 도서 6개
+		List<BookVO> brlist=dao.MainBotRecListData();
+
+		model.addAttribute("tlist", tlist);
+		model.addAttribute("mlist", mlist);
+		model.addAttribute("bnlist", bnlist);
+		model.addAttribute("bblist", bblist);
+		model.addAttribute("brlist", brlist);
 		model.addAttribute("main_jsp", "../main/home.jsp");
 		return "main/main";
 	}
