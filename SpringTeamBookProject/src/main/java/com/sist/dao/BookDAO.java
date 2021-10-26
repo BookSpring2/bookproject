@@ -11,6 +11,7 @@ import com.sist.vo.BookVO;
 @Repository
 public class BookDAO {
 	
+	/* 
 	@Autowired   
 	   private BookMapper mapper;
 	   
@@ -23,5 +24,5 @@ public class BookDAO {
 		   return mapper.bookDetailData(no);
 	   }
 	   
-
+ 	*/
 }
