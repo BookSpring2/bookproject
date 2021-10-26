@@ -344,11 +344,6 @@
                                 <a href="detail.do?no=${vo.bno }&page=${curpage}">
                                 <img src="${vo.image}">
                                 </a>
-                                <!-- 임시로 데이터만 출력해둠. 페이징 처리 해야함.
-                                 <a href="../book/detail.do?mno=${vo.bno}">
-                                href="../event/event_detail.do?bno=${vo.bno}"
-                                -->
-                                </a>
                                     <ul class="product__item__pic__hover">
                                         <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                         <li><a href="#"><i class="fa fa-retweet"></i></a></li>

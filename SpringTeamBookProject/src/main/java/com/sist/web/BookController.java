@@ -21,7 +21,7 @@ public class BookController {
 	@Autowired
 	private BookDAO dao;
 	
-	// 목록 페이지 :1026 틀만 만들어둠. 페이징 처리 해야함.
+	// 베스트 셀러 목록 출력
 	@RequestMapping("book/list.do")
 	public String book_list(String page, Model model, HttpServletRequest request)
 	{
@@ -37,7 +37,7 @@ public class BookController {
 		map.put("end", end);
 		List<BookVO> list=dao.bookBestListData(map);
 		// 총페이지 
-		    map.put("table_name", "seoul_location"); //"seoul_location"
+		    map.put("table_name", "book_data");
 			int totalpage=dao.bookTotalPage(map);
 		final int BLOCK=10;
 		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
