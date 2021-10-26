@@ -11,18 +11,11 @@ import com.sist.vo.BookVO;
 @Repository
 public class BookDAO {
 	
-	/* 
-	@Autowired   
-	   private BookMapper mapper;
-	   
-	   public List<BookVO> bookListData()
-	   {
-		   return mapper.bookListData();
-	   }
-	   public BookVO bookDetailData(int no)
-	   {
-		   return mapper.bookDetailData(no);
-	   }
-	   
- 	*/
+	@Autowired
+	private BookMapper mapper;
+	
+	public List<BookVO> bookBestListData()
+	{
+		return mapper.bookBestListData();
+	}
 }

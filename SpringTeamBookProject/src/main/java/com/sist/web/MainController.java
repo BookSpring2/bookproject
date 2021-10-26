@@ -20,21 +20,22 @@ public class MainController {
 		model.addAttribute("main_jsp", "../main/home.jsp");
 		return "main/main";
 	}
+	/* 책과 관련된 컨트롤러는 BookController 파트로 옮기겠습니다.
+	 
 	@RequestMapping("book/list.do")
 	public String book_list(Model model)
 	{
 		model.addAttribute("main_jsp", "../book/list.jsp");
 		return "main/main";
 	}
-	
-	/**/
+		
 	@RequestMapping("book/detail.do")
 	public String book_detail(Model model)
 	{
 		model.addAttribute("main_jsp", "../book/detail.jsp");
 		return "main/main";
 	}
-	
+	*/
 	@RequestMapping("blog/list.do")
 	public String blog_list(Model model)
 	{
