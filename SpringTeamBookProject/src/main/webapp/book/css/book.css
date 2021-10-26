@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+/* 
+	ogani-mast/css 폴더에 넣어두면 찾기 힘들것 같아서
+ 	저희 book페이지에서 쓰기위해 추가한 스타일들은 여기에 넣어두었어용
+ 	작업하실때 참고하셔요..!
+ 	
+ */
 div.product__pagination{
 	margin : 0 auto;
 	width: max-content;
