@@ -10,17 +10,7 @@ import com.sist.vo.BookVO;
 
 public interface BookMapper {
 	
-	/* 
-	// 리스트 출력
-	@Select("SELECT 사용할 컬럼들 FROM 테이블 명 ORDER BY no ASC")
-	public List<BookVO> bookListData();
-	
-	// 상세보기 출력 
-	@Select("SELECT 사용할 컬럼들 FROM 테이블 명 WHERE no=#{no}")
-	public BookVO bookDetailData(int no); 
-		
-	 */
-	
+	//1. 베스트 셀러 도서 출력 기능
 	@Select("SELECT bno,title,image,sale,num "
 			+"FROM (SELECT bno,title,image,sale,rownum as num "
 			+"FROM (SELECT bno,title,image,sale "
@@ -30,5 +20,7 @@ public interface BookMapper {
 	
 	@Select("SELECT CEIL(COUNT(*)/12.0) FROM ${table_name}")
 	public int bookTotalPage(Map map);
+	
+	//2. 
 	
 }
