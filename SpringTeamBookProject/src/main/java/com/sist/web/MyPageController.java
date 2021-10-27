@@ -14,14 +14,14 @@ public class MyPageController {
 	@Autowired
 	private MyPageDAO dao;
 	
-	@RequestMapping("mypage/insert.do")
+	@RequestMapping("mypage/cart_insert.do")
 	public String insert(Model model)
 	{
-		model.addAttribute("main_jsp", "../mypage/insert.do");
+		model.addAttribute("main_jsp", "../mypage/cart_insert.do");
 		return "redirect:../cart/list.do";
 	}
 	
-	@RequestMapping("mypage/list.do")
+	@RequestMapping("mypage/cart_list.do")
 	public String list(String userId, Model model) 
 	{
 		Map map=new HashMap();
@@ -42,7 +42,7 @@ public class MyPageController {
         //ModelAndView mav에 이동할 페이지의 이름과 데이터를 저장한다.
 
         model.addAttribute("map", map);
-        model.addAttribute("main_jsp", "../mypage/list.jsp"); //이동할 페이지의 이름
+        model.addAttribute("main_jsp", "../mypage/cart_list.jsp"); //이동할 페이지의 이름
         
 		return "main/main";
 	}
