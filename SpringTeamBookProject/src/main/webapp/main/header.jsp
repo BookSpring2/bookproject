@@ -56,7 +56,7 @@
                             <li><a href="#">게시판</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="#">자유게시판</a></li>
-                                    <li><a href="#">공지사항</a></li>
+                                    <li><a href="../noticeboard/list.do">공지사항</a></li>
                                 </ul>
                             </li>
                         </ul>
