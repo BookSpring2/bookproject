@@ -49,4 +49,8 @@
 		p:sqlSessionFactory-ref="ssf"
 		p:mapperInterface="com.sist.mapper.NoticeMapper"
 	/>
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:sqlSessionFactory-ref="ssf"
+		p:mapperInterface="com.sist.mapper.ShopMapper"
+	/>
 </beans>

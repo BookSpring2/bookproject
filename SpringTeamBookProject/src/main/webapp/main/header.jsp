@@ -57,6 +57,7 @@
                                 <ul class="header__menu__dropdown">
                                     <li><a href="#">자유게시판</a></li>
                                     <li><a href="../noticeboard/list.do">공지사항</a></li>
+                                    <li><a href="../shop/shop_main.do">서점 찾기</a></li>
                                 </ul>
                             </li>
                         </ul>
