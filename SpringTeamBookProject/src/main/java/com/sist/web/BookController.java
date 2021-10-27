@@ -62,5 +62,41 @@ public class BookController {
 		model.addAttribute("main_jsp", "../book/detail.jsp");
 		return "main/main";
 	}
+	
+	
+	// 신간 목록 출력
+		@RequestMapping("book/newlist.do")
+		public String book_newlist(String page, Model model, HttpServletRequest request)
+		{
+			
+			if(page==null)
+				page="1";
+			int curpage=Integer.parseInt(page);
+			Map map=new HashMap();
+			int rowSize=12;
+			int start=(rowSize*curpage)-(rowSize-1);
+			int end=(rowSize*curpage);
+			map.put("start", start);
+			map.put("end", end);
+			List<BookVO> list=dao.bookNewListData(map);
+			// 총페이지 
+			    map.put("table_name", "book_data");
+				int totalpage=dao.bookTotalPage(map);
+			final int BLOCK=10;
+			int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+			int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+			if(endPage>totalpage)
+				endPage=totalpage;
+			
+			model.addAttribute("curpage", curpage);
+			model.addAttribute("totalpage",totalpage);
+			model.addAttribute("BLOCK", BLOCK);
+			model.addAttribute("startPage",startPage);
+			model.addAttribute("endPage", endPage);
+			model.addAttribute("list", list);
+			model.addAttribute("main_jsp", "../book/newlist.jsp");				
+			return "main/main";
+			
+		}
 
 }

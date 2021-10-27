@@ -21,6 +21,12 @@ public interface BookMapper {
 	@Select("SELECT CEIL(COUNT(*)/12.0) FROM ${table_name}")
 	public int bookTotalPage(Map map);
 	
-	//2. 
+	//2. 신간 도서 출력 기능.
+	@Select("SELECT bno,title,image,sale,pubdate,num "
+			+"FROM (SELECT bno,title,image,sale,pubdate,rownum as num "
+			+"FROM (SELECT bno,title,image,sale,pubdate "
+			+"FROM book_data WHERE pubdate IS NOT NULL ORDER BY pubdate DESC)) "
+			+ "WHERE num BETWEEN #{start} AND #{end}")
+	public List<BookVO> bookNewListData(Map map);
 	
 }

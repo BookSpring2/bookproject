@@ -25,5 +25,9 @@ public class BookDAO {
 		 return mapper.bookTotalPage(map);
 	 }
 	 
-	 //2. 
+	 //2. 신간 도서 출력 기능
+	 public List<BookVO> bookNewListData(Map map)
+	{
+			return mapper.bookNewListData(map);
+	}
 }
