@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="../book/css/book.css">
 </head>
 <body>
     <!-- Breadcrumb Section Begin -->
@@ -63,6 +64,7 @@
                         <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
                             vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
                             quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p>
+                        
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
@@ -70,7 +72,11 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="primary-btn">장바구니 담기</a>
+                        
+                        
+                        <a href="#" class="primary-btn">주문하기</a>
+                        <a href="#" class="primary-btn">장바구니</a>
+                        <a href="#" class="primary-btn">위시리스트</a>
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         <ul>
                             <li><b>판매정보</b> <span>판매중</span></li>
