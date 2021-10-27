@@ -6,25 +6,25 @@ package com.sist.vo;
 	AMOUNT          NUMBER  
  */
 public class MyPageVO {
-	private int cartid;
-	private String userid;
+	private int cartId;
+	private String userId;
 	private String name;
-	private int bookid;
+	private int bookId;
 	private String title;
 	private int price;
 	private int money;
 	private int amount;
-	public int getCartid() {
-		return cartid;
+	public int getCartId() {
+		return cartId;
 	}
-	public void setCartid(int cartid) {
-		this.cartid = cartid;
+	public void setCartid(int cartId) {
+		this.cartId = cartId;
 	}
-	public String getUserid() {
-		return userid;
+	public String getUserId() {
+		return userId;
 	}
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public String getName() {
 		return name;
@@ -32,11 +32,11 @@ public class MyPageVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getBookid() {
-		return bookid;
+	public int getBookId() {
+		return bookId;
 	}
-	public void setBookid(int bookid) {
-		this.bookid = bookid;
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
 	}
 	public String getTitle() {
 		return title;
@@ -62,5 +62,11 @@ public class MyPageVO {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
+	
+    @Override
+    public String toString() {
+        return "CartVO [cartId=" + cartId + ", userId=" + userId + ", name=" + name + ", booId=" + bookId
+                + ", title=" + title + ", price=" + price + ", money=" + money + ", amount=" + amount + "]";
+    }
 	
 }

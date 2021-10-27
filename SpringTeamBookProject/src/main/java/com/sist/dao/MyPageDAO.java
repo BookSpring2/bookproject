@@ -11,5 +11,54 @@ import com.sist.mapper.*;
 public class MyPageDAO {
 	@Autowired
 	private MyPageMapper mapper;
-
+	
+	//////////////////////////// 장바구니 /////////////////////////////////
+	public List<MyPageVO> cartMoeny(){
+		return null;
+	}
+	
+	public String cartInsert(MyPageVO vo)
+	{
+		return mapper.cartInsert(vo);
+	}
+	
+	public List<MyPageVO> cartList(String userid)
+	{
+		return mapper.cartList(userid);
+	}
+	
+	public void cartDelete(int cartid)
+	{
+		mapper.cartDelete(cartid);
+	}
+	
+	public void cartDeleteAll(String userid)
+	{
+		mapper.cartDeleteAll(userid);
+	}
+	
+	public void cartDelUpdate(int cartid)
+	{
+		
+	}
+	
+	public int cartSumMoney(String userid)
+	{
+		return mapper.cartSumMoney(userid);
+	}
+	
+	public int cartCount(String userid, int bookid)
+	{
+		return 0;
+	}
+	
+	public void cartUpdate(MyPageVO vo)
+	{
+		
+	}
+	
+	public void cartUpdateOk(MyPageVO vo)
+	{
+		
+	}
 }
