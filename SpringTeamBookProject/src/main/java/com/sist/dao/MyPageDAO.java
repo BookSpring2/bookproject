@@ -22,9 +22,9 @@ public class MyPageDAO {
 		return mapper.cartInsert(vo);
 	}
 	
-	public List<MyPageVO> cartList(String userid)
+	public List<MyPageVO> cartList(Map map)
 	{
-		return mapper.cartList(userid);
+		return mapper.cartList(map);
 	}
 	
 	public void cartDelete(int cartid)

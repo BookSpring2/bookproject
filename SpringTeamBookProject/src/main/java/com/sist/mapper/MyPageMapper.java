@@ -19,7 +19,7 @@ public interface MyPageMapper {
 	@Select("SELECT cartId, bno, user_id, name, title, amount, price, (price*amount) as money "
 			+ "FROM book_member m, book_cart c, book_data d "
 			+ "WHERE m.user_id=c.userId AND c.bookId=d.bno AND c.userId=#{userId} order by cartId")
-	public List<MyPageVO> cartList(String userid);
+	public List<MyPageVO> cartList(Map map);
 	
 	// 개별 삭제
 	@Delete("DELETE FROM book_cart "
