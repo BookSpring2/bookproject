@@ -6,6 +6,8 @@
  	작업하실때 참고하셔요..!
  	
  */
+ 
+ /* list 페이지 */
 div.product__pagination{
 	margin : 0 auto;
 	width: max-content;
@@ -16,3 +18,5 @@ div.product__pagination ul{
 div.product__pagination ul li{
 	float: left;
 }
+
+/* detail 페이지 */
