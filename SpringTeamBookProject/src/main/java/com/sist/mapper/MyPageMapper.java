@@ -26,7 +26,7 @@ public interface MyPageMapper {
 			+ "WHERE cartId=#{cartId}")
 	public void cartDelete(int cartid);
 	
-	// 전체 삭제
+	// 전체 삭제 
 	@Delete("DELETE FROM book_cart "
 			+ "WHERE userId=#{userId}")
 	public void cartDeleteAll(String userid);
