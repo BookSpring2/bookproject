@@ -45,4 +45,13 @@ public class MemberController {
 		return "redirect:../main/main.do";
 	}
 	
+	// 로그인화면 이동
+	@GetMapping("login.do")
+	public String member_login_ok(Model model)
+	{
+		model.addAttribute("main_jsp","../member/login.jsp");
+		return "main/main";
+	}
+
+	
 }
