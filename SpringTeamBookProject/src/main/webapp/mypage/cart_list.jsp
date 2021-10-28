@@ -37,7 +37,7 @@
                     <div class="shoping__cart__table">
                         <table>
                             <thead>
-                                <tr>
+                                <tr> 
                                     <th class="shoping__product">장바구니</th>
                                     <th class="shopping__product">장바구니가 비었습니다</th>
                                     <th>금액</th>
