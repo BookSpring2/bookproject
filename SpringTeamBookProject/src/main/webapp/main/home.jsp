@@ -402,7 +402,7 @@
                                 <li><i class="fa fa-calendar-o"></i>&nbsp;2021-10-26</li>
                                 <li><i class="fa fa-comment-o"></i> 5</li>
                             </ul>
-                            <h5><a href="#">요즘 젊은이들의 필독서</a></h5>
+                            <h5><a href="#">젊은 친구들에게 꼭 선물하고 싶은 책</a></h5>
                             <p>트렌드를 알아야 승리한다, 트렌드 변화를 쉽게 이해 할 수 있도록 도움을 주는 책</p>
                         </div>
                     </div>
