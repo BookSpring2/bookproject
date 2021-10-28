@@ -74,7 +74,7 @@
         <div class="container">
             <div class="row">
                 <div class="categories__slider owl-carousel">
-                <c:forEach var="tvo" items="${list }">
+                <c:forEach var="tvo" items="${tlist }">
                     <div class="col-lg-3">
                         <div class="categories__item set-bg" data-setbg="${tvo.image }">
                             <h5><a href="#">${tvo.title }</a></h5>
