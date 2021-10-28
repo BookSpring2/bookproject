@@ -55,7 +55,7 @@
                             <li><a href="../blog/list.do">블로그</a></li>
                             <li><a href="#">게시판</a>
                                 <ul class="header__menu__dropdown">
-                                    <li><a href="#">자유게시판</a></li>
+                                    <li><a href="../freeboard/list.do">자유게시판</a></li>
                                     <li><a href="../noticeboard/list.do">공지사항</a></li>
                                     <li><a href="../shop/shop_main.do">서점 찾기</a></li>
                                 </ul>
