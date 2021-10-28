@@ -15,6 +15,9 @@ public class MyPageController {
 	@Autowired
 	private MyPageDAO dao;
 	
+	@Autowired
+	private OrderDAO odao;
+	
 	@RequestMapping("mypage/cart_list.do")
 	public String list(String userId, Model model) 
 	{
@@ -27,6 +30,13 @@ public class MyPageController {
 	{
 		model.addAttribute("main_jsp", "../mypage/cart_insert.do");
 		return "redirect:../cart/list.do";
+	}
+	
+	@RequestMapping("mypage/order_list.do")
+	public String order_list(String user_id,Model model)
+	{
+		model.addAttribute("main_jsp", "../mypage/order_list.jsp");
+		return "main/main";
 	}
 
 }
