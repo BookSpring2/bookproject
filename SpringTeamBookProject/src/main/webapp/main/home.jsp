@@ -55,11 +55,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="hero__item set-bg" data-setbg="../ogani-master/img/hero/banner_default.jpg">
+                    <div class="hero__item set-bg" data-setbg="https://media.istockphoto.com/photos/old-books-on-bookshelves-with-orange-background-picture-id1154728362?k=20&m=1154728362&s=612x612&w=0&h=ksfSax646nSnRMwyaJBxwHFvD1XSJTCXMtiIskOmlRE=">
                         <div class="hero__text">
-                            <span>독서의 계절</span>
+                            <span style="font-size:30px;">독서의 계절</span>
                             <h2>책과 떠나는<br/>가을 여행</h2>
-                            <p>책과 떠나는 가을 여행</p>
+                            <p style="font-size:20px">책과 떠나는 가을 여행</p>
                             <a href="#" class="primary-btn">바로가기</a>
                         </div>
                     </div>
@@ -253,6 +253,7 @@
     <!-- Featured Section End -->
 
     <!-- Banner Begin -->
+    <!-- 
     <div class="banner">
         <div class="container">
             <div class="row">
@@ -269,6 +270,7 @@
             </div>
         </div>
     </div>
+     -->
     <!-- Banner End -->
 
     <!-- Latest Product Section Begin -->
@@ -393,45 +395,45 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="blog__item">
                         <div class="blog__item__pic">
-                            <img src="../ogani-master/img/blog/blog-1.jpg" alt="">
+                            <img src="https://bimage.interpark.com/partner/goods_image/9/9/3/5/354069935g.jpg" style="width:150px;height:450px;" alt="">
                         </div>
                         <div class="blog__item__text">
                             <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
+                                <li><i class="fa fa-calendar-o"></i>&nbsp;2021-10-26</li>
                                 <li><i class="fa fa-comment-o"></i> 5</li>
                             </ul>
-                            <h5><a href="#">Cooking tips make cooking simple</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+                            <h5><a href="#">요즘 젊은이들의 필독서</a></h5>
+                            <p>트렌드를 알아야 승리한다, 트렌드 변화를 쉽게 이해 할 수 있도록 도움을 주는 책</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="blog__item">
                         <div class="blog__item__pic">
-                            <img src="../ogani-master/img/blog/blog-2.jpg" alt="">
+                            <img src="https://bimage.interpark.com/partner/goods_image/9/8/0/0/4219800g.jpg" style="width:150px;height:450px;" alt="">
                         </div>
                         <div class="blog__item__text">
                             <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
+                                <li><i class="fa fa-calendar-o"></i>&nbsp;2021-10-27</li>
+                                <li><i class="fa fa-comment-o"></i> 77</li>
                             </ul>
-                            <h5><a href="#">6 ways to prepare breakfast for 30</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+                            <h5><a href="#">베스트셀러는 다 이유가 있다</a></h5>
+                            <p>인류 역사와 문명 분석에 흥미로운 관점을 제시해주는 책이다.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="blog__item">
                         <div class="blog__item__pic">
-                            <img src="../ogani-master/img/blog/blog-3.jpg" alt="">
+                            <img src="https://bimage.interpark.com/partner/goods_image/4/2/9/4/348974294g.jpg" style="width:150px;height:450px;" alt="">
                         </div>
                         <div class="blog__item__text">
                             <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
+                                <li><i class="fa fa-calendar-o"></i>&nbsp; 2021-10-27</li>
+                                <li><i class="fa fa-comment-o"></i> 45</li>
                             </ul>
-                            <h5><a href="#">Visit the clean farm in the US</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+                            <h5><a href="#">디스크로 고통받는 환자들에게 추천!!</a></h5>
+                            <p>이 책을 읽고 허리디스크가 나았습니다..</p>
                         </div>
                     </div>
                 </div>
