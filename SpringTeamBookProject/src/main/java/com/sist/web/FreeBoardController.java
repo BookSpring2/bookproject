@@ -1,4 +1,7 @@
 package com.sist.web;
+import java.util.*;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,27 +11,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
-import java.util.*;
-import javax.servlet.http.HttpServletResponse;
+import com.sist.dao.FreeBoardDAO;
+import com.sist.vo.FreeBoardVO;
 
-import com.sist.vo.*;
-import com.sist.dao.*;
+import java.io.*;
+import java.net.URLEncoder;
 
 @Controller
+@RequestMapping("freeboard/")
 public class FreeBoardController {
 	@Autowired
 	private FreeBoardDAO dao;
 	
 	// 리스트 출력
-	@RequestMapping("freeboard/list.do")
+	@RequestMapping("list.do")
 	public String board_list(String page,Model model)
 	{
 		if(page==null)
 			page="1";
 		int curpage=Integer.parseInt(page);
 		Map map=new HashMap();
-		int rowSize=12;
+		int rowSize=10;
 		int start=(rowSize*curpage)-(rowSize-1);
 		int end=(rowSize*curpage);
 		map.put("start", start);
@@ -50,7 +53,7 @@ public class FreeBoardController {
 		model.addAttribute("main_jsp", "../freeboard/list.jsp");				
 		return "main/main";
 	}
-/*
+
 	// 데이터 입력
 	@GetMapping("insert.do")
 	public String board_insert(Model model) {
@@ -111,10 +114,30 @@ public class FreeBoardController {
 	@GetMapping("detail.do")
 	public String detail(int no, int page, Model model) {
 		FreeBoardVO vo = dao.freeBoardDetail(no);
+		// 파일이 2개 이상일때
+		if(vo.getFilecount()>0) 
+    	{
+	    	List<String> fList=new ArrayList<String>();
+	    	List<String> sList=new ArrayList<String>();
+	    	
+	    	StringTokenizer st1=new StringTokenizer(vo.getFilename(),",");
+	    	while(st1.hasMoreTokens())
+	    	{
+	    		fList.add(st1.nextToken());
+	    	}
+	    	
+	    	st1=new StringTokenizer(vo.getFilesize(),",");
+	    	while(st1.hasMoreTokens())
+	    	{
+	    		sList.add(st1.nextToken());
+	    	}
+	    	model.addAttribute("fList", fList);
+	    	model.addAttribute("sList", sList);
+    	}
 		model.addAttribute("vo", vo);
-		model.addAttribute("curpage", page);
+		model.addAttribute("page", page);
 		model.addAttribute("main_jsp", "../freeboard/detail.jsp");
 		return "main/main";
 	}
-*/
+
 }
