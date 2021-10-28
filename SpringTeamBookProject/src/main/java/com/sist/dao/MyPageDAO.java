@@ -17,14 +17,14 @@ public class MyPageDAO {
 		return null;
 	}
 	
-	public String cartInsert(MyPageVO vo)
-	{
-		return mapper.cartInsert(vo);
-	}
-	
 	public List<MyPageVO> cartList(Map map)
 	{
 		return mapper.cartList(map);
+	}
+	
+	public String cartInsert(MyPageVO vo)
+	{
+		return mapper.cartInsert(vo);
 	}
 	
 	public void cartDelete(int cartid)
