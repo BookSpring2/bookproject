@@ -20,3 +20,29 @@ div.product__pagination ul li{
 }
 
 /* detail 페이지 */
+p.bookdetail_textdata_title{
+	width:70px;
+	padding-bottom:0px;
+	padding-top: 0px;
+	margin-top:0px;
+	margin-bottom:8px;
+	margin-right:50px;
+	font-weight: bold;
+	float: left;
+	color:#3f3f3f;
+	
+}
+p.bookdetail_textdata{
+	padding-bottom:0px;
+	padding-top: 0px;
+	margin-top:0px;
+	margin-bottom:8px;
+	color:#3f3f3f;
+	
+}
+div.bookdetail_textdata_group{
+	margin-bottom:40px;
+}
+div.bookdetail_pricedata_group p{
+	color:#c60303;
+}

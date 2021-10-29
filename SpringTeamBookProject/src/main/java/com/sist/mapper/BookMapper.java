@@ -30,7 +30,7 @@ public interface BookMapper {
 	public List<BookVO> bookNewListData(Map map);
 	
 	//3. 신간 - 도서 상세보기.
-	/*
+	/* 
 	@Select("SELECT bno,title,image,sale,pubdate,introduce,contents,price,genre,publisher,writer "
 			 +"FROM book_data WHERE bno IS NOT NULL "
 			 +"AND bno=#{bno}")
