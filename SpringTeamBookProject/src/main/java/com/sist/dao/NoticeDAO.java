@@ -20,4 +20,15 @@ public class NoticeDAO {
 	{
 		return mapper.NoticeTotalPage();
 	}
+	
+	public void NoticeBoardInsert(NoticeVO vo)
+	{
+		mapper.NoticeBoardInsert(vo);
+	}
+	
+	public NoticeVO NoticeDetailData(int no)
+	{
+		mapper.NoticeBoardHitIncrement(no);
+		return mapper.NoticeDetailData(no);
+	}
 }

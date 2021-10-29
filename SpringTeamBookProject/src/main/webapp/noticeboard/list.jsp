@@ -10,11 +10,21 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style type="text/css">
+.container{
+	margin:0px auto;
+}
+.page{
+	display:inline-block;
+	margin:0px auto;
+}
+</style>
 </head>
 <body>
 
 <div class="container">
-  <h2>공지사항</h2>            
+  <h2>공지사항</h2> 
+  <p></p>          
   <table class="table table-hover">
     <thead>
       <tr>
@@ -35,23 +45,25 @@
         <td style="width=10%;text-align:center;">${vo.hit }</td>
       </tr>
     </c:forEach>
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-      </tr>
     </tbody>
   </table>
-</div>
+	<div class="page">
+ 	<ul class="pagination">
+  	<li><a href="#">1</a></li>
+  	<li class="active"><a href="#">2</a></li>
+  	<li><a href="#">3</a></li>
+  	<li><a href="#">4</a></li>
+  	<li><a href="#">5</a></li>
 
+	</ul>
+ 	</div>
+     <table class="table">
+     	<tr>
+     		<td>
+     			<a href="insert.do" class="btn btn-sm btn-danger">공지등록</a>
+     		</td>
+     	</tr>
+     </table>
+</div>
 </body>
 </html>

@@ -2,6 +2,7 @@ package com.sist.mapper;
 import java.util.*;
 import com.sist.vo.*;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
@@ -30,11 +31,14 @@ public interface NoticeMapper {
 	public void NoticeBoardInsert(NoticeVO vo);
 	
 	@Update("UPDATE book_noticeboard SET hit=hit+1 WHERE no=#{no}")
-	public void NoticeBoardIncrement(int no);
+	public void NoticeBoardHitIncrement(int no);
 	
 	@Select("SELECT no,name,subject,content,regdate,hit,imagename,imagesize,imagecount "
 			+"FROM book_noticeboard WHERE no=#{no}")
 	public NoticeVO NoticeDetailData(int no);
+	
+	@Delete("DELETE FROM book_noticeboard WHERE no=#{no}")
+	public void NoticeBoardDelete(int no);
 	
 	
 }
