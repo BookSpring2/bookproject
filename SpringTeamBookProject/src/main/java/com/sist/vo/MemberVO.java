@@ -1,7 +1,7 @@
 package com.sist.vo;
 
 public class MemberVO {
-	private String user_id,pwd,name,sex,birthday,tel,tel1,tel2,tel3,addr1,addr2,admin,email,genre,membership;
+	private String user_id,pwd,name,sex,birthday,tel,tel1,tel2,tel3,addr1,addr2,admin,email,genre,membership,msg;
 
 	public String getUser_id() {
 		return user_id;
@@ -122,7 +122,13 @@ public class MemberVO {
 	public void setMembership(String membership) {
 		this.membership = membership;
 	}
-	
-	
 
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+	
 }

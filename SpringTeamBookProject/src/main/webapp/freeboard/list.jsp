@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,8 +28,9 @@
         </div>
 </section>
 <div class="container">         
-<div class="row">
-  <table class="table" style="margin-top:50px">
+<div class="row" style="margin-top:30px;">
+   <table class="table table-hover">
+    <thead>
       <tr>
         <th>번호</th>
         <th>제목</th>
@@ -36,15 +38,18 @@
         <th>작성일</th>
         <th>조회수</th>
       </tr>
-   <c:forEach items="${list }" var="vo">
-     <tr>
+    </thead>
+    <tbody>
+     <c:forEach items="${list }" var="vo">
+      <tr>
         <td>${vo.no }</td>
-        <td>${vo.subject }</td>
+        <td><a href="detail.do?no=${vo.no }&page=${curpage}">${vo.subject }</a></td>
         <td>${vo.user_id }</td>
-        <td>${vo.regdate }</td>
+        <td><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd"/></td>
         <td>${vo.hit }</td>
-      </tr>  
-	</c:forEach>    
+      </tr>
+      </c:forEach>    
+    </tbody>
   </table>
 </div>
 </div>

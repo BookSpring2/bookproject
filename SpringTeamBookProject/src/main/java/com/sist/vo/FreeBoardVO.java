@@ -17,7 +17,6 @@ DEPTH               NUMBER
 
  */
 import java.util.*;
-
 import org.springframework.web.multipart.MultipartFile;
 
 public class FreeBoardVO {

@@ -8,11 +8,22 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MyPageController {
 	@Autowired
 	private MyPageDAO dao;
+	
+	@Autowired
+	private OrderDAO odao;
+	
+	@RequestMapping("mypage/cart_list.do")
+	public String list(String userId, Model model) 
+	{
+		model.addAttribute("main_jsp", "../mypage/cart_list.jsp"); 
+		return "main/main";
+	}
 	
 	@RequestMapping("mypage/cart_insert.do")
 	public String insert(Model model)
@@ -21,29 +32,11 @@ public class MyPageController {
 		return "redirect:../cart/list.do";
 	}
 	
-	@RequestMapping("mypage/cart_list.do")
-	public String list(String userId, Model model) 
+	@RequestMapping("mypage/order_list.do")
+	public String order_list(String user_id,Model model)
 	{
-		Map map=new HashMap();
-        int sumMoney=dao.cartSumMoney(userId);//금액 합계
-        int fee=sumMoney >= 30000 ? 0 : 2500; 
-            
-        //배송료 계산
-        //30000원이 넘으면 배송료가 0원, 안넘으면 2500원
-            
-        //hasp map에 장바구니에 넣을 각종 값들을 저장함
-        map.put("sumMoney", sumMoney);
-        map.put("fee", fee); //배송료
-        map.put("sum", sumMoney+fee); //전체 금액
-        List<MyPageVO> list=dao.cartList(map);//장바구니 목록
-        map.put("list", list); //장바구니 목록
-        map.put("count", list.size()); //레코드 갯수
-
-        //ModelAndView mav에 이동할 페이지의 이름과 데이터를 저장한다.
-
-        model.addAttribute("map", map);
-        model.addAttribute("main_jsp", "../mypage/cart_list.jsp"); //이동할 페이지의 이름
-        
+		model.addAttribute("main_jsp", "../mypage/order_list.jsp");
 		return "main/main";
 	}
+
 }

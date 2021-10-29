@@ -5,6 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
 <section class="breadcrumb-section set-bg" data-setbg="../ogani-master/img/breadcrumb.jpg">
@@ -25,12 +30,16 @@
 <section class="shoping-cart spad">
         <div class="container">
             <div class="row">
+              <a href="#" class="primary-btn cart-btn">장바구니</a>
+              <a href="#" class="primary-btn cart-btn">결제</a>
+              <a href="#" class="primary-btn cart-btn">구매내역</a>
                 <div class="col-lg-12">
                     <div class="shoping__cart__table">
                         <table>
                             <thead>
-                                <tr>
+                                <tr> 
                                     <th class="shoping__product">장바구니</th>
+                                    <th class="shopping__product">장바구니가 비었습니다</th>
                                     <th>금액</th>
                                     <th>수량</th>
                                     <th>총합</th>
@@ -88,5 +97,13 @@
             </div>
         </div>
     </section>
+    <script>
+      new Vue({
+    	  el:'.spad',
+    	  data:{
+    		  
+    	  }
+      })
+    </script>
 </body>
 </html>

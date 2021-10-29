@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -44,5 +45,18 @@ public class NoticeController {
 		return "main/main";
 	}
 	
+	@GetMapping("insert.do")
+	public String noticeboard_insert(Model model)
+	{
+		model.addAttribute("main_jsp", "../noticeboard/insert.jsp");
+		return "main/main";
+	}
+	
+	@PostMapping("insert_ok.do")
+	public String noticeboard_insert_ok(NoticeVO vo)
+	{
+		dao.NoticeBoardInsert(vo);
+		return "redirect:../noticeboard/list.do";
+	}
 	
 }
