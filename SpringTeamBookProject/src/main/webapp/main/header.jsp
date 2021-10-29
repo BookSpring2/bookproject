@@ -1,10 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script>
+ $(function(){
+	// 헤더의 로그아웃 버튼 클릭 시
+	$('#logout').click(function(){
+		location.href="../member/logout.do";
+	});
+})
+</script>
 </head>
 <body>
 <header class="header">
@@ -21,8 +31,12 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
                           <div class="header__top__right__auth">
-                            <a href="#"><i class="fa fa-user"></i>로그인</a>
-                            <a href="#"><i class="fa fa-user"></i>로그아웃</a>
+                            <c:if test="${sessionScope.id==null }">
+                            	<a href="../member/login.do"><i class="fa fa-user"></i>로그인</a>
+                            </c:if>
+                            <c:if test="${sessionScope.id!=null }">
+                            	<a href="#" id="logout"><i class="fa fa-user"></i>로그아웃</a>
+                            </c:if>
                             <a href="../member/join.do"><i class=""></i>회원가입</a>
                             <a href="#"><i class=""></i>마이페이지</a>
                             <a href="#"><i class=""></i>고객센터</a>    
