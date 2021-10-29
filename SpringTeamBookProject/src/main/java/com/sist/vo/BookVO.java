@@ -26,6 +26,7 @@ public class BookVO {
 					publisher,pubdate,price,
 					introduce,contents,genre,cno2;
 	private double score;
+	private int intprice;
 	
 	public int getBno() {
 		return bno;
@@ -135,5 +136,13 @@ public class BookVO {
 	public void setScore(double score) {
 		this.score = score;
 	}
+	public int getIntprice() {
+		return intprice;
+	}
+	public void setIntprice(int intprice) {
+		this.intprice = intprice;
+	}
+	
+	
 	
 }

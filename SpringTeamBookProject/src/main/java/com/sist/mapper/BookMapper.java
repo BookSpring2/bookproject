@@ -21,12 +21,32 @@ public interface BookMapper {
 	@Select("SELECT CEIL(COUNT(*)/12.0) FROM ${table_name}")
 	public int bookTotalPage(Map map);
 	
-	//2. 신간 도서 출력 기능.
+	//2. 신간 - 도서 출력 기능.
 	@Select("SELECT bno,title,image,sale,pubdate,num "
 			+"FROM (SELECT bno,title,image,sale,pubdate,rownum as num "
 			+"FROM (SELECT bno,title,image,sale,pubdate "
-			+"FROM book_data WHERE pubdate IS NOT NULL ORDER BY pubdate DESC)) "
+			+"FROM book_data WHERE pubdate IS NOT NULL AND RANK IS NOT NULL ORDER BY pubdate DESC)) "
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<BookVO> bookNewListData(Map map);
 	
+	//3. 신간 - 도서 상세보기.
+	/*
+	@Select("SELECT bno,title,image,sale,pubdate,introduce,contents,price,genre,publisher,writer "
+			 +"FROM book_data WHERE bno IS NOT NULL "
+			 +"AND bno=#{bno}")
+	*/
+	@Select("SELECT bno,title,image,sale,pubdate,introduce,contents,price,TO_NUMBER(REPLACE(REPLACE(price,','),'원')) intprice,genre,publisher,writer "
+			 +"FROM book_data WHERE bno IS NOT NULL "
+			 +"AND bno=#{bno}")
+	public BookVO bookNewDetailData(int bno);
+	
+	//4. 신간 - 관련 도서 출력 기능. (장르가 같은 데이터를 랜덤으로 네개 출력)
+	@Select("SELECT bno,title,image,sale,pubdate,genre,price,num "
+			+"FROM (SELECT bno,title,image,sale,pubdate,genre,price,rownum as num "
+			+"FROM (SELECT bno,title,image,sale,pubdate,genre,price "
+			+"FROM book_data WHERE genre IS NOT NULL AND genre=#{genre} ORDER BY DBMS_RANDOM.RANDOM)) "
+			+ "WHERE num<=4")
+	public List<BookVO> bookNewRelationListData(String genre);
+	
+	//REPLACE(REPLACE(price,','),'원') price
 }

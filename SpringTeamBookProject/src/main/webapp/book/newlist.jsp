@@ -273,7 +273,7 @@
                                 <div class="col-lg-4">
                                     <div class="product__discount__item">
                                         <div class="product__discount__item__pic set-bg" data-setbg="">
-                                        <a href="../book/newdetail.do"><img src="../ogani-master/img/product/discount/pd-5.jpg"></a>
+                                        <a href="#"><img src="../ogani-master/img/product/discount/pd-5.jpg"></a>
                                             <div class="product__discount__percent">-20%</div>
                                             <ul class="product__item__pic__hover">
                                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
@@ -283,7 +283,7 @@
                                         </div>
                                         <div class="product__discount__item__text">
                                             <span>Dried Fruit</span>
-                                            <h5><a href="../book/newdetail.do">Raisin’n’nuts</a></h5>
+                                            <h5><a href="#">Raisin’n’nuts</a></h5>
                                             <div class="product__item__price">$30.00 <span>$36.00</span></div>
                                         </div>
                                     </div>
@@ -341,7 +341,7 @@
                             
                                 <div class="product__item__pic set-bg" data-setbg="">
                                
-                                <a href="newdetail.do?no=${vo.bno }&page=${curpage}">
+                                <a href="../book/newdetail.do?bno=${vo.bno }&page=${curpage}">
                                 <img src="${vo.image}">
                                 </a>
                                     <ul class="product__item__pic__hover">

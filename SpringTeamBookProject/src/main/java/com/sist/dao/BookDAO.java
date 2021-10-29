@@ -25,9 +25,18 @@ public class BookDAO {
 		 return mapper.bookTotalPage(map);
 	 }
 	 
-	 //2. 신간 도서 출력 기능
-	 public List<BookVO> bookNewListData(Map map)
-	{
+		
+		// 2. 신간 - 도서 출력 기능
+		public List<BookVO> bookNewListData(Map map) {
 			return mapper.bookNewListData(map);
-	}
+		}
+		// 3. 신간 - 도서 상세보기 기능
+		public BookVO bookNewDetailData(int bno) {
+			return mapper.bookNewDetailData(bno);
+		}				
+		//4. 신간 - 관련 도서 출력 기능
+		public List<BookVO> bookNewRelationListData(String genre){
+			return mapper.bookNewRelationListData(genre);
+		}
+		
 }

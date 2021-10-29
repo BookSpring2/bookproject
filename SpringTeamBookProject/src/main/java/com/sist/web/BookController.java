@@ -5,10 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sist.vo.BookVO;
@@ -64,9 +66,11 @@ public class BookController {
 	}
 	
 	
+	
+	
 	// 신간 목록 출력
 		@RequestMapping("book/newlist.do")
-		public String book_newlist(String page, Model model, HttpServletRequest request)
+		public String book_newlist(String page, Model model)
 		{
 			
 			if(page==null)
@@ -98,5 +102,27 @@ public class BookController {
 			return "main/main";
 			
 		}
+		
+		// 신간 도서 상세 페이지
+		@RequestMapping("book/newdetail.do")
+		public String book_newdetail(int bno, Model model) {
+
+			//상세 데이터 출력
+			BookVO vo = dao.bookNewDetailData(bno);
+			model.addAttribute("vo", vo);
+			model.addAttribute("bno", bno);		
+			
+			//관련 데이터 리스트 출력
+			String genre = vo.getGenre();			
+			//System.out.println("해당책의 장르는 "+genre+"입니다."); //확인용.
+			List<BookVO> list = dao.bookNewRelationListData(genre);
+			model.addAttribute("list", list);
+			int point = vo.getIntprice() / 100 * 5; //5퍼센트 기본 적립.
+			model.addAttribute("point",point);
+			
+			model.addAttribute("main_jsp", "../book/newdetail.jsp");
+			return "main/main";
+		}
+		
 
 }
