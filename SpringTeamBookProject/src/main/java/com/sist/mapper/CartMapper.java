@@ -5,21 +5,21 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import com.sist.vo.*;
-public interface MyPageMapper {
+public interface CartMapper {
 	
 	////////////////////////////장바구니 /////////////////////////////////
-	public List<MyPageVO> cartMoney(); 
+	public List<CartVO> cartMoney(); 
 	
 	// 목록
-	@Select("SELECT cartId, bno, user_id, name, title, amount, price, (price*amount) as money "
+	@Select("SELECT cartId, bno, user_id, name, title, amount, price, image "
 			+ "FROM book_member m, book_cart c, book_data d "
-			+ "WHERE m.user_id=c.userId AND c.bookId=d.bno AND c.userId=#{userId} ORDER BY cartId")
-	public List<MyPageVO> cartList(Map map);
+			+ "WHERE m.user_id=c.userId AND c.bookId=d.bno AND c.userId='admin' ORDER BY cartId")
+	public List<CartVO> cartList();
 	
 	// 추가
 	@Insert("INSERT INTO bood_cart (cartId, userId, bookId, amount) VALUES("
 			+ "seq_cart.nextval, #{userId}, #{bookId}, #{amount})")
-	public String cartInsert(MyPageVO vo);
+	public String cartInsert(CartVO vo);
 	
 	// 개별 삭제
 	@Delete("DELETE FROM book_cart "
@@ -43,7 +43,7 @@ public interface MyPageMapper {
 	public int cartCount(String userid, int bookid);
 	
 	// 장바구니 수정
-	public void cartUpdate(MyPageVO vo);
+	public void cartUpdate(CartVO vo);
 	
-	public void cartUpdateOk(MyPageVO vo);
+	public void cartUpdateOk(CartVO vo);
 }

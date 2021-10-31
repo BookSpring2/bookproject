@@ -1,7 +1,15 @@
 package com.sist.vo;
 
 public class MemberVO {
-	private String user_id,pwd,name,sex,birthday,tel,tel1,tel2,tel3,addr1,addr2,admin,email,genre,membership,msg;
+	private String user_id,pwd,name,sex,birthday,tel,tel1,tel2,tel3,addr1,addr2,admin,email,genre,membership,msg,regdate;
+
+	public String getRegdate() {
+		return regdate;
+	}
+
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
 
 	public String getUser_id() {
 		return user_id;

@@ -1,11 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../book/css/book.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script> 
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+<script>
+$(function(){
+	$('#cartBtn').click(function(){
+		$( "#dialog_cart" ).dialog({
+			  autoOpen:false,
+			  width: 420,
+			  height: 150,
+			  modal: true
+		  }).dialog("open");
+	});
+ 	$('#cartcanBtn').click(function(){
+		$('#dialog_cart').dialog("close");
+	});
+	$('#cartokBtn').click(function(){
+		location.href("../mypage/cart_list.do");
+	})
+});
+</script>
 </head>
 <body>
     <!-- Breadcrumb Section Begin -->
@@ -65,18 +90,23 @@
                             vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
                             quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p>
                         
-                        <div class="product__details__quantity">
-                            <div class="quantity">
-                                <div class="pro-qty">
-                                    <input type="text" value="1">
-                                </div>
-                            </div>
+                        <div>
+                          	<label>배송비 : </label><span>&nbsp;2500원</span>
+							<p>도서산간지역 배송비 5000원 / 3만원 이상 결제시 무료배송</p>
                         </div>
                         
+                        <div>
+                              <select class="form-control" id="select_count">
+									<c:forEach begin="1" end="10" var="count">
+										<option>${count}</option></c:forEach>
+							  </select>
+                        </div>
                         
-                        <a href="#" class="primary-btn">주문하기</a>
-                        <a href="#" class="primary-btn">장바구니</a>
-                        <a href="#" class="primary-btn">위시리스트</a>
+                        <div style="height:50px"></div>
+                        
+                        <input type="button" class="primary-btn" id="orderBtn" style="border:none" value="주문하기">
+                        <input type="button" class="primary-btn" id="cartBtn" style="border:none" value="장바구니">
+                        <input type="button" class="primary-btn" id="wishBtn" style="border:none" value="위시리스트">
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         <ul>
                             <li><b>판매정보</b> <span>판매중</span></li>
@@ -257,5 +287,20 @@
         </div>
     </section>
     <!-- Related Product Section End -->
+    
+    <!-- 장바구니 -->
+    <div id="dialog_cart" title="장바구니" style="display:none;">
+      <p class="text-center">장바구니에 담겼습니다. <br>
+      	 					장바구니로 이동하시겠습니까?</p>
+		<table style="margin:0px auto;">
+		    <tr>
+		     <td colspan="2" style="text-align:center;">
+		        <input type=button value="확인" id="cartokBtn" class="dialogBtn" style="background:black; color:white;">
+		        <input type=button value="취소" id="cartcanBtn" class="dialogBtn" style="background:#E9E9E9">
+		     </td>
+		    </tr>
+		</table>
+    </div>
+    
 </body>
 </html>

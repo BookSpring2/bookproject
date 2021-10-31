@@ -43,7 +43,7 @@
 	/> -->
 	<bean class="org.mybatis.spring.mapper.MapperFactoryBean"
 		p:sqlSessionFactory-ref="ssf"
-		p:mapperInterface="com.sist.mapper.MyPageMapper"
+		p:mapperInterface="com.sist.mapper.CartMapper"
 	/>
 	<bean class="org.mybatis.spring.mapper.MapperFactoryBean"
 		p:sqlSessionFactory-ref="ssf"
@@ -64,5 +64,9 @@
 	<bean class="org.mybatis.spring.mapper.MapperFactoryBean"
 		p:sqlSessionFactory-ref="ssf"
 		p:mapperInterface="com.sist.mapper.FreeBoardMapper"
+	/>
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:sqlSessionFactory-ref="ssf"
+		p:mapperInterface="com.sist.mapper.AdminMapper"
 	/>
 </beans>

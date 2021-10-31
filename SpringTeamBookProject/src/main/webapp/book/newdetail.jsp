@@ -7,6 +7,56 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../book/css/book.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script> 
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+<script>
+$(function(){
+	$('#cartBtn').click(function(){
+		$( "#dialog_cart" ).dialog({
+			  autoOpen:false,
+			  width: 420,
+			  height: 150,
+			  modal: true
+		  }).dialog("open");
+	});
+ 	$('#cartcanBtn').click(function(){
+		$('#dialog_cart').dialog("close");
+	});
+	$('#cartokBtn').click(function(){
+		location.assign("../mypage/cart_list.do");
+	})
+	
+	$('#selection_count').on('blur',function(){
+		var count = $(this).val();
+		var price = $("#price").val();
+		var opt = $(".opt_select").val();
+		
+		if (count*price >= 30000) {
+			var shipping = '무료배송';
+			var finalPrice = count*price;
+		} else {
+			var shipping = 2500;
+			var finalPrice = (count*price) + shipping;
+		}
+		
+		var str = '';
+		
+		str += '<p><label>수량 : </label><span>&nbsp;' + count + '</span>&nbsp;&nbsp;&nbsp;';	
+		
+		str += '<label>배송비 : </label><span>&nbsp;' + shipping + '</span>&nbsp;&nbsp;&nbsp;';
+		str	+= '<label>가격 : </label><span>&nbsp;' + price + ' 원</span></p>';
+		str += '<h4><label>결제금액 : </label><span>&nbsp;' + finalPrice + ' 원</span></h4>'; 
+		str += '<span class="glyphicon glyphicon-exclamation-remove"></span>';
+		
+		$(".selected_option").html(str);
+
+	})
+});
+</script>
 </head>
 <body>
     <!-- Breadcrumb Section Begin -->
@@ -53,7 +103,7 @@
                             <i class="fa fa-star-half-o"></i>
                             <span>(18 개의 리뷰)</span>
                         </div>
-                        <div class="product__details__price"> ${vo.price}</div>
+                        <div class="product__details__price" id="price"> ${vo.price}</div>
                         <div class="bookdetail_pricedata_group"> 
                         <p class="bookdetail_textdata_title"> 적립금 </p>
                         <p class="bookdetail_textdata"> ${point}원(5%) + 멤버십(1~3%) </p>
@@ -68,23 +118,23 @@
                         <p class="bookdetail_textdata_title"> 카테고리 </p>
                         <p class="bookdetail_textdata"> ${vo.genre} </p>
                         </div>
-                        <div class="product__details__quantity">
-                            <div class="quantity">
-                                <div class="pro-qty">
-                                    <input type="text" value="1">
-                                </div>
-                            </div>
+                        <div>
+                              <select class="form-control" id="select_count">
+									<c:forEach begin="1" end="10" var="count">
+										<option>${count}</option></c:forEach>
+							  </select>
                         </div>
                         
+                        <div style="height:50px"></div>
                         
-                        <a href="#" class="primary-btn">주문하기</a>
-                        <a href="#" class="primary-btn">장바구니</a>
-                        <a href="#" class="primary-btn">위시리스트</a>
+                        <input type="button" class="primary-btn selected_option" id="orderBtn" style="border:none" value="주문하기">
+                        <input type="button" class="primary-btn selected_option" id="cartBtn" style="border:none" value="장바구니">
+                        <input type="button" class="primary-btn" id="wishBtn" style="border:none" value="위시리스트">
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         <ul>
                             <!--  Book_DATA 테이블에 재고를 관리하는 컬럼이 없음.
                             <li><b>판매정보</b> <span>판매중</span></li>-->
-                            <li><b>배송정보</b> <span>텍스트 <samp>텍스트</samp></span></li>
+                            <li><b>배송정보</b> <span>도서산간지역 배송비 5000원 / 3만원 이상 결제시 무료배송</span></li>
                             <li><b>포인트</b> <span>텍스트</span></li>
                             <li><b>공유하기</b>
                                 <div class="share">
@@ -173,5 +223,20 @@
         </div>
     </section>
     <!-- Related Product Section End -->
+    
+        
+    <!-- 장바구니 -->
+    <div id="dialog_cart" title="장바구니" style="display:none;">
+      <p class="text-center">장바구니에 담겼습니다. <br>
+      	 					장바구니로 이동하시겠습니까?</p>
+		<table style="margin:0px auto;">
+		    <tr>
+		     <td colspan="2" style="text-align:center;">
+		        <input type=button value="확인" id="cartokBtn" class="dialogBtn" style="background:black; color:white;">
+		        <input type=button value="취소" id="cartcanBtn" class="dialogBtn" style="background:#E9E9E9">
+		     </td>
+		    </tr>
+		</table>
+    </div>
 </body>
 </html>

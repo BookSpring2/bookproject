@@ -8,21 +8,21 @@ import org.springframework.stereotype.Repository;
 import com.sist.mapper.*;
 
 @Repository
-public class MyPageDAO {
+public class CartDAO {
 	@Autowired
-	private MyPageMapper mapper;
+	private CartMapper mapper;
 	
 	//////////////////////////// 장바구니 /////////////////////////////////
-	public List<MyPageVO> cartMoeny(){
+	public List<CartVO> cartMoeny(){
 		return null;
 	}
 	
-	public List<MyPageVO> cartList(Map map)
+	public List<CartVO> cartList()
 	{
-		return mapper.cartList(map);
+		return mapper.cartList();
 	}
 	
-	public String cartInsert(MyPageVO vo)
+	public String cartInsert(CartVO vo)
 	{
 		return mapper.cartInsert(vo);
 	}
@@ -52,12 +52,12 @@ public class MyPageDAO {
 		return 0;
 	}
 	
-	public void cartUpdate(MyPageVO vo)
+	public void cartUpdate(CartVO vo)
 	{
-		
+		mapper.cartInsert(vo);
 	}
 	
-	public void cartUpdateOk(MyPageVO vo)
+	public void cartUpdateOk(CartVO vo)
 	{
 		
 	}

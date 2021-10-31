@@ -37,9 +37,8 @@
                     <div class="shoping__cart__table">
                         <table>
                             <thead>
-                                <tr> 
+                                <tr>
                                     <th class="shoping__product">장바구니</th>
-                                    <th class="shopping__product">장바구니가 비었습니다</th>
                                     <th>금액</th>
                                     <th>수량</th>
                                     <th>총합</th>
@@ -49,11 +48,11 @@
                             <tbody>
                                 <tr>
                                     <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-1.jpg" alt="">
-                                        <h5>Vegetable’s Package</h5>
+                                        <img src="image" alt="">
+                                        <h5>도서</h5>
                                     </td>
                                     <td class="shoping__cart__price">
-                                        $55.00
+                                        $454.98
                                     </td>
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
@@ -63,7 +62,7 @@
                                         </div>
                                     </td>
                                     <td class="shoping__cart__total">
-                                        $110.00
+                                        $454.98
                                     </td>
                                     <td class="shoping__cart__item__close">
                                         <span class="icon_close"></span>
@@ -97,13 +96,5 @@
             </div>
         </div>
     </section>
-    <script>
-      new Vue({
-    	  el:'.spad',
-    	  data:{
-    		  
-    	  }
-      })
-    </script>
 </body>
 </html>
