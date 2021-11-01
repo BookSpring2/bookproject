@@ -19,13 +19,17 @@ public class MyPageController {
 	@Autowired
 	private CartDAO dao;
 	
-//	@Autowired
-//	private OrderDAO odao;
+	@Autowired
+	private OrderDAO odao;
 	
 	@RequestMapping("mypage/cart_list.do")
-	public String cart_list(Model model)
+	public String cart_list(String userId, Model model, HttpSession session)
 	{
 		model.addAttribute("main_jsp","../member/join.jsp");
+		Map map=new HashMap();
+		MemberVO vo=(MemberVO)session.getAttribute(userId);
+		String userid = vo.getUser_id();
+		model.addAttribute("main_jsp", "../mypage/cart_list.jsp");
 		return "main/main";
 	}
 	
@@ -58,4 +62,16 @@ public class MyPageController {
 //		return "main/main";
 //	}
 
+	@RequestMapping("mypage/order_list.do")
+	public String order_list(Model model)
+	{
+		Map map=new HashMap();
+		
+		List<OrderVO> list=odao.orderFormList(map);
+		List<OrderVO> mList=odao.orderMember(map);
+		model.addAttribute("list", list);
+		model.addAttribute("mList", mList);
+		model.addAttribute("main_jsp", "../mypage/order_list.jsp");
+		return "main/main";
+	}
 }
