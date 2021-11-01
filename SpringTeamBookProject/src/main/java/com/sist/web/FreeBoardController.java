@@ -140,5 +140,21 @@ public class FreeBoardController {
 		model.addAttribute("main_jsp", "../freeboard/detail.jsp");
 		return "main/main";
 	}
-
+	
+	// 수정하기
+	@GetMapping("update.do")
+	public String update(int no, int page, Model model)
+	{
+		FreeBoardVO vo=dao.freeBoardDetail(no);
+		model.addAttribute("vo", vo);
+		model.addAttribute("main_jsp", "../freeboard/update.jsp");
+		return "main/main";
+	}
+	
+	@PostMapping("update_ok.do")
+	public String update_ok(FreeBoardVO vo)
+	{
+		dao.freeBoardUpdate(vo); // 업데이트	
+		return "redirect:../freeboard/detail.do";
+	}
 }

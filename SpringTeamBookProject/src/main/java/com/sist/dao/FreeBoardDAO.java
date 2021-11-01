@@ -33,5 +33,10 @@ public class FreeBoardDAO {
 		mapper.freeBoardHitIncrement(no);
 		return mapper.freeBoardDetail(no);
 	}
+	
+	public void freeBoardUpdate(FreeBoardVO vo)
+	{
+		mapper.freeBoardUpdate(vo);
+	}
 
 }

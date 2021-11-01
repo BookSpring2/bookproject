@@ -5,7 +5,6 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
-
 import com.sist.vo.FreeBoardVO;
 public interface FreeBoardMapper {
 
@@ -17,16 +16,19 @@ public interface FreeBoardMapper {
 			+"WHERE num BETWEEN #{start} AND #{end}")
 	public List<FreeBoardVO> freeBoardList(Map map);
 	
+	
 	// TotalPage
 	@Select("SELECT CEIL(COUNT(*)/10.0) FROM book_freeBoard")
 	public int freeBoardTotalPage();
 	
+	
 	// Insert
 	@SelectKey(keyProperty="no", resultType=int.class , before=true, statement="SELECT NVL(MAX(no)+1,1) as no FROM book_freeBoard")
-	@Insert("INSERT INTO book_freeBoard VALUES(#{no},#{user_id},#{subject},#{content},SYSDATE,0,#{filename},#{filesize},#{filecount})")	
+	@Insert("INSERT INTO book_freeBoard VALUES(#{no},#{user_id},#{subject},#{content},SYSDATE,0,#{filesize},#{filename},#{filecount})")	
 	public void freeBoardInsert(FreeBoardVO vo);
 	
-	// 조회수 증가 & 상세보기
+	
+	// Detail + Hit
 	@Update("UPDATE book_freeBoard SET "
 			+"hit=hit+1 "
 			+"WHERE no=#{no}")
@@ -35,4 +37,19 @@ public interface FreeBoardMapper {
 			+"FROM book_freeBoard "
 			+"WHERE no=#{no}")
 	public FreeBoardVO freeBoardDetail(int no);
+	
+	
+	// Update
+	@Update("UPDATE book_freeBoard SET user_id=#{user_id}, subject=#{subject}, content=#{content} "
+			+"WHERE no=#{no}")
+	public void freeBoardUpdate(FreeBoardVO vo);
+	
+	
+	// Delete
+	
+	// Find
+	
+	// Session
+	
+	// Comments
 }
