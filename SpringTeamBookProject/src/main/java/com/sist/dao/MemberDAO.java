@@ -28,20 +28,20 @@ public class MemberDAO {
 	{
 		MemberVO vo=new MemberVO();
 		int count=mapper.memberIdCount(id);
-		if(count==0)
+		if(count==0) // 일치하는 아이디 없음
 		{
 			vo.setMsg("NOID");
 		}
-		else
+		else if(count!=0) // 아이디가 존재하는 경우
 		{
 			MemberVO dbVO=mapper.memberGetPassword(id);
-			if(pwd.equals(dbVO.getPwd()))
+			if(pwd.equals(dbVO.getPwd())) // 비밀번호가 일치하는 경우
 			{
 				vo.setMsg("OK");
 				vo.setUser_id(id);
 				vo.setName(dbVO.getName());
 			}
-			else
+			else // 비밀번호가 일치하지 않는 경우
 			{
 				vo.setMsg("NOPWD");
 			}

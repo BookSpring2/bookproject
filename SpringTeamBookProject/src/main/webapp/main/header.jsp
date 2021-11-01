@@ -9,10 +9,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script>
  $(function(){
-	// 헤더의 로그아웃 버튼 클릭 시
-	$('#logout').click(function(){
-		location.href="../member/logout.do";
-	});
+	
 })
 </script>
 </head>
@@ -32,15 +29,15 @@
                         <div class="header__top__right">
                           <div class="header__top__right__auth">
                             <c:if test="${sessionScope.id==null }">
-                            	<a href="../member/login.do"><i class="fa fa-user"></i>로그인</a>
+                            	<a href="../member/login.do" id="login"><i class="fa fa-user"></i>로그인</a>	
+                            	<a href="../member/join.do"><i class=""></i>회원가입</a>	
                             </c:if>
                             <c:if test="${sessionScope.id!=null }">
-                            	<a href="#" id="logout"><i class="fa fa-user"></i>로그아웃</a>
+                            	<a href="../member/logout.do" id="logout"><i class="fa fa-user"></i>로그아웃</a>
                             </c:if>
                             <c:if test="${login.userid == 'admin'}">
 								<a href="#"><i class=""></i>관리자페이지</a>
 							</c:if>
-                            <a href="../member/join.do"><i class=""></i>회원가입</a>
                             <a href="#"><i class=""></i>마이페이지</a>
                             <a href="#"><i class=""></i>고객센터</a>    
                           </div>

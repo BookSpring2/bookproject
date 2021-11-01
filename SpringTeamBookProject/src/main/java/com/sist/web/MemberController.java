@@ -27,7 +27,6 @@ public class MemberController {
 		return "main/main";
 	}
 	
-
 	// 아이디 중복체크
 	@GetMapping("idcheck.do")
 	@ResponseBody
