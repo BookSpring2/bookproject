@@ -1,17 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style type="text/css">
-.container-fluid{
+.container{
 	margin-top:30px;
 }
 .row{
@@ -43,28 +40,36 @@ h1{
   <div style="height:50px"></div>
   <div class="row">
     <div class="col-md-3">
-      <ul>카트>사은품>결제>완료</ul>
+      <ul></ul>
     </div>
   </div>
   <div class="row">
-    <h3>상품 확인</h3>
+    <h3>상품확인</h3>
+    
     <table class="table">
+      
       <tr>
         <th colspan="2" class="text-center">상품명</th>
+        <th class="text-center">판매가</th>
         <th class="text-center">수량</th>
-        <th class="text-center">상품금액</th>
+        <th class="text-center">합계</th>
         <th class="text-center">배송정보</th>
-        <th class="text-center">주문</th>
       </tr>
+      <c:forEach var="vo" items="${list }">
       <tr>
-        <td class="text-center">책표지</td>
-        <td class="text-center">책제목</td>
-        <td class="text-center">수량</td>
-        <td class="text-center">상품금액</td>
-        <td class="text-center">배송정보</td>
-        <td class="text-center">주문옵션</td>
+        <td>
+          <a href="../book/detail.do?no=${vo.book_no}">
+          <img src="${vo.image }" style="width:70px;height:105px"></a>
+        </td>
+        <td>${vo.title }</td>
+        <td class="text-center">${vo.price }</td>
+        <td class="text-center">${vo.amount }</td>
+        <td class="text-center">${vo.price}</td>
+        <td class="text-center">${vo.deliver_date }</td>
       </tr>
+    </c:forEach>
     </table>
+    
   </div>
   <div class="row">
     <h3>배송일 안내</h3>
@@ -79,24 +84,11 @@ h1{
     <li>도서정가제 대상 도서는 최대 10% 할인 + 5% 적립 가능</li>
     <li>5만원 이상 구매시 2천원 추가 적립</li>
   </ul>
+  <br>
   <div class="row">
-    <table class="table">
-      <thead>
-      <tr>
-        <th scope="col">총 상품금액</th>
-        <th scope="col">총 추가금액</th>
-        <th scope="col">총 할인금액</th>
-      </tr>
-      </thead>
-      <tfoot>
-        <tr>
-          <td>정가에서 할인</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
-  <div class="row">
+    <h3>배송주소</h3>
     <table cellpadding="0" cellspacing="0" class="table">
+      <c:forEach var="vo" items="${mList }">
       <tbody>
         <tr>
           <th>배송방법</th>
@@ -160,7 +152,7 @@ h1{
         <tr>
           <th>전화</th>
           <td style="height:22px">
-            <select style="width:50px;margin-bottom: 1px;vertical-align: bottom" value="010">
+            <select style="width:50px;height:22px; margin-bottom: 1px; vertical-align: bottom" value="010">
               <option value>선택</option>
               <option value="010">010</option>
               <option value="011">011</option>
@@ -175,8 +167,72 @@ h1{
           </td>
         </tr>
       </tbody>
+      <tbody>
+        <tr>
+        
+        </tr>
+      </tbody>
+    </c:forEach>
     </table>
   </div>
+  <div class="row">
+    <h3>결제방법</h3>
+      <table class="table">
+        <tr>
+          <td>
+            <div>
+              <span>
+                <input type="radio" name="paying" value="organipaying">오가니페이
+                <br>
+                <input type="radio" name="paying" value="otherpaying" checked="checked">다른 결제 수단
+                <br>
+              </span>
+              <span>
+                <button class="btn btn-lg btn-danger">결제하기</button>
+                <button class="btn btn-lg btn-success">취소</button>
+              </span>
+            </div>
+          </td>
+        </tr>
+      </table>
+      
+      
+      
+  </div>
 </div>
+<!-- <script>
+  new Vue({
+	  el:'.container',
+	  data:{
+		  order_no:1,
+		  order_data:[]
+		  
+	  },
+	  mounted:function(){
+		  
+		  axios.get("http://localhost:8080/web/mypage/rest_order_list.do",{
+				params:{
+					order_no:this.order_no
+				}
+			}).then(response=>{
+				console.log(response.data);
+				this.order_data=response.data;
+			})
+	  },
+	  methods:{
+		  change:function(order_no){
+			  axios.get("http://localhost:8080/web/mypage/rest_order_list.do",{
+					params:{
+						order_no:this.order_no
+					}
+				}).then(response=>{
+					console.log(response.data);
+					this.order_data=response.data;
+				})
+		  }
+	  }
+  
+  })
+</script> -->
 </body>
 </html>

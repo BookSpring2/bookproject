@@ -18,8 +18,8 @@ public class MyPageController {
 	@Autowired
 	private CartDAO dao;
 	
-//	@Autowired
-//	private OrderDAO odao;
+	@Autowired
+	private OrderDAO odao;
 	
 	@RequestMapping("mypate/cart_list.do")
 	public String cart_list(String user_id, Model model, HttpSession session)
@@ -27,24 +27,24 @@ public class MyPageController {
 		Map map=new HashMap();
 		MemberVO vo=(MemberVO)session.getAttribute(user_id);
 		String userid = vo.getUser_id();
-//		/* ë¡œê·¸ì¸ ë˜ì–´ìˆëŠ” ì •ë³´ë¥¼ ì´ìš©í•´ì„œ useridë¥¼ ê°€ì ¸ì˜¨ë‹¤ */
+//		/* ·Î±×ÀÎ µÇ¾îÀÖ´Â Á¤º¸¸¦ ÀÌ¿ëÇØ¼­ userid¸¦ °¡Á®¿Â´Ù */
 //		CartVO cvo = new CartVO();
-//		/* cartê°ì²´ë¥¼ ìƒì„±í•˜ê³ */
+//		/* cart°´Ã¼¸¦ »ı¼ºÇÏ°í*/
 //		CartVO.setUser_id(userid);
 //		CartVO.setProductId(productId);
-//		/* ê°ì²´ ì•ˆì— useridì™€ productIdë¥¼ setí•´ì¤€ë‹¤ */
+//		/* °´Ã¼ ¾È¿¡ userid¿Í productId¸¦ setÇØÁØ´Ù */
 //
 //		boolean istAlreadyExisted = cartService.findCartGoods(cartDTO);
-//        /* ì´ë¯¸ í•´ë‹¹ ìƒí’ˆì´ ì¹´íŠ¸ì— ì¡´ì¬í•˜ëŠ”ì§€ ì—¬ë¶€ë¥¼ íŒë³„í•´ì£¼ëŠ” ë©”ì„œë“œ */
+//        /* ÀÌ¹Ì ÇØ´ç »óÇ°ÀÌ Ä«Æ®¿¡ Á¸ÀçÇÏ´ÂÁö ¿©ºÎ¸¦ ÆÇº°ÇØÁÖ´Â ¸Ş¼­µå */
 //		System.out.println("istAlreadyExisted : " + istAlreadyExisted);
 //		
 //		if (istAlreadyExisted) {
 //			return "already_existed";
-//            /* ë§Œì•½ ì´ë¯¸ ì¹´íŠ¸ì— ì €ì¥ë˜ì–´ìˆë‹¤ë©´, already_existedë¥¼ ë¦¬í„´ */
+//            /* ¸¸¾à ÀÌ¹Ì Ä«Æ®¿¡ ÀúÀåµÇ¾îÀÖ´Ù¸é, already_existed¸¦ ¸®ÅÏ */
 //		} else {
 //            cartService.addGoodsInCart(cartDTO);
 //			return "add_success";
-//             /* ì¹´íŠ¸ì— ì—†ìœ¼ë©´ ì¹´íŠ¸ì— ì €ì¥ í›„, add_successë¥¼ ë¦¬í„´  */
+//             /* Ä«Æ®¿¡ ¾øÀ¸¸é Ä«Æ®¿¡ ÀúÀå ÈÄ, add_success¸¦ ¸®ÅÏ  */
 //		}
 		model.addAttribute("main_jsp", "../mypage/cart_list.jsp");
 		return "main/main";
@@ -57,4 +57,16 @@ public class MyPageController {
 //		return "main/main";
 //	}
 
+	@RequestMapping("mypage/order_list.do")
+	public String order_list(Model model)
+	{
+		Map map=new HashMap();
+		
+		List<OrderVO> list=odao.orderFormList(map);
+		List<OrderVO> mList=odao.orderMember(map);
+		model.addAttribute("list", list);
+		model.addAttribute("mList", mList);
+		model.addAttribute("main_jsp", "../mypage/order_list.jsp");
+		return "main/main";
+	}
 }
