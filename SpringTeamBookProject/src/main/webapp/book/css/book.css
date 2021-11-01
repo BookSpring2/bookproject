@@ -46,3 +46,45 @@ div.bookdetail_textdata_group{
 div.bookdetail_pricedata_group p{
 	color:#c60303;
 }
+
+
+div.print_comments_stars{
+	clear :both;
+	width:100px;
+	float:left;
+	height: inherit;
+	color: #ffbf13;
+	
+}
+div.print_comments_texts{
+	float:left;
+	width:500px;
+	margin-bottom:10px;	
+}
+div.print_comments_texts div.comments_title{
+	font-weight: bold;
+	font-size: 15px;
+	margin-bottom:5px;
+}
+div.print_comments_texts div.comments_comments{
+	font-size: 13px;
+	margin-bottom:10px;
+}
+div.print_comments_texts div.comments_writer{
+	font-size: 11px;
+	color:gray;
+	width:100px;
+}
+div.print_comments_texts div.comments_writedate{
+	font-size: 11px !important;
+	color:gray !important;
+	float:right;
+}
+div.print_comments_texts div.comments_write_data{
+	
+}
+
+div.input_and_print_comments{
+	width:max-content;
+	margin:0 auto;
+}

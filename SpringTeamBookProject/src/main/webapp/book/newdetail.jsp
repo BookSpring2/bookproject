@@ -178,9 +178,35 @@ $(function(){
                             </div>
                             <div class="tab-pane" id="tabs-3" role="tabpanel">
                                 <div class="product__details__tab__desc">
-                                    <h6>리뷰</h6>
-                                    <p> 리뷰 데이터가 들어가는 장소입니다. </p>
-                                </div>
+                                <div class="input_and_print_comments">
+									<!-- 리뷰 입력 파트 -->
+									<div class="input_comments">
+									 	<!--  로그인구현 완료되면 세션 이용해서 로그인 시에만 입력창 출력되도록 if문 처리 -->
+									</div>
+									<!-- 리뷰 출력 파트-->
+									<div class="print_comments">
+										<c:forEach var="cvo" items="${clist }">
+											<!-- 별점은 사용자가 등록한 별점으로 if문 처리해서 갯수 띄우기. -->
+											<div class="print_comments_stars">
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star-half-o"></i>
+					                        </div>
+					                        <div class="print_comments_texts">
+					                        <!-- 레이아웃만 만들어둠. 아직 기능 구현 안함. -->
+												<div class="comments_title">${cvo.title }</div>
+												<div class="comments_comments">${cvo.comments }</div>
+												<div class="comments_write_data">
+												<div class="comments_writer">${cvo.writer }</div>
+												<div class="comments_writedate">${cvo.writedate }</div>
+												</div>
+											</div>
+										</c:forEach>
+									</div>
+									</div>
+								</div>
                             </div>
                         </div>
                     </div>
@@ -238,5 +264,10 @@ $(function(){
 		    </tr>
 		</table>
     </div>
+    
+  
+       
+    
+    
 </body>
 </html>
