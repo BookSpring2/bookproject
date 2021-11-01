@@ -73,7 +73,7 @@ public class FreeBoardController {
 		if (list != null && list.size() > 0) {
 			for (MultipartFile mf : list) {
 				String fn = mf.getOriginalFilename();
-				File file = new File("c:\\download" + fn); // C:\\Users\\admin\\Downloads
+				File file = new File("c:\\download\\" + fn); // C:\\Users\\admin\\Downloads
 				mf.transferTo(file);
 				files += fn + ",";
 				sizes += file.length() + ",";
@@ -86,6 +86,7 @@ public class FreeBoardController {
 			vo.setFilesize("");
 			vo.setFilecount(0);
 		}
+		
 		dao.freeBoardInsert(vo);
 		return "redirect:../freeboard/list.do";
 	}

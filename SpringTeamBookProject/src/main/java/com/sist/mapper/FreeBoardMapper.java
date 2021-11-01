@@ -21,10 +21,9 @@ public interface FreeBoardMapper {
 	@Select("SELECT CEIL(COUNT(*)/10.0) FROM book_freeBoard")
 	public int freeBoardTotalPage();
 	
-	@SelectKey(keyProperty="no",resultType=int.class,before=true,
-			  statement="SELECT NVL(MAX(no)+1,1) as no FROM book_freeBoard")
-	@Insert("INSERT INTO book_freeBoard(no,user_id,subject,content,regdate,hit,filename,filesize,filecount) VALUES("
-				 +"#{no},#{user_id},#{subject},#{content},SYSDATE,0,#{filename},#{filesize},#{filecount})")
+	// Insert
+	@SelectKey(keyProperty="no", resultType=int.class , before=true, statement="SELECT NVL(MAX(no)+1,1) as no FROM book_freeBoard")
+	@Insert("INSERT INTO book_freeBoard VALUES(#{no},#{user_id},#{subject},#{content},SYSDATE,0,#{filename},#{filesize},#{filecount})")	
 	public void freeBoardInsert(FreeBoardVO vo);
 	
 	// 조회수 증가 & 상세보기
