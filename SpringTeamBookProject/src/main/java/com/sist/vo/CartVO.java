@@ -10,10 +10,16 @@ import java.util.*;
 	REGDATE            DATE    
  */
 public class CartVO {
-	private String userId;
+	private String userId, msg;
 	private int cartId, productId, cart_qty;
 	private Date regdate;
 	
+	public String getMsg() {
+		return msg;
+	}
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
 	public String getUserId() {
 		return userId;
 	}

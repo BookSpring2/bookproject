@@ -37,8 +37,8 @@
                             <c:if test="${sessionScope.id!=null }">
                             	<a href="#" id="logout"><i class="fa fa-user"></i>로그아웃</a>
                             </c:if>
-                            <c:if test="${login.userid == 'admin'}">
-								<a href="#"><i class=""></i>관리자페이지</a>
+                            <c:if test="${sessionScope.id == 'admin'}">
+								<a href="../admin/main.do"><i class=""></i>관리자페이지</a>
 							</c:if>
                             <a href="../member/join.do"><i class=""></i>회원가입</a>
                             <a href="#"><i class=""></i>마이페이지</a>

@@ -12,53 +12,24 @@ public class CartDAO {
 	@Autowired
 	private CartMapper mapper;
 	
-	//////////////////////////// 장바구니 /////////////////////////////////
-	public List<CartVO> cartMoeny(){
-		return null;
-	}
-	
-	public List<CartVO> cartList()
+	public CartVO findCartGoods(String userId, int productId)
 	{
-		return mapper.cartList();
+		CartVO vo=new CartVO();
+		Map map=new HashMap();
+		Boolean check=mapper.findCartGoods(map);
+		if(check==true)
+		{
+			vo.setMsg("already_existed");
+		}
+		else
+		{
+			vo.setMsg("add_success");
+		}
+		return vo;
 	}
 	
-	public String cartInsert(CartVO vo)
-	{
-		return mapper.cartInsert(vo);
-	}
-	
-	public void cartDelete(int cartid)
-	{
-		mapper.cartDelete(cartid);
-	}
-	
-	public void cartDeleteAll(String userid)
-	{
-		mapper.cartDeleteAll(userid);
-	}
-	
-	public void cartDelUpdate(int cartid)
-	{
-		
-	}
-	
-	public int cartSumMoney(String userid)
-	{
-		return mapper.cartSumMoney(userid);
-	}
-	
-	public int cartCount(String userid, int bookid)
-	{
-		return 0;
-	}
-	
-	public void cartUpdate(CartVO vo)
+	public void cartInsert(CartVO vo)
 	{
 		mapper.cartInsert(vo);
-	}
-	
-	public void cartUpdateOk(CartVO vo)
-	{
-		
 	}
 }
