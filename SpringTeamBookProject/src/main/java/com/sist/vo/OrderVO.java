@@ -1,13 +1,34 @@
 package com.sist.vo;
 import java.util.*;
+/*
+ *  BOOK_NO      NOT NULL NUMBER         
+	TITLE                 VARCHAR2(300)  
+	IMAGE                 VARCHAR2(1000) 
+	PRICE                 VARCHAR2(200)  
+	USER_ID               VARCHAR2(20)   
+	NAME                  VARCHAR2(34)   
+	ADDR1                 VARCHAR2(500)  
+	ADDR2                 VARCHAR2(500)  
+	TEL                   VARCHAR2(20)   
+	EMAIL                 VARCHAR2(100)  
+	ORDER_NO     NOT NULL NUMBER         
+	ORDER_SEQ_NO          NUMBER         
+	ORDERDATE             DATE           
+	DELIVER_DATE          DATE           
+	DELIVER_SITU          VARCHAR2(200)  
+	DELIVER_MSG           CLOB           
+	AMOUNT                NUMBER         
+
+ * 
+ */
 public class OrderVO {
 	private int book_no;
-	private String title,price;
+	private String title,image;
 	private String user_id,name,addr1,addr2,tel,email;
 	private int order_no,order_seq_no;
 	private Date orderdate,deliver_date;
 	private String deliver_situ,deliver_msg;
-	private int amount;
+	private int amount,price;
 	
 	
 	public int getBook_no() {
@@ -22,10 +43,18 @@ public class OrderVO {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getPrice() {
+	
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	
+	public int getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 	public String getUser_id() {
