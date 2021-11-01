@@ -23,8 +23,14 @@ h1{
 	<div class="container">
 	<div class="row">
 
-    <form method="post" action="insert_ok.do">
+    <form method="post" action="insert_ok.do" enctype="multipart/form-data">
     <table class="table">
+      <tr>
+        <th width="25%" class="text-right">이름</th>
+        <td width="80%">
+          <input type=text name=name size=20 class="input-sm">
+        </td>
+      </tr>
       <tr>
         <th width="20%" class="text-right">공지제목</th>
         <td width="80%">
@@ -55,7 +61,7 @@ h1{
 	</tr>
       <tr>
         <td class="text-center" colspan="2">
-          <input type=submit value="글쓰기" class="btn btn-sm btn-danger">
+          <input type=submit value="등록" class="btn btn-sm btn-danger">
           <input type=button value="취소" class="btn btn-sm btn-success"
             onclick="javascript:history.back()"
           >
