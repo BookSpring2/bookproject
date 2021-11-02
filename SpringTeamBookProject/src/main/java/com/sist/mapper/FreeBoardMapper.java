@@ -1,6 +1,7 @@
 package com.sist.mapper;
 import java.util.*;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
@@ -46,6 +47,9 @@ public interface FreeBoardMapper {
 	
 	
 	// Delete
+	@Delete("DELETE FROM book_freeBoard WHERE no=#{no}")
+	public void freeBoardDelete(int no);
+	
 	
 	// Find
 	

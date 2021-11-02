@@ -29,6 +29,8 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-12">           
                         <form method="post" action="update_ok.do">
+                        	<input type=hidden name=no value="${vo.no }" id="no">
+        					<input type=hidden name=page value="${page }" id="page">
                             <div class="row">
 								<div class="col-lg-12">
 									<div class="checkout__input">
@@ -47,9 +49,7 @@
                             </div>					
 							<div class="checkout__input">
                                 <p>내용<span>*</span></p>
-                                <textarea class="form-control" rows="10" id="comment" name="content">
-                                	${vo.content }
-                                </textarea>
+                                <textarea class="form-control" rows="10" id="comment" name="content">${vo.content }</textarea>
                             </div>        
                             <button class="site-btn">수정하기</button>
                             <button type="button" class="site-btn" onclick="javascript:history.back()">취소</button>

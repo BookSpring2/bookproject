@@ -38,5 +38,10 @@ public class FreeBoardDAO {
 	{
 		mapper.freeBoardUpdate(vo);
 	}
+	
+	public void freeBoardDelete(int no)
+	{
+		mapper.freeBoardDelete(no);
+	}
 
 }
