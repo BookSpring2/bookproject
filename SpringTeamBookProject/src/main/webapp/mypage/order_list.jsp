@@ -1,27 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<style type="text/css">
-.container-fluid{
-	margin-top:30px;
-}
-.row{
-	margin:0px auto;
-	width:1200px;
-}
-h1{
-	text-align:center;
-}
-</style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#sel').change(function(){
+		let count=$(this).val();
+		let price=$('#price').text();
+		let total=parseInt(count)*parseInt(price)+3000; // parseInt() : 정수 변환
+		$('#total').text(total+"원");
+		$('#amount').val(count);
+	})
+})
+</script>
 </head>
 <body>
 <section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg" style="background-image: url(&quot;../img/breadcrumb.jpg&quot;);">
@@ -57,19 +54,21 @@ h1{
         <th class="text-center">주문</th>
       </tr>
       <tr>
-        <td class="text-center">책표지</td>
-        <td class="text-center">책제목</td>
-        <td class="text-center">수량</td>
-        <td class="text-center">상품금액</td>
-        <td class="text-center">배송정보</td>
+        <td>
+          <img src="${vo.image }">
+        </td>
+        <td class="text-center">${vo.title }</td>
+        <td class="text-center">
+          <select id="sel">
+            <c:forEach var="i" begin="1" end="10">
+              <option value ="${i }">${i}개</option>
+            </c:forEach>
+          </select>
+        </td>
+        <td class="text-center">${vo.price }</td>
+        <td class="text-center">${vo.orderdate }+1</td>
         <td class="text-center">주문옵션</td>
       </tr>
-    </table>
-  </div>
-  <div class="row">
-    <h3>배송일 안내</h3>
-    <table class="table">
-      
     </table>
   </div>
   <ul>
@@ -83,8 +82,8 @@ h1{
     <table class="table">
       <thead>
       <tr>
-        <th scope="col">총 상품금액</th>
-        <th scope="col">총 추가금액</th>
+        <th scope="col">${vo.price }</th>
+        <th scope="col">${vo.price }</th>
         <th scope="col">총 할인금액</th>
       </tr>
       </thead>

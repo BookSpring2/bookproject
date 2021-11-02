@@ -5,14 +5,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sist.mapper.*;
-import com.sist.vo.OrderVO;
+import com.sist.vo.OrderFormVO;
 @Repository
 public class OrderDAO {
 	@Autowired
 	private OrderMapper mapper;
 	 
-	public List<OrderVO> orderList(Map map)
+	public void orderInsert(OrderFormVO vo)
 	{
-		return mapper.orderList(map);
+		mapper.orderInsert(vo);
+	}
+	
+	public List<OrderFormVO> orderListData(String user_id)
+	{
+		return mapper.orderListData(user_id);
 	}
 }

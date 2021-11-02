@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sist.dao.FreeBoardDAO;
@@ -23,7 +24,7 @@ public class FreeBoardController {
 	@Autowired
 	private FreeBoardDAO dao;
 	
-	// 리스트 출력
+	// List
 	@RequestMapping("list.do")
 	public String board_list(String page,Model model)
 	{
@@ -54,7 +55,9 @@ public class FreeBoardController {
 		return "main/main";
 	}
 
-	// 데이터 입력
+	
+	
+	// Insert
 	@GetMapping("insert.do")
 	public String board_insert(Model model) {
 		model.addAttribute("main_jsp", "../freeboard/insert.jsp");
@@ -111,7 +114,9 @@ public class FreeBoardController {
 		}
 	}
 
-	// 상세보기
+	
+	
+	// Detail
 	@GetMapping("detail.do")
 	public String detail(int no, int page, Model model) {
 		FreeBoardVO vo = dao.freeBoardDetail(no);
@@ -141,10 +146,13 @@ public class FreeBoardController {
 		return "main/main";
 	}
 	
-	// 수정하기
+	
+	
+	// Update
 	@GetMapping("update.do")
 	public String update(int no, int page, Model model)
 	{
+		model.addAttribute("page", page);
 		FreeBoardVO vo=dao.freeBoardDetail(no);
 		model.addAttribute("vo", vo);
 		model.addAttribute("main_jsp", "../freeboard/update.jsp");
@@ -152,9 +160,19 @@ public class FreeBoardController {
 	}
 	
 	@PostMapping("update_ok.do")
-	public String update_ok(FreeBoardVO vo)
+	public String update_ok(FreeBoardVO vo,int page)
 	{
-		dao.freeBoardUpdate(vo); // 업데이트	
-		return "redirect:../freeboard/detail.do";
+		dao.freeBoardUpdate(vo); // 업데이트
+		return "redirect:../freeboard/detail.do?no="+vo.getNo()+"&page="+page;
+	}
+	
+	
+	
+	// Delete
+	@GetMapping("delete.do")
+	@ResponseBody
+	public void delete(int no)
+	{
+		dao.freeBoardDelete(no);
 	}
 }
