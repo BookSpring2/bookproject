@@ -66,7 +66,7 @@ $('#del').click(function(){
 	          <ul>
 	           <c:forEach var="fn" items="${fList }" varStatus="s">
 	        
-	            <li><a href="download.do?fn=${fn }">${fn }</a>&nbsp;(${sList[s.index]}Bytes)</li><%-- list를 두개 이상에서 출력 [인덱스 번호 이용] --%>
+	            <li><a href="download.do?fn=${fn }">${fn }</a>&nbsp;(${sList[s.index]}Bytes)</li>
 	           </c:forEach>
 	          </ul>
 	        </td>
@@ -76,6 +76,11 @@ $('#del').click(function(){
         <td colspan="4" valign="top" height="200">
          <pre style="white-space: pre-wrap;border:none;background-color: white">${vo.content }</pre>
         </td>
+      </tr>
+      <tr>
+      	<td>
+      		<img src="${vo.imagename }" style="width:30px;height:30px;">
+      	</td>
       </tr>
       <tr>
         <td colspan="4" class="text-right">

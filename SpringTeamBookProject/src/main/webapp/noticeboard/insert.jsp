@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +19,28 @@
 	border-bottom:none;
 }
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+let imageIndex=0;
+$(function(){
+	$('#add').click(function(){
+		$('#imageView').append(
+			'<tr id=m'+(imageIndex)+'>'
+			+ '<td width=25% class="text-right">파일 '+(imageIndex+1)+'</td>'
+			+ '<td width=75%><input type=file name=files['+imageIndex+'] size=20></td>'
+			+ '</tr>'
+		)
+		imageIndex++;
+	});
+	$('#remove').click(function(){
+		if(imageIndex>0)
+			{
+				$('#m'+(imageIndex-1)).remove();
+				imageIndex--;
+			}
+	})
+});
+</script>
 </head>
 <body>
 
@@ -61,7 +84,7 @@
       <tr>
         <th width="20%" class="text-right">첨부 이미지</th>
         <td width="80%">
-        <table class="table1">
+        <table class="table">
         <tr>
           <td class="text-right">
           <input type=button value="추가" class="btn btn-xs btn-danger" id="add">
