@@ -38,24 +38,26 @@
     </section>
   <div class="container1">
 
-    <form method="post" action="insert_ok.do" enctype="multipart/form-data">
+    <form method="post" action="update_ok.do" enctype="multipart/form-data">
     <table class="table" style="margin:auto;margin-top:50px;">
       <tr>
         <th width="25%" class="text-right">이름</th>
         <td width="80%">
-          <input type=text name=name size=20 class="input-sm">
+          <input type=text name=name size=20 class="input-sm" value="${vo.name }" id="name">
+          <input type=hidden name=no value="${vo.no }">
+          <input type=hidden name=page value="${page }">
         </td>
       </tr>
       <tr>
         <th width="20%" class="text-right">공지제목</th>
         <td width="80%">
-          <input type=text name=subject size=60 class="input-sm">
+          <input type=text name=subject size=60 class="input-sm" value="${vo.subject }" id="subject">
         </td>
       </tr>
       <tr>
         <th width="20%" class="text-right">공지내용</th>
         <td width="80%">
-          <textarea rows="10" cols="60" name=content></textarea>
+          <textarea rows="10" cols="60" name=content id="content">${vo.content }</textarea>
         </td>
       </tr>
       <tr>
@@ -76,7 +78,7 @@
 	</tr>
       <tr>
         <td class="text-center" colspan="2">
-          <input type=submit value="등록" class="btn btn-sm btn-danger">
+          <input type=submit value="수정" class="btn btn-sm btn-danger">
           <input type=button value="취소" class="btn btn-sm btn-success"
             onclick="javascript:history.back()"
           >

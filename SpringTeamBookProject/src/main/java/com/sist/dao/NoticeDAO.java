@@ -37,8 +37,13 @@ public class NoticeDAO {
 		return mapper.NoticeDetailData(no);
 	}
 	
-	public int NoticeBoardUpdate(NoticeVO vo)
+	public void NoticeBoardUpdate(NoticeVO vo)
 	{
-		return mapper.NoticeBoardUpdate(vo);
+		mapper.NoticeBoardUpdate(vo);
+	}
+	
+	public void NoticeBoardDelete(int no)
+	{
+		mapper.NoticeBoardDelete(no);
 	}
 }

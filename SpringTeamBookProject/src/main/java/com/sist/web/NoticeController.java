@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("noticeboard/")
@@ -146,11 +147,29 @@ public class NoticeController {
 	}
 	
 	@PostMapping("update_ok.do")
-	public String noticeboard_update_ok(int page,NoticeVO vo,Model model)
+	public String noticeboard_update_ok(int no,int page,NoticeVO vo,Model model)
 	{
-		int no=0;
-		no=dao.NoticeBoardUpdate(vo);
-		return String.valueOf(no);
+		model.addAttribute("page", page);
+		model.addAttribute("no", vo.getNo());
+		dao.NoticeBoardUpdate(vo);
+		return "redirect:../noticeboard/detail.do";
 	}
 	
+	@GetMapping("delete.do")
+	public String noticeboard_delete(int no,int page,Model model)
+	{
+		model.addAttribute("no", no);
+		model.addAttribute("page", page);
+		NoticeVO vo=dao.NoticeDetailData(no);
+		model.addAttribute("vo", vo);
+		model.addAttribute("main_jsp", "../noticeboard/delete.jsp");
+		return "main/main";
+	}
+	
+	@PostMapping("delete_ok.do")
+	public String noticeboard_delete_ok(int no,int page)
+	{
+		dao.NoticeBoardDelete(no);
+		return "redirect:../noticeboard/list.do";
+	}
 }

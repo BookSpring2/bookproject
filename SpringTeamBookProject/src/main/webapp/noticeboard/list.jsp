@@ -11,8 +11,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style type="text/css">
-.container{
+.container1{
 	margin:0px auto;
+	width:1000px;
 }
 .table1{
 	border-right:none;
@@ -21,9 +22,9 @@
 	border-bottom:none;
 }
 </style>
+
 </head>
 <body>
-
 <section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
@@ -39,10 +40,10 @@
             </div>
         </div>
     </section>
-  <div class="container">
+  <div class="container1">
    
   <p></p>          
-  <table class="table table-hover" style="margin:auto;margin-top:50px;width:1000px;">
+  <table class="table table-hover" style="margin:auto;margin-top:50px;">
     <thead>
       <tr>
         <th width=10% style="text-align:center;font-size:20px">번호</th>

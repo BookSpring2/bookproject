@@ -42,5 +42,5 @@ public interface NoticeMapper {
 	
 	@Update("UPDATE book_noticeboard SET "
 			+"name=#{name},subject=#{subject},content=#{content} WHERE no=#{no}")
-	public int NoticeBoardUpdate(NoticeVO vo);
+	public void NoticeBoardUpdate(NoticeVO vo);
 }
