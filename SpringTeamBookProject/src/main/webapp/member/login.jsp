@@ -49,7 +49,7 @@ $(function(){
 					$('#pwd').val("");
 					$('#pwd').focus();
 				}
-				else
+				else if(result=='OK')
 				{
 					alert("로그인이 완료되었습니다");
 					location.href="../main/main.do";
@@ -72,6 +72,11 @@ $(function(){
  input{
 	margin:0 auto;
 	padding-left:15% !important;
+}
+
+input[type=button]{
+	padding:0 !important;
+	color:white !important;
 } 
 
 button{
@@ -113,6 +118,11 @@ ul.link li+li::before{
     width:1px;
     height:12px;
     background: #e0e0e0;
+}
+
+ul.link a{
+	text-decoration:none;
+	color:#6f6f6f;
 }
 
 
@@ -163,7 +173,7 @@ ul.link li+li::before{
 	                            </div>
 
 	                            <div class="col-lg-8">
-		                       			<button type="submit" class="site-btn" style="width:100%;" id="logBtn">로그인</button>
+		                       			<input type=button class="site-btn" style="width:100%; text-align:center" id="logBtn" value="로그인">
 	                            </div> 
 	                            
 	                            <div class="col-lg-8" style="text-center;">

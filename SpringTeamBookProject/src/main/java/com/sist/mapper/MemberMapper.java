@@ -14,7 +14,7 @@ public interface MemberMapper {
 	public int memberIdCount(String id);
 	
 	@Insert("INSERT INTO book_member VALUES("
-			+"#{user_id},#{pwd},#{name},#{sex},#{birthday},#{tel},#{addr1},#{addr2},'n',#{email},#{genre},'family')")
+			+"#{user_id},#{pwd},#{name},#{sex},#{birthday},#{tel},#{addr1},#{addr2},'n',#{email},#{genre},'family',SYSDATE)")
 	public void memberInsert(MemberVO vo);
 	
 	// 2. 로그인 처리
