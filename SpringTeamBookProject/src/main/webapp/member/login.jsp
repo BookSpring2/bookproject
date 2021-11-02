@@ -74,14 +74,11 @@ $(function(){
 	padding-left:15% !important;
 }
 
+/* 로그인 버튼 */
 input[type=button]{
 	padding:0 !important;
 	color:white !important;
 } 
-
-button{
-	border-radius:4px;
-}
 
 .icon{
 	position:relative;

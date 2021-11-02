@@ -13,6 +13,7 @@ public interface MemberMapper {
 			+"WHERE user_id=#{id}")
 	public int memberIdCount(String id);
 	
+	// regdate 컬럼추가
 	@Insert("INSERT INTO book_member VALUES("
 			+"#{user_id},#{pwd},#{name},#{sex},#{birthday},#{tel},#{addr1},#{addr2},'n',#{email},#{genre},'family',SYSDATE)")
 	public void memberInsert(MemberVO vo);
