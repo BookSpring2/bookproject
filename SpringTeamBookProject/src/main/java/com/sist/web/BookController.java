@@ -121,9 +121,14 @@ public class BookController {
 			int point = vo.getIntprice() / 100 * 5; //5퍼센트 기본 적립.
 			model.addAttribute("point",point);
 			
-			//리뷰 데이터 리스트 출력
-			List<BookCommentVO> clist = dao.bookCommentListData();
+			//리뷰 입력
+			//BookCommentVO cvo = dao.bookCommentData();
+			
+			//리뷰 데이터 리스트 출력			
+			System.out.println("bno는 "+bno+"입니다.");			
+			List<BookCommentVO> clist = dao.bookCommentListData(bno);//bno를 가져와서 bno==dc_bno인 데이터를 출력.
 			model.addAttribute("clist",clist);
+			
 			
 			
 			model.addAttribute("main_jsp", "../book/newdetail.jsp");

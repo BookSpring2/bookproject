@@ -88,3 +88,27 @@ div.input_and_print_comments{
 	width:max-content;
 	margin:0 auto;
 }
+div.input_comments{
+	text-align: right;
+}
+div.input_comments input.comment_text[type=text] {
+	color: #505050;
+    width: 83%;
+    margin: 10px auto;
+    height: 80px;
+    border: 1px solid #E2E2E2;
+}
+
+input.commnet_submit_btn{
+	border: none;
+	background-color: #7BBD39;
+	color:white;
+	border-radius: 2px;
+	width:60px;
+	height:35px;
+	float:inherit;
+}
+
+form.comment_form{
+	margin-bottom: 40px;
+}

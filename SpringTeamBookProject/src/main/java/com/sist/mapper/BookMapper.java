@@ -50,9 +50,15 @@ public interface BookMapper {
 	
 	//REPLACE(REPLACE(price,','),'원') price
 	
-	//5. 리뷰 기능
-	@Select("SELECT dc_num,writer,userid,title,comments,stars,writedate "
-			+ "FROM book_detail_comment")
-	public List<BookCommentVO> bookCommentListData();
+	//5. 리뷰 입력 기능
+	//@Select("SELECT * FROM book_detail_comment")
+	//public BookCommentVO bookCommentData();
+	
+	//6. 리뷰 출력 기능
+	@Select("SELECT dc_num,writer,userid,title,comments,stars,writedate,dc_bno "
+			+ "FROM book_detail_comment WHERE dc_bno=#{bno}")
+	public List<BookCommentVO> bookCommentListData(int bno);
+	
+	
 	
 }

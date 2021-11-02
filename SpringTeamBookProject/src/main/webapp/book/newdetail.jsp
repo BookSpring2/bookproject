@@ -182,6 +182,11 @@ $(function(){
                                 <div class="input_and_print_comments">
 									<!-- 리뷰 입력 파트 -->
 									<div class="input_comments">
+									<form method="post" action="#" class="comment_form">
+								        <input type="text" class="comment_text" size=70>
+								        <p></p>
+								        <input type="submit" class="commnet_submit_btn" value="등록">
+								    </form>
 									 	<!--  로그인구현 완료되면 세션 이용해서 로그인 시에만 입력창 출력되도록 if문 처리 -->
 									</div>
 									<!-- 리뷰 출력 파트-->

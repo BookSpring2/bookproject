@@ -40,9 +40,17 @@ public class BookDAO {
 			return mapper.bookNewRelationListData(genre);
 		}
 		
-		
-		//5.  리뷰 출력 기능
-		public List<BookCommentVO> bookCommentListData(){
-			return mapper.bookCommentListData();
+		//5. 리뷰 입력 기능
+		//public BookCommentVO bookCommentData() {
+		//	return mapper.bookCommentData();
+		//}
+				
+		//6.  리뷰 출력 기능
+		public List<BookCommentVO> bookCommentListData(int bno){
+			return mapper.bookCommentListData(bno);
 		}
+		
+		
+		
+		
 }
