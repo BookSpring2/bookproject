@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sist.mapper.BookMapper;
+import com.sist.vo.BookCommentVO;
 import com.sist.vo.BookVO;
 
 @Repository
@@ -39,4 +40,9 @@ public class BookDAO {
 			return mapper.bookNewRelationListData(genre);
 		}
 		
+		
+		//5.  리뷰 출력 기능
+		public List<BookCommentVO> bookCommentListData(){
+			return mapper.bookCommentListData();
+		}
 }

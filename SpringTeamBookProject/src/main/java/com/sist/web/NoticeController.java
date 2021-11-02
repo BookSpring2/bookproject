@@ -1,16 +1,22 @@
 package com.sist.web;
 import com.sist.dao.*;
 import com.sist.vo.*;
+import java.io.*;
 import com.sist.mapper.*;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("noticeboard/")
@@ -32,31 +38,119 @@ public class NoticeController {
 		map.put("end", end);
 		
 		List<NoticeVO> list=dao.NoticeBoardList(map);
-		model.addAttribute("curpage", curpage);
-		
 		int totalpage=dao.NoticeTotalPage();
-		model.addAttribute("totalpage", totalpage);
-		model.addAttribute("list", list);
+		final int BLOCK=5;
+		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+		int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+		if(endPage>totalpage)
+			endPage=totalpage;
 		
 		Date date=new Date();
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		model.addAttribute("curpage", curpage);
+		model.addAttribute("totalpage", totalpage);
+		model.addAttribute("BLOCK", BLOCK);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("list", list);
 		model.addAttribute("today", sdf.format(date));
 		model.addAttribute("main_jsp", "../noticeboard/list.jsp");
 		return "main/main";
 	}
 	
 	@GetMapping("insert.do")
-	public String noticeboard_insert(Model model)
+	public String noticeboard_insert(Model model,HttpSession session)
 	{
+		NoticeVO vo=new NoticeVO();
+		vo.setName((String)session.getAttribute("name"));		
 		model.addAttribute("main_jsp", "../noticeboard/insert.jsp");
 		return "main/main";
 	}
 	
 	@PostMapping("insert_ok.do")
-	public String noticeboard_insert_ok(NoticeVO vo)
+	public String noticeboard_insert_ok(NoticeVO vo) throws Exception
 	{
+		File dir=new File("c:\\download");
+		if(!dir.exists())
+		{
+			dir.mkdir();
+		}
+		
+		List<MultipartFile> list=vo.getFiles();
+		String files="";
+		String sizes="";
+		if(list!=null && list.size()>0)
+		{
+			for(MultipartFile mf:list)
+			{
+				String fn=mf.getOriginalFilename();
+				File file=new File("c:\\download\\"+fn);
+				mf.transferTo(file);
+				files+=fn+",";
+				sizes+=file.length()+",";
+			}
+			vo.setImagename(files.substring(0,files.lastIndexOf(",")));
+			vo.setImagesize(sizes.substring(0,sizes.lastIndexOf(",")));
+			vo.setImagecount(list.size());
+		}
+		else
+		{
+			vo.setImagename("");
+			vo.setImagesize("");
+			vo.setImagecount(0);
+		}
 		dao.NoticeBoardInsert(vo);
 		return "redirect:../noticeboard/list.do";
+	}
+	
+	@GetMapping("detail.do")
+	public String noticeboard_detail(int no,int page,Model model)
+	{
+		NoticeVO vo=dao.NoticeDetailData(no);
+		
+		if(vo.getImagecount()>0)
+		{
+			List<String> fList=new ArrayList<String>();
+			List<String> sList=new ArrayList<String>();
+			
+			StringTokenizer st=new StringTokenizer(vo.getImagename(),",");
+			while(st.hasMoreTokens())
+			{
+				fList.add(st.nextToken());
+			}
+			
+			st=new StringTokenizer(vo.getImagesize(),",");
+			while(st.hasMoreTokens())
+			{
+				sList.add(st.nextToken());
+			}
+			model.addAttribute("fList",fList);
+			model.addAttribute("sList",sList);
+		}
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("curpage", page);
+		model.addAttribute("main_jsp", "../noticeboard/detail.jsp");
+		return "main/main";
+	}
+	
+	@GetMapping("update.do")
+	public String noticeboard_update(int no,int page,Model model)
+	{
+		model.addAttribute("no",no);
+		model.addAttribute("page", page);
+		NoticeVO vo=dao.NoticeDetailData(no);
+		model.addAttribute("vo", vo);
+		model.addAttribute("main_jsp", "../noticeboard/update.jsp");
+		return "main/main";
+	}
+	
+	@PostMapping("update_ok.do")
+	public String noticeboard_update_ok(int page,NoticeVO vo,Model model)
+	{
+		int no=0;
+		no=dao.NoticeBoardUpdate(vo);
+		return String.valueOf(no);
 	}
 	
 }

@@ -1,5 +1,7 @@
 package com.sist.vo;
 import java.util.*;
+
+import org.springframework.web.multipart.MultipartFile;
 /*
  * NO         NOT NULL NUMBER         
 NAME       NOT NULL VARCHAR2(34)   
@@ -13,8 +15,22 @@ IMAGECOUNT          NUMBER
  */
 public class NoticeVO {
 	private int no,hit,imagecount;
-	private String name,subject,content,imagename,imagesize;
+	private String name,subject,content,imagename,imagesize,dbday;
 	private Date regdate;
+	private List<MultipartFile> files;
+	
+	public String getDbday() {
+		return dbday;
+	}
+	public void setDbday(String dbday) {
+		this.dbday = dbday;
+	}
+	public List<MultipartFile> getFiles() {
+		return files;
+	}
+	public void setFiles(List<MultipartFile> files) {
+		this.files = files;
+	}
 	public int getNo() {
 		return no;
 	}

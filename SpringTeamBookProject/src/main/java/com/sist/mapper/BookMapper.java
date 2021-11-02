@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Select;
 
-
+import com.sist.vo.BookCommentVO;
 import com.sist.vo.BookVO;
 
 public interface BookMapper {
@@ -49,4 +49,10 @@ public interface BookMapper {
 	public List<BookVO> bookNewRelationListData(String genre);
 	
 	//REPLACE(REPLACE(price,','),'원') price
+	
+	//5. 리뷰 기능
+	@Select("SELECT dc_num,writer,userid,title,comments,stars,writedate "
+			+ "FROM book_detail_comment")
+	public List<BookCommentVO> bookCommentListData();
+	
 }

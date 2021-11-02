@@ -8,22 +8,24 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script>
 $(function(){
-	
-	// 로그인버튼 클릭
+
+ 	// 로그인버튼 클릭
 	$('#logBtn').click(function(){
 		let id=$('#id').val();
 		let pwd=$('#pwd').val();
 		
 		if(id.trim()=="")
 		{
+			alert("아이디를 입력하세요");
 			$('#id').focus();
-			return;
+			return false;
 		}
 		
 		if(pwd.trim()=="")
 		{
+			alert("비밀번호를 입력하세요");
 			$('#pwd').focus();
-			return;
+			return false;
 		}
 		
 		// ajax
@@ -34,17 +36,25 @@ $(function(){
 			success:function(res)
 			{
 				let result=res;
-				if(result=='NOID')
+				if(result=='NOID') // 아이디가 존재하지 않는 경우
 				{
 					alert("아이디가 존재하지 않습니다");
 					$('#id').val("");
 					$('#pwd').val("");
 					$('#id').focus();
 				}
+ 				else if(result=='NOPWD') // 아이디는 존재하고, 비밀번호가 일치하지 않음
+				{
+					alert("비밀번호가 일치하지 않습니다");
+					$('#pwd').val("");
+					$('#pwd').focus();
+				}
 				else
 				{
+					alert("로그인이 완료되었습니다");
 					location.href="../main/main.do";
 				}
+				
 			}
 		})
 		
@@ -93,17 +103,6 @@ ul.link li{
 	font-size:15px;
 }
 
-/* ul li::before{
-    content: '';
-    position: absolute !important;
-    top: 3px !important;
-    left: 12px !important;
-    width: 1px !important;
-    height: 13px !important;
-    border-radius: 0.5px;
-    background-color: #dadada;
-} */
-
 ul.link li+li::before{
 	content: "";
     display: inline-block;
@@ -121,7 +120,7 @@ ul.link li+li::before{
 </head>
 <body>
 	
-    <!-- Breadcrumb Section Begin -->
+    <!-- Breadcrumb Section Begin  -->
     <section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg">
         <div class="container">
             <div class="row">

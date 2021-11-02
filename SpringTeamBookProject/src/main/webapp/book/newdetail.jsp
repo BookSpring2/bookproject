@@ -15,46 +15,42 @@
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script>
 $(function(){
-	$('#cartBtn').click(function(){
+	$('#btn-cart').click(function(){
 		$( "#dialog_cart" ).dialog({
 			  autoOpen:false,
 			  width: 420,
 			  height: 150,
 			  modal: true
 		  }).dialog("open");
+		
+		let productId = $("#productId").val();
+		let userId = $("#userId").val();
+		$.ajax({
+			type:'get',
+			url:'../mypage/cartcheck.do',
+			data:{"userId":userId, "productId":productId},
+			success:function(res)
+			{
+				let result=res.trim();
+				if (result == 'add_success') {
+					alert("장바구니에 등록되었습니다. 장바구니로이동하시겠습니까?");
+					$('#cartokBtn').show();
+					$('#cartokBtn').click(function(){
+						location.href("../mypage/cart_list.do");
+					})
+				} else {
+					alert("이미 장바구니에 등록된 상품입니다.");
+				}
+			}
+		});
 	});
+	
  	$('#cartcanBtn').click(function(){
 		$('#dialog_cart').dialog("close");
 	});
-	$('#cartokBtn').click(function(){
-		location.assign("../mypage/cart_list.do");
-	})
-	
-	$('#selection_count').on('blur',function(){
-		var count = $(this).val();
-		var price = $("#price").val();
-		var opt = $(".opt_select").val();
-		
-		if (count*price >= 30000) {
-			var shipping = '무료배송';
-			var finalPrice = count*price;
-		} else {
-			var shipping = 2500;
-			var finalPrice = (count*price) + shipping;
-		}
-		
-		var str = '';
-		
-		str += '<p><label>수량 : </label><span>&nbsp;' + count + '</span>&nbsp;&nbsp;&nbsp;';	
-		
-		str += '<label>배송비 : </label><span>&nbsp;' + shipping + '</span>&nbsp;&nbsp;&nbsp;';
-		str	+= '<label>가격 : </label><span>&nbsp;' + price + ' 원</span></p>';
-		str += '<h4><label>결제금액 : </label><span>&nbsp;' + finalPrice + ' 원</span></h4>'; 
-		str += '<span class="glyphicon glyphicon-exclamation-remove"></span>';
-		
-		$(".selected_option").html(str);
+ 	
 
-	})
+	
 });
 </script>
 </head>
@@ -104,6 +100,7 @@ $(function(){
                             <span>(18 개의 리뷰)</span>
                         </div>
                         <div class="product__details__price" id="price"> ${vo.price}</div>
+                        	<input type="hidden" value="${vo.price}" id="price">
                         <div class="bookdetail_pricedata_group"> 
                         <p class="bookdetail_textdata_title"> 적립금 </p>
                         <p class="bookdetail_textdata"> ${point}원(5%) + 멤버십(1~3%) </p>
@@ -127,10 +124,14 @@ $(function(){
                         
                         <div style="height:50px"></div>
                         
-                        <input type="button" class="primary-btn selected_option" id="orderBtn" style="border:none" value="주문하기">
-                        <input type="button" class="primary-btn selected_option" id="cartBtn" style="border:none" value="장바구니">
-                        <input type="button" class="primary-btn" id="wishBtn" style="border:none" value="위시리스트">
+                        <div class="selected_option"></div>
+                        <button class="btn primary-btn btn-order" style="border:none">주문하기</button>
+                        <input type="button" class="primary-btn" id="btn-cart" style="border:none" value="장바구니">
+                        	<input type="hidden" value="${vo.bno}" id="productId">
+                        	<input type="hidden" value="${sessionScope.id }" id="userId">
+                        <button class="btn primary-btn btn-wishlist" style="border:none">위시리스트</button>
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                        
                         <ul>
                             <!--  Book_DATA 테이블에 재고를 관리하는 컬럼이 없음.
                             <li><b>판매정보</b> <span>판매중</span></li>-->
@@ -178,9 +179,35 @@ $(function(){
                             </div>
                             <div class="tab-pane" id="tabs-3" role="tabpanel">
                                 <div class="product__details__tab__desc">
-                                    <h6>리뷰</h6>
-                                    <p> 리뷰 데이터가 들어가는 장소입니다. </p>
-                                </div>
+                                <div class="input_and_print_comments">
+									<!-- 리뷰 입력 파트 -->
+									<div class="input_comments">
+									 	<!--  로그인구현 완료되면 세션 이용해서 로그인 시에만 입력창 출력되도록 if문 처리 -->
+									</div>
+									<!-- 리뷰 출력 파트-->
+									<div class="print_comments">
+										<c:forEach var="cvo" items="${clist }">
+											<!-- 별점은 사용자가 등록한 별점으로 if문 처리해서 갯수 띄우기. -->
+											<div class="print_comments_stars">
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star-half-o"></i>
+					                        </div>
+					                        <div class="print_comments_texts">
+					                        <!-- 레이아웃만 만들어둠. 아직 기능 구현 안함.  -->
+												<div class="comments_title">${cvo.title }</div>
+												<div class="comments_comments">${cvo.comments }</div>
+												<div class="comments_write_data">
+												<div class="comments_writer">${cvo.writer }</div>
+												<div class="comments_writedate">${cvo.writedate }</div>
+												</div>
+											</div>
+										</c:forEach>
+									</div>
+									</div>
+								</div>
                             </div>
                         </div>
                     </div>
@@ -224,19 +251,24 @@ $(function(){
     </section>
     <!-- Related Product Section End -->
     
-        
     <!-- 장바구니 -->
     <div id="dialog_cart" title="장바구니" style="display:none;">
-      <p class="text-center">장바구니에 담겼습니다. <br>
-      	 					장바구니로 이동하시겠습니까?</p>
 		<table style="margin:0px auto;">
 		    <tr>
 		     <td colspan="2" style="text-align:center;">
-		        <input type=button value="확인" id="cartokBtn" class="dialogBtn" style="background:black; color:white;">
+		        <input type=button value="확인" id="cartokBtn" class="dialogBtn" style="background:black; color:white;display:none">
 		        <input type=button value="취소" id="cartcanBtn" class="dialogBtn" style="background:#E9E9E9">
 		     </td>
 		    </tr>
 		</table>
     </div>
+    
+<<<<<<< HEAD
+  
+       
+    
+    
+=======
+>>>>>>> branch 'master' of https://github.com/BookSpring2/bookproject.git
 </body>
 </html>
