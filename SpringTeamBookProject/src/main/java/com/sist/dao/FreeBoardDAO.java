@@ -43,5 +43,10 @@ public class FreeBoardDAO {
 	{
 		mapper.freeBoardDelete(no);
 	}
+	
+	public List<FreeBoardVO> freeBoardFind(Map map)
+	{
+		return mapper.freeBoardFind(map);
+	}
 
 }

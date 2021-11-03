@@ -10,6 +10,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style type="text/css">
+.row{
+	margin: 0 auto;
+}
+</style>
 </head>
 <body>
 <section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg">
@@ -27,37 +32,68 @@
             </div>
         </div>
 </section>
+
+<!-- 검색창 & 글쓰기 버튼 -->
+<div class="container">
+ <div class="row" style="margin:50px 0px 50px 570px; ;">
+	<div class="blog__sidebar__search" style="margin:0px 50px;">
+		<form action="#">
+		 <!-- 
+		 	<input type="checkbox" name="fsArr" value="N">이름
+	        <input type="checkbox" name="fsArr" value="S">제목
+	        <input type="checkbox" name="fsArr" value="C">내용
+	      -->	
+			<input type="text" name="ss" placeholder="검색어를 입력하세요." style="width:400px;">
+			<button type="submit"><span class="icon_search"></span></button>
+		</form>
+	</div>
+	<a href="insert.do"><button type="button" class="btn"style="background-color:#83AD2E; height:43px;">글쓰기</button></a>	 
+ </div>
+</div>
+
+<!-- 리스트 -->
 <div class="container">         
-<div class="row" style="margin-top:30px;">
+<div class="row" style="margin-top:50px;">
    <table class="table table-hover">
     <thead>
       <tr>
-        <th>번호</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성일</th>
-        <th>조회수</th>
+        <th class="text-center" width=10%>번호</th>
+        <th class="text-center" width=45%>제목</th>
+        <th class="text-center">작성자</th>
+        <th class="text-center" width=20%>작성일</th>
+        <th class="text-center" width=10%>조회수</th>
       </tr>
     </thead>
     <tbody>
      <c:forEach items="${list }" var="vo">
       <tr>
-        <td>${vo.no }</td>
+        <td class="text-center">${vo.no }</td>
         <td><a href="detail.do?no=${vo.no }&page=${curpage}">${vo.subject }</a></td>
-        <td>${vo.user_id }</td>
-        <td><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd"/></td>
-        <td>${vo.hit }</td>
+        <td class="text-center">${vo.user_id }</td>
+        <td class="text-center"><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd"/></td>
+        <td class="text-center">${vo.hit }</td>
       </tr>
       </c:forEach>    
     </tbody>
   </table>
 </div>
 </div>
-<div class="container">	
-<div class="row">
-<a href="insert.do"><button type="button" class="btn"style="background-color:#83AD2E">작성</button></a>
-</div>
-</div>
 
+<!-- 페이지 -->
+<div class="container">
+ <div class="row" style="margin:100px 0px 100px 500px;">
+		<div class="product__pagination blog__pagination">
+		 <c:if test="${startPage>1 }">
+			 <a href="../freeboard/list.do?page=${startPage-1 }"><i class="fa fa-long-arrow-left"></i></a>
+		 </c:if>
+		 <c:forEach var="p" begin="${startPage }" end="${endPage }" step="1">
+			 <a href="../freeboard/list.do?page=${p }">${p }</a>
+		 </c:forEach>
+		 <c:if test="${endPage<totalpage }">
+			 <a href="../freeboard/list.do?page=${endPage+1 }"><i class="fa fa-long-arrow-right"></i></a>
+		 </c:if>						
+ 		</div>
+ </div>
+</div>
 </body>
 </html>

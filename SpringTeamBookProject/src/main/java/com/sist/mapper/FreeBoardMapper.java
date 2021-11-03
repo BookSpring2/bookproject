@@ -52,7 +52,31 @@ public interface FreeBoardMapper {
 	
 	
 	// Find
-	
+	@Select({
+			"<script>"
+			+"SELECT no,subject,user_id,regdate,hit "
+			+"FROM book_freeBoard "
+			+"WHERE "
+			+"<trim prefix=\"(\" suffix=\")\" prefixOverrides=\"OR\"> "
+			+"<foreach collection=\"fsArr\" item=\"fd\">"
+			+"<trim prefix=\"OR\">"
+			+"<choose>"
+			+"<when test=\"fd=='N'.toString()\">"
+			+"name LIKE '%'||${ss}||'%'"
+			+"</when>"
+			+"<when test=\"fd=='S'.toString()\">"
+			+"name LIKE '%'||${ss}||'%'"
+			+"</when>"
+			+"<when test=\"fd=='C'.toString()\">"
+			+"name LIKE '%'||${ss}||'%'"
+			+"</when>"
+			+"</choose>"
+			+"</trim>"
+			+"</foreach>"
+			+"</trim>"
+			+ "</script>"
+	})
+	public List<FreeBoardVO> freeBoardFind(Map map);
 	// Session
 	
 	// Comments
