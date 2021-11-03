@@ -64,7 +64,8 @@ $('#del').click(function(){
 	        <th width=20% class="success text-center">첨부이미지</th>
 	        <td colspan="3" class="text-left">
 	          <ul>
-	           <c:forEach var="fn" items="${fList }" varStatus="s">
+
+	     		 <c:forEach var="fn" items="${fList }" varStatus="s">
 	        
 	            <li><a href="download.do?fn=${fn }">${fn }</a>&nbsp;(${sList[s.index]}Bytes)</li>
 	           </c:forEach>
