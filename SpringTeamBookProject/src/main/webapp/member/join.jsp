@@ -5,10 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script> 
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script type="text/javascript" src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -170,7 +168,7 @@ $(function(){
 </script>
 
 <style>
-.col-lg-8,col-md-6{
+ .col-lg-8,col-md-6{
 	float: none;
 	margin:0 auto;
 }
@@ -229,7 +227,7 @@ button{
 </style>
 </head>
 <body>
-<section class="breadcrumb-section set-bg" data-setbg="../ogani-master/img/breadcrumb.jpg">
+	<section class="breadcrumb-section set-bg" data-setbg="../ogani-master/img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -245,11 +243,10 @@ button{
         </div>
 </section>
 
-    <!-- Checkout Section Begin -->
+<!--     Checkout Section Begin -->
     <section class="checkout spad">
         <div class="container">
-        
-            <!-- 1 -->
+
             <div class="row">
                 <div class="col-lg-12">
                     <h6><span class="icon_tag_alt"></span>이미 회원이신가요?<a href="#">Click here</a>로그인 창으로 이동하세요
@@ -263,7 +260,7 @@ button{
                 	<div class="row">
 						         	
 	                	<div class="col-lg-8 col-md-6">
-	                		<!-- 이름 -->
+	                		이름
 	                            <div class="col-lg-8">
 	                            	<div class="checkout__input">
 	                                	<p>이름<span>*</span></p>
@@ -271,7 +268,7 @@ button{
 	                               </div>
 	                            </div>
 	                		
-                	   <!-- 아이디 -->
+                	   아이디
 	                            <div class="col-lg-8">
 	                            	<div class="checkout__input">
 	                                	<p>아이디<span>*</span></p>
@@ -281,7 +278,7 @@ button{
 	                            </div>
 
 	                       
-	                	   <!-- 비밀번호 -->
+	                	   비밀번호
 	                            <div class="col-lg-8">
 	                            	<div class="checkout__input">
 	                                	<p>비밀번호<span>*</span></p>
@@ -290,7 +287,7 @@ button{
 	                               </div>
 	                            </div>
 	                       
-	                	   <!-- 성별 -->
+	                	   성별
 	                            <div class="col-lg-8">
 	                            	<div class="checkout__input" id="radio">
 	                                	<p>성별<span>*</span></p>
@@ -299,7 +296,7 @@ button{
 	                               </div>
 	                            </div>
 	                       
-	                       <!-- 생일 -->
+	                       생일
 	                            <div class="col-lg-8">
 	                            	<div class="checkout__input">
 	                                	<p>생일<span>*</span></p>
@@ -307,7 +304,7 @@ button{
 	                               </div>
 	                            </div>
 	                       
-	                       <!-- 전화번호 -->
+	                       전화번호
 	                            <div class="col-lg-8">
 	                            	<div class="checkout__input">
 	                                	<p>전화번호<span>*</span></p>
@@ -317,7 +314,7 @@ button{
 	                               </div>
 	                            </div>
 	                       
-	                       <!-- 이메일 -->
+	                       이메일
 	                            <div class="col-lg-8">
 	                            	<div class="checkout__input">
 	                                	<p>이메일<span>*</span></p>
@@ -325,7 +322,7 @@ button{
 	                               </div>
 	                            </div>
 	                            
-	                       <!-- 우편번호 -->
+	                       우편번호
 	                            <div class="col-lg-8">
 	                            	<div class="checkout__input">
 	                                	<p>우편번호<span>*</span></p>
@@ -334,7 +331,7 @@ button{
 	                               </div>
 	                            </div>
 	                       
-	                        <!-- 주소1 -->
+	                        주소1
 	                            <div class="col-lg-8">
 	                            	<div class="checkout__input">
 	                                	<p>주소<span>*</span></p>
@@ -342,7 +339,7 @@ button{
 	                               </div>
 	                            </div>
 	                       
-	                       <!-- 주소2 -->
+	                       주소2
 	                            <div class="col-lg-8">
 	                            	<div class="checkout__input">
 	                                	<p>상세주소<span>*</span></p>
@@ -350,7 +347,7 @@ button{
 	                               </div>
 	                            </div>
 	                        
-	                        <!-- 선호장르 -->
+	                        선호장르
 	                            <div class="col-lg-8">
 	                            	<div class="checkout__input">
 	                                	<p>선호장르<span>*</span></p>
@@ -373,7 +370,7 @@ button{
 			                        
 	                            </div>
 	                            
-	                       <!-- 가입/취소버튼-->
+	                       가입/취소버튼
 	                            <div class="col-lg-8" style="text-align:center; margin-top:50px;">
 	                              <input type="submit" class="btnLg" value="가입" id="joinBtn" style="background:black; margin-right:20px;">
 	                              <input type="button" class="btnLg" value="취소" style="background:silver;"
@@ -389,7 +386,7 @@ button{
         </div>
     </section>
     
-    <!--  아이디 중복체크 -->
+     아이디 중복체크
     <div id="dialog_idcheck" title="아이디 중복체크" style="display:none;">
 
 		<table style="margin:0px auto;">
