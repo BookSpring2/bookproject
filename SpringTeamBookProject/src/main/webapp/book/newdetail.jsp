@@ -15,20 +15,12 @@
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script>
 $(function(){
-	$('#btn-cart').click(function(){
-		$( "#dialog_cart" ).dialog({
-			  autoOpen:false,
-			  width: 420,
-			  height: 150,
-			  modal: true
-		  }).dialog("open");
-		
-		
+	$("#btn-cart").click(function(){
 		let productId = $("#productId").val();
 		//alert(productId)
 		let userId = $("#userId").val();
 		$.ajax({
-			type:'get',
+			type:'post',
 			url:'../mypage/cartcheck.do',
 			data:{"productId":productId},
 			success:function(res)
@@ -36,34 +28,33 @@ $(function(){
 				let result=res.trim();
 				//alert(result)
 				if (result == 'add_success') {
-					alert("장바구니에 등록되었습니다. 장바구니로이동하시겠습니까?");
-					$('#cartokBtn').show();
-					$('#cartokBtn').click(function(){
-						location.href("../mypage/cart_insert_ok.do");
-					})
+						if(confirm("장바구니에 등록되었습니다. 장바구니로 이동하시겠습니까?")){
+							location.href("../mypage/cart_insert_ok.do");
+						}
+						else{
+							return;
+						}
 				} else {
-					alert("이미 장바구니에 등록된 상품입니다.");
+					if(confirm("이미 장바구니에 등록된 상품입니다. 장바구니로 이둥하시겠습니까?")){
+						location.href("../mypage/cart_insert_ok.do");
+					}
+					else{
+						return;
+					}
 				}
 			}
 		});
-	});
+	})
 	
-		$('#select_count').change(function(){
-			let count=$(this).val();
-			let price=$('#price').text();
-			price=price.replace(",","");
-			price=price.replace("원","");
-			let total=parseInt(count)*parseInt(price)+5000; // parseInt() : 정수변환
-			$('#total').text(total+"원");
-			$('#cart_qty').val(count); // 선택할떄마다 값이 넘어간다
-		})
-	
- 	$('#cartcanBtn').click(function(){
-		$('#dialog_cart').dialog("close");
-	});
- 	
-
-	
+	$('#select_count').change(function(){
+		let count=$(this).val();
+		let price=$('#price').text();
+		price=price.replace(",","");
+		price=price.replace("원","");
+		let total=parseInt(count)*parseInt(price)+5000;
+		$('#total').text(total+"원");
+		$('#cart_qty').val(count);
+	})
 });
 </script>
 </head>
@@ -142,7 +133,7 @@ $(function(){
                         
                         <input type="button" class="btn primary-btn btn-order" style="border:none" value="주문하기">
                         <form method="post" action="../mypage/cart_insert_ok.do">
-	                        <input type="button" class="primary-btn" id="btn-cart" style="border:none" value="장바구니">
+	                        <input type="submit" class="primary-btn" id="btn-cart" style="border:none" value="장바구니">
 	                        <input type="hidden" name="productId" value="${vo.bno}" id="productId">
 	                        <input type="hidden" name="cart_qty" value="" id="cart_qty">
                         </form>
@@ -242,18 +233,5 @@ $(function(){
         </div>
     </section>
     <!-- Related Product Section End -->
-    
-    <!-- 장바구니 -->
-    <div id="dialog_cart" title="장바구니" style="display:none;">
-		<table style="margin:0px auto;">
-		    <tr>
-		     <td colspan="2" style="text-align:center;">
-		        <input type=button value="확인" id="cartokBtn" class="dialogBtn" style="background:black; color:white;display:none">
-		        <input type=button value="취소" id="cartcanBtn" class="dialogBtn" style="background:#E9E9E9">
-		     </td>
-		    </tr>
-		</table>
-    </div>
-    
 </body>
 </html>

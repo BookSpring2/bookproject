@@ -32,10 +32,12 @@
                             	<a href="../member/login.do" id="login"><i class="fa fa-user"></i>로그인</a>	
                             	<a href="../member/join.do"><i class=""></i>회원가입</a>	
                             </c:if>
-                            <c:if test="${sessionScope.id == 'admin'}">
+                            <c:if test="${sessionScope.id!=null && sessionScope.id=='admin'}">
 								<a href="../admin/main.do"><i class=""></i>관리자페이지</a>
 							</c:if>
-                            <a href="#"><i class=""></i>마이페이지</a>
+                            <c:if test="${sessionScope.id!=null && sessionScope.id!='admin' }">
+                            	<a href="#"><i class=""></i>마이페이지</a>
+                            </c:if>
                             <a href="#"><i class=""></i>고객센터</a>    
                           </div>
                         </div>
