@@ -28,10 +28,14 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
                           <div class="header__top__right__auth">
+                            <c:if test="${sessionScope.id!=null }">
+                            	<a href="../member/logout.do" id="login"><i class="fa fa-user"></i>로그아웃</a>		
+                            </c:if>
                             <c:if test="${sessionScope.id==null }">
                             	<a href="../member/login.do" id="login"><i class="fa fa-user"></i>로그인</a>	
                             	<a href="../member/join.do"><i class=""></i>회원가입</a>	
                             </c:if>
+
                             <c:if test="${sessionScope.id!=null && sessionScope.id=='admin'}">
 								<a href="../admin/main.do"><i class=""></i>관리자페이지</a>
 							</c:if>
