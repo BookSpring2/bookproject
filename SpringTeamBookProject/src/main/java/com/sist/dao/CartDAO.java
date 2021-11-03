@@ -5,60 +5,35 @@ import com.sist.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.sist.mapper.*;
-
+import com.sist.mapper.*; 
+  
 @Repository
-public class CartDAO {
+public class CartDAO { 
 	@Autowired
 	private CartMapper mapper;
 	
-	//////////////////////////// 장바구니 /////////////////////////////////
-	public List<CartVO> cartMoeny(){
-		return null;
-	}
-	
-	public List<CartVO> cartList()
+	public CartVO findCartGoods(int productId, String userId)
 	{
-		return mapper.cartList();
+		CartVO vo=new CartVO();
+		CartVO vo1=new CartVO();
+		vo1.setProductId(productId);
+		vo1.setUserId(userId);
+		String check=mapper.findCartGoods(vo1);
+		if(Boolean.parseBoolean(check)==true)
+		{
+			vo.setMsg("already_existed");
+		}
+		else
+		{
+			vo.setMsg("add_success");
+			vo.setProductId(productId);
+			vo.setUserId(userId);
+		} 
+		return vo;
 	}
 	
-	public String cartInsert(CartVO vo)
-	{
-		return mapper.cartInsert(vo);
-	}
-	
-	public void cartDelete(int cartid)
-	{
-		mapper.cartDelete(cartid);
-	}
-	
-	public void cartDeleteAll(String userid)
-	{
-		mapper.cartDeleteAll(userid);
-	}
-	
-	public void cartDelUpdate(int cartid)
-	{
-		
-	}
-	
-	public int cartSumMoney(String userid)
-	{
-		return mapper.cartSumMoney(userid);
-	}
-	
-	public int cartCount(String userid, int bookid)
-	{
-		return 0;
-	}
-	
-	public void cartUpdate(CartVO vo)
+	public void cartInsert(CartVO vo)
 	{
 		mapper.cartInsert(vo);
-	}
-	
-	public void cartUpdateOk(CartVO vo)
-	{
-		
 	}
 }

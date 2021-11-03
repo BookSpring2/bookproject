@@ -13,41 +13,52 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class MyPageController {
 	@Autowired
 	private CartDAO dao;
 	
-//	@Autowired
-//	private OrderDAO odao;
+	@Autowired
+	private OrderDAO odao;
 	
-	@RequestMapping("mypate/cart_list.do")
-	public String cart_list(String user_id, Model model, HttpSession session)
+	@RequestMapping("mypage/cart_list.do")
+	public String cart_list(String userId, Model model, HttpSession session)
 	{
+		model.addAttribute("main_jsp","../member/join.jsp");
 		Map map=new HashMap();
-		MemberVO vo=(MemberVO)session.getAttribute(user_id);
+		MemberVO vo=(MemberVO)session.getAttribute(userId);
 		String userid = vo.getUser_id();
-//		/* 로그인 되어있는 정보를 이용해서 userid를 가져온다 */
-//		CartVO cvo = new CartVO();
-//		/* cart객체를 생성하고*/
-//		CartVO.setUser_id(userid);
-//		CartVO.setProductId(productId);
-//		/* 객체 안에 userid와 productId를 set해준다 */
-//
-//		boolean istAlreadyExisted = cartService.findCartGoods(cartDTO);
-//        /* 이미 해당 상품이 카트에 존재하는지 여부를 판별해주는 메서드 */
-//		System.out.println("istAlreadyExisted : " + istAlreadyExisted);
-//		
-//		if (istAlreadyExisted) {
-//			return "already_existed";
-//            /* 만약 이미 카트에 저장되어있다면, already_existed를 리턴 */
-//		} else {
-//            cartService.addGoodsInCart(cartDTO);
-//			return "add_success";
-//             /* 카트에 없으면 카트에 저장 후, add_success를 리턴  */
-//		}
 		model.addAttribute("main_jsp", "../mypage/cart_list.jsp");
 		return "main/main";
+	}
+	
+	@RequestMapping("mypage/cartcheck.do")
+	@ResponseBody
+	public String cart_check(HttpSession session, int productId)
+	{
+		String msg="";
+		String userId=(String)session.getAttribute("id");
+		CartVO vo=dao.findCartGoods(productId, userId);
+		if (vo.getMsg().equals("already_existed")) {
+			msg="already_existed";
+		} else {
+			msg="add_success";
+		}
+		//msg=vo.getMsg();
+		return msg;
+	}
+	
+	@PostMapping("mypage/cart_insert_ok.do")
+	public String cart_insert_ok(int productId, int cart_qty, HttpSession session)
+	{
+		CartVO vo=new CartVO();
+		String id=(String)session.getAttribute("id");
+		vo.setUserId(id);
+		vo.setProductId(productId);
+		vo.setCart_qty(cart_qty);
+		dao.cartInsert(vo);
+		return "redirect:../mypage/cart_list.do";
 	}
 	
 //	@RequestMapping("mypage/order_list.do")
@@ -57,4 +68,16 @@ public class MyPageController {
 //		return "main/main";
 //	}
 
+//	@RequestMapping("mypage/order_list.do")
+//	public String order_list(Model model)
+//	{
+//		Map map=new HashMap();
+//		
+//		List<OrderVO> list=odao.orderFormList(map);
+//		List<OrderVO> mList=odao.orderMember(map);
+//		model.addAttribute("list", list);
+//		model.addAttribute("mList", mList);
+//		model.addAttribute("main_jsp", "../mypage/order_list.jsp");
+//		return "main/main";
+//	}
 }

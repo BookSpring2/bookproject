@@ -23,20 +23,23 @@ $(function(){
 			  modal: true
 		  }).dialog("open");
 		
+		
 		let productId = $("#productId").val();
+		//alert(productId)
 		let userId = $("#userId").val();
 		$.ajax({
 			type:'get',
 			url:'../mypage/cartcheck.do',
-			data:{"userId":userId, "productId":productId},
+			data:{"productId":productId},
 			success:function(res)
 			{
 				let result=res.trim();
+				//alert(result)
 				if (result == 'add_success') {
 					alert("장바구니에 등록되었습니다. 장바구니로이동하시겠습니까?");
 					$('#cartokBtn').show();
 					$('#cartokBtn').click(function(){
-						location.href("../mypage/cart_list.do");
+						location.href("../mypage/cart_insert_ok.do");
 					})
 				} else {
 					alert("이미 장바구니에 등록된 상품입니다.");
@@ -44,6 +47,16 @@ $(function(){
 			}
 		});
 	});
+	
+		$('#select_count').change(function(){
+			let count=$(this).val();
+			let price=$('#price').text();
+			price=price.replace(",","");
+			price=price.replace("원","");
+			let total=parseInt(count)*parseInt(price)+5000; // parseInt() : 정수변환
+			$('#total').text(total+"원");
+			$('#cart_qty').val(count); // 선택할떄마다 값이 넘어간다
+		})
 	
  	$('#cartcanBtn').click(function(){
 		$('#dialog_cart').dialog("close");
@@ -99,8 +112,7 @@ $(function(){
                             <i class="fa fa-star-half-o"></i>
                             <span>(18 개의 리뷰)</span>
                         </div>
-                        <div class="product__details__price" id="price"> ${vo.price}</div>
-                        	<input type="hidden" value="${vo.price}" id="price">
+                        <div class="product__details__price"><span id="price"> ${vo.price}</span></div>
                         <div class="bookdetail_pricedata_group"> 
                         <p class="bookdetail_textdata_title"> 적립금 </p>
                         <p class="bookdetail_textdata"> ${point}원(5%) + 멤버십(1~3%) </p>
@@ -117,20 +129,26 @@ $(function(){
                         </div>
                         <div>
                               <select class="form-control" id="select_count">
-									<c:forEach begin="1" end="10" var="count">
-										<option>${count}</option></c:forEach>
+									<c:forEach begin="1" end="10" var="i">
+										<option value="${i }">${i}</option></c:forEach>
 							  </select>
                         </div>
                         
+						<div class="bookdetail_textdata">
+								합계금액:<span id="total"></span>
+						</div>
+                    
                         <div style="height:50px"></div>
                         
-                        <div class="selected_option"></div>
-                        <button class="btn primary-btn btn-order" style="border:none">주문하기</button>
-                        <input type="button" class="primary-btn" id="btn-cart" style="border:none" value="장바구니">
-                        	<input type="hidden" value="${vo.bno}" id="productId">
-                        	<input type="hidden" value="${sessionScope.id }" id="userId">
-                        <button class="btn primary-btn btn-wishlist" style="border:none">위시리스트</button>
+                        <input type="button" class="btn primary-btn btn-order" style="border:none" value="주문하기">
+                        <form method="post" action="../mypage/cart_insert_ok.do">
+	                        <input type="button" class="primary-btn" id="btn-cart" style="border:none" value="장바구니">
+	                        <input type="hidden" name="productId" value="${vo.bno}" id="productId">
+	                        <input type="hidden" name="cart_qty" value="" id="cart_qty">
+                        </form>
+                        <input type="button" class="btn primary-btn btn-wishlist" style="border:none" value="위시리스트">
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                        
                         
                         <ul>
                             <!--  Book_DATA 테이블에 재고를 관리하는 컬럼이 없음.
@@ -179,40 +197,9 @@ $(function(){
                             </div>
                             <div class="tab-pane" id="tabs-3" role="tabpanel">
                                 <div class="product__details__tab__desc">
-                                <div class="input_and_print_comments">
-									<!-- 리뷰 입력 파트 -->
-									<div class="input_comments">
-									<form method="post" action="#" class="comment_form">
-								        <input type="text" class="comment_text" size=70>
-								        <p></p>
-								        <input type="submit" class="commnet_submit_btn" value="등록">
-								    </form>
-									 	<!--  로그인구현 완료되면 세션 이용해서 로그인 시에만 입력창 출력되도록 if문 처리 -->
-									</div>
-									<!-- 리뷰 출력 파트-->
-									<div class="print_comments">
-										<c:forEach var="cvo" items="${clist }">
-											<!-- 별점은 사용자가 등록한 별점으로 if문 처리해서 갯수 띄우기. -->
-											<div class="print_comments_stars">
-						                            <i class="fa fa-star"></i>
-						                            <i class="fa fa-star"></i>
-						                            <i class="fa fa-star"></i>
-						                            <i class="fa fa-star"></i>
-						                            <i class="fa fa-star-half-o"></i>
-					                        </div>
-					                        <div class="print_comments_texts">
-					                        <!-- 레이아웃만 만들어둠. 아직 기능 구현 안함.  -->
-												<div class="comments_title">${cvo.title }</div>
-												<div class="comments_comments">${cvo.comments }</div>
-												<div class="comments_write_data">
-												<div class="comments_writer">${cvo.writer }</div>
-												<div class="comments_writedate">${cvo.writedate }</div>
-												</div>
-											</div>
-										</c:forEach>
-									</div>
-									</div>
-								</div>
+                                    <h6>리뷰</h6>
+                                    <p> 리뷰 데이터가 들어가는 장소입니다. </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -268,12 +255,5 @@ $(function(){
 		</table>
     </div>
     
-<<<<<<< HEAD
-  
-       
-    
-    
-=======
->>>>>>> branch 'master' of https://github.com/BookSpring2/bookproject.git
 </body>
 </html>
