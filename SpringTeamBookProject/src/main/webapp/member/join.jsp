@@ -375,8 +375,8 @@ button{
 	                            
 	                       <!-- 가입/취소버튼-->
 	                            <div class="col-lg-8" style="text-align:center; margin-top:50px;">
-	                              <input type="submit" class="btn btnLg" value="가입" id="joinBtn" style="background:black; margin-right:20px;">
-	                              <input type="button" class="btn btnLg" value="취소" style="background:silver;"
+	                              <input type="submit" class="btnLg" value="가입" id="joinBtn" style="background:black; margin-right:20px;">
+	                              <input type="button" class="btnLg" value="취소" style="background:silver;"
 	                               onclick="javascript:history.back()">
 		                        </div>       
  

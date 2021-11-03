@@ -77,5 +77,15 @@ public class MemberController {
 		  session.invalidate();
 		  return "redirect:../main/main.do";
 	}
+
+	// 아이디,비밀번호 찾기 화면이동
+	@GetMapping("idpwd_find.do")
+	public String member_idfind(Model model)
+	{
+		model.addAttribute("main_jsp", "../member/idpwd_find.jsp");
+		return "main/main";
+	}
+
+
 	
 }

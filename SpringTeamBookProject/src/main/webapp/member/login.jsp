@@ -69,6 +69,16 @@ $(function(){
 	margin:0 auto;"
 }
 
+.contact-form input {
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+    color: #6f6f6f;
+    margin-bottom: 30px;
+    border: 1px solid #ebebeb;
+    border-radius: 4px;
+}
+
  input{
 	margin:0 auto;
 	padding-left:15% !important;
@@ -149,7 +159,6 @@ ul.link a{
     <div class="contact-form spad" style="margin:20px auto;">
         <div class="container">          
             
-            <form action="#">
                 <div class="row">
 	                	<div class="col-lg-8 col-md-6">
 	                	
@@ -176,15 +185,13 @@ ul.link a{
 	                            <div class="col-lg-8" style="text-center;">
 		                       		<ul class="link">
 		                       			<li><a href="join.do">회원가입</a></li>
-		                       			<li><a href="#">아이디 찾기</a></li>
-		                       			<li><a href="#">비밀번호 찾기</a></li>
+		                       			<li><a href="idpwd_find.do">아이디·비밀번호찾기</a></li>
 		                       		</ul>
 	                            </div> 
 		                    
 	                	</div>
 
                 </div>
-            </form>
         </div>
     </div>
     <!-- Contact Form End -->
