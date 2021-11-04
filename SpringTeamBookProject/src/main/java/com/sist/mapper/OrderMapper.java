@@ -9,11 +9,11 @@ import com.sist.vo.*;
 public interface OrderMapper {
 
 	@Insert("INSERT INTO book_order VALUES("
-			+"(SELECT NVL(MAX(order_no)+1,1) FROM book_order),#{user_id},#{book_no},#{amount},SYSDATE)")
+			+"(SELECT NVL(MAX(order_no)+1,1) FROM book_order),#{user_id},#{book_no},#{cart_qty},SYSDATE)")
 	public void orderInsert(OrderFormVO vo);
 	
 	
-	@Select("SELECT /*+ INDEX_DESC(book_order bo_orderno_pk)*/order_no, user_id, amount, orderdate, " 
+	@Select("SELECT /*+ INDEX_DESC(book_order bo_orderno_pk)*/order_no, user_id, cart_qty, orderdate, " 
 			+ "(SELECT title FROM book_data WHERE book_data.bno=book_order.book_no) as title, " 
 			+ "(SELECT image FROM book_data WHERE book_data.bno=book_order.book_no) as image, "
 			+ "(SELECT REPLACE(REPLACE(price, '원', ''),',','') "
