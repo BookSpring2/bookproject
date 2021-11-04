@@ -25,4 +25,15 @@ public interface MemberMapper {
 			+"WHERE user_id=#{id}")
 	public MemberVO memberGetPassword(String id);
 	
+	// 3-1. 아이디찾기
+	@Select("SELECT COUNT(*) FROM book_member WHERE tel=#{tel}")
+	public int memberIdFind(String tel);
+	@Select("SELECT RPAD(SUBSTR(user_id,1,1),LENGTH(user_id),'*') FROM book_member WHERE tel=#{tel}")
+	public String memberIdFindData(String tel);
+	
+	// 3-2. 비밀번호찾기
+	// memberIdCount 재사용
+	@Select("SELECT RPAD(SUBSTR(pwd,1,1),LENGTH(pwd),'*') FROM book_member WHERE user_id=#{id}")
+	public String memberPwdFindData(String id);
+	
 }

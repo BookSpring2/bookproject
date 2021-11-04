@@ -8,13 +8,60 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script>
 
+// 핸드폰번호 하이픈(-) 자동추가
+$(document).on("keyup","#tel",function(){
+	$(this).val($(this).val().replace(/[^0-9]/g,"").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})/,"$1-$2-$3").replace("--","-"));
+});
+
+// 아이디, 비밀번호 찾기
+$(function(){
+	$('#telBtn').click(function(){
+		let tel=$('#tel').val();
+		if(tel.trim()=="")
+		{
+			alert("핸드폰번호를 입력하세요");
+			$('#tel').focus();
+			return;
+		}
+		$.ajax({
+			type:'post',
+			url:'../member/idfind_ok.do',
+			data:{"tel":tel},
+			success:function(res)
+			{
+				$('#result_tel').html(res);
+			}
+		})
+	});
+	
+	$('#idBtn').click(function(){
+		let id=$('#find_id').val();
+		if(id.trim()=="")
+		{
+			alert("아이디를 입력하세요");
+			$('#find_id').focus();
+			return;
+		}
+		$.ajax({
+			type:'post',
+			url:'../member/pwdfind_ok.do',
+			data:{"id":id},
+			success:function(res)
+			{
+				$('#result_id').html(res);
+			}
+		})
+	});
+	
+})
+
+
+// 탭메뉴 자바스크립트
 function openCity(evt, cityName) {
   var i, tabcontent, tablinks;
   
   tabcontent = document.getElementsByClassName("tabcontent");
   tablinks = document.getElementsByClassName("tablinks");
-  
-/*   document.getElementById('London').style.display = "block"; */
   
   for (i = 0; i < tabcontent.length; i++) {
 	    tabcontent[i].style.display = "none";
@@ -128,7 +175,6 @@ function openCity(evt, cityName) {
     <div class="contact-form spad" style="margin:0px auto;">
         <div class="container">          
             
-<!--             <form action="#"> -->
                 <div class="row">
 	            	<div class="col-lg-8 col-md-6 findTab">
 							<div class="tab">
@@ -140,19 +186,18 @@ function openCity(evt, cityName) {
 							    <button style="font-weight:bold; display:block; margin-bottom:20px; border:none; background-color:white; padding:0">내 정보에 등록된 핸드폰번호로 찾기</button>
 								    <input type=text id=tel placeholder="핸드폰번호를 입력하세요">
 								    <input type=button value="검색" id="telBtn" style="background-color:#7fad39; color:white;">
-								    <p id="result_tel"></p>
+								    <p id="result_tel" style="color:#7fad39"></p>
 							</div>
 							
 							<div id="Pwd" class="tabcontent">
 							    <button style="font-weight:bold; display:block; margin-bottom:20px; border:none; background-color:white; padding:0">내 정보에 등록된 아이디로 찾기</button>
 								    <input type=text id=find_id placeholder="아이디를 입력하세요">
-								    <input type=button value="검색" id="telBtn" style="background-color:#7fad39; color:white;">
-								    <p id="result_id"></p>
+								    <input type=button value="검색" id="idBtn" style="background-color:#7fad39; color:white;">
+								    <p id="result_id" style="color:#7fad39"></p>
 							</div>
 							
 					</div>
                 </div>
-<!--             </form> -->
             
         </div>
     </div>

@@ -24,6 +24,13 @@ function postfind()
 
 <script>
 $(function(){
+	
+	// 핸드폰번호 하이픈(-) 자동추가
+	$(document).on("keyup","#tel",function(){
+		$(this).val($(this).val().replace(/[^0-9]/g,"").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})/,"$1-$2-$3").replace("--","-"));
+	});
+	
+	
 	// 팝업창 열기
 	$('#idBtn').click(function(){
 		$("#dialog_idcheck").dialog({
@@ -168,7 +175,7 @@ $(function(){
 </script>
 
 <style>
- .col-lg-8,col-md-6{
+.col-lg-8,col-md-6{
 	float: none;
 	margin:0 auto;
 }
@@ -227,7 +234,7 @@ button{
 </style>
 </head>
 <body>
-	<section class="breadcrumb-section set-bg" data-setbg="../ogani-master/img/breadcrumb.jpg">
+<section class="breadcrumb-section set-bg" data-setbg="../ogani-master/img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -243,13 +250,15 @@ button{
         </div>
 </section>
 
-<!--     Checkout Section Begin -->
+    <!-- Checkout Section Begin -->
     <section class="checkout spad">
         <div class="container">
-
+        
+            <!-- 1 -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h6><span class="icon_tag_alt"></span>이미 회원이신가요?<a href="#">Click here</a>로그인 창으로 이동하세요
+<!--                     <h6><span class="icon_tag_alt"></span>이미 회원이신가요?<a href="login.do">Click here</a>로그인 창으로 이동하세요 -->
+                    <h6><span class="icon_tag_alt"></span><a href="login.do" style="text-decoration:none; color:#7fad39; font-weight:400">이미 회원이신가요? 클릭하여 로그인 창으로 이동하세요</a>
                     </h6>
                 </div>
             </div>
@@ -260,7 +269,7 @@ button{
                 	<div class="row">
 						         	
 	                	<div class="col-lg-8 col-md-6">
-	                		이름
+	                		<!-- 이름 -->
 	                            <div class="col-lg-8">
 	                            	<div class="checkout__input">
 	                                	<p>이름<span>*</span></p>
@@ -268,7 +277,7 @@ button{
 	                               </div>
 	                            </div>
 	                		
-                	   아이디
+                	   <!-- 아이디 -->
 	                            <div class="col-lg-8">
 	                            	<div class="checkout__input">
 	                                	<p>아이디<span>*</span></p>
@@ -278,7 +287,7 @@ button{
 	                            </div>
 
 	                       
-	                	   비밀번호
+	                	   <!-- 비밀번호 -->
 	                            <div class="col-lg-8">
 	                            	<div class="checkout__input">
 	                                	<p>비밀번호<span>*</span></p>
@@ -287,7 +296,7 @@ button{
 	                               </div>
 	                            </div>
 	                       
-	                	   성별
+	                	   <!-- 성별 -->
 	                            <div class="col-lg-8">
 	                            	<div class="checkout__input" id="radio">
 	                                	<p>성별<span>*</span></p>
@@ -296,7 +305,7 @@ button{
 	                               </div>
 	                            </div>
 	                       
-	                       생일
+	                       <!-- 생일 -->
 	                            <div class="col-lg-8">
 	                            	<div class="checkout__input">
 	                                	<p>생일<span>*</span></p>
@@ -304,17 +313,15 @@ button{
 	                               </div>
 	                            </div>
 	                       
-	                       전화번호
+	                       <!-- 전화번호 -->
 	                            <div class="col-lg-8">
 	                            	<div class="checkout__input">
 	                                	<p>전화번호<span>*</span></p>
-	                                    <input type="text" name=tel readonly value="010" style="width:30%; text-align:center;">&nbsp;-
-	                                    <input type="text" name=tel style="width:30%; text-align:center;" id=tel>&nbsp;-
-	                                    <input type="text" name=tel style="width:30%; text-align:center;">
+	                                    <input type="text" name=tel id=tel>
 	                               </div>
 	                            </div>
 	                       
-	                       이메일
+	                       <!-- 이메일 -->
 	                            <div class="col-lg-8">
 	                            	<div class="checkout__input">
 	                                	<p>이메일<span>*</span></p>
@@ -322,7 +329,7 @@ button{
 	                               </div>
 	                            </div>
 	                            
-	                       우편번호
+	                       <!-- 우편번호 -->
 	                            <div class="col-lg-8">
 	                            	<div class="checkout__input">
 	                                	<p>우편번호<span>*</span></p>
@@ -331,7 +338,7 @@ button{
 	                               </div>
 	                            </div>
 	                       
-	                        주소1
+	                        <!-- 주소1 -->
 	                            <div class="col-lg-8">
 	                            	<div class="checkout__input">
 	                                	<p>주소<span>*</span></p>
@@ -339,7 +346,7 @@ button{
 	                               </div>
 	                            </div>
 	                       
-	                       주소2
+	                       <!-- 주소2 -->
 	                            <div class="col-lg-8">
 	                            	<div class="checkout__input">
 	                                	<p>상세주소<span>*</span></p>
@@ -347,7 +354,7 @@ button{
 	                               </div>
 	                            </div>
 	                        
-	                        선호장르
+	                        <!-- 선호장르 -->
 	                            <div class="col-lg-8">
 	                            	<div class="checkout__input">
 	                                	<p>선호장르<span>*</span></p>
@@ -370,7 +377,7 @@ button{
 			                        
 	                            </div>
 	                            
-	                       가입/취소버튼
+	                       <!-- 가입/취소버튼-->
 	                            <div class="col-lg-8" style="text-align:center; margin-top:50px;">
 	                              <input type="submit" class="btnLg" value="가입" id="joinBtn" style="background:black; margin-right:20px;">
 	                              <input type="button" class="btnLg" value="취소" style="background:silver;"
@@ -386,15 +393,15 @@ button{
         </div>
     </section>
     
-     아이디 중복체크
+    <!--  아이디 중복체크 -->
     <div id="dialog_idcheck" title="아이디 중복체크" style="display:none;">
 
 		<table style="margin:0px auto;">
-			<tr style="height:50px;">
+			<tr style="height:50px; font-size:12px;">
 		      <th width=20%>ID</th>
 		      <td width=80% class="input-sm">
-		      	<input type=text id="id_check" size=15 class="input-sm" style="border:1px solid #ebebeb">
-		      	<input type=button value="중복체크" id="idcheckBtn" class="input-sm" style="background:black; color:white; border:none;">
+		      	<input type=text id="id_check" style="border:1px solid #ebebeb; border-radius:3px; height:30px;">
+		      	<input type=button value="중복체크" id="idcheckBtn" style="background:black; color:white; border:none; border-radius:3px; height:30px; padding:5px 10px !important;">
 		     </td>
 		   </tr>
 		    <tr>

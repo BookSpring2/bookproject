@@ -85,7 +85,25 @@ public class MemberController {
 		model.addAttribute("main_jsp", "../member/idpwd_find.jsp");
 		return "main/main";
 	}
-
-
+	
+	// 아이디 찾기 검색
+	@PostMapping("idfind_ok.do")
+	@ResponseBody
+	public String member_idfind_ok(String tel)
+	{
+		String msg="";
+		msg=dao.memberIdFindData(tel);
+		return msg;
+	}
+	
+	// 비밀번호 찾기 검색
+	@PostMapping("pwdfind_ok.do")
+	@ResponseBody
+	public String member_pwdfind_ok(String id)
+	{
+		String msg="";
+		msg=dao.memberPwdFindData(id);
+		return msg;
+	}
 	
 }

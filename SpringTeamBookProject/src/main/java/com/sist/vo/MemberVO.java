@@ -1,7 +1,7 @@
 package com.sist.vo;
 
 public class MemberVO {
-	private String user_id,pwd,name,sex,birthday,tel,tel1,tel2,tel3,addr1,addr2,admin,email,genre,membership,msg,regdate;
+	private String user_id,pwd,name,sex,birthday,tel,addr1,addr2,admin,email,genre,membership,msg,regdate;
 
 	public String getRegdate() {
 		return regdate;
@@ -54,33 +54,9 @@ public class MemberVO {
 	public String getTel() {
 		return tel;
 	}
-
+	
 	public void setTel(String tel) {
-		this.tel = tel.replaceAll(",", "-");
-	}
-
-	public String getTel1() {
-		return tel1;
-	}
-
-	public void setTel1(String tel1) {
-		this.tel1 = tel1;
-	}
-
-	public String getTel2() {
-		return tel2;
-	}
-
-	public void setTel2(String tel2) {
-		this.tel2 = tel2;
-	}
-
-	public String getTel3() {
-		return tel3;
-	}
-
-	public void setTel3(String tel3) {
-		this.tel3 = tel3;
+		this.tel = tel;
 	}
 
 	public String getAddr1() {

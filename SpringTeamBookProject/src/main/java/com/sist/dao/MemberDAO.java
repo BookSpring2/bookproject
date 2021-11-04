@@ -48,6 +48,38 @@ public class MemberDAO {
 		}
 		return vo;
 	}
+	
+	// 아이디 찾기
+	public String memberIdFindData(String tel)
+	{
+		String msg="";
+		int count=mapper.memberIdFind(tel);
+		if(count==0)
+		{
+			msg="핸드폰번호가 존재하지 않습니다";
+		}
+		else
+		{
+			msg=mapper.memberIdFindData(tel);
+		}
+		return msg;
+	}
+	
+	// 비밀번호 찾기
+	public String memberPwdFindData(String id)
+	{
+		String msg="";
+		int count=mapper.memberIdCount(id);
+		if(count==0)
+		{
+			msg="아이디가 존재하지 않습니다";
+		}
+		else
+		{
+			msg=mapper.memberPwdFindData(id);
+		}
+		return msg;
+	}
 
 	
 }
