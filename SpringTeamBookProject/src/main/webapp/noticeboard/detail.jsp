@@ -80,7 +80,9 @@ $('#del').click(function(){
       </tr>
       <tr>
       	<td>
-      		<img src="${vo.imagename }" style="width:30px;height:30px;">
+      		<c:forEach var="fn" items="${fList}" >
+      		<img src="../resources/noticeboardimage/${fn}" style="width:100px;height:100px;">
+      		</c:forEach>
       	</td>
       </tr>
       <tr>

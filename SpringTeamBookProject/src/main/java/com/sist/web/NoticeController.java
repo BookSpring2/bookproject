@@ -2,11 +2,14 @@ package com.sist.web;
 import com.sist.dao.*;
 import com.sist.vo.*;
 import java.io.*;
+import java.net.URLEncoder;
+
 import com.sist.mapper.*;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,13 +74,16 @@ public class NoticeController {
 	@PostMapping("insert_ok.do")
 	public String noticeboard_insert_ok(NoticeVO vo) throws Exception
 	{
-		File dir=new File("c:\\download");
+		String path="C:\\Users\\jyh91\\git2\\git2\\SpringTeamBookProject\\src\\main\\webapp\\resources\\noticeboardimage\\";
+		File dir=new File(path);
+		
 		if(!dir.exists())
 		{
 			dir.mkdir();
 		}
 		
 		List<MultipartFile> list=vo.getFiles();
+		
 		String files="";
 		String sizes="";
 		String uuid = UUID.randomUUID().toString();
@@ -86,7 +92,8 @@ public class NoticeController {
 			for(MultipartFile mf:list)
 			{
 				String fn=mf.getOriginalFilename();
-				File file=new File("c:\\download\\"+fn);
+				//File file=new File("c:\\download\\"+(uuid+"_"+fn));
+				File file=new File(path+(uuid+"_"+fn));
 				mf.transferTo(file);
 				files+=((uuid+"_"+fn)+",");
 				sizes+=file.length()+",";
@@ -135,6 +142,7 @@ public class NoticeController {
 		model.addAttribute("main_jsp", "../noticeboard/detail.jsp");
 		return "main/main";
 	}
+	
 	
 	@GetMapping("update.do")
 	public String noticeboard_update(int no,int page,Model model)
