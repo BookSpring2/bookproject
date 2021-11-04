@@ -11,9 +11,15 @@ import java.util.*;
  */
 public class CartVO {
 	private String userId, msg, image, title, price;
-	private int cartId, productId, cart_qty;
+	private int cartId, productId, cart_qty, intprice;
 	private Date regdate;
 	
+	public int getIntprice() {
+		return intprice;
+	}
+	public void setIntprice(int intprice) {
+		this.intprice = intprice;
+	}
 	public String getImage() {
 		return image;
 	}

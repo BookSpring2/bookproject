@@ -15,20 +15,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
-public class MyPageController {
+public class CartController {
 	@Autowired
 	private CartDAO dao;
 	
 	@Autowired
 	private OrderDAO odao;
 	
-	@RequestMapping("mypage/cart_list.do")
-	public String cart_list(String userId, Model model, HttpSession session)
+	@GetMapping("mypage/cart_list.do")
+	public String cart_list(Model model, HttpSession session)
 	{
-		model.addAttribute("main_jsp","../member/join.jsp");
-		Map map=new HashMap();
-		MemberVO vo=(MemberVO)session.getAttribute(userId);
-		String userid = vo.getUser_id();
+		String userId=(String)session.getAttribute("id");
+		List<CartVO> list=dao.cartListData(userId);
+		model.addAttribute("list", list);
 		model.addAttribute("main_jsp", "../mypage/cart_list.jsp");
 		return "main/main";
 	}
@@ -60,24 +59,4 @@ public class MyPageController {
 		dao.cartInsert(vo);
 		return "redirect:../mypage/cart_list.do";
 	}
-	
-//	@RequestMapping("mypage/order_list.do")
-//	public String order_list(String user_id,Model model)
-//	{
-//		model.addAttribute("main_jsp", "../mypage/order_list.jsp");
-//		return "main/main";
-//	}
-
-//	@RequestMapping("mypage/order_list.do")
-//	public String order_list(Model model)
-//	{
-//		Map map=new HashMap();
-//		
-//		List<OrderVO> list=odao.orderFormList(map);
-//		List<OrderVO> mList=odao.orderMember(map);
-//		model.addAttribute("list", list);
-//		model.addAttribute("mList", mList);
-//		model.addAttribute("main_jsp", "../mypage/order_list.jsp");
-//		return "main/main";
-//	}
 }

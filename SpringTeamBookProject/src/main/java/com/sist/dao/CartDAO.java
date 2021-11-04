@@ -36,4 +36,9 @@ public class CartDAO {
 	{
 		mapper.cartInsert(vo);
 	}
+	
+	public List<CartVO> cartListData(String userId)
+	{
+		return mapper.cartListData(userId);
+	}
 }

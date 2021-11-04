@@ -18,4 +18,14 @@ public interface CartMapper {
 	@Insert("INSERT INTO book_cart (cartId, userId, productId, cart_qty) "
 			+ "VALUES(#{cartId}, #{userId}, #{productId}, #{cart_qty})")
 	public void cartInsert(CartVO vo);
+	
+	@Select("SELECT /*+ INDEX_DESC(book_cart bc_cartId_pk)*/cartId, userId, cart_qty, regdate, " 
+			+ "(SELECT title FROM book_data WHERE book_data.bno=book_cart.productId) as title, " 
+			+ "(SELECT image FROM book_data WHERE book_data.bno=book_cart.productId) as image, "
+			+ "(SELECT REPLACE(REPLACE(price, '원', ''),',','') "
+			+ "FROM book_data WHERE book_data.bno=book_cart.productId) as price "
+			+ "FROM book_cart "
+			+ "WHERE userId=#{userId} "
+			+ "AND regdate>=SYSDATE-3 AND regdate<=SYSDATE")
+	public List<CartVO> cartListData(String userId);
 }
