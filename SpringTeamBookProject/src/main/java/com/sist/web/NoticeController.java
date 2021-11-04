@@ -80,6 +80,7 @@ public class NoticeController {
 		List<MultipartFile> list=vo.getFiles();
 		String files="";
 		String sizes="";
+		String uuid = UUID.randomUUID().toString();
 		if(list!=null && list.size()>0)
 		{
 			for(MultipartFile mf:list)
@@ -87,7 +88,7 @@ public class NoticeController {
 				String fn=mf.getOriginalFilename();
 				File file=new File("c:\\download\\"+fn);
 				mf.transferTo(file);
-				files+=fn+",";
+				files+=((uuid+"_"+fn)+",");
 				sizes+=file.length()+",";
 			}
 			vo.setImagename(files.substring(0,files.lastIndexOf(",")));
