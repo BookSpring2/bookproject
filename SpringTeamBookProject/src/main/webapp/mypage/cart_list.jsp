@@ -32,7 +32,7 @@
 <section class="shoping-cart spad">
         <div class="container">
           
-            <div class="row">
+            <div class="row"> 
               <a href="#" class="primary-btn cart-btn">장바구니</a>
               <a href="#" class="primary-btn cart-btn">결제</a>
               <a href="#" class="primary-btn cart-btn">구매내역</a>
