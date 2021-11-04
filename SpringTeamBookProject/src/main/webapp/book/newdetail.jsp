@@ -26,10 +26,8 @@ $(function(){
 			success:function(res)
 			{
 				let result=res.trim();
-				confirm("결제페이지로 이동하시겠습니까?"){
-					location.href("../mypage/order_insert_ok.do");
-					}
-				}
+				confirm("결제페이지로 이동하시겠습니까?")
+					location.href("../mypage/order_insert_ok.do");				
 			}
 		});
 	})
@@ -152,7 +150,7 @@ $(function(){
                         <form method="post" action="../mypage/order_insert_ok.do">
 	                        <input type="submit" class="primary-btn" id="btn-order" style="border:none" value="주문하기">
 	                        <input type="hidden" name="book_no" value="${vo.bno}" id="book_no">
-	                        <input type="hidden" name="amount" value="" id="amount">
+	                        <input type="hidden" name="cart_qty" value="" id="cart_qty">
                         </form>
                         
                         <form method="post" action="../mypage/cart_insert_ok.do">
