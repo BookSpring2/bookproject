@@ -3,10 +3,17 @@ import java.util.*;
 public class OrderFormVO {
 	private int order_no,book_no,amount;
 	private Date orderdate,deliver_date;
-	private String deliver_situ,deliver_msg;
+	private String deliver_situ,deliver_msg,user_id;
 	
 	private String title,image,price;
 	private String name,addr1,addr2,tel,email;
+	
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
 	public int getOrder_no() {
 		return order_no;
 	}

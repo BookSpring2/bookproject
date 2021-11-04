@@ -15,6 +15,24 @@
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script>
 $(function(){
+	$("#btn-order").click(function(){
+		let book_no = $("#book_no").val();
+		//alert(productId)
+		let user_id = $("#user_id").val();
+		$.ajax({
+			type:'post',
+			url:'../mypage/ordercheck.do',
+			data:{"book_no":book_no},
+			success:function(res)
+			{
+				let result=res.trim();
+				confirm("결제페이지로 이동하시겠습니까?"){
+					location.href("../mypage/order_insert_ok.do");
+					}
+				}
+			}
+		});
+	})
 	$("#btn-cart").click(function(){
 		let productId = $("#productId").val();
 		//alert(productId)
@@ -131,12 +149,18 @@ $(function(){
                     
                         <div style="height:50px"></div>
                         
-                        <input type="button" class="btn primary-btn btn-order" style="border:none" value="주문하기">
+                        <form method="post" action="../mypage/order_insert_ok.do">
+	                        <input type="submit" class="primary-btn" id="btn-order" style="border:none" value="주문하기">
+	                        <input type="hidden" name="book_no" value="${vo.bno}" id="book_no">
+	                        <input type="hidden" name="amount" value="" id="amount">
+                        </form>
+                        
                         <form method="post" action="../mypage/cart_insert_ok.do">
 	                        <input type="submit" class="primary-btn" id="btn-cart" style="border:none" value="장바구니">
 	                        <input type="hidden" name="productId" value="${vo.bno}" id="productId">
 	                        <input type="hidden" name="cart_qty" value="" id="cart_qty">
                         </form>
+                        
                         <input type="button" class="btn primary-btn btn-wishlist" style="border:none" value="위시리스트">
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         

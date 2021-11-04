@@ -7,18 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
-<script type="text/javascript">
-$(function(){
-	$('#sel').change(function(){
-		let count=$(this).val();
-		let price=$('#price').text();
-		let total=parseInt(count)*parseInt(price)+3000; // parseInt() : 정수 변환
-		$('#total').text(total+"원");
-		$('#amount').val(count);
-	})
-})
-</script>
 </head>
 <body>
 <section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg" style="background-image: url(&quot;../img/breadcrumb.jpg&quot;);">
