@@ -175,7 +175,7 @@ $(function(){
 </script>
 
 <style>
-.col-lg-8,col-md-6{
+.col-lg-8, .col-md-6, .col-md-12, .col-sm-12, .col-xs-12{
 	float: none;
 	margin:0 auto;
 }
@@ -268,7 +268,7 @@ button{
                 <form method=post action="join_ok.do" id="joinForm">
                 	<div class="row">
 						         	
-	                	<div class="col-lg-8 col-md-6">
+	                	<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
 	                		<!-- 이름 -->
 	                            <div class="col-lg-8">
 	                            	<div class="checkout__input">
@@ -355,7 +355,7 @@ button{
 	                            </div>
 	                        
 	                        <!-- 선호장르 -->
-	                            <div class="col-lg-8">
+	                            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
 	                            	<div class="checkout__input">
 	                                	<p>선호장르<span>*</span></p>
 	                               </div>
@@ -378,8 +378,8 @@ button{
 	                            </div>
 	                            
 	                       <!-- 가입/취소버튼-->
-	                            <div class="col-lg-8" style="text-align:center; margin-top:50px;">
-	                              <input type="submit" class="btnLg" value="가입" id="joinBtn" style="background:black; margin-right:20px;">
+	                            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12" style="text-align:center; margin-top:50px;">
+	                              <input type="submit" class="btnLg" value="가입" id="joinBtn" style="background:black; margin-right:10px;">
 	                              <input type="button" class="btnLg" value="취소" style="background:silver;"
 	                               onclick="javascript:history.back()">
 		                        </div>       

@@ -64,7 +64,7 @@ $(function(){
 
 </script>
 <style>
-.col-lg-8, .col-md-6{
+.col-lg-8, .col-md-6, .col-md-12, .col-sm-8, .col-xs-12{
 	float: none;
 	margin:0 auto;"
 }
@@ -160,9 +160,9 @@ ul.link a{
         <div class="container">          
             
                 <div class="row">
-	                	<div class="col-lg-8 col-md-6">
+	                	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 	                	
- 	                            <div class="col-lg-8">
+ 	                            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
  	                            		<div class="icon">
 	 	                                    <span class="fa fa-user"></span>
 		                                    <input type="text" placeholder="아이디" id="id" class="btnId">
@@ -170,7 +170,7 @@ ul.link a{
 
 	                            </div>
 	                            
- 	                            <div class="col-lg-8">
+ 	                            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
  	                            		<div class="icon">
 	 	                                    <span class="fa fa-lock"></span>
 		                                    <input type="password" placeholder="비밀번호" id="pwd" class="btnId">
@@ -178,11 +178,11 @@ ul.link a{
 
 	                            </div>
 
-	                            <div class="col-lg-8">
+	                            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12" >
 		                       			<input type=button class="site-btn" style="width:100%; text-align:center" id="logBtn" value="로그인">
 	                            </div> 
 	                            
-	                            <div class="col-lg-8" style="text-center;">
+	                            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12" style="text-center;">
 		                       		<ul class="link">
 		                       			<li><a href="join.do">회원가입</a></li>
 		                       			<li><a href="idpwd_find.do">아이디·비밀번호찾기</a></li>

@@ -78,15 +78,15 @@ function openCity(evt, cityName) {
 </script>
 
 <style>
-.col-lg-8, .col-md-6{
+.col-lg-8, .col-md-6, .col-md-12, .col-sm-12, .col-xs-12{
 	float: none;
 	margin: 0 auto;
 }
 
-.findTab{
+ .findTab{
  	padding:0px 130px !important;
 }
-
+ 
 .contact-form button {
     font-size: 20px;
     letter-spacing: 0px;
@@ -176,7 +176,7 @@ function openCity(evt, cityName) {
         <div class="container">          
             
                 <div class="row">
-	            	<div class="col-lg-8 col-md-6 findTab">
+	            	<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 findTab">
 							<div class="tab">
 							  <button class="tablinks active" onclick="openCity(event, 'Id')"><strong>아이디찾기</strong></button>
 							  <button class="tablinks" onclick="openCity(event, 'Pwd')"><strong>비밀번호찾기</strong></button>
