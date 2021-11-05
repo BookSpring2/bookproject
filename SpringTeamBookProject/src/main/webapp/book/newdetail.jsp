@@ -21,13 +21,13 @@ $(function(){
 		let user_id = $("#user_id").val();
 		$.ajax({
 			type:'post',
-			url:'../mypage/ordercheck.do',
+			url:'../mypage/order_form_ok.do',
 			data:{"book_no":book_no},
 			success:function(res)
 			{
 				let result=res.trim();
 				confirm("결제페이지로 이동하시겠습니까?")
-					location.href("../mypage/order_insert_ok.do");				
+					location.href("../mypage/order_form_ok.do");				
 			}
 		});
 	})
@@ -147,7 +147,7 @@ $(function(){
                     
                         <div style="height:50px"></div>
                         
-                        <form method="post" action="../mypage/order_insert_ok.do">
+                        <form method="post" action="../mypage/order_form_ok.do">
 	                        <input type="submit" class="primary-btn" id="btn-order" style="border:none" value="주문하기">
 	                        <input type="hidden" name="book_no" value="${vo.bno}" id="book_no">
 	                        <input type="hidden" name="cart_qty" value="" id="cart_qty">

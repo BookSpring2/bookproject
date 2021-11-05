@@ -3,11 +3,18 @@ import java.util.*;
 public class OrderFormVO {
 	private int order_no,book_no,cart_qty;
 	private Date orderdate,deliver_date;
-	private String deliver_situ,deliver_msg,user_id;
+	private String deliver_situ,deliver_msg,user_id,orderday;
 	
 	private String title,image,price;
 	private String name,addr1,addr2,tel,email;
 	
+	
+	public String getOrderday() {
+		return orderday;
+	}
+	public void setOrderday(String orderday) {
+		this.orderday = orderday;
+	}
 	public String getUser_id() {
 		return user_id;
 	}

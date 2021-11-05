@@ -8,12 +8,13 @@ import org.apache.ibatis.annotations.SelectKey;
 import com.sist.vo.*;
 public interface OrderMapper {
 
+	// 주문하기 폼에서 -> 구매 버튼 누를시 서버로 데이터 전송
 	@Insert("INSERT INTO book_order VALUES("
 			+"(SELECT NVL(MAX(order_no)+1,1) FROM book_order),#{user_id},#{book_no},#{cart_qty},SYSDATE)")
 	public void orderInsert(OrderFormVO vo);
 	
-	
-	@Select("SELECT /*+ INDEX_DESC(book_order bo_orderno_pk)*/order_no, user_id, cart_qty, orderdate, " 
+	// 주문하기 폼 출력
+	@Select("SELECT /*+ INDEX_DESC(book_order bo_orderno_pk)*/order_no, user_id, cart_qty, TO_CHAR(orderdate,'MM-DD') as orderday, " 
 			+ "(SELECT title FROM book_data WHERE book_data.bno=book_order.book_no) as title, " 
 			+ "(SELECT image FROM book_data WHERE book_data.bno=book_order.book_no) as image, "
 			+ "(SELECT REPLACE(REPLACE(price, '원', ''),',','') "
