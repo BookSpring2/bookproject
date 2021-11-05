@@ -74,7 +74,7 @@ public class NoticeController {
 	@PostMapping("insert_ok.do")
 	public String noticeboard_insert_ok(NoticeVO vo) throws Exception
 	{
-		String path="C:\\Users\\jyh91\\git2\\git2\\SpringTeamBookProject\\src\\main\\webapp\\resources\\noticeboardimage\\";
+		String path="C:\\springDev\\springProject\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\SpringTeamBookProject\\resources\\noticeboardimage\\";
 		File dir=new File(path);
 		
 		if(!dir.exists())
