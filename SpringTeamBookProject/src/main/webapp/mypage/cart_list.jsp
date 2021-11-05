@@ -12,6 +12,21 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$("#allCheck").click(function () {
+    var chk = $("#allCheck").prop("checked");
+    if (chk) {
+        $(".chkbox").prop("checked", true);
+        itemSum();
+    } else {
+        $(".chkbox").prop("checked", false);
+        itemSum();
+    }
+});
+
+
+</script>
 </head>
 <body>
 <section class="breadcrumb-section set-bg" data-setbg="../ogani-master/img/breadcrumb.jpg">
@@ -42,18 +57,6 @@
                             <thead>
                                 <tr>
                                 <th><input type="checkbox" name="allCheck" id="allCheck" checked /></th>
-                                <script>
-                                    $("#allCheck").click(function () {
-                                        var chk = $("#allCheck").prop("checked");
-                                        if (chk) {
-                                            $(".chkbox").prop("checked", true);
-                                            itemSum();
-                                        } else {
-                                            $(".chkbox").prop("checked", false);
-                                            itemSum();
-                                        }
-                                    });
-                                </script>
                                     <th class="shoping__product">장바구니</th>
                                     <th>금액</th>
                                     <th>수량</th>
@@ -72,17 +75,17 @@
                                         <h5>${vo.title }</h5>
                                     </td>
                                     <td class="shoping__cart__price">
-                                        ${vo.price }원
+                                     <fmt:parseNumber value="${vo.price }" var="price" type="number" pattern="000,000,000"/>
+                                        ${price }원
                                     </td>
                                     <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="${vo.cart_qty }" id="count">
-                                            </div>
-                                        </div>
+                                           <input type="hidden" name="sell_price" value="${vo.price }">
+                                           <input type="button" value=" - " class="minus" style="border:none">
+                                           <input type="text" name="amount" value="${vo.cart_qty }" size=1 style="text-align:center">
+                                           <input type="button" value=" + " class="plus" style="border:none">
                                     </td>
                                     <td class="shoping__cart__total" id="price">
-                                    <fmt:parseNumber value="${vo.price }" var="price" type="number" pattern="###,###,###"/>
+                                    	<input type="text" name="sum" size="11" readonly>
                                        ${vo.cart_qty*price+5000 }원
                                     </td>
                                     <td class="shoping__cart__item__close">
@@ -107,10 +110,10 @@
                 </div>
                 <script>
 		            function itemSum() {
-		                var str = "";
-		                var sum = 0;
-		                var count = $(".chkbox").length;
-		                for (var i = 0; i < count; i++) {
+		                let str = "";
+		                let sum = 0;
+		                let count = $(".chkbox").length;
+		                for (let i = 0; i < count; i++) {
 		                    if ($(".chkbox")[i].checked == true) {
 		                        sum += parseInt($(".chkbox")[i].value);
 		                    }
