@@ -168,11 +168,21 @@ public class FreeBoardController {
 	
 	
 	
-	// Delete
+	// Delete Ajax로 화면없이 처리
 	@GetMapping("delete.do")
 	@ResponseBody
 	public void delete(int no)
 	{
 		dao.freeBoardDelete(no);
+	}
+	
+	
+	// Find View만 전송
+	@GetMapping("find.do")
+	public String find(int page, Model model)
+	{
+		model.addAttribute("page",page);
+		model.addAttribute("main_jsp", "../freeboard/find.jsp");
+		return "main/main";
 	}
 }
