@@ -18,4 +18,7 @@ public class ShopDAO {
 	public ShopVO shopDetailData(String id) {
 		return mapper.shopDetailData(id);
 	}
+	public List<ShopVO> searchListData(String ss){
+		return mapper.searchListData(ss);
+	}
 }
