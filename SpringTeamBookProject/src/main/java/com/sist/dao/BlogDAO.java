@@ -15,4 +15,9 @@ public class BlogDAO {
 	{
 		return mapper.BlogList(map);
 	}
+	
+	public int BlogTotalPage()
+	{
+		return mapper.BlogTotalPage();
+	}
 }

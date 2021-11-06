@@ -15,4 +15,7 @@ public interface BlogMapper {
 			+"FROM book_blog ORDER BY no DESC)) "
 			+"WHERE num BETWEEN #{start} AND #{end}")
 	public List<BlogVO> BlogList(Map map);
+	
+	@Select("SELECT CEIL(COUNT(*)/6.0) FROM book_blog")
+	public int BlogTotalPage();
 }
