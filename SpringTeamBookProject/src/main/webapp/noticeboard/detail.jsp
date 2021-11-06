@@ -63,7 +63,7 @@ $('#del').click(function(){
 	      <tr>
 	        <th width=20% class="success text-center">첨부이미지</th>
 	        <td colspan="3" class="text-left">
-	          <ul>
+	          <ul style="list-style:none">
 
 	     		 <c:forEach var="fn" items="${fList }" varStatus="s">
 	        
@@ -78,18 +78,19 @@ $('#del').click(function(){
          <pre style="white-space: pre-wrap;border:none;background-color: white">${vo.content }</pre>
         </td>
       </tr>
-      <tr>
+      <%-- <tr>
       	<td>
       		<c:forEach var="fn" items="${fList}" >
       		<img src="../resources/noticeboardimage/${fn}" style="width:100px;height:100px;">
       		</c:forEach>
       	</td>
-      </tr>
+      </tr> --%>
       <tr>
         <td colspan="4" class="text-right">
+        <c:if test="${sessionScope.name=='배수민' }">
          <a href="../noticeboard/update.do?no=${vo.no }&page=${curpage}" class="btn btn-xs btn-danger">수정</a>
          <a href="../noticeboard/delete.do?no=${vo.no }&page=${curpage}" class="btn btn-xs btn-primary" id="del">삭제</a>
-          
+        </c:if>
           <!-- <input type=button class="btn btn-xs btn-primary" value="삭제" id="del"> -->
           <a href="../noticeboard/list.do?page=${curpage }" class="btn btn-xs btn-info">목록</a>
         </td>

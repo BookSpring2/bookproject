@@ -69,13 +69,20 @@
     </c:forEach>
     </tbody>
   </table>
+  <c:if test="${sessionScope.name=='배수민' }">
   <table class="table1">
      	<tr>
+     		
      		<td>
+     		
      			<a href="insert.do" class="btn btn-sm btn-danger">공지등록</a>
+     	
+     			
      		</td>
+     
      	</tr>
      </table>
+     </c:if>
   	<!-- 
   	<li><a href="#">1</a></li>
   	<li class="active"><a href="#">2</a></li>
@@ -91,25 +98,25 @@
        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
     </div>
   	 -->
-	<div class="product__pagination blog__pagination" align="center" style="">
-           <ul style="list-style:none;">
+	<div class="product__pagination blog__pagination" align="center" style="margin-top:50px;">
+           
              <c:if test="${startPage>1 }">
-              <li><a href="../noticeboard/list.do?page=${startPage-1 }">&lt;</a></li>
+              <a href="../noticeboard/list.do?page=${startPage-1 }">&lt;</a>
              </c:if>
                <c:forEach var="i" begin="${startPage }" end="${endPage }">
                 <c:if test="${curpage==i }">
-                  
+                  <a href="../noticeboard/list.do?page=${i }">${i }</a>
                 </c:if>
                 <c:if test="${curpage!=i }">
-                  
+                  <a href="../noticeboard/list.do?page=${i }">${i }</a>
                 </c:if>
-                <li><a href="../noticeboard/list.do?page=${i }">${i }</a></li>
+                
                </c:forEach>
              <c:if test="${endPage<totalpage }">
-			  <li><a href="../noticeboard/list.do?page=${endPage+1 }">
-			  <i class="fa fa-long-arrow-right"></i></a></li>
+			  <a href="../noticeboard/list.do?page=${endPage+1 }">
+			  <i class="fa fa-long-arrow-right"></i></a>
 			 </c:if>
-			</ul>
+		
        </div>
      
 </div>
