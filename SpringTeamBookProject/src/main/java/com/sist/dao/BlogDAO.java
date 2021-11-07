@@ -20,4 +20,9 @@ public class BlogDAO {
 	{
 		return mapper.BlogTotalPage();
 	}
+	
+	public void BlogInsert(BlogVO vo)
+	{
+		mapper.BlogInsert(vo);
+	}
 }

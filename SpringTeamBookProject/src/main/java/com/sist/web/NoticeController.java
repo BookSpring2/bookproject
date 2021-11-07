@@ -63,17 +63,18 @@ public class NoticeController {
 	}
 	
 	@GetMapping("insert.do")
-	public String noticeboard_insert(Model model,HttpSession session)
+	public String noticeboard_insert(Model model)
 	{
-		NoticeVO vo=new NoticeVO();
-		vo.setName((String)session.getAttribute("name"));		
+		
 		model.addAttribute("main_jsp", "../noticeboard/insert.jsp");
 		return "main/main";
 	}
 	
 	@PostMapping("insert_ok.do")
-	public String noticeboard_insert_ok(NoticeVO vo) throws Exception
+	public String noticeboard_insert_ok(NoticeVO vo,HttpSession session) throws Exception
 	{
+		String name=(String)session.getAttribute("name");
+		vo.setName(name);
 		String path="C:\\springDev\\springProject\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\SpringTeamBookProject\\resources\\noticeboardimage\\";
 		File dir=new File(path);
 		

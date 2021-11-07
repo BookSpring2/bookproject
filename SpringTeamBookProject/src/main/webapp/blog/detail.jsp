@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="blog__details__hero__text">
-                        <h2>제목</h2>
+                        <h2>블로그</h2>
                         <ul>
                             <li>작성자</li>
                             <li>작성날자</li>

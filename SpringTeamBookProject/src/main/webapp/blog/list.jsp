@@ -145,14 +145,24 @@
                                         <li><i class="fa fa-calendar-o"></i> ${vo.dbday }</li>
                                         <li><i class="fa fa-comment-o"></i> 5</li>
                                     </ul>
-                                    <h5><a href="#">6 ways to prepare breakfast for 30</a></h5>
-                                    <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
-                                        quaerat </p>
+                                    <h3>${vo.subject }</h3>
+                                    <p>${vo.content } </p>
                                     <a href="../blog/detail.do?no=${vo.no}&page=${curpage}" class="blog__btn">더보기 <span class="arrow_right"></span></a>
                                 </div>
                             </div>
                         </div>
                         </c:forEach>
+                        <div class="col-lg-12">
+                        <c:if test="${sessionScope.id!=null }">
+  						<table class="table1">
+     						<tr>		
+     						<td>
+     						<a href="insert.do" class="btn btn-sm btn-danger">글쓰기</a>
+     						</td>
+     						</tr>
+     						</table>
+     						</c:if>
+     					</div>
                         <div class="col-lg-12">
                             <div class="product__pagination blog__pagination" align="center" style="margin-top:50px;">
            

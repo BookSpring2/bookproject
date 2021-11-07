@@ -63,7 +63,7 @@
         	</c:if>
         </td>
         <td style="text-align:center;">${vo.dbday }</td>
-        <td style="text-align:center;">${vo.name}</td>
+        <td style="text-align:center;">${vo.name}(관리자)</td>
         <td style="text-align:center;">${vo.hit }</td>
       </tr>
     </c:forEach>

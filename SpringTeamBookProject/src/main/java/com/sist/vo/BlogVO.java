@@ -13,14 +13,21 @@ import java.util.*;
     CONSTRAINT bb_no_pk PRIMARY KEY(no)
  */
 public class BlogVO {
-	private int hit;
-	private String user_id,subject,image,content,category,tag;
+	private int no;
+	private String user_id,subject,image,content,category,tag,dbday;
 	private Date regdate;
-	public int getHit() {
-		return hit;
+	
+	public String getDbday() {
+		return dbday;
 	}
-	public void setHit(int hit) {
-		this.hit = hit;
+	public void setDbday(String dbday) {
+		this.dbday = dbday;
+	}
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
 	}
 	public String getUser_id() {
 		return user_id;
