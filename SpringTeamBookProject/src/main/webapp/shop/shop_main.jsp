@@ -14,8 +14,16 @@
 
 <style>
 	.shop_bar{
+	    border-top: outset;
 		overflow:auto;
-		height:300px;
+		height:450px;
+	}
+	.shop_bar::-webkit-scrollbar-thumb{
+    	background-color: #dddddd;
+    }
+    .shop_bar::-webkit-scrollbar {
+    width: 4px;
+    
 	}
 	.shop{
 		position:relative;
@@ -23,62 +31,73 @@
 	.store_search_wrapper .store_search_layer {
     position: absolute;
     left: 20px;
-    top: 180px;
+    top: 20px;
     z-index: 3;
     width: 340px;
-    height: 658px;
+    height: 678px;
     padding: 0 29px;
-    background-color: #fff;
+    background-color: #fffffff0;
     border: 1px solid #dddddd;
 }
 	.content{
 		position: relative;
 	}
+	.search__sidebar__item span {
+    font-size: 13px;
+    color: #999999;
+    display: block;
+    letter-spacing: -0.045em;
+    line-height: 23px;
+    
+}
+	h6.name{
+	    color: #292929;
+	    font-size: 18px;
+	    font-weight: bold;
+	    padding-bottom: 14px;
+	    display: block;
+    }
+    b.page:hover{
+		cursor:pointer;
+    }
 </style>
 </head>
 <body>
 <div class="content">
-	<section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg" style="background-image: url(&quot;../img/breadcrumb.jpg&quot;);">
-	        <div class="container">
-	            <div class="row">
-	                <div class="col-lg-12 text-center">
-	                    <div class="breadcrumb__text">
-	                        <h2>게시판</h2>
-	                        <div class="breadcrumb__option">
-	                            <a href="#">Home</a>
-	                            <span>서점</span>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	    </section>
+
 	<div class="store_search_wrapper">
 	    <div id="map" style="width:100%; height:700px"></div>
 	 	<div class="store_search_layer">
+	 			<h4 class="text-center" style="padding:15px"><b>매장찾기</b></h4>
 				<div class="blog__sidebar__search">
 					<form action="#">
-						<input type="text" placeholder="지역 또는 매장 찾기">
-						<button type="submit">
+						<input type="text" placeholder="지역 또는 매장 찾기" v-model="ss">
+						<button type="submit" v-on:click="searchList(),pageRiset()">
 							<span class="icon_search"></span>
 						</button>
 					</form>
 				</div>
-							
-				<div class="blog__sidebar__item">
-					<h4>매장목록</h4>
-						<div class="blog__sidebar__recent shop_bar">
+				<div style="margin-bottom: 10px;">검색결과 총 {{total}}건</div>
+				<div class="search__sidebar__item">
+						<div class="search__sidebar__recent shop_bar">
 							<div v-for="(vo,index) in shop_data" :key="vo.id">
-								 <a href="#" class="blog__sidebar__recent__item" v-on:click="clickData(index)">
-									<div class="blog__sidebar__recent__item__text">
-										<h6>{{vo.name}}</h6>
+								 <a href="#" class="search__sidebar__recent__item" v-on:click="clickData(index)">
+									<div class="search__sidebar__recent__item__text">
+										<h6 class=name>{{vo.name}}</h6>
 										<span>{{vo.addr}}<br></span>
+										<span>연락처: {{vo.tel}}</span>
+										<span v-if="vo.open">영업시간: {{vo.open}} - {{vo.close}}</span>
+										<hr>
 									</div>
 								</a>
 							</div>
 						</div>
 				</div>
+			<div class="page" style="text-align:center">
+				<b class="page" href="#" v-on:click="paging(page-1)" v-show="page>1">&lt;</b>{{page}}/{{totalpage}}<b class="page" href="#" v-on:click="paging(page+1)" v-show="page<totalpage">&gt;</b>
 			</div>
+			</div>
+			
 					<div class="col-lg-8 col-md-7"> 
 						<div class="row">
 							
@@ -92,7 +111,8 @@
 								</tr>
 								<tr>
 									<th width=30%>영업시간</th>
-									<td width=70%>{{shop_detail.open}} ~ {{shop_detail.close}}</td>
+									<td width=70% v-if="shop_detail.open">{{shop_detail.open}} ~ {{shop_detail.close}}</td>
+									<td width=70% v-if="!shop_detail.open">등록된 영업시간이 없습니다</td>
 								</tr>
 								<tr>
 									<th width=30%>휴무일</th>
@@ -123,7 +143,11 @@
 			la:37.2758569,
 			lo:127.1512767,
 			shop_data:[],
-			shop_detail:{}
+			shop_detail:{},
+			ss:"",
+			total:"",
+			totalpage:"",
+			page:1
 		},
 		mounted:function(){
 			// default 출력
@@ -131,9 +155,10 @@
 			this.kakaoMap(this.la,this.lo);
 		},
 		updated:function(){
-			this.la=this.shop_detail.la,
-			this.lo=this.shop_detail.lo
-			this.kakaoMap(this.la,this.lo);
+			this.la=this.shop_detail.la;
+			this.lo=this.shop_detail.lo;
+			this.kakaoMap(this.shop_data[0].la,this.shop_data[0].lo);
+			console.log(this.ss);
 		},
 		// 사용자 정의 함수=> 이벤트 처리
 		methods:{
@@ -141,20 +166,26 @@
 			commonFunc:function(){
 				axios.get("http://localhost:8080/web/shop/shop_main.do",{
 					params:{
+						page:this.page
 					}
 				}).then(res=>{
 					console.log(res.data);
 					this.shop_data=res.data;
+					this.totalpage=res.data[0].totalpage;
+					this.total=res.data[0].total;
 				})
 			},
 			searchList:function(){
 				axios.get("http://localhost:8080/web/shop/shop_search.do",{
 					params:{
-						
+						ss:this.ss,
+						page:this.page
 					}
 				}).then(res=>{
 					console.log(res.data);
 					this.shop_data=res.data;
+					this.totalpage=res.data[0].totalpage;
+					this.total=res.data[0].total;
 				})
 			},
  			clickData:function(index){
@@ -172,7 +203,7 @@
 
 				// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
 				var map = new kakao.maps.Map(mapContainer, mapOption);
-					var markerPosition  = new kakao.maps.LatLng(la, lo); 
+					var markerPosition = new kakao.maps.LatLng(la, lo); 
 
 					// 마커를 생성합니다
 					var marker = new kakao.maps.Marker({
@@ -181,9 +212,18 @@
 
 					// 마커가 지도 위에 표시되도록 설정합니다
 					marker.setMap(map);
-			}
- 		}
+			},
+ 			paging:function(p){
+				this.page=p;
+				this.searchList();
+ 			},
+ 			pageRiset:function(){
+ 				this.page=1;
+ 			}
 
+			
+ 		}
+ 		
 	})
 	
 </script>

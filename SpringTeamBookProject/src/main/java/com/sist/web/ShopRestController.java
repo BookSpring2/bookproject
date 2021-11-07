@@ -1,6 +1,7 @@
 package com.sist.web;
 
 import java.io.Console;
+
 import java.util.List;
 
 import org.json.simple.JSONArray;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sist.dao.ShopDAO;
 import com.sist.vo.*;
+import java.util.*;
 @RestController
 public class ShopRestController {
 	@Autowired
@@ -40,9 +42,22 @@ public class ShopRestController {
 
  */
 	@RequestMapping(value="shop/shop_main.do",produces="text/plain;charset=UTF-8")
-		public String board_shop_main(){
+		public String board_shop_main(String page){
 			String json="";
-			List<ShopVO> list=dao.shopListData();
+			Map map=new HashMap();
+			if(page==null)
+				page="1";
+			int curpage=Integer.parseInt(page);
+			int rowSize=5;
+			int start=rowSize*curpage-(rowSize-1);
+			int end=rowSize*curpage;
+			map.put("start", start);
+			map.put("end", end);
+			
+			List<ShopVO> list=dao.shopListData(map);
+			int total=dao.shopTotal();
+			int totalpage=dao.shopTotalpage();
+			int i=0;
 			try {
 				JSONArray arr=new JSONArray();
 				for(ShopVO vo:list){
@@ -57,7 +72,12 @@ public class ShopRestController {
 					obj.put("optn",vo.getOptn());
 					obj.put("la", vo.getLa());
 					obj.put("lo", vo.getLo());
+					if(i==0) {
+						obj.put("totalpage", totalpage);
+						obj.put("total", total);
+					}
 					arr.add(obj);
+					i++;
 				}
 				json=arr.toJSONString();
 			}catch(Exception ex) {}
@@ -65,9 +85,22 @@ public class ShopRestController {
 			return json;
 		}
 	@RequestMapping(value="shop/shop_search.do",produces="text/plain;charset=UTF-8")
-	public String shop_search(String ss) {
+	public String shop_search(String page,String ss) {
 			String json="";
-			List<ShopVO> list=dao.searchListData(ss);
+			Map map=new HashMap();
+			if(page==null)
+				page="1";
+			int curpage=Integer.parseInt(page);
+			int rowSize=5;
+			int start=rowSize*curpage-(rowSize-1);
+			int end=rowSize*curpage;
+			map.put("start", start);
+			map.put("end", end);
+			map.put("ss", ss);
+			List<ShopVO> list=dao.searchListData(map);
+			int totalpage=dao.searchTotalpage(map);
+			int total=dao.searchTotal(map);
+			int i=0;
 			try {
 				JSONArray arr=new JSONArray();
 				for(ShopVO vo:list){
@@ -82,7 +115,12 @@ public class ShopRestController {
 					obj.put("optn",vo.getOptn());
 					obj.put("la", vo.getLa());
 					obj.put("lo", vo.getLo());
+					if(i==0) {
+						obj.put("totalpage", totalpage);
+						obj.put("total", total);
+					}
 					arr.add(obj);
+					i++;
 				}
 				json=arr.toJSONString();
 			}catch(Exception ex) {}
