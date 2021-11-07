@@ -33,8 +33,8 @@
                         <div class="sidebar__item">
                             <h4>분류</h4>
                             <ul>
-                                <li><a href="#">소설/시/희곡</a></li>
-                                <li><a href="#">장르소설</a></li>
+                                <li><a href="category01.do">소설/시/희곡</a></li>
+                                <li><a href="category02.do">장르소설</a></li>
                                 <li><a href="#">에세이</a></li>
                                 <li><a href="#">인문학</a></li>
                                 <li><a href="#">사회과학</a></li>
