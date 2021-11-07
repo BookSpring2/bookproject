@@ -15,7 +15,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $("#allCheck").click(function () {
-    var chk = $("#allCheck").prop("checked");
+    let chk = $("#allCheck").prop("checked");
     if (chk) {
         $(".chkbox").prop("checked", true);
         itemSum();
@@ -24,6 +24,38 @@ $("#allCheck").click(function () {
         itemSum();
     }
 });
+
+$(function(){	
+let num=$("#qty").text();
+let price=$("#sellPrice").text();
+$("#plusBtn").click(function(){
+	let plusNum=parseInt(num)+1;
+	if(plusNum>=10){
+		$("#qty").text(num);
+		var total=parseInt(num)*parseInt(price);
+		$('#total').text(total+"원");
+	}
+	else{
+		$("#qty").text(plusNum);
+		var total=plusNum*parseInt(price);
+		$('#total').text(total+"원");
+	}
+})
+
+$("#minusBtn").click(function(){
+	let minusNum=parseInt(num)-1;
+	if(minusNum>=10){
+		$("#qty").text(num);
+		var total=parseInt(num)*parseInt(price);
+		$('#total').text(total+"원");
+	}
+	else{
+		$("#qty").text(minusNum);
+		var total=minusNum*parseInt(price);
+		$('#total').text(total+"원");
+	}
+})
+})
 
 
 </script>
@@ -65,6 +97,11 @@ $("#allCheck").click(function () {
                                 </tr>
                             </thead>
                             <tbody>
+                            <c:choose>
+                             <c:when test="${count==0 }">
+                               장바구니가 비어있습니다.
+                             </c:when>
+                             <c:otherwise>
                               <c:forEach var="vo" items="${list }">
                                 <tr>
                                   <td class="product-close"><input type="checkbox" onClick="itemSum()"
@@ -75,24 +112,25 @@ $("#allCheck").click(function () {
                                         <h5>${vo.title }</h5>
                                     </td>
                                     <td class="shoping__cart__price">
-                                     <fmt:parseNumber value="${vo.price }" var="price" type="number" pattern="000,000,000"/>
+                                     <fmt:parseNumber value="${vo.price }" var="price" type="number" pattern="##,###"/>
                                         ${price }원
                                     </td>
                                     <td class="shoping__cart__quantity">
-                                           <input type="hidden" name="sell_price" value="${vo.price }">
-                                           <input type="button" value=" - " class="minus" style="border:none">
-                                           <input type="text" name="amount" value="${vo.cart_qty }" size=1 style="text-align:center">
-                                           <input type="button" value=" + " class="plus" style="border:none">
+                                    	   <input type=hidden id="sellPrice" value="${price }">
+                                           <button type="button" id="minusBtn" style="border:none">-</button>
+                                           <input type="text" id="qty" value="${vo.cart_qty }" size=1 style="text-align:center;border:none" readonly=readonly>
+                                           <button type="button" id="plusBtn" style="border:none">+</button>
                                     </td>
-                                    <td class="shoping__cart__total" id="price">
-                                    	<input type="text" name="sum" size="11" readonly>
-                                       ${vo.cart_qty*price+5000 }원
+                                    <td class="shoping__cart__total">
+                                    	<span id="total"></span>
                                     </td>
                                     <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
+                                        <a href="../cart/cart_delete.do?no=${vo.cartId }" class="icon_close"></a>
                                     </td>
                                 </tr>
                                </c:forEach>
+                             </c:otherwise>
+                           </c:choose>
                             </tbody>
                         </table>
                     </div>
@@ -126,6 +164,7 @@ $("#allCheck").click(function () {
                     <div class="shoping__checkout">
                         <h5>결제 예정 금액</h5>
                         <ul>
+                            <li>배송료<span>${fee }</span></li>
                             <li>총 가격<span id="total_sum"></span></li>
                             <li>쿠폰 적용 가격<span>$454.98</span></li>
                         </ul>

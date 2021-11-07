@@ -150,7 +150,7 @@ $(function(){
                         <form method="post" action="../mypage/order_form_ok.do">
 	                        <input type="submit" class="primary-btn" id="btn-order" style="border:none" value="주문하기">
 	                        <input type="hidden" name="book_no" value="${vo.bno}" id="book_no">
-	                        <input type="hidden" name="cart_qty" value="" id="cart_qty">
+	                        <!-- <input type="hidden" name="cart_qty" value="" id="cart_qty"> -->
                         </form>
                         
                         <form method="post" action="../mypage/cart_insert_ok.do">

@@ -41,4 +41,28 @@ public class CartDAO {
 	{
 		return mapper.cartListData(userId);
 	}
+	
+	public int cartSumCount(String userId)
+	{
+		return mapper.cartSumCount(userId);
+	}
+	
+	public void cartUpdate(CartVO vo)
+	{
+		mapper.cartUpdate(vo);
+	}
+	
+	public void cartDelete(int cartId)
+	{
+		mapper.cartDelete(cartId);
+	}
+	
+	public int cartCount(CartVO vo)
+	{
+		return mapper.cartCount(vo);
+	}
+	public void cartCountUpdate(CartVO vo)
+	{
+		mapper.cartCountUpdate(vo);
+	}
 }
