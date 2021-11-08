@@ -30,14 +30,16 @@ public class OrderController {
 	}
 	
 	@PostMapping("mypage/order_form_ok.do")
-	public String order_form_ok(int book_no, int amount, HttpSession session)
+	public String order_form_ok(int book_no, int cart_qty, HttpSession session)
 	{
-		OrderFormVO vo=new OrderFormVO();
+		OrderVO vo=new OrderVO();
+		OrderDetailVO dvo=new OrderDetailVO();
 		String id=(String)session.getAttribute("id");
 		vo.setUser_id(id);
-		vo.setBook_no(book_no);
-		vo.setAmount(amount);
-		dao.orderInsert(vo);
+		dvo.setBook_no(book_no);
+		dvo.setCart_qty(cart_qty);
+		dao.orderInfoInsert(vo);
+		dao.orderDetailInsert(dvo);
 		return "redirect:../mypage/order_form.do";
 	}
 	
@@ -62,4 +64,6 @@ public class OrderController {
 		model.addAttribute("main_jsp", "../mypage/order_list.jsp");
 		return "main/main";
 	}
+	
+	
 }

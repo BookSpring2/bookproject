@@ -47,6 +47,22 @@ $(function(){
 		})
 		
 	})
+	
+	$("#btn-order").click(function(){
+		let book_no = $("#book_no").val();
+		let user_id = $("#userId").val();
+		$.ajax({
+			type:'post',
+			url:'../mypage/order_form_ok.do',
+			data:{"book_no":book_no},
+			success:function(res)
+			{
+				let result=res.trim();
+				confirm("결제페이지로 이동하시겠습니까?")
+					location.href("../mypage/order_form_ok.do");				
+			}
+		});
+	})
 })
 </script>
 </head>
@@ -174,7 +190,11 @@ $(function(){
                             <li>총 가격<span id="total_sum"></span></li>
                             <li>쿠폰 적용 가격<span>$454.98</span></li>
                         </ul>
-                        <a href="#" class="primary-btn">주문하기</a>
+                        <form method="post" action="../mypage/order_form_ok.do" style="display:inline">
+		                        <input type="submit" class="primary-btn" id="btn-order" style="border:none" value="주문하기">
+		                        <input type="hidden" name="book_no" value="${vo.productId}" id="book_no">
+		                        <input type="hidden" name="cart_qty" value="${vo.cart_qty }" id="cart_qty">
+	                   </form>
                     </div>
                 </div>
             </div>

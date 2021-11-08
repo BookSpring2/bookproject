@@ -14,7 +14,7 @@ public interface OrderMapper {
 	public void orderInsert(OrderFormVO vo);
 	
 	// 주문하기 폼 출력
-	@Select("SELECT /*+ INDEX_DESC(book_order bo_orderno_pk)*/order_no, user_id, cart_qty, TO_CHAR(orderdate,'MM-DD') as orderday, " 
+	@Select("SELECT /*+ INDEX_DESC(book_order bo_orderno_pk)*/order_no, user_id, amount, TO_CHAR(orderdate,'MM-DD') as orderday, " 
 			+ "(SELECT title FROM book_data WHERE book_data.bno=book_order.book_no) as title, " 
 			+ "(SELECT image FROM book_data WHERE book_data.bno=book_order.book_no) as image, "
 			+ "(SELECT REPLACE(REPLACE(price, '원', ''),',','') "
@@ -24,6 +24,15 @@ public interface OrderMapper {
 			+ "AND orderdate>=SYSDATE-3 AND orderdate<=SYSDATE")
 	public List<OrderFormVO> orderFormListData(String user_id);
 	
+	@Insert("INSERT INTO book_orderInfo(order_no,user_id,name,addr1,addr2,tel,amount) "
+			+"VALUES(#{order_no},#{user_id},#{name},#{addr1},#{addr2},#{tel},#{amount}")
+	public void orderInfoInsert(OrderVO vo);
+	
+	@Insert("INSERT INTO book_orderDetail(order_detail_no,order_no,book_no,cart_qty) "
+			+"SELECT bod_detailno_sql.nextval,#{order_no},book_no,cart_qty "
+			+"FROM book_cart")
+	public void orderDetailInsert(OrderDetailVO vo);
+
 //	@Select("SELECT /*+ INDEX_DESC(book_order bo_orderno_pk)*/ order_no,user_id,amount,"
 /*			+"(SELECT title FROM book_data WHERE book_data.bno=book_order.book_no) as title,"
 			+"(SELECT image FROM book_data WHERE book_data.bno=book_order.book_no) as image,"

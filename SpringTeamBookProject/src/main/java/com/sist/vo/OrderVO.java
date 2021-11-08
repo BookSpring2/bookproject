@@ -1,33 +1,12 @@
 package com.sist.vo;
 import java.util.*;
 public class OrderVO {
-	private int book_no;
-	private String title,price;
 	private String user_id,name,addr1,addr2,tel,email;
-	private int order_no,order_seq_no;
+	private int order_no;
 	private Date orderdate,deliver_date;
 	private String deliver_situ,deliver_msg;
 	private int amount;
 	
-	
-	public int getBook_no() {
-		return book_no;
-	}
-	public void setBook_no(int book_no) {
-		this.book_no = book_no;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getPrice() {
-		return price;
-	}
-	public void setPrice(String price) {
-		this.price = price;
-	}
 	public String getUser_id() {
 		return user_id;
 	}
@@ -69,12 +48,6 @@ public class OrderVO {
 	}
 	public void setOrder_no(int order_no) {
 		this.order_no = order_no;
-	}
-	public int getOrder_seq_no() {
-		return order_seq_no;
-	}
-	public void setOrder_seq_no(int order_seq_no) {
-		this.order_seq_no = order_seq_no;
 	}
 	public Date getOrderdate() {
 		return orderdate;
