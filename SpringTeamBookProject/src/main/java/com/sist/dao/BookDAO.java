@@ -31,6 +31,12 @@ public class BookDAO {
 		public List<BookVO> bookNewListData(Map map) {
 			return mapper.bookNewListData(map);
 		}
+		
+		//3. 신간 - 도서 출력 기능 + 카테고리 선택 기능
+		public List<BookVO> bookNewListData_SelectCate(Map map){
+			return mapper.bookNewListData_SelectCate(map);
+		}
+		
 		// 3. 신간 - 도서 상세보기 기능
 		public BookVO bookNewDetailData(int bno) {
 			return mapper.bookNewDetailData(bno);

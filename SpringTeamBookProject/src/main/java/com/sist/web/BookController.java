@@ -104,6 +104,52 @@ public class BookController {
 			
 		}
 		
+		/* 카테고리 선택 기능*/
+		//01. 소설/희/시곡
+		@RequestMapping("book/category01.do")
+		 public String book_menu_category(String page, Model model) {
+			
+			//카테고리 선택
+			String selectCate = "유아";
+			
+			
+			if(page==null)
+				page="1";
+			int curpage=Integer.parseInt(page);
+			Map map=new HashMap();
+			int rowSize=12;
+			int start=(rowSize*curpage)-(rowSize-1);
+			int end=(rowSize*curpage);
+			map.put("start", start);
+			map.put("end", end);
+			List<BookVO> list=dao.bookNewListData_SelectCate(map);
+			// 총페이지 
+			map.put("table_name", "book_data");
+			int totalpage=dao.bookTotalPage(map);
+			final int BLOCK=10;
+			int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+			int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+			if(endPage>totalpage)
+				endPage=totalpage;
+			
+			model.addAttribute("cate",selectCate);
+			model.addAttribute("curpage", curpage);
+			model.addAttribute("totalpage",totalpage);
+			model.addAttribute("BLOCK", BLOCK);
+			model.addAttribute("startPage",startPage);
+			model.addAttribute("endPage", endPage);
+			model.addAttribute("list", list);
+			model.addAttribute("main_jsp", "../book/newlist.jsp");				
+			return "main/main";
+			
+			 
+		 }
+	
+		
+		
+		
+		
+		
 		// 신간 도서 상세 페이지
 		@RequestMapping("book/newdetail.do")
 		public String book_newdetail(int bno, Model model) {

@@ -21,7 +21,7 @@ public interface BookMapper {
 	@Select("SELECT CEIL(COUNT(*)/12.0) FROM ${table_name}")
 	public int bookTotalPage(Map map);
 	
-	//2. 신간 - 도서 출력 기능.
+	//2. 신간 - 도서 목록 출력 기능.
 	@Select("SELECT bno,title,image,sale,pubdate,num "
 			+"FROM (SELECT bno,title,image,sale,pubdate,rownum as num "
 			+"FROM (SELECT bno,title,image,sale,pubdate "
@@ -29,6 +29,17 @@ public interface BookMapper {
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<BookVO> bookNewListData(Map map);
 	
+	//2. 신간 - 도서 목록 출력 기능. + 카테고리 선택 기능.
+		@Select("SELECT bno,title,image,sale,pubdate,genre,num "
+				+"FROM (SELECT bno,title,image,sale,pubdate,genre,rownum as num "
+				+"FROM (SELECT bno,title,image,sale,pubdate,genre "
+				+"FROM book_data "
+				+ "WHERE pubdate IS NOT NULL AND RANK IS NOT NULL AND genre IS NOT NULL "
+				+ "ORDER BY pubdate DESC)) "
+				+ "WHERE num BETWEEN #{start} AND #{end} AND genre LIKE '%'||#{cate,jdbcType=VARCHAR}||'%'")
+		public List<BookVO> bookNewListData_SelectCate(Map map);
+	// genre LIKE '%#{cate}%' genre LIKE '%'||#{cate,jdbcType=VARCHAR}||'%'
+		
 	//3. 신간 - 도서 상세보기.
 	/* 
 	@Select("SELECT bno,title,image,sale,pubdate,introduce,contents,price,genre,publisher,writer "
