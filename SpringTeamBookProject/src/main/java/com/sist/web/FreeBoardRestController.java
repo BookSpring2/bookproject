@@ -14,6 +14,9 @@ public class FreeBoardRestController {
 	@Autowired
 	private FreeBoardDAO dao;
 	
+
+	
+	/*
 	@RequestMapping(value="freeboard/rest_find.do", produces = "text/plain;charset=UTF-8")
 	public String find_rest(String ss,String[] fsArr)
 	{
@@ -40,4 +43,5 @@ public class FreeBoardRestController {
 		}catch (Exception e) {}
 		return json;
 	}
+	*/
 }
