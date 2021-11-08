@@ -269,7 +269,7 @@ $(function(){
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="">
-                            <a href="../book/newdetail.do?bno=${vo.bno }"><img src="${vo.image}"></a>
+                            <a href="../book/newdetail.do?bbno=${vo.bno }"><img src="${vo.image}"></a>
                             <ul class="product__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>

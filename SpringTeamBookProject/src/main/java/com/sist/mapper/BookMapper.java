@@ -24,7 +24,7 @@ public interface BookMapper {
 	@Select("SELECT bno,title,image,sale,pubdate,introduce,contents,price,TO_NUMBER(REPLACE(REPLACE(price,','),'원')) intprice,genre,publisher,writer "
 			 +"FROM book_data WHERE bno IS NOT NULL "
 			 +"AND bno=#{bno}")
-	public BookVO bookDetailData(int bno);
+	public BookVO bookDetailData(int bbno);
 	
 	//2. 신간 - 도서 목록 출력 기능.
 	@Select("SELECT bno,title,image,sale,pubdate,num "
