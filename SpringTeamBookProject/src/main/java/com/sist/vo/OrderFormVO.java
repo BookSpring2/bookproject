@@ -1,7 +1,7 @@
 package com.sist.vo;
 import java.util.*;
 public class OrderFormVO {
-	private int order_no,book_no,cart_qty;
+	private int order_no,book_no,amount;
 	private Date orderdate,deliver_date;
 	private String deliver_situ,deliver_msg,user_id,orderday;
 	
@@ -33,11 +33,11 @@ public class OrderFormVO {
 	public void setBook_no(int book_no) {
 		this.book_no = book_no;
 	}
-	public int getCart_qty() {
-		return cart_qty;
+	public int getAmount() {
+		return amount;
 	}
-	public void setCart_qty(int cart_qty) {
-		this.cart_qty = cart_qty;
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 	public Date getOrderdate() {
 		return orderdate;

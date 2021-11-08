@@ -30,25 +30,25 @@ public class OrderController {
 	}
 	
 	@PostMapping("mypage/order_form_ok.do")
-	public String order_form_ok(int book_no, int cart_qty, HttpSession session)
+	public String order_form_ok(int book_no, int amount, HttpSession session)
 	{
 		OrderFormVO vo=new OrderFormVO();
 		String id=(String)session.getAttribute("id");
 		vo.setUser_id(id);
 		vo.setBook_no(book_no);
-		vo.setCart_qty(cart_qty);
+		vo.setAmount(amount);
 		dao.orderInsert(vo);
 		return "redirect:../mypage/order_form.do";
 	}
 	
 	@PostMapping("mypage/order_insert_ok.do")
-	public String order_insert_ok(int book_no, int cart_qty, HttpSession session)
+	public String order_insert_ok(int book_no, int amount, HttpSession session)
 	{
 		OrderFormVO vo=new OrderFormVO();
 		String id=(String)session.getAttribute("id");
 		vo.setUser_id(id);
 		vo.setBook_no(book_no);
-		vo.setCart_qty(cart_qty);
+		vo.setAmount(amount);
 		dao.orderInsert(vo);
 		return "redirect:../mypage/order_list.do";
 	}

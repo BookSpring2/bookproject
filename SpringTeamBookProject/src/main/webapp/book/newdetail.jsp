@@ -69,7 +69,12 @@ $(function(){
 		price=price.replace("원","");
 		let total=parseInt(count)*parseInt(price)+5000;
 		$('#total').text(total+"원");
-		$('#cart_qty').val(count);
+		$("#btn-cart").click(function(){
+			$('#cart_qty').val(count);			
+		})
+		$("#btn-order").click(function(){			
+			$('#amount').val(count);
+		})
 	})
 });
 </script>
@@ -137,7 +142,8 @@ $(function(){
                         <div>
                               <select class="form-control" id="select_count">
 									<c:forEach begin="1" end="10" var="i">
-										<option value="${i }">${i}</option></c:forEach>
+										<option value="${i }">${i}</option>
+									</c:forEach>
 							  </select>
                         </div>
                         
@@ -150,7 +156,7 @@ $(function(){
                         <form method="post" action="../mypage/order_form_ok.do">
 	                        <input type="submit" class="primary-btn" id="btn-order" style="border:none" value="주문하기">
 	                        <input type="hidden" name="book_no" value="${vo.bno}" id="book_no">
-	                        <!-- <input type="hidden" name="cart_qty" value="" id="cart_qty"> -->
+	                        <input type="hidden" name="amount" value="" id="amount">
                         </form>
                         
                         <form method="post" action="../mypage/cart_insert_ok.do">
