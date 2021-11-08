@@ -26,7 +26,7 @@ public class CartController {
 		String userId=(String)session.getAttribute("id");
 		List<CartVO> list=dao.cartListData(userId);
 		int sumMoney=dao.cartSumCount(userId);
-		int fee=sumMoney>=50000?0:2500;
+		int fee=sumMoney>=5000?0:2500;
 		model.addAttribute("list", list);
 		model.addAttribute("count", list.size());
 		model.addAttribute("sumMoney", sumMoney);
@@ -76,9 +76,9 @@ public class CartController {
 	}
 	
 	@GetMapping("mypage/cart_delete.do")
-	public String cart_delete(int cartId)
+	public String cart_delete(int no)
 	{
-		dao.cartDelete(cartId);
+		dao.cartDelete(no);
 		return "redirect:../mypage/cart_list.do";
 	}
 	
