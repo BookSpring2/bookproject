@@ -19,6 +19,7 @@
 </style>
 </head>
 <body>
+<!-- Find -->
 <section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
@@ -37,10 +38,10 @@
 
 <!-- 검색창 & 글쓰기 버튼 -->
 <div class="container">
- <div class="row" style="margin:50px 0px 50px 470px; ;">
+ <div class="row" style="margin:50px 0px 50px 370px; ;">
 	<div class="blog__sidebar__search" style="margin:0px 50px;">
 		<form method="post" action="../freeboard/find.do">
-		 <select name="fsArr">
+		 <select name="fs">
             <option value="S">제목</option>
             <option value="C">내용</option>
             <option value="N">닉네임</option>
@@ -50,6 +51,8 @@
 		</form>
 	</div>
 	<a href="insert.do"><button type="button" class="btn"style="background-color:#83AD2E; height:43px;">글쓰기</button></a>	 
+	<div style="margin-left:10px;"></div>
+	<a href="list.do?page=${startPage }"><button type="button" class="btn"style="background-color:#83AD2E; height:43px;">목록</button></a>
  </div>
 </div>
 
@@ -69,7 +72,7 @@
     <tbody>
      <c:forEach items="${list }" var="vo">
       <tr>
-        <td class="text-center">${vo.no }</td>
+        <td class="text-center">${vo.no }</td>	
         <td><a href="detail.do?no=${vo.no }&page=${curpage}">${vo.subject }</a></td>
         <td class="text-center">${vo.user_id }</td>
         <td class="text-center"><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd"/></td>
@@ -80,23 +83,28 @@
   </table>
 </div>
 </div>
-
-<!-- 페이지 -->
-<div class="container">
- <div class="row" style="margin:100px 0px 100px 500px;">
-		<div class="product__pagination blog__pagination">
-		 <c:if test="${startPage>1 }">
-			 <a href="../freeboard/list.do?page=${startPage-1 }"><i class="fa fa-long-arrow-left"></i></a>
-		 </c:if>
-		 <c:forEach var="p" begin="${startPage }" end="${endPage }" step="1">
-			 <a href="../freeboard/list.do?page=${p }">${p }</a>
-		 </c:forEach>
-		 <c:if test="${endPage<totalpage }">
-			 <a href="../freeboard/list.do?page=${endPage+1 }"><i class="fa fa-long-arrow-right"></i></a>
-		 </c:if>						
- 		</div>
- </div>
-</div>
-
+<!-- 
+<script>
+ new Vue({
+	 el:'.container',
+	 data:{
+		 find_data[]
+	 },
+	 mounted:function(){
+		 axios.get("http://localhost:8080/web/freeboard/rest_find.do",{
+			 params:{
+				 
+			 }
+		 }).then(response =>{
+			 console.log(response.data);
+			 this.find_data=response.data;
+		 })
+	},
+	method:{
+		
+	} 
+ })
+</script>
+ -->
 </body>
 </html>

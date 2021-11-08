@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <style type="text/css">
 .row{
 	margin: 0 auto;
@@ -35,19 +37,21 @@
 
 <!-- 검색창 & 글쓰기 버튼 -->
 <div class="container">
- <div class="row" style="margin:50px 0px 50px 570px; ;">
+ <div class="row" style="margin:50px 0px 50px 370px; ;">
 	<div class="blog__sidebar__search" style="margin:0px 50px;">
-		<form action="#">
-		 <!-- 
-		 	<input type="checkbox" name="fsArr" value="N">이름
-	        <input type="checkbox" name="fsArr" value="S">제목
-	        <input type="checkbox" name="fsArr" value="C">내용
-	      -->	
-			<input type="text" name="ss" placeholder="검색어를 입력하세요." style="width:400px;">
+		<form method="post" action="../freeboard/find.do">
+		 <select name="fs">
+            <option value="S">제목</option>
+            <option value="C">내용</option>
+            <option value="N">닉네임</option>
+        </select>
+			<input type="text" name="ss" placeholder="검색어를 입력하세요." style="width:400px; margin-left:10px;">
 			<button type="submit"><span class="icon_search"></span></button>
 		</form>
 	</div>
 	<a href="insert.do"><button type="button" class="btn"style="background-color:#83AD2E; height:43px;">글쓰기</button></a>	 
+	<div style="margin-left:10px;"></div>
+	<a href="list.do?page=${startPage }"><button type="button" class="btn"style="background-color:#83AD2E; height:43px;">목록</button></a>
  </div>
 </div>
 
@@ -95,5 +99,6 @@
  		</div>
  </div>
 </div>
+
 </body>
 </html>
