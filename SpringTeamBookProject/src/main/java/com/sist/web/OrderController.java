@@ -48,7 +48,7 @@ public class OrderController {
 		String id=(String)session.getAttribute("id");
 		vo.setUser_id(id);
 		vo.setBook_no(book_no);
-		vo.setAmount(amount);
+		vo.setAmount(amount); 
 		dao.orderInsert(vo);
 		return "redirect:../mypage/order_list.do";
 	}
