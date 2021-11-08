@@ -354,9 +354,7 @@
                                     <h6><a href="../book/detail.do">${vo.title }</a></h6>
                                     <h5>${vo.price }</h5>
                                 </div>
-                              
                             </div>
-                     
                         </div>                    
                         </c:forEach> 
                     </div>
@@ -383,13 +381,10 @@
 								</li>
 							</c:if>
 						</ul>
-
 					</div>
                 </div>
             </div>
         </div>
 </section>
-
-
 </body>
 </html>
