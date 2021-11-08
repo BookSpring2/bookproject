@@ -28,7 +28,7 @@ $(function(){
 			else{
 				$("#qty").val(plusNum);
 				var total=plusNum*parseInt(price);
-				$('#total').text(total+"원");
+				$('#total').text(total+"원"); 
 			}
 		})
 		
