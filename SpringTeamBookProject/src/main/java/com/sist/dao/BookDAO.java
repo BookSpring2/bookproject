@@ -32,32 +32,34 @@ public class BookDAO {
 		return mapper.bookDetailData(bno);
 	}
 
+	
 	// 2. 신간 - 도서 출력 기능
 	public List<BookVO> bookNewListData(Map map) {
 		return mapper.bookNewListData(map);
 	}
-
-	// 3. 신간 - 도서 출력 기능 + 카테고리 선택 기능
+	// 2-1. 신간 - 페이징 (수정해야함. 카테고리별로 적용이 안됨)
+	public int bookNewTotalPage(Map map) {
+		return mapper.bookNewTotalPage(map);
+	}
+	// 2-2. 신간 - 도서 출력 기능 + 카테고리 선택 기능
 	public List<BookVO> bookNewListData_SelectCate(HashMap<String, Object> map) {
 		return mapper.bookNewListData_SelectCate(map);
 	}
-
-	// 3. 신간 - 도서 상세보기 기능
+	// 2-3. 신간 - 도서 상세보기 기능
 	public BookVO bookNewDetailData(int bno) {
 		return mapper.bookNewDetailData(bno);
 	}
-
-	// 4. 신간 - 관련 도서 출력 기능
+	// 2-4. 신간 - 관련 도서 출력 기능
 	public List<BookVO> bookNewRelationListData(String genre) {
 		return mapper.bookNewRelationListData(genre);
 	}
 
-	// 5. 리뷰 입력 기능
+	// 3-1. 리뷰 입력 기능
 	// public BookCommentVO bookCommentData() {
 	// return mapper.bookCommentData();
 	// }
 
-	// 6. 리뷰 출력 기능
+	// 3-2. 리뷰 출력 기능
 	public List<BookCommentVO> bookCommentListData(int bno) {
 		return mapper.bookCommentListData(bno);
 	}

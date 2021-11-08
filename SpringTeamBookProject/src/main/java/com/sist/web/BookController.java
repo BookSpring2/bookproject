@@ -171,7 +171,7 @@ public class BookController {
 				List<BookVO> list=dao.bookNewListData_SelectCate(map);
 				// 총페이지 
 				map.put("table_name", "book_data");
-				int totalpage=dao.bookTotalPage(map);
+				int totalpage=dao.bookNewTotalPage(map);
 				final int BLOCK=10;
 				int startPage=((curpage-1)/BLOCK*BLOCK)+1;
 				int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
