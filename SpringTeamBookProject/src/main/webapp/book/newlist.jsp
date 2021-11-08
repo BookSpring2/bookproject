@@ -7,6 +7,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../book/css/book.css">
+<script type="text/javascript">
+
+</script>
 
 </head>
 <body>
@@ -32,19 +35,51 @@
                     <div class="sidebar">
                         <div class="sidebar__item">
                             <h4>분류</h4>
-                            <ul>
-                                <li><a href="category01.do">소설/시/희곡</a></li>
-                                <li><a href="category02.do">장르소설</a></li>
-                                <li><a href="#">에세이</a></li>
-                                <li><a href="#">인문학</a></li>
-                                <li><a href="#">사회과학</a></li>
-                                <li><a href="#">역사</a></li>
-                                <li><a href="#">과학</a></li>
-                                <li><a href="#">예술/대중문화</a></li>
+							<form action="newlistSelectCate.do" type="post">
+								<input type="hidden" name="select" value="1" />
+								<input type="submit" class="category_menus" value="소설">
+							</form>
+							<form action="newlistSelectCate.do" type="post">
+								<input type="hidden" name="select" value="2" />
+								<input type="submit" class="category_menus" value="시/에세이">
+							</form>
+							<form action="newlistSelectCate.do" type="post">
+								<input type="hidden" name="select" value="3" />
+								<input type="submit" class="category_menus" value="인문">
+							</form>
+							<form action="newlistSelectCate.do" type="post">
+								<input type="hidden" name="select" value="4" />
+								<input type="submit" class="category_menus" value="사회과학">
+							</form>
+							<form action="newlistSelectCate.do" type="post">
+								<input type="hidden" name="select" value="5" />
+								<input type="submit" class="category_menus" value="예술/대중문화">
+							</form>
+							<form action="newlistSelectCate.do" type="post">
+								<input type="hidden" name="select" value="6" />
+								<input type="submit" class="category_menus" value="가정과 생활">
+							</form>
+							<form action="newlistSelectCate.do" type="post">
+								<input type="hidden" name="select" value="7" />
+								<input type="submit" class="category_menus" value="유아">
+							</form>
+							<form action="newlistSelectCate.do" type="post">
+								<input type="hidden" name="select" value="8" />
+								<input type="submit" class="category_menus" value="국어/외국어/사전">
+							</form>
+							<form action="newlistSelectCate.do" type="post">
+								<input type="hidden" name="select" value="9" />
+								<input type="submit" class="category_menus" value="자기계발">
+							</form>
+							<!--  
+							<ul>
+                                
+                               
                                 <li><a href="#">종교/역학</a></li>
                                 <li><a href="#">경제경영</a></li>
                                 <li><a href="#">자기계발</a></li>
                             </ul>
+                            -->
                         </div>
                         <div class="sidebar__item">
                             <h4>가격</h4>

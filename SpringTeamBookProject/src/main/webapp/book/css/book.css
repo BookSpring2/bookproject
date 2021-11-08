@@ -112,3 +112,13 @@ input.commnet_submit_btn{
 form.comment_form{
 	margin-bottom: 40px;
 }
+
+form input[type=submit]{
+	color:black;
+	background: none;
+	width:200px;
+	text-align: left;
+	border: none;
+	padding:5px 0 5px 0;
+	
+}
