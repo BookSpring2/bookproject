@@ -142,37 +142,37 @@ $(function(){
                         <div>
                               <select class="form-control" id="select_count">
 									<c:forEach begin="1" end="10" var="i">
-										<option value="${i }">${i}</option>
+										<option value="${i }" style="width:100px;">${i}</option>
 									</c:forEach>
 							  </select>
                         </div>
+                        <div style="height:50px"></div>
                         
-						<div class="bookdetail_textdata">
-								합계금액:<span id="total"></span>
+						<div class="bookdetail_textdata_title">
+								<span style="font:bold 1.5em ">합계금액: <span id="total"></span></span>
 						</div>
                     
                         <div style="height:50px"></div>
-                        
-                        <form method="post" action="../mypage/order_form_ok.do">
-	                        <input type="submit" class="primary-btn" id="btn-order" style="border:none" value="주문하기">
-	                        <input type="hidden" name="book_no" value="${vo.bno}" id="book_no">
-	                        <input type="hidden" name="amount" value="" id="amount">
-                        </form>
-                        
-                        <form method="post" action="../mypage/cart_insert_ok.do">
-	                        <input type="submit" class="primary-btn" id="btn-cart" style="border:none" value="장바구니">
-	                        <input type="hidden" name="productId" value="${vo.bno}" id="productId">
-	                        <input type="hidden" name="cart_qty" value="" id="cart_qty">
-                        </form>
-                        
-                        <input type="button" class="btn primary-btn btn-wishlist" style="border:none" value="위시리스트">
-                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+	                        <form method="post" action="../mypage/order_form_ok.do" style="display:inline">
+		                        <input type="submit" class="primary-btn" id="btn-order" style="border:none" value="주문하기">
+		                        <input type="hidden" name="book_no" value="${vo.bno}" id="book_no">
+		                        <input type="hidden" name="amount" value="" id="amount">
+	                        </form>
+	                        
+	                        <form method="post" action="../mypage/cart_insert_ok.do" style="display:inline">
+		                        <input type="submit" class="primary-btn" id="btn-cart" style="border:none" value="장바구니">
+		                        <input type="hidden" name="productId" value="${vo.bno}" id="productId">
+		                        <input type="hidden" name="cart_qty" value="" id="cart_qty">
+	                        </form>
+	                        
+	                        <input type="button" class="btn primary-btn btn-wishlist" style="border:none;display:inline" value="위시리스트">
+	                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         
                         
                         <ul>
                             <!--  Book_DATA 테이블에 재고를 관리하는 컬럼이 없음.
                             <li><b>판매정보</b> <span>판매중</span></li>-->
-                            <li><b>배송정보</b> <span>도서산간지역 배송비 5000원 / 3만원 이상 결제시 무료배송</span></li>
+                            <li><b>배송정보</b> <span>도서산간지역 배송비 2500원 / 5,000원 이상 결제시 무료배송</span></li>
                             <li><b>포인트</b> <span>텍스트</span></li>
                             <li><b>공유하기</b>
                                 <div class="share">

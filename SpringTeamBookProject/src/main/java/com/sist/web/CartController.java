@@ -83,15 +83,19 @@ public class CartController {
 	}
 	
 	@RequestMapping("mypage/cart_update.do")
-	public String cart_update(HttpSession session, @RequestParam int[] cart_qty, @RequestParam int[] productId)
+	public String cart_update(HttpSession session, Model model, CartVO vo)
 	{
 		String userId=(String)session.getAttribute("id");
-		for(int i=0; i<productId.length; i++) {
-			CartVO vo=new CartVO();
-			vo.setUserId(userId);
-			vo.setCart_qty(cart_qty[i]);
-			vo.setProductId(productId[i]);
+		int cart_qty=vo.getCart_qty();
+		int cartId=vo.getCartId();
+		if(cart_qty==0) {
+			dao.cartDelete(cartId);
+		}
+		else if(cart_qty>0) {
 			dao.cartUpdate(vo);
+		}
+		else {
+			
 		}
 		return "redirect:../mypage/cart_list.do";
 	}

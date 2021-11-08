@@ -14,17 +14,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-$("#allCheck").click(function () {
-    let chk = $("#allCheck").prop("checked");
-    if (chk) {
-        $(".chkbox").prop("checked", true);
-        itemSum();
-    } else {
-        $(".chkbox").prop("checked", false);
-        itemSum();
-    }
-});
-
 $(function(){	
 	$('#sel').change(function(){
 		let num=$(this).val();
@@ -59,8 +48,6 @@ $(function(){
 		
 	})
 })
-
-
 </script>
 </head>
 <body>
@@ -90,6 +77,9 @@ $(function(){
                     <div class="shoping__cart__table">
                         <table>
                             <thead>
+                            <script>
+
+                            </script>
                                 <tr>
                                 <th><input type="checkbox" name="allCheck" id="allCheck" checked /></th>
                                     <th class="shoping__product">장바구니</th>
@@ -106,9 +96,11 @@ $(function(){
                              <c:otherwise>
                               <c:forEach var="vo" items="${list }">
                                 <tr>
-                                  <td class="product-close"><input type="checkbox" onClick="itemSum()"
+                                  <td class="product-close">
+                                  <input type="checkbox" onClick="itemSum()"
                                       class="chkbox" value="${vo.price * vo.cart_qty}"
-                                      data-cartNum="${vo.cartId}"/></td>
+                                      data-cartNum="${vo.cartId}" checked>
+                                   </td>
                                     <td class="shoping__cart__item">
                                         <img src="${vo.image }" style="width:110px;height:150px;">
                                         <h5>${vo.title }</h5>
@@ -149,6 +141,18 @@ $(function(){
                 <div class="col-lg-6">
                 </div>
                 <script>
+                $(function(){
+	                $("#allCheck").click(function () {
+	                    let chk = $("#allCheck").prop("checked");
+	                    if (chk) {
+	                        $(".chkbox").prop("checked", true);
+	                        itemSum();
+	                    } else {
+	                        $(".chkbox").prop("checked", false);
+	                        itemSum();
+	                    }
+	                });
+                })
 		            function itemSum() {
 		                let str = "";
 		                let sum = 0;
