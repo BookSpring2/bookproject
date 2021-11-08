@@ -78,50 +78,21 @@
     </tbody>
   </table>
   <div class="col-lg-12 col-md-12">
-  
-        <div class="text-left inline" style="margin-top:50px;float:left">
-	        <form method="post" action="../noticeboard/find.do">
-	         <input type="checkbox" value="N" class="input-sm" name="fs">이름
-	         <input type="checkbox" value="S" class="input-sm" name="fs">제목
-	         <input type="checkbox" value="C" class="input-sm" name="fs">내용
-	         <input type=text name=ss size=15 class="input-sm" style="width:200px;height:50px;font-size:15px;">
-	         <input type=submit class="buttona" value="검색">
-	        </form>
-        </div>
- 	
-  <c:if test="${sessionScope.admin=='y' }">
-  
   <table class="table1" style="margin-top:50px;float:right">
      	<tr>	
      		<td>	
-     			<a href="insert.do" class="btn btn-sm btn-danger"  style="font-size: 14px;
+     			<a href="list.do" class="btn btn-sm btn-danger"  style="font-size: 14px;
 								color: #ffffff;
 								font-weight: 800;
 								width:120px;
 								padding: 13px 30px 12px;
 								background: #7fad39;
-								border: none;">공지등록</a>
+								border: none;">목록</a>
      		</td>
      	</tr>
      </table>
-     </c:if>
      </div>
-  	<!-- 
-  	<li><a href="#">1</a></li>
-  	<li class="active"><a href="#">2</a></li>
-  	<li><a href="#">3</a></li>
-  	<li><a href="#">4</a></li>
-  	<li><a href="#">5</a></li> -->
-  	
-  	<!-- 
-  	<div class="product__pagination blog__pagination">
-       <a href="#">1</a>
-       <a href="#">2</a>
-       <a href="#">3</a>
-       <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-    </div>
-  	 -->
-  	 <div class="col-lg-12 col-md-12">
+  	 <%-- <div class="col-lg-12 col-md-12">
 	<div class="product__pagination blog__pagination" align="center" style="margin-top:50px;">
            
              <c:if test="${startPage>1 }">
@@ -142,7 +113,7 @@
 			 </c:if>
 		
        </div>
-     </div>
+     </div> --%>
 </div>
 
 </body>

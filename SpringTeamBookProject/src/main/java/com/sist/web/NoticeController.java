@@ -42,6 +42,17 @@ public class NoticeController {
 		map.put("end", end);
 		
 		List<NoticeVO> list=dao.NoticeBoardList(map);
+		
+		for(NoticeVO vo:list)
+		  {
+			  String s=vo.getSubject();
+			  if(s.length()>20)
+			  {
+				  s=s.substring(0,20)+"...";
+				  vo.setSubject(s);
+			  }
+		  }
+		
 		int totalpage=dao.NoticeTotalPage();
 		final int BLOCK=5;
 		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
@@ -75,7 +86,7 @@ public class NoticeController {
 	{
 		String name=(String)session.getAttribute("name");
 		vo.setName(name);
-		String path="C:\\springDev\\springProject\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\SpringTeamBookProject\\resources\\noticeboardimage\\";
+		String path="c:\\download\\";
 		File dir=new File(path);
 		
 		if(!dir.exists())
@@ -114,10 +125,11 @@ public class NoticeController {
 	}
 	
 	@GetMapping("detail.do")
-	public String noticeboard_detail(int no,int page,Model model)
+	public String noticeboard_detail(int no,int page,Model model,HttpSession session)
 	{
 		NoticeVO vo=dao.NoticeDetailData(no);
-		
+		String name=(String)session.getAttribute("name");
+		vo.setName(name);
 		if(vo.getImagecount()>0)
 		{
 			List<String> fList=new ArrayList<String>();
@@ -157,29 +169,55 @@ public class NoticeController {
 	}
 	
 	@PostMapping("update_ok.do")
-	public String noticeboard_update_ok(int no,int page,NoticeVO vo,Model model)
+	public String noticeboard_update_ok(int no,int page,NoticeVO vo,Model model) throws Exception
 	{
 		model.addAttribute("page", page);
 		model.addAttribute("no", vo.getNo());
+		
 		dao.NoticeBoardUpdate(vo);
 		return "redirect:../noticeboard/detail.do";
 	}
 	
-	@GetMapping("delete.do")
-	public String noticeboard_delete(int no,int page,Model model)
-	{
-		model.addAttribute("no", no);
-		model.addAttribute("page", page);
-		NoticeVO vo=dao.NoticeDetailData(no);
-		model.addAttribute("vo", vo);
-		model.addAttribute("main_jsp", "../noticeboard/delete.jsp");
-		return "main/main";
-	}
-	
-	@PostMapping("delete_ok.do")
-	public String noticeboard_delete_ok(int no,int page)
+	@GetMapping("delete_ok.do")
+	@ResponseBody
+	public void noticeboard_delete_ok(int no)
 	{
 		dao.NoticeBoardDelete(no);
-		return "redirect:../noticeboard/list.do";
+	}
+	
+	@GetMapping("download.do")
+    public void noticeboard_download(String fn,HttpServletResponse response)
+    {
+    	try
+    	{
+    		String path="c:\\download";
+    		File file=new File(path+"\\"+fn);
+    		response.setContentLength((int)file.length());
+    		response.setHeader("Content-Disposition", "attachment;filename="
+    				     +URLEncoder.encode(fn, "UTF-8"));
+    		
+    		BufferedInputStream bis=new BufferedInputStream(new FileInputStream(file));
+    		BufferedOutputStream bos=new BufferedOutputStream(response.getOutputStream());
+    		byte[] buffer=new byte[1024];
+    		int i=0;
+    		while((i=bis.read(buffer, 0, 1024))!=-1)
+    		{
+    			bos.write(buffer, 0, i);
+    		}
+    		bis.close();
+    		bos.close();
+    	}catch(Exception ex){}
+    }
+	
+	@PostMapping("find.do")
+	public String noticeboard_find(String[] fs,String ss,Model model)
+	{
+	   Map map=new HashMap();
+	   map.put("fsArr", fs);
+	   map.put("ss", ss);
+	   List<NoticeVO> list=dao.NoticeFindData(map);
+	   model.addAttribute("list", list);
+	   model.addAttribute("main_jsp", "../noticeboard/find.jsp");
+	   return "main/main";
 	}
 }

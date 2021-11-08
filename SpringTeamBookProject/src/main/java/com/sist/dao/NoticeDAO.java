@@ -46,4 +46,9 @@ public class NoticeDAO {
 	{
 		mapper.NoticeBoardDelete(no);
 	}
+	
+	public List<NoticeVO> NoticeFindData(Map map)
+	{
+		return mapper.NoticeFindData(map);
+	}
 }

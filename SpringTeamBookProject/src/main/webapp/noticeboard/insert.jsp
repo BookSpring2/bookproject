@@ -8,15 +8,17 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style type="text/css">
-.container1{
-	margin:0px auto;
-	width:1000px;
-}
-.table1{
-	border-right:none;
-	border-left:none;
-	border-top:none;
-	border-bottom:none;
+.contact-form form textarea {
+	width: 100%;
+	height: 400px;
+	font-size: 16px;
+	color: #6f6f6f;
+	padding-left: 20px;
+	margin-bottom: 24px;
+	border: 1px solid #ebebeb;
+	border-radius: 4px;
+	padding-top: 12px;
+	resize: none;
 }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
@@ -59,54 +61,64 @@ $(function(){
             </div>
         </div>
     </section>
-  <div class="container1">
-
-    <form method="post" action="insert_ok.do" enctype="multipart/form-data">
-    <table class="table" style="margin:auto;margin-top:50px;">
-      <!-- <tr>
-        <th width="25%" class="text-right">이름</th>
-        <td width="80%">
-          <input type=text name=name size=20 class="input-sm">
-        </td>
-      </tr> -->
-      <tr>
-        <th width="20%" class="text-right">공지제목</th>
-        <td width="80%">
-          <input type=text name=subject size=60 class="input-sm">
-        </td>
-      </tr>
-      <tr>
-        <th width="20%" class="text-right">공지내용</th>
-        <td width="80%">
-          <textarea rows="10" cols="60" name=content></textarea>
-        </td>
-      </tr>
-      <tr>
-        <th width="20%" class="text-right">첨부 이미지</th>
-        <td width="80%">
-        <table class="table">
-        <tr>
-          <td class="text-right">
-          <input type=button value="추가" class="btn btn-xs btn-danger" id="add">
-          <input type=button value="삭제" class="btn btn-xs btn-info" id="remove">
-        </td>
-      </tr>
-      </table>
-      <table class="table" id="imageView">
+  <div class="contact-form spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="contact__form__title">
+                        <h2>공지사항 등록</h2>
+                    </div>
+                </div>
+            </div>
+            <form method="post" action="insert_ok.do" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <input type="text" name=subject placeholder="제목">
+                    </div>
+                   
+                    <div class="col-lg-10 text-center">
+                        <textarea rows=20 cols=60 placeholder="공지내용" name=content></textarea>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <table class="table" id="imageView">
       
-      </table>
-      </td>
-	</tr>
-      <tr>
-        <td class="text-center" colspan="2">
-          <input type=submit value="등록" class="btn btn-sm btn-danger">
-          <input type=button value="취소" class="btn btn-sm btn-success"
-            onclick="javascript:history.back()"
-          >
-        </td>
-      </tr>
-    </table>
-    </form>
+     					</table>
+                        <input type=button value="파일" id="add" style="font-size: 14px;
+								color: #ffffff;
+								
+								width:90px;
+								padding: 13px 30px 12px;
+								background: #7fad39;
+								border: none;">
+       				    <input type=button value="삭제" id="remove" style="font-size: 14px;
+								color: #ffffff;
+								
+								width:90px;
+								padding: 13px 30px 12px;
+								background: #7fad39;
+								border: none;">
+                    </div>
+                    <div class="col-lg-10 text-center" style="margin-top:50px;">
+                        <input type="submit" value="등록" style="font-size: 14px;
+								color: #ffffff;
+								font-weight: 800;
+								width:90px;
+								padding: 13px 30px 12px;
+								background: #7fad39;
+								border: none;">
+                        <input type="button" onclick="javascript:history.back()" value="취소" style="font-size: 14px;
+								color: #ffffff;
+								font-weight: 800;
+								width:90px;
+								padding: 13px 30px 12px;
+								background: #7fad39;
+								border: none;">
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
     </div>
+    
 </body>
 </html>

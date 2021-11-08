@@ -21,7 +21,6 @@
 </head>
 <body>
 	<div class="container1">
-
     <form method="post" action="insert_ok.do" enctype="multipart/form-data">
     <table class="table" style="margin:auto;margin-top:50px;">
       <tr>

@@ -12,14 +12,44 @@
 .container1{
 	margin:0px auto;
 	width:1000px;
+	margin-bottom:100px;
+}
+.buttona{
+	font-size: 14px;
+	color: #ffffff;
+	width:90px;
+	padding: 13px 30px 12px;
+	background: #7fad39;
+	border: none;
+}
+#del{
+	font-size: 14px;
+	color: #ffffff;
+	width:90px;
+	padding: 11px 27px 10px;
+	background: #7fad39;
+	border: none;"
 }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-$('#del').click(function(){
-	  var pop = window.open("../noticeboard/delete.jsp","width=300,height=300");
+$(function(){
+	$('#del').click(function(){
+		let no=$('#no').val();
+		let page=$('#page').val();
+		$.ajax({
+			type:'get',
+			url:'../noticeboard/delete_ok.do',
+			data:{"no":no},
+			success:function(result1)
+			{
+				alert("삭제 완료");
+				location.href="../noticeboard/list.do?page="+page;
+			}
+		})
+		
+	})
 })
-
 
 
 </script>
@@ -42,9 +72,9 @@ $('#del').click(function(){
     </section>
   <div class="container1">
    <div class="row">
-     <table class="table" style="margin:auto;margin-top:50px;">
+     <table class="table" style="margin:auto;margin-top:50px;font-size:20px;">
       <tr>
-        <th width=20% class="success text-center">번호</th>
+        <th width=20% class="success text-center" style="font-size:20px;">번호</th>
         <td width=30% class="text-center">${vo.no }</td> 
         <th width=20% class="success text-center">작성일</th>
         <td width=30% class="text-center">${vo.dbday }</td> 
@@ -75,7 +105,7 @@ $('#del').click(function(){
       </c:if>
       <tr>
         <td colspan="4" valign="top" height="200">
-         <pre style="white-space: pre-wrap;border:none;background-color: white">${vo.content }</pre>
+         <pre style="white-space: pre-wrap;border:none;background-color: white;font-size:20px;">${vo.content }</pre>
         </td>
       </tr>
       <%-- <tr>
@@ -87,12 +117,15 @@ $('#del').click(function(){
       </tr> --%>
       <tr>
         <td colspan="4" class="text-right">
-        <c:if test="${sessionScope.name=='배수민' }">
-         <a href="../noticeboard/update.do?no=${vo.no }&page=${curpage}" class="btn btn-xs btn-danger">수정</a>
-         <a href="../noticeboard/delete.do?no=${vo.no }&page=${curpage}" class="btn btn-xs btn-primary" id="del">삭제</a>
+        <c:if test="${sessionScope.admin=='y' }">
+         <a href="../noticeboard/update.do?no=${vo.no }&page=${curpage}" class="buttona">수정</a>
+         <input type="button" id="del" value="삭제">
+         <input type=hidden name=no id=no value="${vo.no }">
+         <input type=hidden name=name id=name value="${vo.name }">
+         <input type=hidden name=page id=page value="${curpage }">
         </c:if>
           <!-- <input type=button class="btn btn-xs btn-primary" value="삭제" id="del"> -->
-          <a href="../noticeboard/list.do?page=${curpage }" class="btn btn-xs btn-info">목록</a>
+          <a href="../noticeboard/list.do?page=${curpage }" class="buttona">목록</a>
         </td>
       </tr>
      </table>
