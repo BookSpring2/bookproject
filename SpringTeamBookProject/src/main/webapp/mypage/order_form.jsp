@@ -59,6 +59,8 @@
     <li>5만원 이상 구매시 2천원 추가 적립</li>
   </ul>
   <div class="row">
+    <h3>주문정보 확인</h3>
+    <h7>주문자 정보와 배송지가 다른 경우 직접 입력해주세요</h7>
     <table class="table">
       <tr>
         <th>총 상품금액</th>
@@ -76,54 +78,36 @@
   </div>
   <div class="row">
     <table class="table">
-        <tr>
-          <th>배송방법</th>
-          <td>
-            <div>
-                <label>
-                  <input type="radio" name="delivery" value="normal" checked="checked">일반택배
-                </label>
-                &nbsp;
-                <label>
-                  <input type="radio" name="delivery" value="Foreign">해외배송
-                </label>
-                &nbsp;
-                <label>
-                  <input type="radio" name="delivery" value="SafeDelivery">안심택배
-                </label>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th>배송지</th>
-          <td>
-                <label>
-                  <input type="radio" name="address" value="LAST" checked="checked">최근배송지
-                </label>
-                &nbsp;
-                <label>
-                  <input type="radio" name="address" value="NEW">새로입력
-                </label>
-          </td>
-        </tr>
-        <tr>
-          <th>이름</th>
-          <td>
-            <input id="" type="text" value="">
-          </td>
-        </tr>
-        <tr>
-          <th>배송주소</th>
-          <td>
-            <input type="text">
-          </td>
-        </tr>
-        <tr>
-          <th>전화</th>
-          <td>
-            <input type="text" maxlength="11">
-          </td>
-        </tr>
+      <c:forEach var="vo" items="${list }">
+      <tr>
+        <th>아이디</th>
+        <td><input type="text" value="${vo.user_id }"></td>
+      </tr>
+      <tr>
+        <th>이름</th>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <th>주소</th>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <th>상세주소</th>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <th>이메일</th>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <th>전화번호</th>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <th>배송메세지</th>
+        <td><input type="text"></td>
+      </tr>
+      </c:forEach>
     </table>
   </div>
 </div>
