@@ -25,4 +25,9 @@ public class BlogDAO {
 	{
 		mapper.BlogInsert(vo);
 	}
+	
+	public BlogVO BlogDetailData(int no)
+	{
+		return mapper.BlogDetailData(no);
+	}
 }

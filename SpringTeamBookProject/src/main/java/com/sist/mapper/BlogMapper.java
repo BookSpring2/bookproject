@@ -20,9 +20,9 @@ CATEGORY NOT NULL VARCHAR2(500)
 TAG      NOT NULL VARCHAR2(500)
  */
 public interface BlogMapper {
-	@Select("SELECT no,user_id,subject,content,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,num "
-			+"FROM (SELECT no,user_id,subject,content,regdate,rownum as num "
-			+"FROM (SELECT no,user_id,subject,content,regdate "
+	@Select("SELECT no,subject,content,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,num "
+			+"FROM (SELECT no,subject,content,regdate,rownum as num "
+			+"FROM (SELECT no,subject,content,regdate "
 			+"FROM book_blog ORDER BY no DESC)) "
 			+"WHERE num BETWEEN #{start} AND #{end}")
 	public List<BlogVO> BlogList(Map map);
@@ -34,6 +34,10 @@ public interface BlogMapper {
 		     statement="SELECT NVL(MAX(no)+1,1) as no FROM book_blog")
 	
 	@Insert("INSERT INTO book_blog VALUES("
-		  +"#{no},#{user_id},#{subject},#{content},#{content},SYSDATE,#{category},#{tag})")
+		  +"#{no},#{user_id},#{subject},#{content},#{content},SYSDATE,#{category},#{tag},#{membership})")
 	public void BlogInsert(BlogVO vo);
+	
+	@Select("SELECT no,user_id,subject,content,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday,category,tag,membership "
+			+"FROM book_blog WHERE no=#{no}")
+	public BlogVO BlogDetailData(int no);
 }

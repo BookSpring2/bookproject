@@ -40,6 +40,8 @@ public class MemberDAO {
 				vo.setMsg("OK");
 				vo.setUser_id(id);
 				vo.setName(dbVO.getName());
+				vo.setMembership(dbVO.getMembership());
+				vo.setAdmin(dbVO.getAdmin());
 			}
 			else // 비밀번호가 일치하지 않는 경우
 			{

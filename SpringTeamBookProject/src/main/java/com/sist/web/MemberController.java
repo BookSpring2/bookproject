@@ -65,6 +65,8 @@ public class MemberController {
 		{
 			session.setAttribute("id", vo.getUser_id());
 			session.setAttribute("name", vo.getName());
+			session.setAttribute("membership", vo.getMembership());
+			session.setAttribute("admin", vo.getAdmin());
 		}
 		msg=vo.getMsg();
 		return msg;

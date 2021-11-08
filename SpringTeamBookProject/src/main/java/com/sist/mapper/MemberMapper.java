@@ -21,7 +21,7 @@ public interface MemberMapper {
 	// 2. 로그인 처리
 	// ID 존재여부 확인 (memberIdCount 재사용)
 	// 비밀번호 체크
-	@Select("SELECT pwd,name FROM book_member "
+	@Select("SELECT pwd,name,admin,membership FROM book_member "
 			+"WHERE user_id=#{id}")
 	public MemberVO memberGetPassword(String id);
 	
