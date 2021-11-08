@@ -26,35 +26,38 @@ $("#allCheck").click(function () {
 });
 
 $(function(){	
-let num=$("#qty").text();
-let price=$("#sellPrice").text();
-$("#plusBtn").click(function(){
-	let plusNum=parseInt(num)+1;
-	if(plusNum>=10){
-		$("#qty").text(num);
-		var total=parseInt(num)*parseInt(price);
-		$('#total').text(total+"원");
-	}
-	else{
-		$("#qty").text(plusNum);
-		var total=plusNum*parseInt(price);
-		$('#total').text(total+"원");
-	}
-})
-
-$("#minusBtn").click(function(){
-	let minusNum=parseInt(num)-1;
-	if(minusNum>=10){
-		$("#qty").text(num);
-		var total=parseInt(num)*parseInt(price);
-		$('#total').text(total+"원");
-	}
-	else{
-		$("#qty").text(minusNum);
-		var total=minusNum*parseInt(price);
-		$('#total').text(total+"원");
-	}
-})
+	$('#sel').change(function(){
+		let num=$(this).val();
+		let price=$("#sellPrice").text();
+		$("#plusBtn").click(function(){
+			let plusNum=parseInt(num)+1;
+			if(plusNum>=10){
+				$("#qty").val(num);
+				var total=parseInt(num)*parseInt(price);
+				$('#total').text(total+"원");
+			}
+			else{
+				$("#qty").val(plusNum);
+				var total=plusNum*parseInt(price);
+				$('#total').text(total+"원");
+			}
+		})
+		
+		$("#minusBtn").click(function(){
+			let minusNum=parseInt(num)-1;
+			if(minusNum>=10){
+				$("#qty").val(num);
+				var total=parseInt(num)*parseInt(price);
+				$('#total').text(total+"원");
+			}
+			else{
+				$("#qty").val(minusNum);
+				var total=minusNum*parseInt(price);
+				$('#total').text(total+"원");
+			}
+		})
+		
+	})
 })
 
 
@@ -93,7 +96,6 @@ $("#minusBtn").click(function(){
                                     <th>금액</th>
                                     <th>수량</th>
                                     <th>총합</th>
-                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -106,7 +108,7 @@ $("#minusBtn").click(function(){
                                 <tr>
                                   <td class="product-close"><input type="checkbox" onClick="itemSum()"
                                       class="chkbox" value="${vo.price * vo.cart_qty}"
-                                      data-cartNum="${vo.cartId}" /></td>
+                                      data-cartNum="${vo.cartId}"/></td>
                                     <td class="shoping__cart__item">
                                         <img src="${vo.image }" style="width:110px;height:150px;">
                                         <h5>${vo.title }</h5>
@@ -115,17 +117,17 @@ $("#minusBtn").click(function(){
                                      <fmt:parseNumber value="${vo.price }" var="price" type="number" pattern="##,###"/>
                                         ${price }원
                                     </td>
-                                    <td class="shoping__cart__quantity">
-                                    	   <input type=hidden id="sellPrice" value="${price }">
-                                           <button type="button" id="minusBtn" style="border:none">-</button>
+                                    <td class="shoping__cart__quantity" id="sel">
+                                    	   <input type=hidden id="sellPrice" value="${vo.price }">
+                                           <button id="minusBtn" style="border:none">-</button>
                                            <input type="text" id="qty" value="${vo.cart_qty }" size=1 style="text-align:center;border:none" readonly=readonly>
-                                           <button type="button" id="plusBtn" style="border:none">+</button>
+                                           <button id="plusBtn" style="border:none">+</button>
                                     </td>
                                     <td class="shoping__cart__total">
-                                    	<span id="total"></span>
+                                    	<span id="total">${vo.price*vo.cart_qty }원</span>
                                     </td>
                                     <td class="shoping__cart__item__close">
-                                        <a href="../cart/cart_delete.do?no=${vo.cartId }" class="icon_close"></a>
+                                        <a href="../mypage/cart_delete.do?no=${vo.cartId }" class="icon_close"></a>
                                     </td>
                                 </tr>
                                </c:forEach>

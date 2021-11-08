@@ -10,7 +10,7 @@ public interface OrderMapper {
 
 	// 주문하기 폼에서 -> 구매 버튼 누를시 서버로 데이터 전송
 	@Insert("INSERT INTO book_order VALUES("
-			+"(SELECT NVL(MAX(order_no)+1,1) FROM book_order),#{user_id},#{book_no},#{cart_qty},SYSDATE)")
+			+"(SELECT NVL(MAX(order_no)+1,1) FROM book_order),#{user_id},#{book_no},#{amount},SYSDATE)")
 	public void orderInsert(OrderFormVO vo);
 	
 	// 주문하기 폼 출력

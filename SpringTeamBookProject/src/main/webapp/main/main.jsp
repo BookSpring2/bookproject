@@ -30,5 +30,7 @@
   <script src="../ogani-master/js/mixitup.min.js"></script>
   <script src="../ogani-master/js/owl.carousel.min.js"></script>
   <script src="../ogani-master/js/main.js"></script>
+  <%-- 팝업창 --%>
+  <jsp:include page="../popup/popup.jsp"/>
 </body>
 </html>

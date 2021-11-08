@@ -176,12 +176,17 @@ public class FreeBoardController {
 		dao.freeBoardDelete(no);
 	}
 	
-	
-	// Find View만 전송
-	@GetMapping("find.do")
-	public String find(int page, Model model)
+	// Search
+	@PostMapping("find.do")
+	public String find(String ss,String[] fs, Model model)
 	{
-		model.addAttribute("page",page);
+		int startPage=1;
+		Map map=new HashMap();
+		map.put("fs", fs);
+		map.put("ss", ss);
+		List<FreeBoardVO> list=dao.freeBoardFind(map);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("list", list);
 		model.addAttribute("main_jsp", "../freeboard/find.jsp");
 		return "main/main";
 	}

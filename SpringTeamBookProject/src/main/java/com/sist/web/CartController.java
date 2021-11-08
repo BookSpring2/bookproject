@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class CartController {
-	@Autowired
+	@Autowired 
 	private CartDAO dao;
 	
 	@GetMapping("mypage/cart_list.do")
@@ -26,7 +26,7 @@ public class CartController {
 		String userId=(String)session.getAttribute("id");
 		List<CartVO> list=dao.cartListData(userId);
 		int sumMoney=dao.cartSumCount(userId);
-		int fee=sumMoney>=50000?0:2500;
+		int fee=sumMoney>=5000?0:2500;
 		model.addAttribute("list", list);
 		model.addAttribute("count", list.size());
 		model.addAttribute("sumMoney", sumMoney);
@@ -35,7 +35,7 @@ public class CartController {
 		model.addAttribute("main_jsp", "../mypage/cart_list.jsp");
 		return "main/main";
 	}
-	
+	 
 	@RequestMapping("mypage/cartcheck.do")
 	@ResponseBody
 	public String cart_check(HttpSession session, int productId)
@@ -76,9 +76,9 @@ public class CartController {
 	}
 	
 	@GetMapping("mypage/cart_delete.do")
-	public String cart_delete(int cartId)
+	public String cart_delete(int no)
 	{
-		dao.cartDelete(cartId);
+		dao.cartDelete(no);
 		return "redirect:../mypage/cart_list.do";
 	}
 	

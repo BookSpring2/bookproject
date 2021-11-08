@@ -20,6 +20,11 @@ public interface BookMapper {
 	
 	@Select("SELECT CEIL(COUNT(*)/12.0) FROM ${table_name}")
 	public int bookTotalPage(Map map);
+	//1. 베스트 셀러 상세 출력
+	@Select("SELECT bno,title,image,sale,pubdate,introduce,contents,price,TO_NUMBER(REPLACE(REPLACE(price,','),'원')) intprice,genre,publisher,writer "
+			 +"FROM book_data WHERE bno IS NOT NULL "
+			 +"AND bno=#{bno}")
+	public BookVO bookDetailData(int bno);
 	
 	//2. 신간 - 도서 목록 출력 기능.
 	@Select("SELECT bno,title,image,sale,pubdate,num "
