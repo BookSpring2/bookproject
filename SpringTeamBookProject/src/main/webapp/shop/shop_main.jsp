@@ -39,6 +39,23 @@
     background-color: #fffffff0;
     border: 1px solid #dddddd;
 }
+.bookstore {
+    position: absolute;
+    left: 375px;
+    top: 20px;
+    z-index: 3;
+    width: 340px;
+    height: 378px;
+    padding: 0 29px;
+    background-color: #fffffff0;
+    border: 1px solid #dddddd;
+	}
+	.bookstore th{
+		width:80px;
+	}
+	.bookstore td{
+		width:200px;
+	}
 	.content{
 		position: relative;
 	}
@@ -60,6 +77,13 @@
     b.page:hover{
 		cursor:pointer;
     }
+    
+button.float-right {
+    right: 5px;
+    height: 30px;
+    position: absolute;
+    background-color:white;
+}
 </style>
 </head>
 <body>
@@ -77,7 +101,8 @@
 						</button>
 					</form>
 				</div>
-				<div style="margin-bottom: 10px;">검색결과 총 {{total}}건</div>
+				<div style="margin-bottom: 10px;" v-if="shop_data.length!=0">검색결과 총 {{total}}건</div>
+				<div style="margin-bottom: 10px;" v-else>검색결과가 없습니다</div>
 				<div class="search__sidebar__item">
 						<div class="search__sidebar__recent shop_bar">
 							<div v-for="(vo,index) in shop_data" :key="vo.id">
@@ -97,38 +122,31 @@
 				<b class="page" href="#" v-on:click="paging(page-1)" v-show="page>1">&lt;</b>{{page}}/{{totalpage}}<b class="page" href="#" v-on:click="paging(page+1)" v-show="page<totalpage">&gt;</b>
 			</div>
 			</div>
-			
-					<div class="col-lg-8 col-md-7"> 
-						<div class="row">
-							
-							<!-- 지도 들어갈 자리 -->
-						</div>
-						<div class="row bookstore">
-							<table class="table">
+						
+						<div class="row bookstore" v-if="show">
+							<table class="table" style="table-layout:fixed">
+									<h4 text-align:center>{{shop_detail.name}}</h4>
+									<button class="float-right" v-on:click="show=false">X</button>
 								<tr>
-									<th >서점명</th>
-									<td>{{shop_detail.name}}</td>
+									<th width=20%>영업</th>
+									<td width=80% v-if="shop_detail.open">{{shop_detail.open}} ~ {{shop_detail.close}}</td>
+									<td width=80% v-if="!shop_detail.open">등록된 영업시간이<br> 없습니다</td>
 								</tr>
 								<tr>
-									<th width=30%>영업시간</th>
-									<td width=70% v-if="shop_detail.open">{{shop_detail.open}} ~ {{shop_detail.close}}</td>
-									<td width=70% v-if="!shop_detail.open">등록된 영업시간이 없습니다</td>
+									<th width=20%>휴무</th>
+									<td width=80%>{{shop_detail.hday}}</td>
 								</tr>
 								<tr>
-									<th width=30%>휴무일</th>
-									<td>{{shop_detail.hday}}</td>
+									<th width="20%">주소</th>
+									<td width=80%>{{shop_detail.addr}}</td>
 								</tr>
 								<tr>
-									<th>상세주소</th>
-									<td>{{shop_detail.addr}}</td>
+									<th width="20%">번호</th>
+									<td width=80%>{{shop_detail.tel}}</td>
 								</tr>
 								<tr>
-									<th>전화번호</th>
-									<td>{{shop_detail.tel}}</td>
-								</tr>
-								<tr>
-									<th width="20%">가게 소개</th>
-									<td width="80%"><pre>{{shop_detail.optn}}</pre></td>
+									<th width=20%>소개</th>
+									<td width=80%>{{shop_detail.optn}}</td>
 								</tr>							
 							</table>
 						</div>
@@ -147,18 +165,13 @@
 			ss:"",
 			total:"",
 			totalpage:"",
-			page:1
+			page:1,
+			show:false,
 		},
 		mounted:function(){
 			// default 출력
 			this.commonFunc();
 			this.kakaoMap(this.la,this.lo);
-		},
-		updated:function(){
-			this.la=this.shop_detail.la;
-			this.lo=this.shop_detail.lo;
-			this.kakaoMap(this.shop_data[0].la,this.shop_data[0].lo);
-			console.log(this.ss);
 		},
 		// 사용자 정의 함수=> 이벤트 처리
 		methods:{
@@ -187,12 +200,15 @@
 					this.totalpage=res.data[0].totalpage;
 					this.total=res.data[0].total;
 				})
+				
 			},
  			clickData:function(index){
  					
 					this.shop_detail=this.shop_data[index];
 					console.log(this.shop_detail);
-					
+					this.kakaoMap(this.shop_detail.la,this.shop_detail.lo);
+					this.show=true;
+
 			},
 			kakaoMap:function(la,lo){
 				var mapContainer = document.getElementById('map'), // 지도를 표시할 div
@@ -212,10 +228,12 @@
 
 					// 마커가 지도 위에 표시되도록 설정합니다
 					marker.setMap(map);
+
 			},
  			paging:function(p){
 				this.page=p;
 				this.searchList();
+				this.clickData(0);
  			},
  			pageRiset:function(){
  				this.page=1;
