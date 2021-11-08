@@ -27,8 +27,10 @@
 </section>
 <div class="container">
   <div style="height:50px"></div>
+  <form method="post" action="order_insert_ok" enctype="multipart/form-data">
   <div class="row">
     <h3>상품 확인</h3>
+    
     <table class="table">
       <tr>
         <th colspan="2" class="text-center">상품명</th>
@@ -85,31 +87,40 @@
       </tr>
       <tr>
         <th>이름</th>
-        <td><input type="text"></td>
+        <td><input type="text" value="${vo.name }"></td>
       </tr>
       <tr>
         <th>주소</th>
-        <td><input type="text"></td>
+        <td><input type="text" value="${vo.addr1 }"></td>
       </tr>
       <tr>
         <th>상세주소</th>
-        <td><input type="text"></td>
+        <td><input type="text" value="${vo.addr2 }"></td>
       </tr>
       <tr>
         <th>이메일</th>
-        <td><input type="text"></td>
+        <td><input type="text" value="${vo.email }"></td>
       </tr>
       <tr>
         <th>전화번호</th>
-        <td><input type="text"></td>
+        <td><input type="text" value="${vo.tel }"></td>
       </tr>
       <tr>
         <th>배송메세지</th>
         <td><input type="text"></td>
       </tr>
       </c:forEach>
+      <tr>
+        <td class="text-center" colspan="2">
+          <input type=submit value="등록" class="btn btn-sm btn-danger">
+          <input type=button value="취소" class="btn btn-sm btn-success"
+            onclick="javascript:history.back()"
+          >
+        </td>
+      </tr>
     </table>
   </div>
+  </form>
 </div>
 </body>
 </html>
