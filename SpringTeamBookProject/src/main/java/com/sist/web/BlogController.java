@@ -80,7 +80,21 @@ public class BlogController {
 	{
 		String user_id=(String)Session.getAttribute("name");
 		vo.setUser_id(user_id);
+		String membership=(String)Session.getAttribute("membership");
+		vo.setMembership(membership);
+		 
 		dao.BlogInsert(vo);
 		return "redirect:../blog/list.do";
+	}
+	
+	@GetMapping("detail.do")
+	public String blog_detail(int no, int page, Model model)
+	{
+		BlogVO vo=dao.BlogDetailData(no);
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("curpage", page);
+		model.addAttribute("main_jsp", "../blog/detail.jsp");
+		return "main/main";
 	}
 }

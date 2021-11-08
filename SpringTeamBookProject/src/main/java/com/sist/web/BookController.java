@@ -65,7 +65,7 @@ public class BookController {
 		//상세 데이터 출력
 		BookVO vo = dao.bookDetailData(bno);
 		model.addAttribute("vo", vo);
-		model.addAttribute("bno", bno);		
+		model.addAttribute("bno", bno);	
 		model.addAttribute("main_jsp", "../book/detail.jsp");
 		return "main/main";
 	}

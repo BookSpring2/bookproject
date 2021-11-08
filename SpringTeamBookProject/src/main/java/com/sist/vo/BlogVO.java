@@ -14,9 +14,15 @@ import java.util.*;
  */
 public class BlogVO {
 	private int no;
-	private String user_id,subject,image,content,category,tag,dbday;
+	private String user_id,subject,image,content,category,tag,dbday,membership;
 	private Date regdate;
 	
+	public String getMembership() {
+		return membership;
+	}
+	public void setMembership(String membership) {
+		this.membership = membership;
+	}
 	public String getDbday() {
 		return dbday;
 	}
