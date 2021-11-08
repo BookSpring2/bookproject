@@ -35,7 +35,7 @@ public class CartController {
 		model.addAttribute("main_jsp", "../mypage/cart_list.jsp");
 		return "main/main";
 	}
-	
+	 
 	@RequestMapping("mypage/cartcheck.do")
 	@ResponseBody
 	public String cart_check(HttpSession session, int productId)
