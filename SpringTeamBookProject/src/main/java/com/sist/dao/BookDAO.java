@@ -16,16 +16,20 @@ public class BookDAO {
 	@Autowired
 	private BookMapper mapper;
 	
-	//1. 베스트 셀러 도서 출력 기능
-	public List<BookVO> bookBestListData(Map map)
-	{
-		return mapper.bookBestListData(map);
-	}
-	 public int bookTotalPage(Map map)
-	 {
-		 return mapper.bookTotalPage(map);
-	 }
-	 
+		//1. 베스트 셀러 도서 출력 기능
+		public List<BookVO> bookBestListData(Map map)
+		{
+			return mapper.bookBestListData(map);
+		}
+		 public int bookTotalPage(Map map)
+		 {
+			 return mapper.bookTotalPage(map);
+		 }
+		//2. 베스트셀러 - 도서 상세보기 
+		public BookVO bookDetailData(int bno) 
+		{
+				return mapper.bookDetailData(bno);
+		}
 		
 		// 2. 신간 - 도서 출력 기능
 		public List<BookVO> bookNewListData(Map map) {

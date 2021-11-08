@@ -58,13 +58,18 @@ public class BookController {
 		return "main/main";
 		
 	}
-	// 상세 페이지 : 아직 건드리지 않음.
+	// 베스트셀러 상세페이지.
 	@RequestMapping("book/detail.do")
-	public String book_detail(Model model)
-	{
+	public String book_detail(int bno, Model model) {
+
+		//상세 데이터 출력
+		BookVO vo = dao.bookDetailData(bno);
+		model.addAttribute("vo", vo);
+		model.addAttribute("bno", bno);		
 		model.addAttribute("main_jsp", "../book/detail.jsp");
 		return "main/main";
 	}
+	
 	
 	
 	
