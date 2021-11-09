@@ -78,7 +78,8 @@ font-family: SF Pro KR, SF Pro Display, SF Pro Icons, AOS Icons, Apple Gothic, H
 	height : 40px;
 }
 </style>
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+</head>
+<body>
 <script type="text/javascript">
 function setCookie( name, value, expiredays ) {
     var todayDate = new Date();
@@ -101,8 +102,6 @@ else {
     document.all['layer_popup'].style.visibility = "hidden";
 }
 </script>
-</head>
-<body>
 <div class="layerPopup" id="layer_popup" style="visibility: visible;">
     <div class="layerBox">
         <h4 class="title">Organi 공지사항</h4>
