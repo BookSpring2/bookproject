@@ -7,11 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
-<script>
- $(function(){
-	
-})
-</script>
 </head>
 <body>
 <header class="header">
@@ -29,7 +24,8 @@
                         <div class="header__top__right">
                           <div class="header__top__right__auth">
                             <c:if test="${sessionScope.id!=null }">
-                            	<a href="../member/logout.do" id="login"><i class="fa fa-user"></i>로그아웃</a>		
+                            	<a href="../member/logout.do" id="login"><i class="fa fa-user"></i>로그아웃</a>
+                            	<a href="../member/join_update.do" id="login"><i class=""></i>회원정보수정</a>			
                             </c:if>
                             <c:if test="${sessionScope.id==null }">
                             	<a href="../member/login.do" id="login"><i class="fa fa-user"></i>로그인</a>	

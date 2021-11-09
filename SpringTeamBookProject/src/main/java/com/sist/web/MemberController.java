@@ -108,4 +108,53 @@ public class MemberController {
 		return msg;
 	}
 	
+	// 회원정보 수정
+	@GetMapping("join_update.do")
+	public String member_join_update(HttpSession session,Model model)
+	{
+		String id=(String)session.getAttribute("id");
+		
+		MemberVO vo=dao.memberUpdateData(id);
+		model.addAttribute("vo", vo);
+		model.addAttribute("main_jsp", "../member/join_update.jsp");
+		return "main/main";
+	}
+	
+	@PostMapping("join_update_ok.do")
+	public String member_join_update_ok(MemberVO vo,HttpSession session,Model model)
+	{
+		boolean bCheck=dao.memberJoinUpdate(vo);
+		if(bCheck==true)
+		{
+			session.setAttribute("name", vo.getName());
+		}
+		model.addAttribute("bCheck", bCheck);
+		return "member/join_update_ok";
+	}
+	
+	// 회원탈퇴 화면이동
+	@GetMapping("join_delete.do")
+	public String member_join_delete(HttpSession session,Model model)
+	{
+		model.addAttribute("main_jsp", "../member/join_delete.jsp");
+		return "main/main";
+	}
+	
+	// 회원탈퇴
+	/*
+	@PostMapping("join_delete_ok.do")
+	public String member_join_delete_ok(MemberVO vo,HttpSession session,Model model)
+	{
+		boolean bCheck=dao.memberJoinDelete(vo);
+		if(bCheck==true)
+		{
+			session.setAttribute("name", vo.getName());
+			session.setAttribute("id", vo.getUser_id());
+			session.setAttribute("pwd", vo.getPwd());
+		}
+		model.addAttribute("bCheck", bCheck);
+		return "member/join_delete_ok";
+	}
+	*/
+	
 }

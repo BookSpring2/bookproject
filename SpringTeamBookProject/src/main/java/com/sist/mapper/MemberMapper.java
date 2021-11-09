@@ -1,7 +1,10 @@
 package com.sist.mapper;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
 import com.sist.vo.*;
 
 public interface MemberMapper {
@@ -15,7 +18,7 @@ public interface MemberMapper {
 	
 	// regdate 컬럼
 	@Insert("INSERT INTO book_member VALUES("
-			+"#{user_id},#{pwd},#{name},#{sex},#{birthday},#{tel},#{addr1},#{addr2},'n',#{email},#{genre},'family',SYSDATE)")
+			+"#{user_id},#{pwd},#{name},#{sex},#{birthday},#{tel},#{addr1},#{addr2},'n',#{email},#{genre},'family',SYSDATE,#{post},0)")
 	public void memberInsert(MemberVO vo);
 	
 	// 2. 로그인 처리
@@ -35,5 +38,20 @@ public interface MemberMapper {
 	// memberIdCount 재사용
 	@Select("SELECT RPAD(SUBSTR(pwd,1,1),LENGTH(pwd),'*') FROM book_member WHERE user_id=#{id}")
 	public String memberPwdFindData(String id);
+	
+	// 회원정보 수정
+	@Select("SELECT * FROM book_member WHERE user_id=#{id}")
+	public MemberVO memberUpdateData(String id);
+	@Update("UPDATE book_member SET "
+			+"name=#{name},sex=#{sex},birthday=#{birthday},tel=#{tel},"
+			+ "addr1=#{addr1},addr2=#{addr2},email=#{email},genre=#{genre},post=#{post} "
+			+"WHERE user_id=#{user_id}")
+	public void memberJoinUpdate(MemberVO vo);
+	
+	// 회원탈퇴
+	/*
+	@Delete("DELETE FROM book_member WHERE user_id=#{id}")
+	public MemberVO memberDelete(String id);
+	*/
 	
 }

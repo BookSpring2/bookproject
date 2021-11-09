@@ -82,6 +82,46 @@ public class MemberDAO {
 		}
 		return msg;
 	}
-
+	
+	// 회원정보 수정 : 데이터읽기
+	public MemberVO memberUpdateData(String id)
+	{ 
+		return mapper.memberUpdateData(id);
+	}
+	// 회원정보 수정 : 실제수정
+	public boolean memberJoinUpdate(MemberVO vo)
+	{
+		boolean bCheck=false;
+		MemberVO dbVO=mapper.memberGetPassword(vo.getUser_id());
+		if(dbVO.getPwd().equals(vo.getPwd()))
+		{
+			bCheck=true;
+			mapper.memberJoinUpdate(vo);
+		}
+		else
+		{
+			bCheck=false;
+		}
+		return bCheck;
+	}
+	
+	// 회원탈퇴
+	/*
+	public boolean memberJoinDelete(MemberVO vo)
+	{
+		boolean bCheck=false;
+		MemberVO dbVO=mapper.memberGetPassword(vo.getUser_id());
+		if(dbVO.getPwd().equals(vo.getPwd()))
+		{
+			bCheck=true;
+			mapper.memberDelete(vo.getUser_id());
+		}
+		else
+		{
+			bCheck=false;
+		}
+		return bCheck;
+	}
+	*/
 	
 }
