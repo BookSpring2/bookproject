@@ -15,7 +15,7 @@
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script>
 $(function(){
-	$("#btn-order").click(function(){
+/* 	$("#btn-order").click(function(){
 		let book_no = $("#book_no").val();
 		//alert(productId)
 		let user_id = $("#user_id").val();
@@ -30,7 +30,23 @@ $(function(){
 					location.href("../mypage/order_form_ok.do");				
 			}
 		});
-	})
+	}) */
+ 	$("#btn-order").click(function(){
+		let book_no = $("#book_no").val();
+		//alert(productId)
+		let user_id = $("#user_id").val();
+		$.ajax({
+			type:'post',
+			url:'../mypage/order_form_ok.do',
+			data:{"productId":book_no},
+			success:function(res)
+			{
+				let result=res.trim();
+				confirm("결제페이지로 이동하시겠습니까?")
+					location.href("../mypage/order_form_ok.do");				
+			}
+		});
+	}) 
 	$("#btn-cart").click(function(){
 		let productId = $("#productId").val();
 		//alert(productId)
@@ -75,6 +91,9 @@ $(function(){
 		$("#btn-order").click(function(){			
 			$('#amount').val(count);
 		})
+/* 		$("#btn-order").click(function(){			
+			$('#amount').val(count);
+		}) */
 	})
 });
 </script>

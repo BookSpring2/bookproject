@@ -10,10 +10,16 @@ import java.util.*;
 	REGDATE            DATE    
  */
 public class CartVO {
-	private String userId, msg, image, title, price;
+	private String userId, msg, image, title, price, regday;
 	private int cartId, productId, cart_qty, intprice;
 	private Date regdate;
 	
+	public String getRegday() {
+		return regday;
+	}
+	public void setRegday(String regday) {
+		this.regday = regday;
+	}
 	public int getIntprice() {
 		return intprice;
 	}

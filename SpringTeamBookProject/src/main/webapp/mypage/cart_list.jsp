@@ -128,7 +128,22 @@ $(function(){
                             <tbody>
                             <c:choose>
                              <c:when test="${count==0 }">
-                               장바구니가 비어있습니다.
+                             <!-- 초기화면 상품 전체선택이지만 하나라도 체크박스 해제할 경우 이벤트  -->
+			                    <script>
+			                        $(".chkbox").click(function () {
+			                            $("#allCheck").prop("checked", false);
+			                        });
+			                    </script>
+                               <c:set var="cart" value="false" />
+		                        <div class="card border-light mb-3 text-center spad">
+		                            <div class="card-header">
+		                                <h3>카트에 상품이 없습니다.</h3>
+		                            </div>
+		                            <div class="card-body">
+		                                <p class="card-text">카트에 물건을 담고 이용해주세요!</p>
+		                            </div>
+		 
+		                        </div>
                              </c:when>
                              <c:otherwise>
                               <c:forEach var="vo" items="${list }">
@@ -189,24 +204,6 @@ $(function(){
                     </div>
                 </div>
             </div>
-                 <!-- 초기화면 상품 전체선택이지만 하나라도 체크박스 해제할 경우 이벤트  -->
-                    <script>
-                        $(".chkbox").click(function () {
-                            $("#allCheck").prop("checked", false);
-                        });
-                    </script>
-                    <c:if test="${empty cartList}">
-                        <c:set var="cart" value="false" />
-                        <div class="card border-light mb-3 text-center spad">
-                            <div class="card-header">
-                                <h3>카트에 상품이 없습니다.</h3>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">카트에 물건을 담고 이용해주세요!</p>
-                            </div>
- 
-                        </div>
-                    </c:if>
         </div>
     </section>
 </body>
