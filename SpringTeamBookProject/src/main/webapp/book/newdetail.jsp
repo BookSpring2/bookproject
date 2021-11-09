@@ -149,7 +149,7 @@ $(function(){
                         <div style="height:50px"></div>
                         
 						<div class="bookdetail_textdata_title">
-								<span style="font:bold 1.5em ">합계금액: <span id="total"></span></span>
+								<span style="font-size:14pt;">합계금액: <span id="total"></span></span>
 						</div>
                     
                         <div style="height:50px"></div>
