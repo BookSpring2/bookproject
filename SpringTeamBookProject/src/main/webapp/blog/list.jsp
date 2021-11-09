@@ -9,48 +9,6 @@
 </head>
 <body>
 
-<section class="hero hero-normal">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="hero__categories">
-                        <div class="hero__categories__all">
-                            <i class="fa fa-bars"></i>
-                            <span>분류</span>
-                        </div>
-                        <ul>
-                            <li><a href="#">국내도서</a></li>
-                            <li><a href="#">외국도서</a></li>
-                            <li><a href="#">eBook</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-9">
-                    <div class="hero__search">
-                        <div class="hero__search__form">
-                            <form action="#">
-                                <div class="hero__search__categories">
-                                    카테고리
-                                    <span class="arrow_carrot-down"></span>
-                                </div>
-                                <input type="text" placeholder="What do yo u need?">
-                                <button type="submit" class="site-btn">SEARCH</button>
-                            </form>
-                        </div>
-                        <div class="hero__search__phone">
-                            <div class="hero__search__phone__icon">
-                                <i class="fa fa-phone"></i>
-                            </div>
-                            <div class="hero__search__phone__text">
-                                <h5>1522-2222</h5>
-                                <span>평일 9:00~18:00</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- Hero Section End -->
 	<section class="breadcrumb-section set-bg" data-setbg="../ogani-master/img/breadcrumb.jpg">
         <div class="container">
@@ -138,7 +96,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="blog__item">
                                 <div class="blog__item__pic">
-                                    <img src="img/blog/blog-2.jpg" alt="">
+                                    <img src="../img/blog/blog-2.jpg" alt="">
                                 </div>
                                 <div class="blog__item__text">
                                     <ul>
@@ -146,7 +104,7 @@
                                         <li><i class="fa fa-comment-o"></i> 5</li>
                                     </ul>
                                     <h3>${vo.subject }</h3>
-                                    <p>${vo.content } </p>
+                                    <p style="margin-top:10px;">${vo.content } </p>
                                     <a href="../blog/detail.do?no=${vo.no}&page=${curpage}" class="blog__btn">더보기 <span class="arrow_right"></span></a>
                                 </div>
                             </div>
@@ -157,7 +115,9 @@
   						<table class="table1">
      						<tr>		
      						<td>
-     						<a href="insert.do" class="btn btn-sm btn-danger">글쓰기</a>
+     						<a href="insert.do" class="btn btn-sm btn-danger" style="font-size: 14px;
+								color: #ffffff;font-weight: 800;width:120px;padding: 13px 30px 12px;background: #7fad39;
+								border: none;">글쓰기</a>
      						</td>
      						</tr>
      						</table>

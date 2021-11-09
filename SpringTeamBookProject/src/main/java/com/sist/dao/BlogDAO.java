@@ -30,4 +30,14 @@ public class BlogDAO {
 	{
 		return mapper.BlogDetailData(no);
 	}
+	
+	public void BlogUpdate(BlogVO vo)
+	{
+		mapper.BlogUpdate(vo);
+	}
+	
+	public void BlogDelete(int no)
+	{
+		mapper.BlogDelete(no);
+	}
 }

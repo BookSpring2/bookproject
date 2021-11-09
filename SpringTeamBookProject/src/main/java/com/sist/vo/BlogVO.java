@@ -1,5 +1,7 @@
 package com.sist.vo;
 import java.util.*;
+
+import org.springframework.web.multipart.MultipartFile;
 /*
  * no NUMBER,
     user_id VARCHAR2(20) CONSTRAINT bb_userid_nn NOT NULL,
@@ -16,7 +18,14 @@ public class BlogVO {
 	private int no;
 	private String user_id,subject,image,content,category,tag,dbday,membership;
 	private Date regdate;
+	private List<MultipartFile> files;
 	
+	public List<MultipartFile> getFiles() {
+		return files;
+	}
+	public void setFiles(List<MultipartFile> files) {
+		this.files = files;
+	}
 	public String getMembership() {
 		return membership;
 	}

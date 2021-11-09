@@ -1,12 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.buttona{
+	font-size: 14px;
+	color: #ffffff;
+	width:90px;
+	padding: 11px 26px 10px;
+	background: #7fad39;
+	border: none;
+}
+#del{
+	font-size: 14px;
+	color: #ffffff;
+	width:90px;
+	padding: 13px 32px 12px;
+	background: #7fad39;
+	border: none;"
+}
+</style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#del').click(function(){
+		let no=$('#no').val();
+		let page=$('#page').val();
+		$.ajax({
+			type:'get',
+			url:'../blog/delete_ok.do',
+			data:{"no":no},
+			success:function(result1)
+			{
+				alert("삭제 완료");
+				location.href="../blog/list.do?page="+page;
+			}
+		})
+		
+	})
+})
+
+
+</script>
 </head>
 <body>
+
 <section class="blog-details-hero set-bg" data-setbg="../img/blog/details/details-hero.jpg">
         <div class="container">
             <div class="row">
@@ -14,8 +56,8 @@
                     <div class="blog__details__hero__text">
                         <h2>블로그</h2>
                         <ul>
-                            <li>작성자</li>
-                            <li>작성날자</li>
+                            <li>${vo.user_id }</li>
+                            <li>${vo.dbday }</li>
                             <li>댓글갯수</li>
                         </ul>
                     </div>
@@ -93,13 +135,34 @@
                             <div class="col-lg-6">
                                 <div class="blog__details__widget">
                                     <ul>
-                                        <li><span>카테고리</span>카테고리1</li>
-                                        <li><span>태그</span> All, Trending, Cooking, Healthy Food, Life Style</li>
+                                        <li><span>카테고리 : </span>${vo.category }</li>
+                                        <li><span>태그 : </span>${vo.tag }</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-12">
+                    <table class="text-right" style="margin-top:100px;float:right;">
+                    <tr>
+			        <td colspan="4" class="text-right">
+			        <input type=hidden name=no id=no value="${vo.no }">
+			        <input type=hidden name=name id=name value="${vo.user_id }">
+			        <input type=hidden name=page id=page value="${curpage }">
+			        <c:set var="user_id" value="${vo.user_id }" />
+			        <c:if test="${sessionScope.name==user_id}">
+			         <a href="../blog/update.do?no=${vo.no }&page=${curpage}" class="buttona">수정</a>
+			         </c:if>
+			         <c:if test="${sessionScope.name==user_id || sessionScope.admin=='y' }">
+			         <input type="button" id="del" value="삭제">
+			         </c:if>
+			         
+			        
+			          <a href="../blog/list.do?page=${curpage }" class="buttona">목록</a>
+			        </td>
+			      </tr>
+			     </table>
+			     </div>
                 </div>
             </div>
         </div>
@@ -107,7 +170,7 @@
     <!-- Blog Details Section End -->
 
     <!-- Related Blog Section Begin -->
-    <section class="related-blog spad">
+    <!-- <section class="related-blog spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -134,6 +197,6 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 </body>
 </html>

@@ -73,37 +73,20 @@ $(function(){
             <form method="post" action="insert_ok.do" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
-                        <input type="text" name=subject placeholder="제목">
+                        <input type="text" name=subject placeholder="제목" value=${vo.subject }>
+                        <input type=hidden name=no value="${vo.no }">
+                        <input type=hidden name=name value="${vo.user_id }">
+          				<input type=hidden name=page value="${page }">
                     </div>
                    
                     <div class="col-lg-10 text-center">
-                        <textarea rows=20 cols=60 placeholder="글 내용" name=content></textarea>
+                        <textarea rows=20 cols=60 placeholder="글내용" name=content>${vo.content }</textarea>
                     </div>
                     <div class="col-lg-5 col-md-5">
-                        <input type="text" name=category placeholder="카테고리">
+                        <input type="text" name=category placeholder="카테고리" value=${vo.category }>
                     </div>
                     <div class="col-lg-5 col-md-5">
-                        <input type="text" name=tag placeholder="태그">
-                    </div>
-                    <div class="col-lg-12 col-md-12">
-                        <table class="table" id="imageView">
-      
-     					</table>
-     					
-                        <input type=button value="파일" id="add" style="font-size: 14px;
-								color: #ffffff;
-								
-								width:90px;
-								padding: 13px 30px 12px;
-								background: #7fad39;
-								border: none;">
-       				    <input type=button value="삭제" id="remove" style="font-size: 14px;
-								color: #ffffff;
-								
-								width:90px;
-								padding: 13px 30px 12px;
-								background: #7fad39;
-								border: none;">
+                        <input type="text" name=tag placeholder="태그" value=${vo.tag }>
                     </div>
                     
                     <div class="col-lg-10 text-center" style="margin-top:50px;">

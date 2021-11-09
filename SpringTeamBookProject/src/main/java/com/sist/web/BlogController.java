@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -30,7 +31,7 @@ public class BlogController {
 			page="1";
 		int curpage=Integer.parseInt(page);
 		Map map=new HashMap();
-		int rowSize=10;
+		int rowSize=6;
 		int start=(rowSize*curpage)-(rowSize-1);
 		int end=(rowSize*curpage);
 		map.put("start", start);
@@ -76,13 +77,43 @@ public class BlogController {
 	}
 	
 	@PostMapping("insert_ok.do")
-	public String blog_insert_ok(BlogVO vo,HttpSession Session)
+	public String blog_insert_ok(BlogVO vo,HttpSession Session) throws Exception
 	{
 		String user_id=(String)Session.getAttribute("name");
 		vo.setUser_id(user_id);
 		String membership=(String)Session.getAttribute("membership");
 		vo.setMembership(membership);
-		 
+		String path="c:\\download\\";
+		File dir=new File(path);
+		
+		if(!dir.exists())
+		{
+			dir.mkdir();
+		}
+		
+		List<MultipartFile> list=vo.getFiles();
+		
+		String files="";
+		String sizes="";
+		String uuid = UUID.randomUUID().toString();
+		if(list!=null && list.size()>0)
+		{
+			for(MultipartFile mf:list)
+			{
+				String fn=mf.getOriginalFilename();
+				//File file=new File("c:\\download\\"+(uuid+"_"+fn));
+				File file=new File(path+(uuid+"_"+fn));
+				mf.transferTo(file);
+				files+=((uuid+"_"+fn)+",");
+				sizes+=file.length()+",";
+			}
+			vo.setImage(files.substring(0,files.lastIndexOf(",")));
+
+		}
+		else
+		{
+			vo.setImage("");
+		}
 		dao.BlogInsert(vo);
 		return "redirect:../blog/list.do";
 	}
@@ -96,5 +127,33 @@ public class BlogController {
 		model.addAttribute("curpage", page);
 		model.addAttribute("main_jsp", "../blog/detail.jsp");
 		return "main/main";
+	}
+	
+	@GetMapping("update.do")
+	public String blog_update(int no,int page,Model model)
+	{
+		model.addAttribute("no",no);
+		model.addAttribute("page", page);
+		BlogVO vo=dao.BlogDetailData(no);
+		model.addAttribute("vo", vo);
+		model.addAttribute("main_jsp", "../blog/update.jsp");
+		return "main/main";
+	}
+	
+	@PostMapping("update_ok.do")
+	public String blog_update_ok(int no,int page,BlogVO vo,Model model)
+	{
+		model.addAttribute("page", page);
+		model.addAttribute("no", vo.getNo());
+		
+		dao.BlogUpdate(vo);
+		return "redirect:../blog/detail.do";
+	}
+	
+	@GetMapping("delete_ok.do")
+	@ResponseBody
+	public void blog_delete_ok(int no)
+	{
+		dao.BlogDelete(no);
 	}
 }

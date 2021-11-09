@@ -3,9 +3,11 @@ package com.sist.mapper;
 import java.util.*;
 import com.sist.vo.*;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
+import org.apache.ibatis.annotations.Update;
 /*
 	private String user_id,subject,image,content,category,tag;
 	private Date regdate;
@@ -34,10 +36,17 @@ public interface BlogMapper {
 		     statement="SELECT NVL(MAX(no)+1,1) as no FROM book_blog")
 	
 	@Insert("INSERT INTO book_blog VALUES("
-		  +"#{no},#{user_id},#{subject},#{content},#{content},SYSDATE,#{category},#{tag},#{membership})")
+		  +"#{no},#{user_id},#{subject},#{image},#{content},SYSDATE,#{category},#{tag},#{membership})")
 	public void BlogInsert(BlogVO vo);
 	
 	@Select("SELECT no,user_id,subject,content,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday,category,tag,membership "
 			+"FROM book_blog WHERE no=#{no}")
 	public BlogVO BlogDetailData(int no);
+	
+	@Delete("DELETE FROM book_blog WHERE no=#{no}")
+	public void BlogDelete(int no);
+	
+	@Update("UPDATE book_blog SET "
+			+"user_id=#{user_id},subject=#{subject},content=#{content} WHERE no=#{no}")
+	public void BlogUpdate(BlogVO vo);
 }
