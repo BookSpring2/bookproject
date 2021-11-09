@@ -22,16 +22,6 @@ public class OrderDAO {
 	{
 		return mapper.orderFormListData(user_id);
 	}
-	
-	public void orderInfoInsert(OrderVO vo)
-	{
-		mapper.orderInfoInsert(vo);
-	}
-	
-	public void orderDetailInsert(OrderDetailVO vo)
-	{
-		mapper.orderDetailInsert(vo);
-	}
 /*
 	public List<OrderFormVO> orderListData(String user_id)
 	{
