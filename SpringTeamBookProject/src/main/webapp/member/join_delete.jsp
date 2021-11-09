@@ -98,8 +98,8 @@ button{
 	                            <div class="col-lg-8">
 	                            	<div class="checkout__input">
 	                                	<p>비밀번호<span>*</span></p>
-	                                    <input type="password" name=pwd id=pwd value="${vo.pwd }">
-		                                <input type="hidden" name=user_id id=id readonly value="${vo.user_id }">
+	                                    <input type="password" name=pwd id=pwd >
+		                                <input type="hidden" name=user_id id=id readonly>
 	                               </div>
 	                            </div>
 

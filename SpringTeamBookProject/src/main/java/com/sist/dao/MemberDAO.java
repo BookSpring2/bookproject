@@ -105,7 +105,7 @@ public class MemberDAO {
 		return bCheck;
 	}
 	
-	// 회원탈퇴
+	//회원탈퇴
 	/*
 	public boolean memberJoinDelete(MemberVO vo)
 	{

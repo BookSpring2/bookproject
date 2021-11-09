@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:if test="${bCheck==true }">
   <script>
-  alert("정상적으로 수정되었습니다");
+  alert("정상적으로 수정되었습니다.");
   location.href="../main/main.do";
   </script>
 </c:if>

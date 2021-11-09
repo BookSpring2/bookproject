@@ -15,7 +15,7 @@ import com.sist.vo.*;
 @Controller
 @RequestMapping("member/")
 public class MemberController {
-	// dao 불러오기
+	// dao불러오기
 	@Autowired
 	private MemberDAO dao;
 	

@@ -104,4 +104,5 @@ public class MemberVO {
 		this.point = point;
 	}
 	
+	
 }

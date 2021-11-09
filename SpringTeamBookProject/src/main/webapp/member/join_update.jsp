@@ -27,10 +27,10 @@ $(function(){
     hobbyCheck();
 
 	function hobbyCheck(){
-		//1 입력값 : study,game
+		//1 입력값
 		var genre = document.getElementById("genreCheck").value;
 		
-		//2 문자열 자르기 : stydy  game
+		//2 문자열 자르기
 		var strArray = genre.split(",");
 
   		//3 체크해주기

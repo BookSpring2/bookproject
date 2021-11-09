@@ -10,7 +10,7 @@
 </c:if>
 <c:if test="${bCheck==false }">
  <script>
- alert("비밀번호가 틀립니다!!");
+ alert("비밀번호가 틀립니다");
  history.back();
  </script>
 </c:if>

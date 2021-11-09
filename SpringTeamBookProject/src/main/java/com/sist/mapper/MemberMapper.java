@@ -48,7 +48,7 @@ public interface MemberMapper {
 			+"WHERE user_id=#{user_id}")
 	public void memberJoinUpdate(MemberVO vo);
 	
-	// 회원탈퇴
+	//회원탈퇴
 	/*
 	@Delete("DELETE FROM book_member WHERE user_id=#{id}")
 	public MemberVO memberDelete(String id);
