@@ -71,15 +71,7 @@
 								<input type="hidden" name="select" value="9" />
 								<input type="submit" class="category_menus" value="자기계발">
 							</form>
-							<!--  
-							<ul>
-                                
-                               
-                                <li><a href="#">종교/역학</a></li>
-                                <li><a href="#">경제경영</a></li>
-                                <li><a href="#">자기계발</a></li>
-                            </ul>
-                            -->
+							
                         </div>
                         <div class="sidebar__item">
                             <h4>가격</h4>

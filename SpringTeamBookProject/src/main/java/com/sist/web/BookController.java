@@ -109,8 +109,7 @@ public class BookController {
 				
 			}
 			
-			/* 카테고리 선택 - 목록출력*/
-			
+			/* 카테고리 선택 - 목록출력*/			
 			@RequestMapping("book/newlistSelectCate.do")
 			 public String book_menu_category(String page, Model model, int select) {
 				HashMap<String, Object> map=new HashMap<String, Object>();

@@ -113,7 +113,7 @@ form.comment_form{
 	margin-bottom: 40px;
 }
 
-form input[type=submit]{
+form input[type=submit].category_menus{
 	color:black;
 	background: none;
 	width:200px;
