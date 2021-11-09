@@ -74,7 +74,7 @@
       <tr>
         <td class="text-center">${vo.no }</td>	
         <td><a href="detail.do?no=${vo.no }&page=${curpage}">${vo.subject }</a></td>
-        <td class="text-center">${vo.user_id }</td>
+        <td class="text-center">${vo.writer }</td>
         <td class="text-center"><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd"/></td>
         <td class="text-center">${vo.hit }</td>
       </tr>

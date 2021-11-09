@@ -35,7 +35,7 @@
 								<div class="col-lg-12">
 									<div class="checkout__input">
 										<p>작성자<span>*</span></p>
-										<input type=text name="user_id" value="${vo.user_id }">
+										<input type=text name="writer" value="${vo.writer }" readonly>
 									</div>
 								</div>
 							</div>

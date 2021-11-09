@@ -10,10 +10,10 @@ import com.sist.vo.FreeBoardVO;
 public interface FreeBoardMapper {
 
 	// List
-	@Select("SELECT no,subject,user_id,regdate,hit, num "
-			+"FROM(SELECT no,subject,user_id,regdate,hit, rownum as num "
-			+"FROM(SELECT no,subject,user_id,regdate,hit "
-			+"FROM book_freeBoard ORDER BY no DESC)) "
+	@Select("SELECT no,subject,writer,regdate,hit, num "
+			+"FROM(SELECT no,subject,writer,regdate,hit, rownum as num "
+			+"FROM(SELECT /*+ INDEX_DESC(book_freeBoard fb_no_pk) */ no,subject,writer,regdate,hit "
+			+"FROM book_freeBoard)) "
 			+"WHERE num BETWEEN #{start} AND #{end}")
 	public List<FreeBoardVO> freeBoardList(Map map);
 	
@@ -25,7 +25,7 @@ public interface FreeBoardMapper {
 	
 	// Insert
 	@SelectKey(keyProperty="no", resultType=int.class , before=true, statement="SELECT NVL(MAX(no)+1,1) as no FROM book_freeBoard")
-	@Insert("INSERT INTO book_freeBoard VALUES(#{no},#{user_id},#{subject},#{content},SYSDATE,0,#{filesize},#{filename},#{filecount})")	
+	@Insert("INSERT INTO book_freeBoard VALUES(#{no},#{writer},#{subject},#{content},SYSDATE,0,#{filesize},#{filename},#{filecount})")	
 	public void freeBoardInsert(FreeBoardVO vo);
 	
 	
@@ -34,27 +34,27 @@ public interface FreeBoardMapper {
 			+"hit=hit+1 "
 			+"WHERE no=#{no}")
 	public void freeBoardHitIncrement(int no);
-	@Select("SELECT no,subject,user_id,content,regdate,hit,fileName,fileSize,fileCount "
+	@Select("SELECT no,subject,writer,content,regdate,hit,fileName,fileSize,fileCount "
 			+"FROM book_freeBoard "
 			+"WHERE no=#{no}")
 	public FreeBoardVO freeBoardDetail(int no);
 	
 	
 	// Update
-	@Update("UPDATE book_freeBoard SET user_id=#{user_id}, subject=#{subject}, content=#{content} "
-			+"WHERE no=#{no}")
+	@Update("UPDATE book_freeBoard SET writer=#{writer}, subject=#{subject}, content=#{content} "
+			+"WHERE no=#{no} ")
 	public void freeBoardUpdate(FreeBoardVO vo);
 	
 	
 	// Delete
-	@Delete("DELETE FROM book_freeBoard WHERE no=#{no}")
+	@Delete("DELETE FROM book_freeBoard WHERE no=#{no} ")
 	public void freeBoardDelete(int no);
 	
 	
 	// Find
 	@Select({
 			"<script>"
-			+"SELECT no,subject,user_id,regdate,hit "
+			+"SELECT no,subject,writer,regdate,hit "
 			+"FROM book_freeBoard "
 			+"WHERE "
 			+"<trim prefix=\"(\" suffix=\")\" prefixOverrides=\"OR\"> "
@@ -62,7 +62,7 @@ public interface FreeBoardMapper {
 			+"<trim prefix=\"OR\">"
 			+"<choose>"
 			+"<when test=\"fd=='N'.toString()\">"
-			+"user_id LIKE '%'||#{ss}||'%'"
+			+"writer LIKE '%'||#{ss}||'%'"
 			+"</when>"
 			+"<when test=\"fd=='S'.toString()\">"
 			+"subject LIKE '%'||#{ss}||'%'"

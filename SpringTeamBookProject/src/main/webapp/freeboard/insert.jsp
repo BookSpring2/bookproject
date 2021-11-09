@@ -52,16 +52,17 @@ $(function(){
                     <div class="row">
                         <div class="col-lg-12 col-md-12">           
                         <form method="post" action="insert_ok.do" enctype="multipart/form-data">
-                            <div class="row">
+                         <!--    <div class="row">
 								<div class="col-lg-12">
 									<div class="checkout__input">
 										<p>
 											작성자<span>*</span>
 										</p>
-										<input type=text name="user_id">
+										<input type=text name="writer">
 									</div>
 								</div>
 							</div>
+						 -->
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="checkout__input">

@@ -1,7 +1,7 @@
 package com.sist.vo;
 /*
 NO        NOT NULL NUMBER         
-USER_ID   NOT NULL VARCHAR2(100)  
+writer   NOT NULL VARCHAR2(100)  
 SUBJECT   NOT NULL VARCHAR2(100)  
 CONTENT   NOT NULL CLOB           
 REGDATE            DATE           
@@ -15,9 +15,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FreeBoardVO {
 	private int no, filecount, hit;
-	private String user_id, subject, content, filename, filesize;
+	private String writer, subject, content, filename, filesize;
 	private Date regdate;
 	private List<MultipartFile> files;
+	
 	public int getNo() {
 		return no;
 	}
@@ -36,11 +37,11 @@ public class FreeBoardVO {
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
-	public String getUser_id() {
-		return user_id;
+	public String getwriter() {
+		return writer;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setwriter(String writer) {
+		this.writer = writer;
 	}
 	public String getSubject() {
 		return subject;

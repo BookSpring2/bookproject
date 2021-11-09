@@ -2,6 +2,7 @@ package com.sist.web;
 import java.util.*;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.sist.dao.FreeBoardDAO;
-import com.sist.vo.FreeBoardVO;
+import com.sist.dao.*;
+import com.sist.vo.*;
 
 import java.io.*;
 import java.net.URLEncoder;
@@ -65,7 +66,7 @@ public class FreeBoardController {
 	}
 
 	@PostMapping("insert_ok.do")
-	public String board_insert_ok(FreeBoardVO vo) throws Exception {
+	public String board_insert_ok(FreeBoardVO vo, HttpSession session) throws Exception {
 		File dir = new File("c:\\download"); // 일단 만듬
 		if (!dir.exists()) {
 			dir.mkdir();
@@ -89,7 +90,8 @@ public class FreeBoardController {
 			vo.setFilesize("");
 			vo.setFilecount(0);
 		}
-		
+		String writer=(String)session.getAttribute("id");
+		vo.setwriter(writer);
 		dao.freeBoardInsert(vo);
 		return "redirect:../freeboard/list.do";
 	}
@@ -151,7 +153,7 @@ public class FreeBoardController {
 	// Update
 	@GetMapping("update.do")
 	public String update(int no, int page, Model model)
-	{
+	{	
 		model.addAttribute("page", page);
 		FreeBoardVO vo=dao.freeBoardDetail(no);
 		model.addAttribute("vo", vo);
@@ -160,8 +162,10 @@ public class FreeBoardController {
 	}
 	
 	@PostMapping("update_ok.do")
-	public String update_ok(FreeBoardVO vo,int page)
+	public String update_ok(FreeBoardVO vo,int page,HttpSession session)
 	{
+		String writer=(String)session.getAttribute("id");
+		vo.setwriter(writer);
 		dao.freeBoardUpdate(vo); // 업데이트
 		return "redirect:../freeboard/detail.do?no="+vo.getNo()+"&page="+page;
 	}

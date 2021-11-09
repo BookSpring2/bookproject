@@ -17,6 +17,7 @@
 	margin: 0 auto;
 }
 </style>
+
 </head>
 <body>
 <section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg">
@@ -49,7 +50,7 @@
 			<button type="submit"><span class="icon_search"></span></button>
 		</form>
 	</div>
-	<a href="insert.do"><button type="button" class="btn"style="background-color:#83AD2E; height:43px;">글쓰기</button></a>	 
+	<a href="insert.do"><button type="button" id="loginCheck" class="btn"style="background-color:#83AD2E; height:43px;">글쓰기</button></a>	 
 	<div style="margin-left:10px;"></div>
 	<a href="list.do?page=${startPage }"><button type="button" class="btn"style="background-color:#83AD2E; height:43px;">목록</button></a>
  </div>
@@ -73,7 +74,7 @@
       <tr>
         <td class="text-center">${vo.no }</td>
         <td><a href="detail.do?no=${vo.no }&page=${curpage}">${vo.subject }</a></td>
-        <td class="text-center">${vo.user_id }</td>
+        <td class="text-center">${vo.writer }</td>
         <td class="text-center"><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd"/></td>
         <td class="text-center">${vo.hit }</td>
       </tr>

@@ -14,6 +14,7 @@ $(function(){
 	$('#delBtn').click(function(){
 		let no=$('#no').val();
 		let page=$('#page').val();
+		let writer=$('#writer').val();
 		if(confirm('게시물을 삭제하시겠습니까?'))
 		{
 			$.ajax({
@@ -41,13 +42,14 @@ $(function(){
 					<div class="blog__details__hero__text">
 						<h2>${vo.subject }</h2>
 						<ul>
-							<li>By ${vo.user_id }</li>
+							<li>By ${vo.writer }</li>
 							<li><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd"/></li>
 							<li>8 Comments</li>
 							<li>조회수 ${vo.hit }</li>
 						</ul>
 							<input type=hidden name=no value="${vo.no }" id="no">
  							<input type=hidden name=page value="${page }" id="page">
+ 							<input type="hidden" value="${vo.writer }" id="writer">
 					</div>
 				</div>
 			</div>
