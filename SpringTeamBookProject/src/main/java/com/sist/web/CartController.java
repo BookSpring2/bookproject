@@ -99,4 +99,5 @@ public class CartController {
 		}
 		return "redirect:../mypage/cart_list.do";
 	}
+	
 }

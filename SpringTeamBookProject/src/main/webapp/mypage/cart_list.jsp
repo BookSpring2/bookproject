@@ -48,7 +48,7 @@ $(function(){
 		
 	})
 	
-	$("#btn-order").click(function(){
+/* 	$("#btn-order").click(function(){
 		let book_no = $("#book_no").val();
 		let user_id = $("#userId").val();
 		$.ajax({
@@ -62,7 +62,31 @@ $(function(){
 					location.href("../mypage/order_form_ok.do");				
 			}
 		});
-	})
+	}) */
+	
+	$("#allCheck").click(function () {
+	   let chk = $("#allCheck").prop("checked");
+	   if (chk) {
+	   	   $(".chkbox").prop("checked", true);
+	       itemSum();
+	   } else {
+	       $(".chkbox").prop("checked", false);
+	        itemSum();
+	    }
+	 });
+	
+	function itemSum() {
+		let str = "";
+		let sum = 0;
+		let count = $(".chkbox").length;
+		for (let i = 0; i < count; i++) {
+			if ($(".chkbox")[i].checked == true) {
+		    	sum += parseInt($(".chkbox")[i].value);
+		   	}
+		}
+		$("#total_sum").html(sum + " 원");
+		$("#amount").val(sum);
+	}
 })
 </script>
 </head>
@@ -93,9 +117,6 @@ $(function(){
                     <div class="shoping__cart__table">
                         <table>
                             <thead>
-                            <script>
-
-                            </script>
                                 <tr>
                                 <th><input type="checkbox" name="allCheck" id="allCheck" checked /></th>
                                     <th class="shoping__product">장바구니</th>
@@ -115,7 +136,7 @@ $(function(){
                                   <td class="product-close">
                                   <input type="checkbox" onClick="itemSum()"
                                       class="chkbox" value="${vo.price * vo.cart_qty}"
-                                      data-cartNum="${vo.cartId}" checked>
+                                      data-cartNum="${vo.cartId}">
                                    </td>
                                     <td class="shoping__cart__item">
                                         <img src="${vo.image }" style="width:110px;height:150px;">
@@ -156,32 +177,6 @@ $(function(){
                 </div>
                 <div class="col-lg-6">
                 </div>
-                <script>
-                $(function(){
-	                $("#allCheck").click(function () {
-	                    let chk = $("#allCheck").prop("checked");
-	                    if (chk) {
-	                        $(".chkbox").prop("checked", true);
-	                        itemSum();
-	                    } else {
-	                        $(".chkbox").prop("checked", false);
-	                        itemSum();
-	                    }
-	                });
-                })
-		            function itemSum() {
-		                let str = "";
-		                let sum = 0;
-		                let count = $(".chkbox").length;
-		                for (let i = 0; i < count; i++) {
-		                    if ($(".chkbox")[i].checked == true) {
-		                        sum += parseInt($(".chkbox")[i].value);
-		                    }
-		                }
-		                $("#total_sum").html(sum + " 원");
-		                $("#amount").val(sum);
-		            }
-        		</script>
                 <div class="col-lg-6">
                     <div class="shoping__checkout">
                         <h5>결제 예정 금액</h5>
@@ -190,15 +185,28 @@ $(function(){
                             <li>총 가격<span id="total_sum"></span></li>
                             <li>쿠폰 적용 가격<span>$454.98</span></li>
                         </ul>
-                        <form method="post" action="../mypage/order_form_ok.do" style="display:inline">
-		                        <input type="submit" class="primary-btn" id="btn-order" style="border:none" value="주문하기">
-		                        <input type="hidden" name="book_no" value="${vo.productId}" id="book_no">
-		                        <input type="hidden" name="cart_qty" value="${vo.cart_qty }" id="cart_qty">
-	                   </form>
+                        <a href="../mypage/order_form.do" class="primary-btn">주문하기</a>
                     </div>
                 </div>
             </div>
-          
+                 <!-- 초기화면 상품 전체선택이지만 하나라도 체크박스 해제할 경우 이벤트  -->
+                    <script>
+                        $(".chkbox").click(function () {
+                            $("#allCheck").prop("checked", false);
+                        });
+                    </script>
+                    <c:if test="${empty cartList}">
+                        <c:set var="cart" value="false" />
+                        <div class="card border-light mb-3 text-center spad">
+                            <div class="card-header">
+                                <h3>카트에 상품이 없습니다.</h3>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">카트에 물건을 담고 이용해주세요!</p>
+                            </div>
+ 
+                        </div>
+                    </c:if>
         </div>
     </section>
 </body>

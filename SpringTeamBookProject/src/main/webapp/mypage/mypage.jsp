@@ -12,16 +12,39 @@
     <div class="row">
       <div class="col-lg-12 text-center">
         <div class="breadcrumb__text">
-          <h2>주문하기</h2>
+          <h2>마이페이지</h2>
           <div class="breadcrumb__option">
             <a href="../main/main.do">Home</a>
-            <span>주문하기</span>
+            <span>마이페이지</span>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+   <section class="product spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-5">
+                    <div class="sidebar">
+                        <div class="sidebar__item">
+                            <h4>마이페이지 메뉴</h4>
+                            <ul>
+                                <li><a href="../mypage/cart_list.do">장바구니</a></li>
+                                <li><a href="../mypage/order_list.do">주문내역</a></li>
+                                <li><a href="#">반품/교환 신청 및 조회</a></li>
+								<li><a href="#">취소 주문 내역</a></li>
+					            <li><a href="#">Organi포인트</a></li>
+								<li><a href="#">나의 정보</a></li>
+								<li><a href="#">나의 블로그</a></li>
+								<li><a href="#">나의 문의내역</a></li>
+                            </ul>
+                        </div>
+                     </div>
+                 </div>
+              </div>
+           </div>
+     </section>
 <div class="container">
   <div class="row">
     <table class="table">

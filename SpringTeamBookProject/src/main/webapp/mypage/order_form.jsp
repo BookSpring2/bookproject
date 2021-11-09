@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <body>
 <section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg" style="background-image: url(&quot;../img/breadcrumb.jpg&quot;);">
@@ -39,18 +41,46 @@
         <th class="text-center">총금액</th>
         <th class="text-center">배송정보</th>
       </tr>
-      <c:forEach var="vo" items="${list }">
-      <tr>
-        <td>
-          <img src="${vo.image }" style="width:110px;height:150px;">
-        </td>
-        <td>${vo.title }</td>
-        <td class="text-center">${vo.amount }</td>
-        <td class="text-center"><fmt:parseNumber value="${vo.price }" var="price" type="number" pattern="000,000,000"/>${price }원</td>
-        <td class="text-center" id="price">${vo.amount*price }원</td>
-        <td class="text-center">${vo.orderday }</td>
-      </tr>
-      </c:forEach>
+<%--        <c:if test="${olist.book_no==clist.product_id }">
+	      <c:forEach var="ovo" items="${olist }">
+	      <tr>
+	        <td>
+	          <img src="${ovo.image }" style="width:110px;height:150px;">
+	        </td>
+	        <td>${ovo.title }</td>
+	        <td class="text-center">${ovo.amount }</td>
+	        <td class="text-center"><fmt:parseNumber value="${vo.price }" var="price" type="number" pattern="000,000,000"/>${price }원</td>
+	        <td class="text-center" id="price">${vo.amount*price }원</td>
+	        <td class="text-center">${vo.orderday }</td>
+	      </tr>
+	      </c:forEach>
+      </c:if>
+       <c:if test="${olist.book_no!=clist.product_id }"> --%>
+	      <c:forEach var="ovo" items="${olist }">
+	      <tr>
+	        <td>
+	          <img src="${ovo.image }" style="width:110px;height:150px;">
+	        </td>
+	        <td>${ovo.title }</td>
+	        <td class="text-center">${ovo.amount }</td>
+	        <td class="text-center"><fmt:parseNumber value="${ovo.price }" var="price" type="number" pattern="000,000,000"/>${price }원</td>
+	        <td class="text-center" id="price">${ovo.amount*price }원</td>
+	        <td class="text-center">${ovo.orderday }</td>
+	      </tr>
+	      </c:forEach>
+	      <c:forEach var="cvo" items="${clist }">
+	      <tr>
+	        <td>
+	          <img src="${cvo.image }" style="width:110px;height:150px;">
+	        </td>
+	        <td>${cvo.title }</td>
+	        <td class="text-center">${cvo.cart_qty }</td>
+	        <td class="text-center"><fmt:parseNumber value="${cvo.price }" var="price" type="number" pattern="000,000,000"/>${price }원</td>
+	        <td class="text-center" id="price">${cvo.cart_qty*price }원</td>
+	        <td class="text-center">${cvo.regdate }</td>
+	      </tr>
+	      </c:forEach>
+      <%-- </c:if> --%>
     </table>
   </div>
   <ul>
