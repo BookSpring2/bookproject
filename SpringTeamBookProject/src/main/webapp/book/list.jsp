@@ -341,7 +341,7 @@
                             
                                 <div class="product__item__pic set-bg" data-setbg="">
                                
-                                <a href="detail.do?no=${vo.bno }&page=${curpage}">
+                                <a href="detail.do?bno=${vo.bno }&page=${curpage}">
                                 <img src="${vo.image}">
                                 </a>
                                     <ul class="product__item__pic__hover">
