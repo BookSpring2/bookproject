@@ -19,7 +19,7 @@
 	font-size: 14px;
 	color: #ffffff;
 	width:90px;
-	padding: 13px 32px 12px;
+	padding: 9px 26px 9px;
 	background: #7fad39;
 	border: none;"
 }
@@ -164,7 +164,11 @@ $(function(){
 			     </table>
 			     </div>
                 </div>
+                
             </div>
+            <div class="col-lg-12">
+                <jsp:include page="../blog/replylist.jsp"></jsp:include>
+                </div>
         </div>
     </section>
     <!-- Blog Details Section End -->

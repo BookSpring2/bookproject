@@ -49,4 +49,29 @@ public interface BlogMapper {
 	@Update("UPDATE book_blog SET "
 			+"user_id=#{user_id},subject=#{subject},content=#{content} WHERE no=#{no}")
 	public void BlogUpdate(BlogVO vo);
+	
+	
+	@SelectKey(keyProperty="no", resultType=int.class , before=true,
+		     statement="SELECT NVL(MAX(no)+1,1) as no FROM book_blogreply")
+	@Insert("INSERT INTO book_blogreply(no,user_id,bno,name,msg) VALUES("
+			 +"#{no},#{user_id},#{bno},#{name},#{msg})")
+	public void BlogReplyInsert(BlogReplyVO vo);
+	  
+	  
+	@Select("SELECT no,user_id,bno,name,msg,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday "
+			 +"FROM book_blogreply "
+			 +"WHERE bno=#{bno}"  
+			 +"ORDER BY no DESC") 
+	public List<BlogReplyVO> BlogReplyListData(int bno);
+	  
+	  
+	@Update("UPDATE book_blogreply SET "
+			 +"msg=#{msg} "
+			 +"WHERE no=#{no}")
+	public void BlogReplyUpdate(BlogReplyVO vo);
+	
+	@Delete("DELETE FROM book_blogreply "
+			 +"WHERE no=#{no}")
+	public void BlogReplyDelete(int no);
+	
 }

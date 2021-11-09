@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("blog/")
@@ -156,4 +157,33 @@ public class BlogController {
 	{
 		dao.BlogDelete(no);
 	}
+	
+	@PostMapping("replyinsert.do")
+    public String blogreply_insert(int page,BlogReplyVO vo,RedirectAttributes attr,HttpSession session)
+    {
+    	String id=(String)session.getAttribute("id");
+    	String name=(String)session.getAttribute("name");
+    	vo.setUser_id(id);
+    	vo.setName(name);
+    	dao.BlogReplyInsert(vo);
+    	attr.addAttribute("no", vo.getBno());
+    	attr.addAttribute("page", page);
+    	return "redirect:../blog/detail.do"; 
+    }
+    @PostMapping("replyupdate.do")
+    public String blogreply_update(BlogReplyVO vo,int page,RedirectAttributes attr)
+    {
+    	dao.BlogReplyUpdate(vo);
+    	attr.addAttribute("no", vo.getBno());
+    	attr.addAttribute("page", page);
+    	return "redirect:../blog/detail.do";
+    }
+    @GetMapping("replydelete.do")
+    public String blogreply_delete(int no,int bno,int page,RedirectAttributes attr)
+    {
+    	dao.BlogReplyDelete(no);
+    	attr.addAttribute("no", bno);
+    	attr.addAttribute("page", page);
+    	return "redirect:../blog/detail.do";
+    }
 }

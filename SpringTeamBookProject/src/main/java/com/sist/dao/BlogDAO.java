@@ -1,5 +1,6 @@
 package com.sist.dao;
 import com.sist.mapper.*;
+import com.sist.vo.BlogReplyVO;
 import com.sist.vo.BlogVO;
 
 import java.util.*;
@@ -39,5 +40,25 @@ public class BlogDAO {
 	public void BlogDelete(int no)
 	{
 		mapper.BlogDelete(no);
+	}
+	
+	public List<BlogReplyVO> BlogReplyListData(int bno)
+	{
+		return mapper.BlogReplyListData(bno);
+	}
+	
+	public void BlogReplyUpdate(BlogReplyVO vo)
+	{
+		mapper.BlogReplyUpdate(vo);
+	}
+	
+	public void BlogReplyDelete(int no)
+	{
+		mapper.BlogReplyDelete(no);
+	}
+	
+	public void BlogReplyInsert(BlogReplyVO vo)
+	{
+		mapper.BlogReplyInsert(vo);
 	}
 }
