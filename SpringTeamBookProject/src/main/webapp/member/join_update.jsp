@@ -10,64 +10,16 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script> 
 <script type="text/javascript" src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript">
-function postfind()
-{
-	new daum.Postcode({
-		oncomplete:function(data){
-			$('#post').val(data.zonecode);
-			$('#addr1').val(data.address)
-		}
-	}).open();
-}
-</script>
 <script>
 $(function(){
 	
-    hobbyCheck();
-
-	function hobbyCheck(){
-		//1 입력값
-		var genre = document.getElementById("genreCheck").value;
-		
-		//2 문자열 자르기
-		var strArray = genre.split(",");
-
-  		//3 체크해주기
-		var i;
-		for(i=0; i<100; i++){
-			$("input:checkbox[id="+ strArray[i].replace('/','') +"]").attr("checked", true);
-		}
-	}
-	
-});
-</script>
-<script>
-$(function(){
-
 	// 핸드폰번호 하이픈(-) 자동추가
 	$(document).on("keyup","#tel",function(){
 		$(this).val($(this).val().replace(/[^0-9]/g,"").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})/,"$1-$2-$3").replace("--","-"));
 	});
-
-	//비밀번호 확인
- 	$('#pwd2').blur(function(){
- 		let pwd=$('#pwd').val();
- 		let pwd2=$('#pwd2').val();
-	   if(pwd!=pwd2){
-	    	if(pwd2!=''){
-		    alert("비밀번호가 일치하지 않습니다");
-	    	    $('#pwd2').val('');
-	            $('#pwd2').focus();
-	       }
-	    }
-	   else{
-		   alert("비밀번호가 일치합니다");
-	   }
-	});   
 	
-	// 회원가입 버튼 클릭 시, 입력안한 경우 return false
-	$('#joinBtn').click(function(){
+	// 수정 버튼 클릭 시, 입력안한 경우 return false
+	$('#updateBtn').click(function(){
 		let name=$('#name').val();
 		let id=$('#id').val();
 		let pwd=$('#pwd').val();
@@ -82,7 +34,7 @@ $(function(){
 			{
 				genreCount++;
 			}
-		
+
  		if(name=='')
 		{
 			alert("이름을 입력하세요");
@@ -118,9 +70,117 @@ $(function(){
 			alert("장르는 1개이상 선택해야합니다")	;
 			return false;	
 		}
-
+		
 	});
+	
+	// 장르선택된 갯수 가져오기
+    hobbyCheck();
 
+	function hobbyCheck(){
+		//1 입력값
+		var genre = document.getElementById("genreCheck").value;
+		
+		//2 문자열 자르기
+		var strArray = genre.split(",");
+
+  		//3 체크해주기
+		var i;
+		for(i=0; i<100; i++){
+			$("input:checkbox[id="+ strArray[i].replace('/','') +"]").attr("checked", true);
+		}
+	}
+	
+	
+})
+</script>
+<script type="text/javascript">
+function postfind()
+{
+	new daum.Postcode({
+		oncomplete:function(data){
+			$('#post').val(data.zonecode);
+			$('#addr1').val(data.address)
+		}
+	}).open();
+}
+</script>
+<script>
+$(function(){
+	
+
+});
+</script>
+<script>
+$(function(){
+	
+	// 수정 버튼 클릭 시, 입력안한 경우 return false
+	$('#updateBtn').click(function(){
+		let name=$('#name').val();
+		let id=$('#id').val();
+		let pwd=$('#pwd').val();
+		let tel=$('#tel').val();
+		let addr1=$('#addr1').val();
+		let genreChecked=$('input[name=genre]');
+		let genreCount=0;
+		
+		// 장르에 체크된 갯수 확인
+		for(var i=0;i<genreChecked.length;i++)
+			if(genreChecked[i].checked==true)
+			{
+				genreCount++;
+			}
+		
+		if(pwd=='')
+		{
+			alert("비밀번호를 입력하세요");
+			$('#pwd').focus();
+			return false;
+		}
+ 		else if(genreCount==0)
+		{
+			alert("장르는 1개이상 선택해야합니다")	;
+			return false;	
+		}
+		
+		/*
+ 		if(name=='')
+		{
+			alert("이름을 입력하세요");
+			$('#name').focus();
+			return false;
+		}
+ 		else if(id=='')
+		{
+			alert("아이디를 입력하세요");
+			$('#id').focus();
+			return false;
+		}
+ 		else if(pwd=='')
+		{
+			alert("비밀번호를 입력하세요");
+			$('#pwd').focus();
+			return false;
+		}
+ 		else if(tel=='')
+		{
+			alert("전화번호를 입력하세요");
+			$('#tel').focus();
+			return false;
+		}
+ 		else if(addr1=='')
+		{
+			alert("주소를 입력하세요");
+			$('#addr1').focus();
+			return false;
+		}
+ 		else if(genreCount==0)
+		{
+			alert("장르는 1개이상 선택해야합니다")	;
+			return false;	
+		}
+		*/
+		
+	});
 
 })
 </script>
@@ -336,7 +396,7 @@ button{
 	                            
 	                       <!-- 수정/취소버튼-->
 	                            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12" style="text-align:center; margin-top:50px;">
-	                              <input type="submit" class="btnLg" value="수정" id="joinBtn" style="background:black; margin-right:10px;">
+	                              <input type="submit" class="btnLg" value="수정" id="updateBtn" style="background:black; margin-right:10px;">
 	                              <input type="button" class="btnLg" value="취소" style="background:silver;"
 	                               onclick="javascript:history.back()">
 		                        </div>       
