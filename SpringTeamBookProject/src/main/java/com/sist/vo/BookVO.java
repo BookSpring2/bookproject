@@ -28,6 +28,7 @@ public class BookVO {
 	private double score;
 	private int intprice;
 	private int saleprice;
+	private int ccno;
 	
 	public int getBno() {
 		return bno;
@@ -149,7 +150,12 @@ public class BookVO {
 	public void setSaleprice(int saleprice) {
 		this.saleprice = saleprice;
 	}
-	
+	public int getCcno() {
+		return ccno;
+	}
+	public void setCnt(int ccno) {
+		this.ccno = ccno;
+	}
 	
 	
 }

@@ -237,6 +237,9 @@ public class BookController {
 				//리뷰 데이터 리스트 출력			
 				System.out.println("bno는 "+bno+"입니다.");			
 				List<BookCommentVO> clist = dao.bookCommentListData(bno);//bno를 가져와서 bno==dc_bno인 데이터를 출력.
+				BookCommentVO ccvo = dao.bookNewCommentCount(bno);
+	
+				model.addAttribute("ccvo",ccvo);
 				model.addAttribute("clist",clist);
 				
 				
@@ -250,27 +253,6 @@ public class BookController {
 			//3-1. 리뷰 입력
 			@RequestMapping("book/newdetail_commentInput.do")
 			public String book_newdetail_commentInput(HttpServletRequest request,HttpServletResponse response) throws Exception {
-				
-				/*리뷰 입력 날짜와 시간 구하기 -> 그냥 오라클 SYSDATE 이용하면 편함.*/
-				/*방법1.
-				LocalDate todayIs = LocalDate.now();
-				LocalTime timeIs = LocalTime.now();				
-				DateTimeFormatter format_todayIs = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-				DateTimeFormatter format_timeIs = DateTimeFormatter.ofPattern("HH:mm:ss");
-				String formated_todayIs = todayIs.format(format_todayIs);
-				String formated_timeIs = timeIs.format(format_timeIs);
-				String resultTime = formated_todayIs.concat(formated_timeIs);	
-				//방법2.
-				Date today_and_time = new Date();
-			    System.out.println(today_and_time);
-			    SimpleDateFormat form = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-			    String result_today_and_time = form.format(today_and_time);
-
-			    System.out.println("Date를 이용한 현재 시간은:"+result_today_and_time+"입니다.");				
-				System.out.println("리뷰를 등록하는 현재 시간은"+formated_todayIs+" "+formated_timeIs+" 입니다.");
-				map.put("writedate", result_today_and_time);
-				*/
-				
 				
 				/*bno,제목,리뷰내용 얻기*/
 				int bno = Integer.parseInt(request.getParameter("bno"));

@@ -20,6 +20,7 @@ public class BookCommentVO {
 	double stars;
 	int dc_bno;
 	String writedate;
+	int cnt; //comment_count
 	
 	
 	public String getWriter() {
@@ -63,6 +64,12 @@ public class BookCommentVO {
 	}
 	public void setWritedate(String writedate) {
 		this.writedate = writedate;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 
 	

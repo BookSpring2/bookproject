@@ -108,7 +108,7 @@ $(function(){
                         <h2>대제목</h2>
                         <div class="breadcrumb__option">
                             <a href="../main/main.do">Home</a>
-                            <a href="#">대분류</a>
+                            <a href="#">신간 도서</a>
                             <span>중분류</span>
                         </div>
                     </div>
@@ -141,7 +141,7 @@ $(function(){
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-half-o"></i>
-                            <span>(18 개의 리뷰)</span>
+                            <span>( ${ccvo.cnt} 개의 리뷰)</span>
                         </div>
                         <div class="product__details__price"><span id="price"> ${vo.price}</span></div>
                         <div class="bookdetail_pricedata_group"> 
@@ -217,7 +217,7 @@ $(function(){
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
-                                    aria-selected="false">리뷰 <span>(1)</span></a>
+                                    aria-selected="false">리뷰 <span>(${ccvo.cnt})</span></a>
                             </li>
                         </ul>
                         <div class="tab-content">
@@ -246,6 +246,7 @@ $(function(){
 									        <input type="text" class="comment_text" size=70 name="comments">
 									        <input type="hidden" name="bno" value="${vo.bno }">
 									        <input type="hidden" name="writer" value="${sessionScope.name }">
+									        <input type="hidden" name="c_userid" value="${sessionScope.id }">
 									        <p></p>
 									        <input type="submit" class="commnet_submit_btn" value="등록">
 									    </form>

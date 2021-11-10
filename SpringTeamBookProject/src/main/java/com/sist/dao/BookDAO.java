@@ -49,6 +49,10 @@ public class BookDAO {
 	public BookVO bookNewDetailData(int bno) {
 		return mapper.bookNewDetailData(bno);
 	}
+	public BookCommentVO bookNewCommentCount(int bno) {
+		return mapper.bookNewCommentCount(bno);
+	}
+	
 	// 2-4. 신간 - 관련 도서 출력 기능
 	public List<BookVO> bookNewRelationListData(String genre) {
 		return mapper.bookNewRelationListData(genre);
