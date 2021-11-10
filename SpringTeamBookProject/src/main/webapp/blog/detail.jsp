@@ -58,7 +58,7 @@ $(function(){
                         <ul>
                             <li>${vo.user_id }</li>
                             <li>${vo.dbday }</li>
-                            <li>댓글갯수</li>
+                            <li>${vo.replycount }</li>
                         </ul>
                     </div>
                 </div>
