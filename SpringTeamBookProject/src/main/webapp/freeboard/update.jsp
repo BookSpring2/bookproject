@@ -30,9 +30,9 @@ $(function(){
 		let sendData={"no":no,"page":page,"writer":writer,"subject":subject,"content":content};
 		
 		$.ajax({
-			type:'get',
-			url="../freeboard/update_ok.do",
-			data=sendData,
+			type:'POST',
+			url:"../freeboard/update_ok.do",
+			data:sendData,
 			success:function(res)
 			{
 				location.href="../freeboard/detail.do?no="+no+"&page="+page;
@@ -64,14 +64,14 @@ $(function(){
                 <h4>글쓰기</h4>   
                     <div class="row">
                         <div class="col-lg-12 col-md-12">           
-                   <form method="post" action="../freeboard/update_ok.do">
+                   <!-- <form method="post" action="../freeboard/update_ok.do"> -->
                           	<input type=hidden name=no value="${vo.no }" id="no">
         					<input type=hidden name=page value="${page }" id="page">
                             <div class="row">
 								<div class="col-lg-12">
 									<div class="checkout__input">
 										<p>작성자<span>*</span></p>
-										<input type=text name="writer" value="${vo.writer }" readonly>
+										<input type=text name="writer" id="writer" value="${vo.writer }" readonly>
 									</div>
 								</div>
 							</div>
@@ -89,7 +89,7 @@ $(function(){
                             </div>        
                             <button class="site-btn" id="updateBtn">수정하기</button>
                             <button type="button" class="site-btn" onclick="javascript:history.back()">취소</button>
-                         </form>  
+                        <!--  </form>  -->
                         </div>
 	                 </div>           
             </div>

@@ -168,10 +168,11 @@ public class FreeBoardController {
 	
 	
 	@PostMapping("update_ok.do")
-	public String update_ok(int page,FreeBoardVO vo)
+	@ResponseBody
+	public void update_ok(int page,FreeBoardVO vo)
 	{
 		dao.freeBoardUpdate(vo); // 업데이트
-		return "redirect:../freeboard/detail.do?no="+vo.getNo()+"&page="+page;
+		//return "redirect:../freeboard/detail.do?no="+vo.getNo()+"&page="+page;
 	}
 	
 	
