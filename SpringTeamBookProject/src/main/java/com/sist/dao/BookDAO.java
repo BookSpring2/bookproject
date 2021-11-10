@@ -34,11 +34,11 @@ public class BookDAO {
 
 	
 	// 2. 신간 - 도서 출력 기능
-	public List<BookVO> bookNewListData(Map map) {
+	public List<BookVO> bookNewListData(HashMap<String,Object> map) {
 		return mapper.bookNewListData(map);
 	}
 	// 2-1. 신간 - 페이징 (수정해야함. 카테고리별로 적용이 안됨)
-	public int bookNewTotalPage(Map map) {
+	public int bookNewTotalPage(HashMap<String,Object> map) {
 		return mapper.bookNewTotalPage(map);
 	}
 	// 2-2. 신간 - 도서 출력 기능 + 카테고리 선택 기능
@@ -53,7 +53,11 @@ public class BookDAO {
 	public List<BookVO> bookNewRelationListData(String genre) {
 		return mapper.bookNewRelationListData(genre);
 	}
-
+	//2-5. 신간 - 판매 도서 출력 기능. (최상단, 랜덤)
+	public List<BookVO> bookNewListData_SalesRandom(HashMap<String, Object> map){
+		return mapper.bookNewListData_SalesRandom(map);
+	}
+		
 	// 3-1. 리뷰 입력 기능
 	// public BookCommentVO bookCommentData() {
 	// return mapper.bookCommentData();

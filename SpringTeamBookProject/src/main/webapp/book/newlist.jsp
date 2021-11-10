@@ -203,12 +203,12 @@
                         </div>
                         <div class="row">
                             <div class="product__discount__slider owl-carousel">
-
-                                
+                              
+                                <c:forEach var="svo" items="${saleslist }">
                                 <div class="col-lg-4">
                                     <div class="product__discount__item">
-                                        	<div class="product__discount__item__pic set-bg" data-setbg="">
-                                            <a href="../book/newdetail.do"><img src="../ogani-master/img/product/discount/pd-1.jpg"></a>
+                                        <div class="product__discount__item__pic set-bg" data-setbg="${svo.image}">
+                                            <a href="../book/newdetail.do?bno=${svo.bno }"><img src="${svo.image}"></a>
                                         	<div class="product__discount__item__pic set-bg"></div>
                                             <div class="product__discount__percent">-20%</div>
                                             <ul class="product__item__pic__hover">
@@ -218,104 +218,15 @@
                                             </ul>
                                         </div>
                                         <div class="product__discount__item__text">
-                                            <span>Dried Fruit</span>
-                                            <h5><a href="../book/newdetail.do">Raisin</a></h5>
-                                            <div class="product__item__price">$30.00 <span>$36.00</span></div>
+                                            <span>${svo.writer}</span>
+                                            <h5><a href="../book/newdetail.do?bno=${svo.bno }">${svo.title}</a></h5>
+                                            <div class="product__item__price">${svo.saleprice}원<span>${svo.price}</span></div>
                                         </div>
-                                    </div>
-                                    
+                                    </div>                                    
                                 </div>
-                                
-                                <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg" data-setbg="">
-                                        <a href="../book/newdetail.do"><img src="../ogani-master/img/product/discount/pd-2.jpg"></a>
-                                            <div class="product__discount__percent">-20%</div>
-                                            <ul class="product__item__pic__hover">
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <span>Vegetables</span>
-                                            <h5><a href="../book/newdetail.do">Vegetables’package</a></h5>
-                                            <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg" data-setbg="">
-                                        <a href="../book/newdetail.do"><img src="../ogani-master/img/product/discount/pd-3.jpg"></a>
-                                            <div class="product__discount__percent">-20%</div>
-                                            <ul class="product__item__pic__hover">
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <span>Dried Fruit</span>
-                                            <h5><a href="../book/newdetail.do">Mixed Fruits</a></h5>
-                                            <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg" data-setbg="">
-                                        <a href="../book/newdetail.do"><img src="../ogani-master/img/product/discount/pd-4.jpg"></a>
-                                            <div class="product__discount__percent">-20%</div>
-                                            <ul class="product__item__pic__hover">
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <span>Dried Fruit</span>
-                                            <h5><a href="../book/newdetail.do">Raisin’n’nuts</a></h5>
-                                            <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg" data-setbg="">
-                                        <a href="#"><img src="../ogani-master/img/product/discount/pd-5.jpg"></a>
-                                            <div class="product__discount__percent">-20%</div>
-                                            <ul class="product__item__pic__hover">
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <span>Dried Fruit</span>
-                                            <h5><a href="#">Raisin’n’nuts</a></h5>
-                                            <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg" data-setbg="">
-                                        <a href="../book/newdetail.do"><img src="../ogani-master/img/product/discount/pd-6.jpg"></a>
-                                            <div class="product__discount__percent">-20%</div>
-                                            <ul class="product__item__pic__hover">
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <span>Dried Fruit</span>
-                                            <h5><a href="../book/newdetail.do">Raisin’n’nuts</a></h5>
-                                            <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </c:forEach>
+                                 
+                           
                             </div>
                         </div>
                     </div>

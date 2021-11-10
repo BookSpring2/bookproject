@@ -38,7 +38,7 @@ public interface BookMapper {
 				+"FROM (SELECT bno,title,image,sale,pubdate "
 				+"FROM book_data WHERE pubdate IS NOT NULL AND RANK IS NOT NULL ORDER BY pubdate DESC)) "
 				+ "WHERE num BETWEEN #{start} AND #{end}")
-		public List<BookVO> bookNewListData(Map map);
+		public List<BookVO> bookNewListData(HashMap<String,Object> map);
 		
 		//2-1. 신간 - 페이징
 		@Select("SELECT CEIL(COUNT(*)/12.0) FROM ${table_name} WHERE pubdate IS NOT NULL AND cno2 IS NOT NULL")
@@ -74,6 +74,16 @@ public interface BookMapper {
 		public List<BookVO> bookNewRelationListData(String genre);		
 		//REPLACE(REPLACE(price,','),'원') price
 		
+		//2-5. 신간 - 판매 도서 출력 기능. (최상단, 랜덤)
+		@Select("SELECT bno,title,image,writer,sale,pubdate,price,intprice,genre,cno2,saleprice,num "
+				+"FROM (SELECT bno,title,image,writer,sale,pubdate,price,intprice,genre,cno2,intprice*0.8 AS saleprice,rownum as num "
+				+"FROM (SELECT bno,title,image,sale,writer,pubdate,price,TO_NUMBER(REPLACE(REPLACE(price,','),'원')) intprice,genre,cno2 "
+				+"FROM book_data "
+				+ "WHERE pubdate IS NOT NULL AND cno2 IS NOT NULL AND genre LIKE '%'||#{cate}||'%' "
+				+ "ORDER BY DBMS_RANDOM.RANDOM)) "
+				+ "WHERE num<=10")
+		public List<BookVO> bookNewListData_SalesRandom(HashMap<String,Object> map);
+		// intprice*0.8 AS saleprice
 		
 		
 		

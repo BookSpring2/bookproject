@@ -78,11 +78,12 @@ public class BookController {
 			@RequestMapping("book/newlist.do")
 			public String book_newlist(String page, Model model)
 			{
-				
+				HashMap<String, Object> map=new HashMap<String, Object>();
+				map.put("cate", "");
 				if(page==null)
 					page="1";
 				int curpage=Integer.parseInt(page);
-				Map map=new HashMap();
+				//Map map=new HashMap();
 				int rowSize=12;
 				int start=(rowSize*curpage)-(rowSize-1);
 				int end=(rowSize*curpage);
@@ -98,12 +99,15 @@ public class BookController {
 				if(endPage>totalpage)
 					endPage=totalpage;
 				
+				List<BookVO> saleslist2=dao.bookNewListData_SalesRandom(map);//상단부, 판매중인 도서.
+				
 				model.addAttribute("curpage", curpage);
 				model.addAttribute("totalpage",totalpage);
 				model.addAttribute("BLOCK", BLOCK);
 				model.addAttribute("startPage",startPage);
 				model.addAttribute("endPage", endPage);
 				model.addAttribute("list", list);
+				model.addAttribute("saleslist", saleslist2);
 				model.addAttribute("main_jsp", "../book/newlist.jsp");				
 				return "main/main";
 				
@@ -156,6 +160,7 @@ public class BookController {
 				else {
 					System.out.println("select에 들어간 값은"+select+"입니다.");
 					//System.out.println("데이터형은"+select.getClass().getName()+"입니다.");
+					map.put("cate", "");
 				}
 				
 				if(page==null)
@@ -167,7 +172,10 @@ public class BookController {
 				int end=(rowSize*curpage);
 				map.put("start", start);
 				map.put("end", end);
-				List<BookVO> list=dao.bookNewListData_SelectCate(map);
+				
+				List<BookVO> list=dao.bookNewListData_SelectCate(map); //하단부, 카테고리 선택시 출력. 페이징처리가 필요한 데이터.
+				List<BookVO> saleslist=dao.bookNewListData_SalesRandom(map);//상단부, 판매중인 도서.
+				
 				// 총페이지 
 				map.put("table_name", "book_data");
 				int totalpage=dao.bookNewTotalPage(map);
@@ -184,6 +192,7 @@ public class BookController {
 				model.addAttribute("startPage",startPage);
 				model.addAttribute("endPage", endPage);
 				model.addAttribute("list", list);
+				model.addAttribute("saleslist", saleslist);
 				model.addAttribute("main_jsp", "../book/newlist.jsp");				
 				return "main/main";
 				
