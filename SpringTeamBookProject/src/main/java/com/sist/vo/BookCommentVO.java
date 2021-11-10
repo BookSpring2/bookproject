@@ -2,7 +2,7 @@ package com.sist.vo;
 /*
 
 create table BOOK_DETAIL_COMMENT(
-    dc_num NUMBER PRIMARY KEY, --댓글번호
+    //dc_num NUMBER PRIMARY KEY, --댓글번호
     writer VARCHAR2(100), --글쓴이
     userid VARCHAR2(100), --유저아이디   
     title VARCHAR2(100), --리뷰 타이틀
@@ -15,18 +15,13 @@ create table BOOK_DETAIL_COMMENT(
  * */
 public class BookCommentVO {
 	
-	int dc_num;//detailComment
+	//int dc_num;//detailComment
 	String writer, userid, title, comments;
 	double stars;
 	int dc_bno;
 	String writedate;
 	
-	public int getDc_num() {
-		return dc_num;
-	}
-	public void setDc_num(int dc_num) {
-		this.dc_num = dc_num;
-	}
+	
 	public String getWriter() {
 		return writer;
 	}

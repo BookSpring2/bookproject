@@ -89,11 +89,20 @@ div.input_and_print_comments{
 	margin:0 auto;
 }
 div.input_comments{
-	text-align: right;
+	
 }
-div.input_comments input.comment_text[type=text] {
+div.input_comments input.comment_title[type=text] { /*리뷰 제목*/
 	color: #505050;
-    width: 83%;
+    width: 100%;
+    margin: 10px auto;
+    height: 40px;
+    border: 1px solid #E2E2E2;
+    font-size: bold;
+}
+
+div.input_comments input.comment_text[type=text] { /*리뷰 내용*/
+	color: #505050;
+    width: 100%;
     margin: 10px auto;
     height: 80px;
     border: 1px solid #E2E2E2;
@@ -107,6 +116,7 @@ input.commnet_submit_btn{
 	width:60px;
 	height:35px;
 	float:inherit;
+	float:right;
 }
 
 form.comment_form{
@@ -121,4 +131,17 @@ form input[type=submit].category_menus{
 	border: none;
 	padding:5px 0 5px 0;
 	
+}
+
+.ui-widget-header{
+	background-color:#85bd22 !important;
+}
+span.ui-slider-handle{
+	
+	width:18px;
+	height:18px;
+	border-radius: 9px;
+}
+.ui-state-default, .ui-widget-content .ui-state-default{
+	border: 2px solid #85bd22 !important;
 }

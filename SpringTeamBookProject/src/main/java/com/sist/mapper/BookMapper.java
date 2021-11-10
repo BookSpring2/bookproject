@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
 import com.sist.vo.BookCommentVO;
@@ -41,7 +42,9 @@ public interface BookMapper {
 		public List<BookVO> bookNewListData(HashMap<String,Object> map);
 		
 		//2-1. 신간 - 페이징
-		@Select("SELECT CEIL(COUNT(*)/12.0) FROM ${table_name} WHERE pubdate IS NOT NULL AND cno2 IS NOT NULL")
+		@Select("SELECT CEIL(COUNT(*)/12.0) FROM ${table_name} "
+				+ "WHERE pubdate IS NOT NULL AND cno2 IS NOT NULL "
+				+ "AND genre IS NOT NULL AND genre LIKE '%'||#{cate}||'%'")
 		public int bookNewTotalPage(Map map);
 		
 		//2-2. 신간 - 도서 목록 출력 기능. + 카테고리 선택 기능.
@@ -89,11 +92,12 @@ public interface BookMapper {
 		
 		
 		//3-1. 리뷰 입력 기능
-		//@Select("SELECT * FROM book_detail_comment")
-		//public BookCommentVO bookCommentData();
+		@Insert("INSERT INTO book_detail_comment(dc_bno,title,comments,writer,writedate) "
+				+ "VALUES(#{bno},#{title},#{comments},#{writer},SYSDATE)")
+		public void bookCommentInputData(HashMap<String, Object> map) throws Exception;
 		
 		//3-2. 리뷰 출력 기능
-		@Select("SELECT dc_num,writer,userid,title,comments,stars,writedate,dc_bno "
+		@Select("SELECT writer,userid,title,comments,stars,writedate,dc_bno "
 				+ "FROM book_detail_comment WHERE dc_bno=#{bno}")
 		public List<BookCommentVO> bookCommentListData(int bno);
 		

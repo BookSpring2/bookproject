@@ -1,5 +1,13 @@
 package com.sist.web;
 
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -115,10 +123,21 @@ public class BookController {
 			
 			/* 카테고리 선택 - 목록출력*/			
 			@RequestMapping("book/newlistSelectCate.do")
-			 public String book_menu_category(String page, Model model, int select) {
+			 public String book_menu_category(String page, Model model, Integer select, String form) {
 				HashMap<String, Object> map=new HashMap<String, Object>();
 				
+				//가격 선택
+				String price = form;
+				if(price!=null) {
+					System.out.println("price는"+price+"입니다.");
+				}
+				
 				//카테고리 선택
+				if(select==null) {
+					select=999;
+					System.out.println("선택된 카테고리가 없습니다.");
+				}
+				
 				int whatCate = select;	
 				//System.out.println("whatCate에 들어간 값은"+whatCate+"입니다.");
 				if(whatCate==1) {
@@ -185,7 +204,7 @@ public class BookController {
 				if(endPage>totalpage)
 					endPage=totalpage;
 				
-				
+				model.addAttribute("whatCate",whatCate);
 				model.addAttribute("curpage", curpage);
 				model.addAttribute("totalpage",totalpage);
 				model.addAttribute("BLOCK", BLOCK);
@@ -219,9 +238,6 @@ public class BookController {
 				int point = vo.getIntprice() / 100 * 5; //5퍼센트 기본 적립.
 				model.addAttribute("point",point);
 				
-				//리뷰 입력
-				//BookCommentVO cvo = dao.bookCommentData();
-				
 				//리뷰 데이터 리스트 출력			
 				System.out.println("bno는 "+bno+"입니다.");			
 				List<BookCommentVO> clist = dao.bookCommentListData(bno);//bno를 가져와서 bno==dc_bno인 데이터를 출력.
@@ -233,6 +249,55 @@ public class BookController {
 				return "main/main";
 			}
 		
-		
+			
+			
+			//3-1. 리뷰 입력
+			@RequestMapping("book/newdetail_commentInput.do")
+			public String book_newdetail_commentInput(HttpServletRequest request,HttpServletResponse response) throws Exception {
+				
+				/*리뷰 입력 날짜와 시간 구하기 -> 그냥 오라클 SYSDATE 이용하면 편함.*/
+				/*방법1.
+				LocalDate todayIs = LocalDate.now();
+				LocalTime timeIs = LocalTime.now();				
+				DateTimeFormatter format_todayIs = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+				DateTimeFormatter format_timeIs = DateTimeFormatter.ofPattern("HH:mm:ss");
+				String formated_todayIs = todayIs.format(format_todayIs);
+				String formated_timeIs = timeIs.format(format_timeIs);
+				String resultTime = formated_todayIs.concat(formated_timeIs);	
+				//방법2.
+				Date today_and_time = new Date();
+			    System.out.println(today_and_time);
+			    SimpleDateFormat form = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+			    String result_today_and_time = form.format(today_and_time);
 
+			    System.out.println("Date를 이용한 현재 시간은:"+result_today_and_time+"입니다.");				
+				System.out.println("리뷰를 등록하는 현재 시간은"+formated_todayIs+" "+formated_timeIs+" 입니다.");
+				map.put("writedate", result_today_and_time);
+				*/
+				
+				
+				/*bno,제목,리뷰내용 얻기*/
+				int bno = Integer.parseInt(request.getParameter("bno"));
+				String title = request.getParameter("title");
+				String comments = request.getParameter("comments");
+				String writer = request.getParameter("writer");
+				
+				System.out.println("bno는?"+bno+"입니다.");
+				System.out.println("title은?"+title+"입니다.");
+				
+				/*넣어야할것 : dc_bno, title, comments,writedate*/
+				HashMap<String, Object> map=new HashMap<String, Object>();
+				map.put("bno", bno);
+				map.put("title",title);
+				map.put("comments", comments);
+				map.put("writer",writer);
+				
+				dao.bookCommentInputData(map);
+				
+				
+				String reurl = "redirect:../book/newdetail.do?bno="+Integer.toString(bno); 
+				return reurl;
+			}
+			
+		
 }

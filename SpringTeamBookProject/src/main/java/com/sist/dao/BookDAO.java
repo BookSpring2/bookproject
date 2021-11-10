@@ -58,13 +58,13 @@ public class BookDAO {
 		return mapper.bookNewListData_SalesRandom(map);
 	}
 		
-	// 3-1. 리뷰 입력 기능
-	// public BookCommentVO bookCommentData() {
-	// return mapper.bookCommentData();
-	// }
+	//3-1. 리뷰 입력 기능
+	public void bookCommentInputData(HashMap<String, Object> map) throws Exception{
+		mapper.bookCommentInputData(map);
+	}
 
 	// 3-2. 리뷰 출력 기능
-	public List<BookCommentVO> bookCommentListData(int bno) {
+	public List<BookCommentVO> bookCommentListData(int bno){
 		return mapper.bookCommentListData(bno);
 	}
 
