@@ -128,6 +128,12 @@ public class ShopRestController {
 			
 			return json;
 	}
+	@RequestMapping(value="shop/korea_city.do",produces="text/plain;charset=UTF-8")
+	public String korea_city() {
+		String json="";
+		return json;
+	}
+
 
 
 }
