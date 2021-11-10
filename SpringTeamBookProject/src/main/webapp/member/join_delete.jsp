@@ -99,7 +99,6 @@ button{
 	                            	<div class="checkout__input">
 	                                	<p>비밀번호<span>*</span></p>
 	                                    <input type="password" name=pwd id=pwd >
-		                                <input type="hidden" name=user_id id=id readonly>
 	                               </div>
 	                            </div>
 

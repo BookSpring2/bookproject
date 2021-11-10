@@ -360,7 +360,7 @@ button{
 	                                	<p>선호장르<span>*</span></p>
 	                               </div>
 	                               
-	                               	<div class="checkout__input" id="genre" class="genreBox">
+<!-- 	                               	<div class="checkout__input" id="genre" class="genreBox">
 				                        <input type="checkbox" name="genre" value="국내도서">&nbsp;국내도서&nbsp;
 				                        <input type="checkbox" name="genre" value="외국도서">&nbsp;외국도서&nbsp;
 				                        <input type="checkbox" name="genre" class="genreBox" value="EBook">&nbsp;EBook&nbsp;
@@ -374,6 +374,25 @@ button{
 				                        <input type="checkbox" name="genre" class="genreBox" value="참고서">&nbsp;참고서&nbsp;
 				                        <input type="checkbox" name="genre" class="genreBox" value="요리">&nbsp;요리&nbsp;
 			                        </div>
+			                         -->
+			                         
+			                      <div class="checkout__input" id="genre" class="genreBox">
+			                        
+			                      <input type='hidden' id='genreCheck' value="${vo.genre}">
+							      <input type="checkbox" name="genre" class="genreBox" id="국내도서" value="국내도서">&nbsp;국내도서&nbsp;
+							      <input type="checkbox" name="genre" class="genreBox" id="외국도서" value="외국도서">&nbsp;외국도서&nbsp;
+							      <input type="checkbox" name="genre" class="genreBox" id="EBook" value="EBook">&nbsp;EBook&nbsp;
+							      <input type="checkbox" name="genre" class="genreBox" id="소설시" value="소설/시">&nbsp;소설/시&nbsp;
+							      <input type="checkbox" name="genre" class="genreBox" id="경제경영" value="경제/경영">&nbsp;경제/경영&nbsp;
+							      <br>
+							      <input type="checkbox" name="genre" class="genreBox" id="에세이" value="에세이">&nbsp;에세이&nbsp;
+							      <input type="checkbox" name="genre" class="genreBox" id="인문" value="인문">&nbsp;인문&nbsp;
+							      <input type="checkbox" name="genre" class="genreBox" id="어린이" value="어린이">&nbsp;어린이&nbsp;
+							      <input type="checkbox" name="genre" class="genreBox" id="외국어" value="외국어">&nbsp;외국어&nbsp;
+							      <input type="checkbox" name="genre" class="genreBox" id="참고서" value="참고서">&nbsp;참고서&nbsp;
+							      <input type="checkbox" name="genre" class="genreBox" id="요리" value="요리">&nbsp;요리&nbsp;
+
+			                      </div>
 			                        
 	                            </div>
 	                            

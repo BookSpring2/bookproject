@@ -141,20 +141,16 @@ public class MemberController {
 	}
 	
 	// 회원탈퇴
-	/*
 	@PostMapping("join_delete_ok.do")
 	public String member_join_delete_ok(MemberVO vo,HttpSession session,Model model)
 	{
+		System.out.println(vo.getPwd());
+		String id=(String)session.getAttribute("id");
+		vo.setUser_id(id);
 		boolean bCheck=dao.memberJoinDelete(vo);
-		if(bCheck==true)
-		{
-			session.setAttribute("name", vo.getName());
-			session.setAttribute("id", vo.getUser_id());
-			session.setAttribute("pwd", vo.getPwd());
-		}
 		model.addAttribute("bCheck", bCheck);
 		return "member/join_delete_ok";
 	}
-	*/
+
 	
 }

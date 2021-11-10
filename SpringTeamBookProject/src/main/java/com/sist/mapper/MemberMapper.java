@@ -18,15 +18,15 @@ public interface MemberMapper {
 	
 	// regdate 컬럼
 	@Insert("INSERT INTO book_member VALUES("
-			+"#{user_id},#{pwd},#{name},#{sex},#{birthday},#{tel},#{addr1},#{addr2},'n',#{email},#{genre},'family',SYSDATE,#{post},0)")
+			+"#{user_id},#{pwd},#{name},#{sex},#{birthday},#{tel},#{addr1},#{addr2},'n',#{email},#{genre},'family',SYSDATE,#{post},1000,book_member_memNum_seq.nextval)")
 	public void memberInsert(MemberVO vo);
 	
 	// 2. 로그인 처리
 	// ID 존재여부 확인 (memberIdCount 재사용)
 	// 비밀번호 체크
 	@Select("SELECT pwd,name,admin,membership FROM book_member "
-			+"WHERE user_id=#{id}")
-	public MemberVO memberGetPassword(String id);
+			+"WHERE user_id=#{user_id}")
+	public MemberVO memberGetPassword(String user_id);
 	
 	// 3-1. 아이디찾기
 	@Select("SELECT COUNT(*) FROM book_member WHERE tel=#{tel}")
@@ -49,9 +49,11 @@ public interface MemberMapper {
 	public void memberJoinUpdate(MemberVO vo);
 	
 	//회원탈퇴
-	/*
-	@Delete("DELETE FROM book_member WHERE user_id=#{id}")
-	public MemberVO memberDelete(String id);
-	*/
+	@Delete("DELETE FROM book_member WHERE user_id=#{user_id}")
+	public void memberDelete(String user_id);
 	
+	/*
+	@Delete("DELETE FROM book_freeboard WHERE writer=#{writer}")
+	public void freeboardWriterDelete(String writer);
+	*/
 }

@@ -36,7 +36,7 @@ $(function(){
   		//3 체크해주기
 		var i;
 		for(i=0; i<100; i++){
-			$("input:checkbox[id="+ strArray[i] +"]").attr("checked", true);
+			$("input:checkbox[id="+ strArray[i].replace('/','') +"]").attr("checked", true);
 		}
 	}
 	
@@ -320,8 +320,8 @@ button{
 							      <input type="checkbox" name="genre" class="genreBox" id="국내도서" value="국내도서">&nbsp;국내도서&nbsp;
 							      <input type="checkbox" name="genre" class="genreBox" id="외국도서" value="외국도서">&nbsp;외국도서&nbsp;
 							      <input type="checkbox" name="genre" class="genreBox" id="EBook" value="EBook">&nbsp;EBook&nbsp;
-							      <input type="checkbox" name="genre" class="genreBox" id="소설/시" value="소설/시">&nbsp;소설/시&nbsp;
-							      <input type="checkbox" name="genre" class="genreBox" id="경제/경영" value="경제/경영">&nbsp;경제/경영&nbsp;
+							      <input type="checkbox" name="genre" class="genreBox" id="소설시" value="소설/시">&nbsp;소설/시&nbsp;
+							      <input type="checkbox" name="genre" class="genreBox" id="경제경영" value="경제/경영">&nbsp;경제/경영&nbsp;
 							      <br>
 							      <input type="checkbox" name="genre" class="genreBox" id="에세이" value="에세이">&nbsp;에세이&nbsp;
 							      <input type="checkbox" name="genre" class="genreBox" id="인문" value="인문">&nbsp;인문&nbsp;
