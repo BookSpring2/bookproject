@@ -93,8 +93,9 @@ $( function() {
 							</form>
 						</div><!-- class="sidebar__item" -->
                     
-                    <!--
+                    
                     <div class="sidebar__item">
+                    <!--
                     <h4>가격</h4>
                     	<div class="price-range-wrap">
                     	<form name="form" action="newlistSelectCate.do" method="post">
