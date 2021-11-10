@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sist.dao.*;
 import com.sist.vo.*;
@@ -142,6 +143,10 @@ public class FreeBoardController {
 	    	model.addAttribute("fList", fList);
 	    	model.addAttribute("sList", sList);
     	}
+		// 댓글
+		List<FreeBoardReplyVO> list=dao.freeBoardReplyListData(no);
+		model.addAttribute("list", list);
+		
 		model.addAttribute("vo", vo);
 		model.addAttribute("page", page);
 		model.addAttribute("main_jsp", "../freeboard/detail.jsp");
@@ -161,11 +166,10 @@ public class FreeBoardController {
 		return "main/main";
 	}
 	
+	
 	@PostMapping("update_ok.do")
-	public String update_ok(FreeBoardVO vo,int page,HttpSession session)
+	public String update_ok(int page,FreeBoardVO vo)
 	{
-		String writer=(String)session.getAttribute("id");
-		vo.setwriter(writer);
 		dao.freeBoardUpdate(vo); // 업데이트
 		return "redirect:../freeboard/detail.do?no="+vo.getNo()+"&page="+page;
 	}
@@ -180,6 +184,8 @@ public class FreeBoardController {
 		dao.freeBoardDelete(no);
 	}
 	
+	
+	
 	// Search
 	@PostMapping("find.do")
 	public String find(String ss,String[] fs, Model model)
@@ -193,5 +199,64 @@ public class FreeBoardController {
 		model.addAttribute("list", list);
 		model.addAttribute("main_jsp", "../freeboard/find.jsp");
 		return "main/main";
+	}
+	
+	
+	
+	// Reply Insert
+	@PostMapping("reply_insert.do")
+	public String reply_insert(int page,FreeBoardReplyVO vo, HttpSession session, RedirectAttributes attr)
+	{
+		String reply_id=(String)session.getAttribute("reply_id");
+		String name=(String)session.getAttribute("name");
+		vo.setReply_id(reply_id);
+		vo.setName(name);
+		dao.freeBoardReplyInsert(vo);
+		attr.addAttribute("no",vo.getBno());
+		attr.addAttribute("page",page);
+		return "redirect:../freeboard/detail.do";
+	}
+	
+	
+	
+	// Reply Update
+	@PostMapping("reply_update.do")
+	public String reply_update(FreeBoardReplyVO vo,int page, RedirectAttributes attr)
+	{
+		dao.freeBoardReplyUpdate(vo);
+		attr.addAttribute("no",vo.getBno());
+		attr.addAttribute("page",page);
+		return "redirect:../freeboard/detail.do";
+	}
+	
+	
+	
+	// Reply Insert Transaction
+	@PostMapping("reply_transaction_insert.do")
+	public String reply_transaction_insert(int pno, int bno, int page, String msg, HttpSession session, RedirectAttributes attr)
+	{
+		FreeBoardReplyVO vo=new FreeBoardReplyVO();
+		String reply_id=(String)session.getAttribute("reply_id");
+		String name=(String)session.getAttribute("name");
+		vo.setMsg(msg);
+		vo.setReply_id(reply_id);
+		vo.setName(name);
+		vo.setBno(bno);
+		dao.freeBoardReplyTransactionInsert(pno, vo);
+		attr.addAttribute("no",bno);
+		attr.addAttribute("page", page);
+		return "redirect:../freeboard/detail.do";
+	}
+	
+	
+	
+	// Reply Delete
+	@GetMapping("reply_delete.do")
+	public String reply_delete(int no,int bno,int page, RedirectAttributes attr)
+	{
+		dao.freeBoardReplyDelete(no);
+		attr.addAttribute("no",bno);
+		attr.addAttribute("page", page);
+		return "redirect:../freeboard/detail.do";
 	}
 }

@@ -63,6 +63,7 @@ $(function(){
 								</div>
 							</div>
 						 -->
+						 <input type="hidden" type="text" name="writer">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="checkout__input">
@@ -81,7 +82,7 @@ $(function(){
 								<button type="button" class="btn" style="background-color:#83AD2E;color:white" id="remove">삭제</button>             		
 								<table class="table" id="fileView"></table>
 							</div>
-                            <button class="site-btn">작성하기</button>
+                            <button class="site-btn" id="insert">작성하기</button>
                             <button type="button" class="site-btn" onclick="javascript:history.back()">취소</button>
                          <!--  <input size="10" class="site-btn" onclick="javascript:history.back()" value="취소"> -->  
                         </form>                 

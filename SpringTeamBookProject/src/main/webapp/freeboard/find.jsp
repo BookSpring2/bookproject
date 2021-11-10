@@ -38,21 +38,24 @@
 
 <!-- 검색창 & 글쓰기 버튼 -->
 <div class="container">
- <div class="row" style="margin:50px 0px 50px 370px; ;">
-	<div class="blog__sidebar__search" style="margin:0px 50px;">
+ <div class="row" style="margin:50px 0px 50px 550px;">
 		<form method="post" action="../freeboard/find.do">
+		<div class="row">
 		 <select name="fs">
             <option value="S">제목</option>
             <option value="C">내용</option>
             <option value="N">닉네임</option>
-        </select>
-			<input type="text" name="ss" placeholder="검색어를 입력하세요." style="width:400px; margin-left:10px;">
-			<button type="submit"><span class="icon_search"></span></button>
+         </select>
+         <div class="checkout__input" style="margin:0px 10px;">
+			<input type="text" name="ss" placeholder="검색어를 입력하세요." style="width:280px; height:42px;">
+		 </div>
+		<button type="submit" class="btn"style="background-color:#83AD2E; height:42px;">검색</button>
+		</div>
 		</form>
-	</div>
-	<a href="insert.do"><button type="button" class="btn"style="background-color:#83AD2E; height:43px;">글쓰기</button></a>	 
+		<div style="margin-left:10px;"></div>
+	<a href="insert.do"><button type="button" id="loginCheck" class="btn"style="background-color:#83AD2E; height:42px;">글쓰기</button></a>	 
 	<div style="margin-left:10px;"></div>
-	<a href="list.do?page=${startPage }"><button type="button" class="btn"style="background-color:#83AD2E; height:43px;">목록</button></a>
+	<a href="list.do?page=${startPage }"><button type="button" class="btn"style="background-color:#83AD2E; height:42px;">목록</button></a>
  </div>
 </div>
 

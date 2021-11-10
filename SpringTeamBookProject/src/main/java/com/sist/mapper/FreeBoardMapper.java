@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
 import com.sist.vo.FreeBoardVO;
+import com.sist.vo.FreeBoardReplyVO;
 public interface FreeBoardMapper {
 
 	// List
@@ -77,7 +78,69 @@ public interface FreeBoardMapper {
 			+ "</script>"
 	})
 	public List<FreeBoardVO> freeBoardFind(Map map);
-	// Session
 	
 	// Comments
+	// 댓글 작성
+	@Insert("INSERT INTO book_freeBoardReply(no,bno,reply_id,msg,group_id) VALUES( "
+			+"book_reply_seq.nextval,#{bno},#{id},#{msg},"
+			+"(SELECT NVL(MAX(group_id)+1,1) FROM book_freeBoardReply))")
+	public void freeBoardReplyInsert(FreeBoardReplyVO vo);
+	
+	// 댓글 출력
+	@Select("SELECT no,bno,reply_id,msg,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday, group_tab "
+			+"FROM book_freeBoardReply "
+			+"WHERE bno=#{bno}" 
+			+"ORDER BY group_id DESC, group_step ASC")
+	public List<FreeBoardReplyVO> freeBoardReplyListData(int bno);
+	
+	// 댓글 수정
+	@Update("UPDATE book_freeBoardReply SET "
+			+"WHERE msg=#{msg} "
+			+"WHERE no=#{no}")
+	public void freeBoardReplyUpdate(FreeBoardReplyVO vo);
+	
+	// 1. 댓글 정보 읽기
+	@Select("SELECT group_id,group_step,group_tab "
+			+"FROM book_freeBoardReply "
+			+"WHERE no=#{no}")
+	public FreeBoardReplyVO freeBoardReplyInfoData(int no);
+	
+	// 2. Step 증가
+	@Update("UPDATE book_freeBoardReply SET "
+			+"group_step=group_step+1 "
+			+"WHERE group_id=#{group_id} AND group_step>#{group_step}")
+	public void freeBoardReplyStepIncrement(FreeBoardReplyVO vo);
+	
+	// 3. 댓글 작성 Transaction
+	@Insert("INSERT INTO book_freeBoardReply(no,bno,reply_id,msg,group_id,group_step, group_tab,root) "
+			+"VALUES(book_reply_seq.nextval,#{bno},#{id},#{msg},"
+			+"#{group_id},#{group_step},#{group_tab},#{root})")
+	public void freeBoardReplyTransactionInsert(FreeBoardReplyVO vo);
+	
+	// 4. depth 증가
+	@Update("UPDATE book_freeBoardReply SET "
+			+"detph=detph+1 "
+			+"WHERE no=#{no}")
+	public void freeBoardReplyDepthIncrement(int no);
+	
+	// 댓글 삭제
+	// 1. depth, root 읽기
+	@Select("SELECT depth,root "
+			+"FROM book_freeBoardReply "
+			+"WHERE no=#{no}")
+	public FreeBoardReplyVO freeBoardReplyDepthInfoData(int no);
+	
+	// 2. 댓글 삭제
+	@Delete("DELETE FROM book_freeBoardReply "
+			+"WHERE no=#{no}")
+	public void freeBoardReplyDelete(int no);
+	@Update("UPDATE book_freeBoardReply SET "
+			+"msg='삭제된 댓글입니다.' "
+			+"WHERE no=#{no}")
+	public void freeBoardReplyMsgUpdate(int no);
+	@Update("UPDATE book_freeBoardReply SET "
+			+"depth=depth-1 "
+			+"WHERE no=#{no}")
+	public void freeBoardReplyDepthDecrement(int no);
+		
 }

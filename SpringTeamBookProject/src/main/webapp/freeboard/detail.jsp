@@ -43,9 +43,7 @@ $(function(){
 						<h2>${vo.subject }</h2>
 						<ul>
 							<li>By ${vo.writer }</li>
-							<li><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd"/></li>
 							<li>8 Comments</li>
-							<li>조회수 ${vo.hit }</li>
 						</ul>
 							<input type=hidden name=no value="${vo.no }" id="no">
  							<input type=hidden name=page value="${page }" id="page">
@@ -59,9 +57,25 @@ $(function(){
 		<div class="container">
 			<div class="row">
 				<table class="table">
+					<tr>
+						<th width="20%" class="text-center">제목</th>
+						<td colspan="3" width="80%">${vo.subject }</td>
+					</tr>
+					<tr>
+						<th width=20% class="text-center">번호</th>
+						<td width=30% class="text-center">${vo.no }</td>
+						<th width=20% class="text-center">작성일</th>
+						<td width=30% class="text-center"><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd"/></td>			
+					</tr>
+					<tr>
+						<th width=20% class="text-center">이름</th>
+						<td width=30% class="text-center">${vo.writer }</td>
+						<th width=20% class="text-center">조회수</th>
+						<td width=30% class="text-center">${vo.hit }</td>
+					</tr>
 					<c:if test="${vo.filecount>0 }">
 						<tr>
-							<th width=20% >첨부파일</th>
+							<th width=20% class="text-center">첨부파일</th>
 							<td colspan="3" class="text-left">
 								<ul>
 									<c:forEach var="fn" items="${fList }" varStatus="s">
@@ -78,12 +92,14 @@ $(function(){
 					</tr>
 					<tr>
 						<td colspan="4" class="text-right">
+						<c:if test="${sessionScope.id!=null }">
+						<c:if test="${sessionScope.id==vo.writer }">
 						<a href="update.do?no=${vo.no }&page=${page}">
 							<button class="btn" style="background-color:#83AD2E;color:white">수정</button>
-						</a>
-						
+						</a>			
 							<button class="btn" style="background-color:#83AD2E;color:white" id="delBtn">삭제</button>
-							
+						</c:if>
+						</c:if>	
 						<a href="list.do?page=${page }">
 							<button class="btn" style="background-color:#83AD2E;color:white">목록</button>
 						</a>
@@ -91,7 +107,6 @@ $(function(){
 					</tr>
 				</table>
 			</div>
-		</div>
 	</section>
 </body>
 </html>
