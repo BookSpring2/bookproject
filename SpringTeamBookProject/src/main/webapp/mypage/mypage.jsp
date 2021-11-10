@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
 <section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg" style="background-image: url(&quot;../img/breadcrumb.jpg&quot;);">
@@ -25,68 +27,88 @@
    <section class="product spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-5">
-                    <div class="sidebar">
-                        <div class="sidebar__item">
-                            <h4>마이페이지 메뉴</h4>
-                            <ul>
-                                <li><a href="../mypage/cart_list.do">장바구니</a></li>
-                                <li><a href="../mypage/order_list.do">주문내역</a></li>
-                                <li><a href="#">반품/교환 신청 및 조회</a></li>
-								<li><a href="#">취소 주문 내역</a></li>
-					            <li><a href="#">Organi포인트</a></li>
-								<li><a href="#">나의 정보</a></li>
-								<li><a href="#">나의 블로그</a></li>
-								<li><a href="#">나의 문의내역</a></li>
-                            </ul>
-                        </div>
-                     </div>
-                 </div>
+              <table width=100% cellpadding="0" cellspacing="0" align="center">
+              <tbody>
+              <tr>
+                <td>
+                  <a href="../mypage/mypage.do"><img src="../img/mypage.gif"></a>
+                </td>
+                <td width="1000" background="../img/mypage2.gif" style="padding:0 0 0 30px; font-weight:bold;font-size:16px;letter-spacing:-1px;color:#C2EDF3;">
+                  <img src="../img/mypage3.gif" align="top">
+                  <span style="color:fff;">땡떙땡님</span>
+                  오늘도 즐겁고 행복한 하루 보내세요
+                  <img src="../img/mypage4.gif" align="top">
+                </td>
+              </tr>
+              </tbody>
+              </table>
+            </div>
+            <div style="height:30px"></div>
+              <div class="row">
+                
+                  <table width=100% cellpadding="0" cellspacing="0" border="0" width="960">
+                    <tbody>
+                      <tr>
+                        <td width="187" valign="top">
+                          <div>
+                            
+                          </div>
+                          <div>
+                            <dl>
+                              <dt>
+                                나의 오가니 등급
+                                <strong>
+                                  <span>family</span>
+                                </strong>
+                              </dt>
+                            </dl>
+                          </div>
+                          <div>
+                            <dl>
+                              <dt>주문내역</dt>
+                              <dd>
+                                <ul>
+                                  <li><a href="../mypage/cart_list.do">장바구니</a></li>
+                                  <li><a href="../mypage/order_list.do">주문내역</a></li>
+                                  <li><a href="#">반품/교환 신청 및 조회</a></li>
+                                  <li><a href="#">취소 주문 내역</a></li>
+                                </ul>
+                              </dd>
+                              <dt>계좌내역</dt>
+                              <dd>
+                                <ul>
+                                  <li><a href="#">Organi포인트</a></li>
+                                  <li><a href="#">쿠폰</a></li>
+                                </ul>
+                              </dd>
+                              <dt>나의 정보</dt>
+                              <dd>
+                                <ul>
+                                  <li><a href="../member/join_update.do">나의 정보</a></li>
+                                  <li><a href="#">회원탈퇴</a></li>
+                                </ul>
+                              </dd>
+                              <dt>내 블로그</dt>
+                              <dd>
+                                <ul>
+                                  <li><a href="#">나의 블로그</a></li>
+                                </ul>
+                              </dd>
+                            </dl>
+                          </div>
+                        </td>
+                        <td width="586" valign="top" style="padding:10px auto;" align="center">
+                        
+                        </td>
+                        <td width="187" valign="top">
+                        
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                 
               </div>
            </div>
      </section>
-<div class="container">
-  <div class="row">
-    <table class="table">
-      <div class="col-sm-3">
-        <table class="table">
-          <!-- 회원등급 -->
-          <!-- 4단계로 나뉘어서 해당 회원 등급 색 진하게 표시 -->
-          <!-- @개월간 순수 주문금액이 @@만원 이상일 경우 다음달 1일 @@회원 등급이 됩니다 -->
-          <!-- 등급 자세히보기 누르면 등급 상세설명 -->
-        </table>
-        <table class="table">
-          <!-- 1. 주문내역
-          		> 주문내역/ 배송조회
-          		> 반품/ 교환 신청 및 조회
-          		> 취소 주문내역
-           -->
-          <!-- 2. 계좌내역
-          		> Organi포인트 (적립금 포함)
-          		> 쿠폰
-           -->
-          <!-- 3. 나의정보
-          		> 회원정보
-          		> 회원탈퇴
-           -->
-          <!-- 4. 블로그
-          		> 포스트/리뷰/메모
-          		> 리스트
-           -->
-          <!-- 기타
-          		> 나의 1:1 문의내역
-          		> 나의 리뷰/한줄평
-           -->
-        </table>
-      </div>
-      <div class="col-sm-9">
-      	<!-- 
-      		최근 주문내역
-      		주문일자 / 주문번호 / 주문내역 / 주문상태 / 배송
-      	 -->
-      </div>
-    </table>
-  </div>
-</div>
 </body>
 </html>

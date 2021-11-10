@@ -78,44 +78,57 @@ font-family: SF Pro KR, SF Pro Display, SF Pro Icons, AOS Icons, Apple Gothic, H
 	height : 40px;
 }
 </style>
+
 </head>
 <body>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
+    let i=0;
+    
+	cookiedata = document.cookie;   
+	/* if ( cookiedata.indexOf("maindiv=done") < 0 ){     */ 
+		if(i==0)
+			{
+	    document.all['layer_popup'].style.display = "";
+		//$("#layer_popup").css("visibility","visible");
+	      }
+	else {
+	    document.all['layer_popup'].style.display = "none";
+		//$("#layer_popup").css("visibility","hidden");
+	}
+
 function setCookie( name, value, expiredays ) {
     var todayDate = new Date();
-    todayDate.setDate( todayDate.getDate() + expiredays ); 
+    todayDate.setDate(todayDate.getDate() + expiredays ); 
     document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
 }
 function closePop() {
+	//alert("1")
     if ( document.pop_form.chkbox.checked ){
-        setCookie( "maindiv", "done" , 1 );
+    	//alert("12")
+        setCookie( "maindiv", "done" , 1);
+    	i=1;
     }
-    document.all['layer_popup'].style.visibility = "hidden";
+	document.all['layer_popup'].style.display = "none";
 }
 </script>
-<script type="text/javascript">
-cookiedata = document.cookie;   
-if ( cookiedata.indexOf("maindiv=done") < 0 ){     
-    document.all['layer_popup'].style.visibility = "visible";
-}
-else {
-    document.all['layer_popup'].style.visibility = "hidden";
-}
-</script>
-<div class="layerPopup" id="layer_popup" style="visibility: visible;">
+<div class="layerPopup" id="layer_popup" style="display:;">
+<!-- <div class="layerPopup" id="layer_popup" style="visibility: visible;"> -->
     <div class="layerBox">
         <h4 class="title">Organi 공지사항</h4>
         <div class="cont">
             <p>
-<img src="../img/popup.jpg" width=400 height=550 usemap="#popup" alt="event page">
+			  <img src="../img/popup.jpg" width=400 height=550 usemap="#popup" alt="event page">
             </p>
         </div>
-          <form name="pop_form">
-        <div id="check" ><input type="checkbox" name="chkbox" value="checkbox" id='chkbox' >
+        <form name="pop_form">
+        <div id="check" ><input type="checkbox" name="chkbox" value="checkbox" id="chkbox" >
         <label for="chkbox">&nbsp;&nbsp;오늘 하루동안 보지 않기</label></div>
 		<div id="close" ><a href="javascript:closePop();">닫기</a></div>    
 		</form>
 	</div>
 </div>
+
+
 </body>
 </html>
