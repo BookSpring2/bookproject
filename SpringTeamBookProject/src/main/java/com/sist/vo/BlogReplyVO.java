@@ -4,6 +4,8 @@ public class BlogReplyVO {
 	private int no,bno;
     private String user_id,name,msg,dbday;
     private Date regdate;
+    
+    
 	public int getNo() {
 		return no;
 	}

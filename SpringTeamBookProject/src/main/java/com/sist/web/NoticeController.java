@@ -130,6 +130,7 @@ public class NoticeController {
 		NoticeVO vo=dao.NoticeDetailData(no);
 		String name=(String)session.getAttribute("name");
 		vo.setName(name);
+		System.out.println(session.getAttribute("name"));
 		if(vo.getImagecount()>0)
 		{
 			List<String> fList=new ArrayList<String>();

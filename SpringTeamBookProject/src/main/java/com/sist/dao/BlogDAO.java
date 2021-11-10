@@ -61,4 +61,19 @@ public class BlogDAO {
 	{
 		mapper.BlogReplyInsert(vo);
 	}
+	
+	public void BlogReplyDelete2(int bno)
+	{
+		mapper.BlogReplyDelete2(bno);
+	}
+	
+	public void BlogReplyCountIncrement(int no)
+	{
+		mapper.BlogReplyCountIncrement(no);
+	}
+	
+	public void BlogReplyCountDecrement(int no)
+	{
+		mapper.BlogReplyCountDecrement(no);
+	}
 }

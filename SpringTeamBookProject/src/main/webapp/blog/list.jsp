@@ -101,7 +101,7 @@
                                 <div class="blog__item__text">
                                     <ul>
                                         <li><i class="fa fa-calendar-o"></i> ${vo.dbday }</li>
-                                        <li><i class="fa fa-comment-o"></i> 5</li>
+                                        <li><i class="fa fa-comment-o"></i> ${vo.replycount }</li>
                                     </ul>
                                     <h3>${vo.subject }</h3>
                                     <p style="margin-top:10px;">${vo.content } </p>

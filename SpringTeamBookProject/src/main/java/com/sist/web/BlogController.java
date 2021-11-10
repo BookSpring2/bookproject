@@ -80,10 +80,14 @@ public class BlogController {
 	@PostMapping("insert_ok.do")
 	public String blog_insert_ok(BlogVO vo,HttpSession Session) throws Exception
 	{
-		String user_id=(String)Session.getAttribute("name");
+		String user_id=(String)Session.getAttribute("id");
 		vo.setUser_id(user_id);
 		String membership=(String)Session.getAttribute("membership");
 		vo.setMembership(membership);
+		String name=(String)Session.getAttribute("name");
+		vo.setName(name);
+		System.out.println(vo.getUser_id());
+		System.out.println(vo.getName());
 		String path="c:\\download\\";
 		File dir=new File(path);
 		
@@ -123,8 +127,10 @@ public class BlogController {
 	public String blog_detail(int no, int page, Model model,HttpSession session)
 	{
 		BlogVO vo=dao.BlogDetailData(no);
+		String user_id=(String)session.getAttribute("id");
+		vo.setName(user_id);
 		String name=(String)session.getAttribute("name");
-		vo.setUser_id(name);
+		vo.setName(name);
 		List<BlogReplyVO> list=dao.BlogReplyListData(no);
 		
 		model.addAttribute("list",list);
@@ -157,12 +163,13 @@ public class BlogController {
 	
 	@GetMapping("delete_ok.do")
 	@ResponseBody
-	public void blog_delete_ok(int no)
+	public void blog_delete_ok(int no, BlogReplyVO vo)
 	{
 		dao.BlogDelete(no);
+		int dno=no;
+		// 게시글 삭제시 댓글도 같이 삭제
+		dao.BlogReplyDelete2(dno);
 	}
-	
-	
 	
 	@PostMapping("replyinsert.do")
     public String blogreply_insert(int page,BlogReplyVO vo,RedirectAttributes attr,HttpSession session)
@@ -171,6 +178,7 @@ public class BlogController {
     	String name=(String)session.getAttribute("name");
     	vo.setUser_id(id);
     	vo.setName(name);
+    	dao.BlogReplyCountIncrement(vo.getBno());
     	dao.BlogReplyInsert(vo);
     	attr.addAttribute("no", vo.getBno());
     	attr.addAttribute("page", page);
@@ -185,8 +193,9 @@ public class BlogController {
     	return "redirect:../blog/detail.do";
     }
     @GetMapping("replydelete.do")
-    public String blogreply_delete(int no,int bno,int page,RedirectAttributes attr)
+    public String blogreply_delete(int no,int bno,int page,BlogReplyVO vo,RedirectAttributes attr)
     {
+    	dao.BlogReplyCountDecrement(vo.getBno());
     	dao.BlogReplyDelete(no);
     	attr.addAttribute("no", bno);
     	attr.addAttribute("page", page);

@@ -19,7 +19,7 @@
 	font-size: 14px;
 	color: #ffffff;
 	width:90px;
-	padding: 9px 26px 9px;
+	padding: 8px 20px 8px;
 	background: #7fad39;
 	border: none;"
 }
@@ -147,7 +147,8 @@ $(function(){
                     <tr>
 			        <td colspan="4" class="text-right">
 			        <input type=hidden name=no id=no value="${vo.no }">
-			        <input type=hidden name=name id=name value="${vo.user_id }">
+			        <input type=hidden name=name id=name value="${vo.name }">
+			        <input type=hidden name=user_id id=id value="${vo.user_id }">
 			        <input type=hidden name=page id=page value="${curpage }">
 			        <c:set var="user_id" value="${vo.user_id }" />
 			        <c:if test="${sessionScope.name==user_id}">
@@ -163,13 +164,14 @@ $(function(){
 			      </tr>
 			     </table>
 			     </div>
+			     <hr>
+			     <div class="col-lg-12">
+                <jsp:include page="../blog/replylist.jsp"></jsp:include>
+                </div>
                 </div>
                 
             </div>
-            <div class="col-lg-12">
-            	<br>
-                <jsp:include page="../blog/replylist.jsp"></jsp:include>
-                </div>
+            
         </div>
     </section>
     <!-- Blog Details Section End -->

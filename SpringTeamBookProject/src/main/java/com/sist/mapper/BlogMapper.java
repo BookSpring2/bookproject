@@ -22,9 +22,9 @@ CATEGORY NOT NULL VARCHAR2(500)
 TAG      NOT NULL VARCHAR2(500)
  */
 public interface BlogMapper {
-	@Select("SELECT no,subject,content,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,num "
-			+"FROM (SELECT no,subject,content,regdate,rownum as num "
-			+"FROM (SELECT no,subject,content,regdate "
+	@Select("SELECT no,subject,content,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,name,num,replycount "
+			+"FROM (SELECT no,subject,content,regdate,name,replycount,rownum as num "
+			+"FROM (SELECT no,subject,content,regdate,name,replycount "
 			+"FROM book_blog ORDER BY no DESC)) "
 			+"WHERE num BETWEEN #{start} AND #{end}")
 	public List<BlogVO> BlogList(Map map);
@@ -36,10 +36,11 @@ public interface BlogMapper {
 		     statement="SELECT NVL(MAX(no)+1,1) as no FROM book_blog")
 	
 	@Insert("INSERT INTO book_blog VALUES("
-		  +"#{no},#{user_id},#{subject},#{image},#{content},SYSDATE,#{category},#{tag},#{membership})")
+		  +"#{no},#{user_id},#{subject},#{image},#{content},SYSDATE,#{category},#{tag},#{membership},#{name},0)")
 	public void BlogInsert(BlogVO vo);
 	
-	@Select("SELECT no,user_id,subject,content,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday,category,tag,membership "
+	
+	@Select("SELECT no,user_id,subject,content,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday,category,tag,membership,name,replycount "
 			+"FROM book_blog WHERE no=#{no}")
 	public BlogVO BlogDetailData(int no);
 	
@@ -57,7 +58,8 @@ public interface BlogMapper {
 			 +"#{no},#{user_id},#{bno},#{name},#{msg})")
 	public void BlogReplyInsert(BlogReplyVO vo);
 	  
-	  
+	
+	
 	@Select("SELECT no,user_id,bno,name,msg,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday "
 			 +"FROM book_blogreply "
 			 +"WHERE bno=#{bno}"  
@@ -74,4 +76,13 @@ public interface BlogMapper {
 			 +"WHERE no=#{no}")
 	public void BlogReplyDelete(int no);
 	
+	@Delete("DELETE FROM book_blogreply "
+			 +"WHERE bno=#{bno}")
+	public void BlogReplyDelete2(int bno);
+	
+	@Update("UPDATE book_blog SET replycount=replycount+1 WHERE no=#{no}")
+	public void BlogReplyCountIncrement(int no);
+	
+	@Update("UPDATE book_blog SET replycount=replycount-1 WHERE no=#{no}")
+	public void BlogReplyCountDecrement(int no);
 }

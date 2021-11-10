@@ -15,11 +15,24 @@ import org.springframework.web.multipart.MultipartFile;
     CONSTRAINT bb_no_pk PRIMARY KEY(no)
  */
 public class BlogVO {
-	private int no;
-	private String user_id,subject,image,content,category,tag,dbday,membership;
+	private int no,replycount;
+	private String user_id,subject,image,content,category,tag,dbday,membership,name;
 	private Date regdate;
 	private List<MultipartFile> files;
 	
+	
+	public int getReplycount() {
+		return replycount;
+	}
+	public void setReplycount(int replycount) {
+		this.replycount = replycount;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public List<MultipartFile> getFiles() {
 		return files;
 	}

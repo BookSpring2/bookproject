@@ -7,6 +7,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style type="text/css">
+.textde{
+	font-size:50px;
+}
+</style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 let u=0;// 전역변수
@@ -33,20 +38,28 @@ $(function(){
 <body>
 <div id="comments">
         <h2>댓글</h2>
-        <ul>
+        <ul style="list-style:none">
         <c:forEach var="rvo" items="${list }">
+        <hr>
           <li>
             <article>
               <header>
-               <div>
-                By ${rvo.name }
+               <div style="font-size:20px;">
+                작성자 : ${rvo.name }
                </div>
-                
-                <time datetime="2045-04-06T08:15+00:00">${rvo.dbday }</time>
+                <div>
+                	작성일 : ${rvo.dbday }
+                </div>
+                 <div style="float:right;">
                 <c:if test="${sessionScope.id==rvo.user_id }">
+               
                  <span class="btn btn-xs btn-danger updates" style="color:black" data-value="${rvo.no }">수정</span>
+                 </c:if>
+                 <c:if test="${sessionScope.id==rvo.user_id || sessionScope.admin=='y' }">
                  <a href="../blog/replydelete.do?no=${rvo.no }&bno=${vo.no}&page=${curpage}" class="btn btn-xs btn-success" style="color:black">삭제</a>
-                </c:if>
+               	</c:if>
+                
+                 </div>
                 <table class="table up" style="display:none" id="u${rvo.no }">
 			       <tr>
 			        <td class="inline">
@@ -55,7 +68,7 @@ $(function(){
 			         <input type=hidden name=no value="${rvo.no }">
 			         
 			         <input type=hidden name=page value="${curpage}">
-			         <textarea rows="5" cols="50" name="msg" style="float: left">${rvo.msg }</textarea>
+			         <textarea rows="5" cols="50" name="msg" style="float: left;" class="textde">${rvo.msg }</textarea>
 			           <input type=submit value="댓글수정" style="height: 105px;float: left" class="btn btn-danger">
 			        </form>
 			        </td>
@@ -63,10 +76,11 @@ $(function(){
 			   </table>
               </header>
               <div class="comcont">
-                <p>${rvo.msg }</p>
+                <p style="margin-top:30px;font-size:30px;">${rvo.msg }</p>
               </div>
             </article>
           </li>
+          
          </c:forEach> 
         </ul>
         <%-- session에 등록 (회원가입) --%>
