@@ -81,39 +81,36 @@ font-family: SF Pro KR, SF Pro Display, SF Pro Icons, AOS Icons, Apple Gothic, H
 
 </head>
 <body>
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
-<script type="text/javascript">
-    let i=0;
-    
-	cookiedata = document.cookie;   
-	/* if ( cookiedata.indexOf("maindiv=done") < 0 ){     */ 
-		if(i==0)
-			{
-	    document.all['layer_popup'].style.display = "";
-		//$("#layer_popup").css("visibility","visible");
-	      }
-	else {
-	    document.all['layer_popup'].style.display = "none";
-		//$("#layer_popup").css("visibility","hidden");
-	}
-
-function setCookie( name, value, expiredays ) {
-    var todayDate = new Date();
-    todayDate.setDate(todayDate.getDate() + expiredays ); 
-    document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
-}
-function closePop() {
-	//alert("1")
-    if ( document.pop_form.chkbox.checked ){
-    	//alert("12")
-        setCookie( "maindiv", "done" , 1);
-    	i=1;
-    }
-	document.all['layer_popup'].style.display = "none";
-}
+   <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+   <script type="text/javascript">
+     
+     function setCookie( name, value, expiredays ) {
+	    var todayDate = new Date();
+	    todayDate.setDate(todayDate.getDate() + expiredays ); 
+	    document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+	 }
+     var closePop = function(){
+         if($("input[name='chkbox']").is(":checked") == true){
+             setCookie("close","Y",1);   
+         }
+         $("#layer_popup").hide();
+     }
+     
+     $(document).ready(function(){
+    	 //setCookie("close","Y",10)
+         var cookiedata = document.cookie;
+         if(cookiedata.indexOf("close=Y")<0){
+             $("#layer_popup").show();
+         }else{
+             $("#layer_popup").hide();
+         }
+         $("#close").click(function(){
+        	
+        	 closePop();
+         });
+     });
 </script>
-<div class="layerPopup" id="layer_popup" style="display:;">
-<!-- <div class="layerPopup" id="layer_popup" style="visibility: visible;"> -->
+<div class="layerPopup" id="layer_popup" style="visibility: visible;">
     <div class="layerBox">
         <h4 class="title">Organi 공지사항</h4>
         <div class="cont">
@@ -124,7 +121,7 @@ function closePop() {
         <form name="pop_form">
         <div id="check" ><input type="checkbox" name="chkbox" value="checkbox" id="chkbox" >
         <label for="chkbox">&nbsp;&nbsp;오늘 하루동안 보지 않기</label></div>
-		<div id="close" ><a href="javascript:closePop();">닫기</a></div>    
+		<div id="close" ><a href="#" id="close">닫기</a></div>    
 		</form>
 	</div>
 </div>
