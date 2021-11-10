@@ -123,15 +123,11 @@ public class BookController {
 			
 			/* 카테고리 선택 - 목록출력*/			
 			@RequestMapping("book/newlistSelectCate.do")
-			 public String book_menu_category(String page, Model model, Integer select, String form) {
+			 public String book_menu_category(String page, Model model, Integer select) {
 				HashMap<String, Object> map=new HashMap<String, Object>();
 				
 				//가격 선택
-				String price = form;
-				if(price!=null) {
-					System.out.println("price는"+price+"입니다.");
-				}
-				
+		
 				//카테고리 선택
 				if(select==null) {
 					select=999;

@@ -236,15 +236,22 @@ $(function(){
                             <div class="tab-pane" id="tabs-3" role="tabpanel">
                                 <div class="product__details__tab__desc">
                                 <div class="input_and_print_comments">
-                                    <!-- 리뷰 입력 파트 -->
+                                   
+									 <!-- 리뷰 입력 파트 -->
+                                    <c:if test="${sessionScope.id!=null }"><!--로그인 된 상태 -->
 									<div class="input_comments">
-										<form method="post" action="#" class="comment_form">
-									        <input type="text" class="comment_text" size=70>
+										<form method="post" action="newdetail_commentInput.do" class="comment_form">
+											<input type="text" class="comment_title" size=70 name="title">
+											<p></p>
+									        <input type="text" class="comment_text" size=70 name="comments">
+									        <input type="hidden" name="bno" value="${vo.bno }">
+									        <input type="hidden" name="writer" value="${sessionScope.name }">
 									        <p></p>
 									        <input type="submit" class="commnet_submit_btn" value="등록">
 									    </form>
-									 	<!--  로그인구현 완료되면 세션 이용해서 로그인 시에만 입력창 출력되도록 if문 처리 -->
+									 	<!--  ------------------------------------------------------------ -->
 									</div>
+									</c:if>
 									<!-- 리뷰 출력 파트-->
 									<div class="print_comments">
 										<c:forEach var="cvo" items="${clist }">
