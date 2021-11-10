@@ -116,4 +116,9 @@ public class OrderController {
 		return "redirect:../mypage/order_form.do";
 	}
 	
+	@PostMapping("order_pay_insert_ok")
+	public String order_pay_insert_ok()
+	{
+		return "";
+	}
 }

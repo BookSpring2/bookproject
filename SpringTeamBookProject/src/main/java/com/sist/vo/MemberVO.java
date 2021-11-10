@@ -5,8 +5,14 @@ import java.util.Date;
 public class MemberVO {
 	private String user_id,pwd,name,sex,birthday,tel,addr1,addr2,admin,email,genre,membership,msg,post;
 	private Date regdate;
-	private int point;
+	private int point, memNum;
 	
+	public int getMemNum() {
+		return memNum;
+	}
+	public void setMemNum(int memNum) {
+		this.memNum = memNum;
+	}
 	public String getUser_id() {
 		return user_id;
 	}

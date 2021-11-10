@@ -76,19 +76,17 @@ public interface OrderMapper {
 	public List<MemberVO> userData(String userId);
 	
 //	@Select("SELECT /*+ INDEX_DESC(book_order bo_orderno_pk)*/ order_no,user_id,amount,"
-/*			+"(SELECT title FROM book_data WHERE book_data.bno=book_order.book_no) as title,"
-			+"(SELECT image FROM book_data WHERE book_data.bno=book_order.book_no) as image,"
-			+"(SELECT price FROM book_data WHERE book_data.bno=book_order.book_no) as image,"
-			+"(SELECT name FROM book_member WHERE book_member.user_id=book.order.user_id) as name,"
-			+"(SELECT addr1 FROM book_member WHERE book_member.user_id=book.order.user_id) as addr1,"
-			+"(SELECT addr2 FROM book_member WHERE book_member.user_id=book.order.user_id) as addr2,"
-			+"(SELECT tel FROM book_member WHERE book_member.user_id=book.order.user_id) as tel,"
-			+"(SELECT email FROM book_member WHERE book_member.user_id=book.order.user_id) as email "
-			+"FROM book_order "
-			+"WHERE user_id=#{user_id} "
-			+"AND orderdate>=SYSDATE-3 AND orderdate<=SYSDATE")
-	public List<OrderFormVO> orderListData(String user_id);
- 
-*/
+//			+"(SELECT title FROM book_data WHERE book_data.bno=book_order.book_no) as title,"
+//			+"(SELECT image FROM book_data WHERE book_data.bno=book_order.book_no) as image,"
+//			+"(SELECT price FROM book_data WHERE book_data.bno=book_order.book_no) as image,"
+//			+"(SELECT name FROM book_member WHERE book_member.user_id=book.order.user_id) as name,"
+//			+"(SELECT addr1 FROM book_member WHERE book_member.user_id=book.order.user_id) as addr1,"
+//			+"(SELECT addr2 FROM book_member WHERE book_member.user_id=book.order.user_id) as addr2,"
+//			+"(SELECT tel FROM book_member WHERE book_member.user_id=book.order.user_id) as tel,"
+//			+"(SELECT email FROM book_member WHERE book_member.user_id=book.order.user_id) as email "
+//			+"FROM book_order "
+//			+"WHERE user_id=#{user_id} "
+//			+"AND orderdate>=SYSDATE-3 AND orderdate<=SYSDATE")
+//	public List<OrderFormVO> orderListData(String user_id);
 	
 }

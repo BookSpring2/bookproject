@@ -43,7 +43,7 @@ $(function(){
 			{
 				let result=res.trim();
 				confirm("결제페이지로 이동하시겠습니까?")
-					location.href("../mypage/order_form_ok.do");				
+				location.href("../mypage/order_form_ok.do");				
 			}
 		});
 	}) 
@@ -64,14 +64,14 @@ $(function(){
 							location.href("../mypage/cart_insert_ok.do");
 						}
 						else{
-							return;
+							return false;
 						}
 				} else {
 					if(confirm("이미 장바구니에 등록된 상품입니다. 장바구니로 이둥하시겠습니까?")){
 						location.href("../mypage/cart_insert_ok.do");
 					}
 					else{
-						return;
+						return false;
 					}
 				}
 			}
