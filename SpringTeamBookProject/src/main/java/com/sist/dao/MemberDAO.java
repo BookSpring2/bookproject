@@ -109,9 +109,9 @@ public class MemberDAO {
 	public boolean memberJoinDelete(MemberVO vo)
 	{
 		boolean bCheck=false;
-		System.out.println(vo.getUser_id());
+		//System.out.println(vo.getUser_id());
 		MemberVO dbVO=mapper.memberGetPassword(vo.getUser_id());
-		System.out.println("1="+dbVO.getPwd());
+		//System.out.println("1="+dbVO.getPwd());
 		if(dbVO.getPwd().equals(vo.getPwd()))
 		{
 			bCheck=true;

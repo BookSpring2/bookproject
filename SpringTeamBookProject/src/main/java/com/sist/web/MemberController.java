@@ -144,10 +144,14 @@ public class MemberController {
 	@PostMapping("join_delete_ok.do")
 	public String member_join_delete_ok(MemberVO vo,HttpSession session,Model model)
 	{
-		System.out.println(vo.getPwd());
+		//System.out.println(vo.getPwd());
 		String id=(String)session.getAttribute("id");
 		vo.setUser_id(id);
 		boolean bCheck=dao.memberJoinDelete(vo);
+		if(bCheck==true)
+		{
+			session.invalidate();
+		}
 		model.addAttribute("bCheck", bCheck);
 		return "member/join_delete_ok";
 	}
