@@ -85,4 +85,6 @@ public interface BlogMapper {
 	
 	@Update("UPDATE book_blog SET replycount=replycount-1 WHERE no=#{no}")
 	public void BlogReplyCountDecrement(int no);
+	
+
 }

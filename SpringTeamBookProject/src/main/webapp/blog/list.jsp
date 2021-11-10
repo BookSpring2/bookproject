@@ -48,36 +48,18 @@
                         <div class="blog__sidebar__item">
                             <h4>최신 글</h4>
                             <div class="blog__sidebar__recent">
-                                <a href="#" class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/sr-1.jpg" alt="">
-                                    </div>
+                            <c:forEach var="nvo" items="${list }" begin="0" end="2">
+                                <a href="../blog/detail.do?no=${nvo.no}&page=${curpage}" class="blog__sidebar__recent__item">
+                                    
                                     <div class="blog__sidebar__recent__item__text">
-                                        <h6>09 Kinds Of Vegetables<br /> Protect The Liver</h6>
-                                        <span>MAR 05, 2019</span>
+                                        <h6>"${nvo.subject }"</h6>
+                                        <span>"${nvo.dbday }"</span>
                                     </div>
                                 </a>
-                                <a href="#" class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/sr-2.jpg" alt="">
-                                    </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>Tips You To Balance<br /> Nutrition Meal Day</h6>
-                                        <span>MAR 05, 2019</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/sr-3.jpg" alt="">
-                                    </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>4 Principles Help You Lose <br />Weight With Vegetables</h6>
-                                        <span>MAR 05, 2019</span>
-                                    </div>
-                                </a>
+                            </c:forEach>
                             </div>
                         </div>
-                        <div class="blog__sidebar__item">
+                        <!-- <div class="blog__sidebar__item">
                             <h4>키워드</h4>
                             <div class="blog__sidebar__item__tags">
                                 <a href="#">키워드1</a>
@@ -87,7 +69,7 @@
                                 <a href="#">키워드5</a>
                                 <a href="#">키워드6</a>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-7">

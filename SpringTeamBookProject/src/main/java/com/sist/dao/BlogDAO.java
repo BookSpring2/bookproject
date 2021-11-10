@@ -76,4 +76,5 @@ public class BlogDAO {
 	{
 		mapper.BlogReplyCountDecrement(no);
 	}
+	
 }

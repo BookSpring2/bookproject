@@ -56,9 +56,9 @@ $(function(){
                     <div class="blog__details__hero__text">
                         <h2>블로그</h2>
                         <ul>
-                            <li>${vo.user_id }</li>
-                            <li>${vo.dbday }</li>
-                            <li>${vo.replycount }</li>
+                            <li>ID : ${vo.user_id }</li>
+                            <li>작성일 : ${vo.dbday }</li>
+                            <li>댓글 : ${vo.replycount }</li>
                         </ul>
                     </div>
                 </div>
@@ -79,14 +79,14 @@ $(function(){
                                 <button type="submit"><span class="icon_search"></span></button>
                             </form>
                         </div>
-                        <div class="blog__sidebar__item">
+                        <!-- <div class="blog__sidebar__item">
                             <h4>카테고리</h4>
                             <ul>
                                 <li><a href="#">전체</a></li>
                                 <li><a href="#">리뷰</a></li>
                                 <li><a href="#">일상</a></li>
                             </ul>
-                        </div>
+                        </div> -->
                         <div class="blog__sidebar__item">
                             <h4>최신 글</h4>
                             <div class="blog__sidebar__recent">
@@ -127,7 +127,7 @@ $(function(){
                                         <img src="../img/blog/details/details-author.jpg" alt="">
                                     </div>
                                     <div class="blog__details__author__text">
-                                        <h6>${vo.user_id }</h6>
+                                        <h6>${vo.name }</h6>
                                         <span>${vo.membership }</span>
                                     </div>
                                 </div>

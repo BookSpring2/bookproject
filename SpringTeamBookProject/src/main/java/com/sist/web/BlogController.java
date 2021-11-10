@@ -127,10 +127,6 @@ public class BlogController {
 	public String blog_detail(int no, int page, Model model,HttpSession session)
 	{
 		BlogVO vo=dao.BlogDetailData(no);
-		String user_id=(String)session.getAttribute("id");
-		vo.setName(user_id);
-		String name=(String)session.getAttribute("name");
-		vo.setName(name);
 		List<BlogReplyVO> list=dao.BlogReplyListData(no);
 		
 		model.addAttribute("list",list);

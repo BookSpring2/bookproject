@@ -7,11 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<style type="text/css">
-.textde{
-	font-size:50px;
-}
-</style>
+
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 let u=0;// 전역변수
@@ -68,7 +64,7 @@ $(function(){
 			         <input type=hidden name=no value="${rvo.no }">
 			         
 			         <input type=hidden name=page value="${curpage}">
-			         <textarea rows="5" cols="50" name="msg" style="float: left;" class="textde">${rvo.msg }</textarea>
+			         <textarea rows="5" cols="50" name="msg" style="float: left;">${rvo.msg }</textarea>
 			           <input type=submit value="댓글수정" style="height: 105px;float: left" class="btn btn-danger">
 			        </form>
 			        </td>
