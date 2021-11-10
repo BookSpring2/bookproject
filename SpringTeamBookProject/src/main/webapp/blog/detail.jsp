@@ -167,6 +167,7 @@ $(function(){
                 
             </div>
             <div class="col-lg-12">
+            	<br>
                 <jsp:include page="../blog/replylist.jsp"></jsp:include>
                 </div>
         </div>

@@ -120,10 +120,14 @@ public class BlogController {
 	}
 	
 	@GetMapping("detail.do")
-	public String blog_detail(int no, int page, Model model)
+	public String blog_detail(int no, int page, Model model,HttpSession session)
 	{
 		BlogVO vo=dao.BlogDetailData(no);
+		String name=(String)session.getAttribute("name");
+		vo.setUser_id(name);
+		List<BlogReplyVO> list=dao.BlogReplyListData(no);
 		
+		model.addAttribute("list",list);
 		model.addAttribute("vo", vo);
 		model.addAttribute("curpage", page);
 		model.addAttribute("main_jsp", "../blog/detail.jsp");
@@ -157,6 +161,8 @@ public class BlogController {
 	{
 		dao.BlogDelete(no);
 	}
+	
+	
 	
 	@PostMapping("replyinsert.do")
     public String blogreply_insert(int page,BlogReplyVO vo,RedirectAttributes attr,HttpSession session)

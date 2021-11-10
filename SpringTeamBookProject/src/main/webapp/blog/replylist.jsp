@@ -38,11 +38,12 @@ $(function(){
           <li>
             <article>
               <header>
-                <address>
-                By <a href="#">${rvo.name }</a>
-                </address>
+               <div>
+                By ${rvo.name }
+               </div>
+                
                 <time datetime="2045-04-06T08:15+00:00">${rvo.dbday }</time>
-                <c:if test="${sessionScope.id==rvo.id }">
+                <c:if test="${sessionScope.id==rvo.user_id }">
                  <span class="btn btn-xs btn-danger updates" style="color:black" data-value="${rvo.no }">수정</span>
                  <a href="../blog/replydelete.do?no=${rvo.no }&bno=${vo.no}&page=${curpage}" class="btn btn-xs btn-success" style="color:black">삭제</a>
                 </c:if>
@@ -52,6 +53,7 @@ $(function(){
 			         <form method="post" action="replyupdate.do">
 			         <input type=hidden name=bno value="${vo.no }">
 			         <input type=hidden name=no value="${rvo.no }">
+			         
 			         <input type=hidden name=page value="${curpage}">
 			         <textarea rows="5" cols="50" name="msg" style="float: left">${rvo.msg }</textarea>
 			           <input type=submit value="댓글수정" style="height: 105px;float: left" class="btn btn-danger">
