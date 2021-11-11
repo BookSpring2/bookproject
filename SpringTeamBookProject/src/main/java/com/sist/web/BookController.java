@@ -14,6 +14,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sist.vo.BookCommentVO;
 import com.sist.vo.BookVO;
+import com.sist.vo.MemberVO;
 import com.sist.dao.BookDAO;
 
 @Controller
@@ -109,6 +111,8 @@ public class BookController {
 				
 				List<BookVO> saleslist2=dao.bookNewListData_SalesRandom(map);//상단부, 판매중인 도서.
 				
+				
+				
 				model.addAttribute("curpage", curpage);
 				model.addAttribute("totalpage",totalpage);
 				model.addAttribute("BLOCK", BLOCK);
@@ -123,7 +127,7 @@ public class BookController {
 			
 			/* 카테고리 선택 - 목록출력*/			
 			@RequestMapping("book/newlistSelectCate.do")
-			 public String book_menu_category(String page, Model model, Integer select) {
+			 public String book_menu_category(String page, Model model, Integer select, HttpSession session, HttpServletRequest request) {
 				HashMap<String, Object> map=new HashMap<String, Object>();
 				
 				//가격 선택
@@ -191,6 +195,24 @@ public class BookController {
 				List<BookVO> list=dao.bookNewListData_SelectCate(map); //하단부, 카테고리 선택시 출력. 페이징처리가 필요한 데이터.
 				List<BookVO> saleslist=dao.bookNewListData_SalesRandom(map);//상단부, 판매중인 도서.
 				
+				//추천 도서 - 로그인 세션 데이터 활용.				
+				String usergenre = "소설,시/에세이,인문,사회과학,예술/대중문화,가정과 생활,유아,국어/외국어/사전,자기계발";
+				String myid = (String)session.getAttribute("id");
+				if(myid==null) {
+					System.out.println("로그아웃 상태입니다.");					
+				}
+				else {
+					System.out.println("user_id는"+myid+"입니다.");
+					MemberVO userdata = dao.bookNewMemberGenre(myid);
+					usergenre = userdata.getGenre();
+				}				
+				System.out.println("usergenre는"+usergenre+"입니다.");
+				map.put("usergenre", usergenre);
+				List<BookVO> recommendlist=dao.bookNewRecommendData(map);
+				List<BookVO> recommendlist2=dao.bookNewRecommendData(map);
+				List<BookVO> recommendlist3=dao.bookNewRecommendData(map);
+				
+				
 				// 총페이지 
 				map.put("table_name", "book_data");
 				int totalpage=dao.bookNewTotalPage(map);
@@ -208,6 +230,9 @@ public class BookController {
 				model.addAttribute("endPage", endPage);
 				model.addAttribute("list", list);
 				model.addAttribute("saleslist", saleslist);
+				model.addAttribute("rlist",recommendlist);
+				model.addAttribute("r2list",recommendlist2);
+				model.addAttribute("r3list",recommendlist3);
 				model.addAttribute("main_jsp", "../book/newlist.jsp");				
 				return "main/main";
 				
@@ -252,7 +277,7 @@ public class BookController {
 			
 			//3-1. 리뷰 입력
 			@RequestMapping("book/newdetail_commentInput.do")
-			public String book_newdetail_commentInput(HttpServletRequest request,HttpServletResponse response) throws Exception {
+			public String book_newdetail_commentInput(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception {
 				
 				/*bno,제목,리뷰내용 얻기*/
 				int bno = Integer.parseInt(request.getParameter("bno"));
@@ -269,8 +294,20 @@ public class BookController {
 				map.put("title",title);
 				map.put("comments", comments);
 				map.put("writer",writer);
+				// 평점 옵션
+				int stars=0;//입력폼으로 받은 값.
+				if(request.getParameter("rating")==null) {
+					stars=0;
+				}
+				else {
+					stars = Integer.parseInt(request.getParameter("rating"));
+				}
+				System.out.println("rating은:"+stars+"입니다.");//확인한 후.
+				map.put("rating",stars); //#{rating}에서 쓰기 위해 넣음.
 				
-				dao.bookCommentInputData(map);
+				
+				dao.bookCommentInputData(map); //데이터 넣고  
+				
 				
 				
 				String reurl = "redirect:../book/newdetail.do?bno="+Integer.toString(bno); 

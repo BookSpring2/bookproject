@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.sist.mapper.BookMapper;
 import com.sist.vo.BookCommentVO;
 import com.sist.vo.BookVO;
+import com.sist.vo.MemberVO;
 
 @Repository
 public class BookDAO {
@@ -37,7 +38,7 @@ public class BookDAO {
 	public List<BookVO> bookNewListData(HashMap<String,Object> map) {
 		return mapper.bookNewListData(map);
 	}
-	// 2-1. 신간 - 페이징 (수정해야함. 카테고리별로 적용이 안됨)
+	// 2-1. 신간 - 페이징 
 	public int bookNewTotalPage(HashMap<String,Object> map) {
 		return mapper.bookNewTotalPage(map);
 	}
@@ -61,7 +62,15 @@ public class BookDAO {
 	public List<BookVO> bookNewListData_SalesRandom(HashMap<String, Object> map){
 		return mapper.bookNewListData_SalesRandom(map);
 	}
-		
+	//2-6. 신간 - 추천 도서 출력 기능. (회원정보의 장르 이용)
+	public List<BookVO> bookNewRecommendData(HashMap<String,Object> map){
+		return mapper.bookNewRecommendData(map);
+	}
+	//2-6-2. 로그인 상태의 회원 id값을 이용해서 선호 장르를 얻는 부분.
+	public MemberVO bookNewMemberGenre(String myid) {
+		return mapper.bookNewMemberGenre(myid);
+	}
+	
 	//3-1. 리뷰 입력 기능
 	public void bookCommentInputData(HashMap<String, Object> map) throws Exception{
 		mapper.bookCommentInputData(map);

@@ -13,7 +13,24 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script> 
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script type="text/javascript" src="/test/2979/js/jquery.raty.js"></script>
+<!-- 별점주기 -->
+
+
 <script>
+<!--별점-->
+$( ".star_rating a" ).click(function() {
+    $(this).parent().children("a").removeClass("on");
+    $(this).addClass("on").prevAll("a").addClass("on");
+    return false;
+});
+
+
+
+
 $(function(){
 /* 	$("#btn-order").click(function(){
 		let book_no = $("#book_no").val();
@@ -105,11 +122,8 @@ $(function(){
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>대제목</h2>
+                        <h2>신간 도서</h2>
                         <div class="breadcrumb__option">
-                            <a href="../main/main.do">Home</a>
-                            <a href="#">신간 도서</a>
-                            <span>중분류</span>
                         </div>
                     </div>
                 </div>
@@ -134,14 +148,17 @@ $(function(){
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
                         <h3> ${vo.title}</h3>
-                        
+                         
                         <div class="product__details__rating">
+                        <!-- 
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-half-o"></i>
                             <span>( ${ccvo.cnt} 개의 리뷰)</span>
+                        -->
+                            
                         </div>
                         <div class="product__details__price"><span id="price"> ${vo.price}</span></div>
                         <div class="bookdetail_pricedata_group"> 
@@ -191,16 +208,8 @@ $(function(){
                         <ul>
                             <!--  Book_DATA 테이블에 재고를 관리하는 컬럼이 없음.
                             <li><b>판매정보</b> <span>판매중</span></li>-->
-                            <li><b>배송정보</b> <span>도서산간지역 배송비 2500원 / 5,000원 이상 결제시 무료배송</span></li>
-                            <li><b>포인트</b> <span>텍스트</span></li>
-                            <li><b>공유하기</b>
-                                <div class="share">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                                </div>
-                            </li>
+                            <li><b>배송정보</b> <span>배송비 2500원 / 5,000원 이상 결제시 무료배송</span></li>
+                            
                         </ul>
                     </div>
                 </div>
@@ -240,7 +249,7 @@ $(function(){
 									 <!-- 리뷰 입력 파트 -->
                                     <c:if test="${sessionScope.id!=null }"><!--로그인 된 상태 -->
 									<div class="input_comments">
-										<form method="post" action="newdetail_commentInput.do" class="comment_form">
+										<form method="post" action="newdetail_commentInput.do" class="comment_form" name="myform" id="myform">
 											<input type="text" class="comment_title" size=70 name="title">
 											<p></p>
 									        <input type="text" class="comment_text" size=70 name="comments">
@@ -248,8 +257,23 @@ $(function(){
 									        <input type="hidden" name="writer" value="${sessionScope.name }">
 									        <input type="hidden" name="c_userid" value="${sessionScope.id }">
 									        <p></p>
-									        <input type="submit" class="commnet_submit_btn" value="등록">
+									        <!-- 평점 선택창 -->
+								         <fieldset>
+								        <input type="radio" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
+								        <input type="radio" name="rating" value="4" id="rate2"><label for="rate2">⭐</label>
+								        <input type="radio" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
+								        <input type="radio" name="rating" value="2" id="rate4"><label for="rate4">⭐</label>
+								        <input type="radio" name="rating" value="1" id="rate5"><label for="rate5">⭐</label>
+										</fieldset>
+													<!-- 전송 버튼 -->
+											<input type="submit" class="commnet_submit_btn" value="등록">
+										
 									    </form>
+									    
+									    
+									    
+									    
+									    
 									 	<!--  ------------------------------------------------------------ -->
 									</div>
 									</c:if>
@@ -258,13 +282,50 @@ $(function(){
 										<c:forEach var="cvo" items="${clist }">
 											<!-- 별점은 사용자가 등록한 별점으로 if문 처리해서 갯수 띄우기. -->
 											<div class="print_comments_stars">
+											<c:if test="${cvo.stars==5}">
+											        <i class="fa fa-star"></i>
 						                            <i class="fa fa-star"></i>
 						                            <i class="fa fa-star"></i>
 						                            <i class="fa fa-star"></i>
 						                            <i class="fa fa-star"></i>
-						                            <i class="fa fa-star-half-o"></i>
-					                        </div>
-					                        <div class="print_comments_texts">
+						                    </c:if>
+						                    <c:if test="${cvo.stars==4}">
+						                    		<i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star-o"></i>
+						                    </c:if>  
+						                    <c:if test="${cvo.stars==3}">
+						                    		<i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                    </c:if>    
+						                    <c:if test="${cvo.stars==2}">
+						                    		<i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                    </c:if> 
+						                    <c:if test="${cvo.stars==1}">
+						                    		<i class="fa fa-star"></i>
+						                            <i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                    </c:if> 
+						                    <c:if test="${cvo.stars==0}">
+						                    		<i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                    </c:if>    
+						                    </div> 
+												<div class="print_comments_texts">
 					                        <!-- 레이아웃만 만들어둠. 아직 기능 구현 안함.  -->
 												<div class="comments_title">${cvo.title }</div>
 												<div class="comments_comments">${cvo.comments }</div>
@@ -321,4 +382,5 @@ $(function(){
     </section>
     <!-- Related Product Section End -->
 </body>
+
 </html>
