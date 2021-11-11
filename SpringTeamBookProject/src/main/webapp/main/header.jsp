@@ -57,7 +57,9 @@
                             <c:if test="${sessionScope.id=='admin'}">
 								<a href="../admin/main.do"><i class=""></i>관리자페이지</a>
 							</c:if>
-                            <a href="#"><i class=""></i>마이페이지</a>
+                            <c:if test="${sessionScope.id!=null && sessionScope.id!='admin' }">
+                            	<a href="../mypage/mypage.do"><i class=""></i>마이페이지</a>
+                            </c:if>
                             <a href="#"><i class=""></i>고객센터</a>    
                           </div>
                         </div>
