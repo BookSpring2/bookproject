@@ -142,52 +142,9 @@ $(function(){
 			return false;	
 		}
 		
-		/*
- 		if(name=='')
-		{
-			alert("이름을 입력하세요");
-			$('#name').focus();
-			return false;
-		}
- 		else if(id=='')
-		{
-			alert("아이디를 입력하세요");
-			$('#id').focus();
-			return false;
-		}
- 		else if(pwd=='')
-		{
-			alert("비밀번호를 입력하세요");
-			$('#pwd').focus();
-			return false;
-		}
- 		else if(tel=='')
-		{
-			alert("전화번호를 입력하세요");
-			$('#tel').focus();
-			return false;
-		}
- 		else if(addr1=='')
-		{
-			alert("주소를 입력하세요");
-			$('#addr1').focus();
-			return false;
-		}
- 		else if(genreCount==0)
-		{
-			alert("장르는 1개이상 선택해야합니다")	;
-			return false;	
-		}
-		*/
-		
 	});
 
 })
-</script>
-<script>
-$(function(){
-	
-});
 </script>
 <style>
 .col-lg-8, .col-md-6, .col-md-12, .col-sm-12, .col-xs-12{
@@ -249,7 +206,7 @@ button{
 </style>
 </head>
 <body>
-	<section class="breadcrumb-section set-bg" data-setbg="../ogani-master/img/breadcrumb.jpg">
+	<section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb2.jpg">
 	        <div class="container">
 	            <div class="row">
 	                <div class="col-lg-12 text-center">
