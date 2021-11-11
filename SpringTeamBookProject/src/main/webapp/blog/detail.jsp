@@ -151,10 +151,10 @@ $(function(){
 			        <input type=hidden name=user_id id=id value="${vo.user_id }">
 			        <input type=hidden name=page id=page value="${curpage }">
 			        <c:set var="user_id" value="${vo.user_id }" />
-			        <c:if test="${sessionScope.name==user_id}">
+			        <c:if test="${sessionScope.id==user_id}">
 			         <a href="../blog/update.do?no=${vo.no }&page=${curpage}" class="buttona">수정</a>
 			         </c:if>
-			         <c:if test="${sessionScope.name==user_id || sessionScope.admin=='y' }">
+			         <c:if test="${sessionScope.id==user_id || sessionScope.admin=='y' }">
 			         <input type="button" id="del" value="삭제">
 			         </c:if>
 			         

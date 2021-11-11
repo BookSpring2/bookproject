@@ -34,7 +34,7 @@ public class FreeBoardController {
 			page="1";
 		int curpage=Integer.parseInt(page);
 		Map map=new HashMap();
-		int rowSize=10;
+		int rowSize=12;
 		int start=(rowSize*curpage)-(rowSize-1);
 		int end=(rowSize*curpage);
 		map.put("start", start);
@@ -67,7 +67,7 @@ public class FreeBoardController {
 	}
 
 	@PostMapping("insert_ok.do")
-	public String board_insert_ok(FreeBoardVO vo) throws Exception {
+	public String board_insert_ok(FreeBoardVO vo,HttpSession session) throws Exception {
 		File dir = new File("c:\\download"); // 일단 만듬
 		if (!dir.exists()) {
 			dir.mkdir();
@@ -91,6 +91,8 @@ public class FreeBoardController {
 			vo.setFilesize("");
 			vo.setFilecount(0);
 		}
+		String writer=(String)session.getAttribute("id");
+		vo.setwriter(writer);
 		dao.freeBoardInsert(vo);
 		return "redirect:../freeboard/list.do";
 	}
@@ -144,7 +146,8 @@ public class FreeBoardController {
 		// 댓글
 		List<FreeBoardReplyVO> list=dao.freeBoardReplyListData(no);
 		model.addAttribute("list", list);
-		
+		int replyCount=dao.freeBoardReplyCount(no);
+		model.addAttribute("replyCount", replyCount);
 		model.addAttribute("vo", vo);
 		model.addAttribute("page", page);
 		model.addAttribute("main_jsp", "../freeboard/detail.jsp");

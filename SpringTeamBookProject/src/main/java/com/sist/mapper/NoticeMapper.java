@@ -46,7 +46,7 @@ public interface NoticeMapper {
 	
 	@Select({
         "<script>"
-       +"SELECT no,subject,name,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,hit "
+       +"SELECT /*+ INDEX_DESC(book_noticeboard bnb_no_pk)*/ no,hit,name,subject,content,TO_CHAR(regdate,'YYYY-MM-DD') as dbday "
        +"FROM book_noticeboard "
        +"WHERE "
        +"<trim prefix=\"(\" suffix=\")\" prefixOverrides=\"OR\">"
