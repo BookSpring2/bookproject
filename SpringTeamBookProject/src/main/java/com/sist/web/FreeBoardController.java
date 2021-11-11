@@ -67,7 +67,7 @@ public class FreeBoardController {
 	}
 
 	@PostMapping("insert_ok.do")
-	public String board_insert_ok(FreeBoardVO vo, HttpSession session) throws Exception {
+	public String board_insert_ok(FreeBoardVO vo) throws Exception {
 		File dir = new File("c:\\download"); // 일단 만듬
 		if (!dir.exists()) {
 			dir.mkdir();
@@ -91,8 +91,6 @@ public class FreeBoardController {
 			vo.setFilesize("");
 			vo.setFilecount(0);
 		}
-		String writer=(String)session.getAttribute("id");
-		vo.setwriter(writer);
 		dao.freeBoardInsert(vo);
 		return "redirect:../freeboard/list.do";
 	}
@@ -208,10 +206,8 @@ public class FreeBoardController {
 	@PostMapping("reply_insert.do")
 	public String reply_insert(int page,FreeBoardReplyVO vo, HttpSession session, RedirectAttributes attr)
 	{
-		String reply_id=(String)session.getAttribute("reply_id");
-		String name=(String)session.getAttribute("name");
+		String reply_id=(String)session.getAttribute("id");
 		vo.setReply_id(reply_id);
-		vo.setName(name);
 		dao.freeBoardReplyInsert(vo);
 		attr.addAttribute("no",vo.getBno());
 		attr.addAttribute("page",page);
@@ -237,11 +233,9 @@ public class FreeBoardController {
 	public String reply_transaction_insert(int pno, int bno, int page, String msg, HttpSession session, RedirectAttributes attr)
 	{
 		FreeBoardReplyVO vo=new FreeBoardReplyVO();
-		String reply_id=(String)session.getAttribute("reply_id");
-		String name=(String)session.getAttribute("name");
+		String reply_id=(String)session.getAttribute("id");
 		vo.setMsg(msg);
 		vo.setReply_id(reply_id);
-		vo.setName(name);
 		vo.setBno(bno);
 		dao.freeBoardReplyTransactionInsert(pno, vo);
 		attr.addAttribute("no",bno);

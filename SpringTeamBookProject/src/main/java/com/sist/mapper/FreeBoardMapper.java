@@ -82,7 +82,7 @@ public interface FreeBoardMapper {
 	// Comments
 	// 댓글 작성
 	@Insert("INSERT INTO book_freeBoardReply(no,bno,reply_id,msg,group_id) VALUES( "
-			+"book_reply_seq.nextval,#{bno},#{id},#{msg},"
+			+"book_reply_seq.nextval,#{bno},#{reply_id},#{msg},"
 			+"(SELECT NVL(MAX(group_id)+1,1) FROM book_freeBoardReply))")
 	public void freeBoardReplyInsert(FreeBoardReplyVO vo);
 	
@@ -113,13 +113,13 @@ public interface FreeBoardMapper {
 	
 	// 3. 댓글 작성 Transaction
 	@Insert("INSERT INTO book_freeBoardReply(no,bno,reply_id,msg,group_id,group_step, group_tab,root) "
-			+"VALUES(book_reply_seq.nextval,#{bno},#{id},#{msg},"
+			+"VALUES(book_reply_seq.nextval,#{bno},#{reply_id},#{msg},"
 			+"#{group_id},#{group_step},#{group_tab},#{root})")
 	public void freeBoardReplyTransactionInsert(FreeBoardReplyVO vo);
 	
 	// 4. depth 증가
 	@Update("UPDATE book_freeBoardReply SET "
-			+"detph=detph+1 "
+			+"depth=depth+1 "
 			+"WHERE no=#{no}")
 	public void freeBoardReplyDepthIncrement(int no);
 	

@@ -10,7 +10,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-$(function(){ 
+let u=0; // update
+let r=0; // reply
+
+$(function(){
 	$('#delBtn').click(function(){
 		let no=$('#no').val();
 		let page=$('#page').val();
@@ -30,7 +33,47 @@ $(function(){
 		{
 			return false;
 		}		
+		
+	 $('.updates').click(function(){
+		 $('.up').hide();
+		 $('.reply').hide();
+		 
+		 let no=$(this).attr("data-no");
+		 if(u==0)
+		 {
+			 $(this).text("취소");
+			 $('#u'+no).show();
+			 u=1;
+		 }
+		 else
+		 {
+			 $('#u'+no).hide();
+			 $(this).text("수정");
+			 u=0;
+		 }
+	 })
 	})
+	
+	$('.replys').click(function(){
+		$('.up').hide();
+		$('.reply').hide();
+		
+		let no=$(this).attr("data-no");
+		if(r==0)
+		{
+			$(this).text("취소");
+			$('#r'+no).show();
+			r=1;
+		}
+		else
+		{
+			$('#r'+no).hide();
+			$(this).text("댓글");
+			r=0;
+		}
+	})
+
+	
 })
 </script>
 </head>
@@ -107,6 +150,90 @@ $(function(){
 					</tr>
 				</table>
 			</div>
+			<!-- 댓글 목록 -->
+			<div class="row">
+			 <table class="table">
+			  <tr>
+			   <td>
+			    <c:forEach var="rvo" items="${list }">
+			     <table class="table">
+			      <tr>
+			       <td class="text-left">
+			        <c:if test="${rvo.group_tab>0 }">
+			         <c:forEach var="i" begin="1" end="${rvo.group_tab }">
+			         	&nbsp;&nbsp;
+			         </c:forEach>
+			          ↳
+			        </c:if>
+			        	＠${rvo.reply_id }(<span>${rvo.dbday }</span>)
+			       </td>
+			       <td class="text-right">
+			        <c:if test="${sessionScope.id!=null }">
+			         <c:if test="${sessionScope.id==rvo.reply_id }">
+			        	<span class="btn updates" data-no="${rvo.no }">수정</span> <!-- data-no는 임시로 만든 속성, 데이터전송을 위해만듬 -->
+			        	<a href="../freeboard/reply_delete.do?no=${rvo.no }&bno=${vo.no}&page=${page}" class="btn">삭제</a>       	
+			         </c:if>
+			         <span class="btn replys" data-no="${rvo.no }">댓글</span>
+			        </c:if>
+			       </td>
+			      </tr>
+			      <tr>
+			       <td colspan="2" valign="top">
+			        <pre style="white-space: pre-wrap; background-color: white; border: none">${rvo.msg }</pre>
+			       </td>
+			      </tr>
+			     </table>
+			     <!-- 댓글 수정폼 up -->
+			     <table class="table up" style="display:none" id="u${rvo.no }">
+		  		  <tr>
+		     		<td class="inline">
+		     		 <form method="post" action="../freeboard/reply_update.do">
+		        	  <input type="hidden" name="no" value="${rvo.no }">
+		        	  <input type="hidden" name="bno" value="${vo.no }"><%-- 게시물 번호 --%>
+		        	  <input type="hidden" name="page" value="${page }">
+		        	  <textarea rows="4" cols="90" name=msg style="float: left">${rvo.msg }</textarea>
+		        	  <input type=submit value="댓글수정" class="btn btn-danger" style="height: 80px;float:left">
+		       		 </form>
+		      		</td>
+		    	   </tr>
+		   		</table>
+			     <!-- 댓글 작성폼 reply-->
+			     <table class="table reply" style="display:none" id="r${rvo.no }">
+			      <tr>
+			       <td class="inline">
+			        <form method="post" action="../freeboard/reply_transaction_insert.do">
+			         <input type="hidden" name="pno" value="${rvo.no }"> <!-- 댓글 번호 -->
+			         <input type="hidden" name="bno" value="${vo.no }"><!-- 게시물 번호 -->
+			         <input type="hidden" name="page" value="${page }">
+			         <textarea rows="4" cols="90" name="msg" style="float:left"></textarea>
+			         <input type="submit" value="댓글쓰기" class="btn" style="height: 80px;float:left">
+			        </form>
+			       </td>
+			      </tr>
+			     </table>
+			    </c:forEach>
+			   </td>
+			  </tr>
+			 </table>
+			</div>
+			<!-- 댓글 -->
+			<c:if test="${sessionScope.id!=null }">
+				<div class="row">
+				 <table class="table">
+				  <tr>
+				   <td class="inline">
+				    <form method="post" action="../freeboard/reply_insert.do">
+				     <input type="hidden" name="bno" value="${vo.no }"><!-- 게시물 번호 -->
+			         <input type="hidden" name="page" value="${page }">
+			         <textarea rows="4" cols="90" name="msg" style="float:left"></textarea>
+			         <input type="submit" value="댓글쓰기" class="btn" style="height: 80px;float:left">
+				    </form>
+				   </td>
+				  </tr>
+				 </table>
+				</div>
+			</c:if>
+		</div>
 	</section>
 </body>
 </html>

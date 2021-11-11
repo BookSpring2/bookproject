@@ -15,7 +15,7 @@ DEPTH               NUMBER
 import java.util.*;
 public class FreeBoardReplyVO {
 	private int no, bno, group_id, group_step, group_tab, root, depth;
-	private String reply_id, name, msg, dbday;
+	private String reply_id, msg, dbday;
 	private Date regdate;
 	public int getNo() {
 		return no;
@@ -64,12 +64,6 @@ public class FreeBoardReplyVO {
 	}
 	public void setReply_id(String reply_id) {
 		this.reply_id = reply_id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	public String getMsg() {
 		return msg;
