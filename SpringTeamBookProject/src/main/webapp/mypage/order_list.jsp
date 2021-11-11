@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,6 +43,7 @@
       <td class="btn btn-sm btn-primary">구매하신 책, 다 읽으셨다면 정가대비 최대 50% 지급받고 Organi에 판매하세요</td>
     </tr>
   </div>
+  <div style="height:20px"></div>
   <div class="row">
     <table class="table">
       <tr>
@@ -55,10 +57,10 @@
       <c:forEach var="vo" items="${list }">
 	      <tr>
 	        <td class="text-center">${vo.order_no }</td>
-	        <td class="text-center">${vo.orderdate }</td>
+	        <td class="text-center"><fmt:formatDate value="${vo.orderdate }" pattern="yyyy-MM-dd"/></td>
 	        <td class="text-center">${vo.title }</td>
 	        <td class="text-center">${vo.price }</td>
-	        <td class="text-center">${vo.deliver_situ }</td>
+	        <td class="text-center">2~3일 후 도착</td>
 	        <td class="text-center">${vo.name }</td>
 	      </tr>
       </c:forEach>

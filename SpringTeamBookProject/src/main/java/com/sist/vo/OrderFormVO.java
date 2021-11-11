@@ -6,9 +6,21 @@ public class OrderFormVO {
 	private String deliver_situ,deliver_msg,user_id,orderday;
 	
 	private String title,image,price;
-	private String name,addr1,addr2,tel,email;
+	private String name,addr1,addr2,tel,email, msg, post;
 	
 	
+	public String getPost() {
+		return post;
+	}
+	public void setPost(String post) {
+		this.post = post;
+	}
+	public String getMsg() {
+		return msg;
+	}
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
 	public String getOrderday() {
 		return orderday;
 	}

@@ -19,66 +19,26 @@ public class OrderController {
 	@Autowired
 	private OrderDAO dao;
 	
-//	@GetMapping("mypage/order_form.do")
-//	public String order_form(Model model, HttpSession session)
-//	{
-//		String user_id=(String)session.getAttribute("id");
-//		List<OrderFormVO> list=dao.orderFormListData(user_id);
-//		model.addAttribute("list", list);
-//		model.addAttribute("main_jsp", "../mypage/order_form.jsp");
-//		return "main/main";
-//	}
-//	
-//	@PostMapping("mypage/order_form_ok.do")
-//	public String order_form_ok(int book_no, int amount, HttpSession session)
-//	{
-//		OrderFormVO vo=new OrderFormVO();
-//		String id=(String)session.getAttribute("id");
-//		vo.setUser_id(id);
-//		vo.setBook_no(book_no);
-//		vo.setAmount(amount);
-//		dao.orderInsert(vo);
-//		return "redirect:../mypage/order_form.do";
-//	}
-//	
-//	@PostMapping("mypage/order_insert_ok.do")
-//	public String order_insert_ok(int book_no, int amount, HttpSession session)
-//	{
-//		OrderFormVO vo=new OrderFormVO();
-//		String id=(String)session.getAttribute("id");
-//		vo.setUser_id(id);
-//		vo.setBook_no(book_no);
-//		vo.setAmount(amount); 
-//		Map map=new HashMap();
-//		map.put("book_no", book_no);
-//		map.put("user_id", id);
-//		int count=dao.orderCount(vo);
-//		if(count==0) {
-//			dao.orderInsert(vo);
-//		}
-//		else
-//		{
-//			dao.orderCountUpdate(vo);
-//		}
-//		return "redirect:../mypage/order_form.do";
-//	}
-//	
-//	@GetMapping("mypage/order_list.do")
-//	public String order_list(Model model,HttpSession session)
-//	{
-//		String user_id=(String)session.getAttribute("id");
-//		List<OrderFormVO> list=dao.orderFormListData(user_id);
-//		model.addAttribute("list", list);
-//		model.addAttribute("main_jsp", "../mypage/order_list.jsp");
-//		return "main/main";
-//	}
+	@GetMapping("mypage/order_list.do")
+	public String order_list(Model model,HttpSession session)
+	{
+		String user_id=(String)session.getAttribute("id");
+		List<OrderFormVO> list=dao.orderPayListData(user_id);
+		model.addAttribute("list", list);
+		model.addAttribute("main_jsp", "../mypage/order_list.jsp");
+		return "main/main";
+	}
 	
 	@GetMapping("mypage/order_form.do")
-	public String cart_list(Model model, HttpSession session)
+	public String order_form_list(Model model, HttpSession session)
 	{
 		String userId=(String)session.getAttribute("id");
 		List<CartVO> list=dao.orderListData(userId);
 		List<MemberVO> mlist=dao.userData(userId);
+		int totalAmount=dao.orderSumAmount(userId);
+		int totalPrice=dao.orderSumPrice(userId);
+		model.addAttribute("totalAmount", totalAmount);
+		model.addAttribute("totalPrice", totalPrice);
 		model.addAttribute("list", list);
 		model.addAttribute("mlist", mlist);
 		model.addAttribute("main_jsp", "../mypage/order_form.jsp");
@@ -87,7 +47,7 @@ public class OrderController {
 	 
 	
 	@RequestMapping("mypage/order_form_ok.do")
-	public String cart_insert_ok(int book_no, int amount, HttpSession session)
+	public String order_form_insert_ok(int book_no, int amount, HttpSession session)
 	{
 		CartVO vo=new CartVO();
 		String userId=(String)session.getAttribute("id");
@@ -110,15 +70,26 @@ public class OrderController {
 	}
 	
 	@GetMapping("mypage/order_delete.do")
-	public String cart_delete(int no)
+	public String order_delete(int no)
 	{
 		dao.orderDelete(no);
 		return "redirect:../mypage/order_form.do";
 	}
 	
-	@PostMapping("order_pay_insert_ok")
-	public String order_pay_insert_ok()
+	@RequestMapping("mypage/pay_order_ok.do")
+	public String pay_order_ok(OrderFormVO vo)
 	{
-		return "";
+//		System.out.println(vo.getUser_id());
+//		System.out.println(vo.getName());
+//		System.out.println(vo.getPost());
+//		System.out.println(vo.getAddr1());
+//		System.out.println(vo.getAddr2());
+//		System.out.println(vo.getEmail());
+//		System.out.println(vo.getTel());
+//		System.out.println(vo.getMsg());
+//		System.out.println(vo.getBook_no());
+//		System.out.println(vo.getAmount());
+		dao.orderPayInsert(vo);
+		return "mypage/pay_order_ok";
 	}
 }

@@ -14,25 +14,18 @@ import com.sist.vo.OrderVO;
 public class OrderDAO {
 	@Autowired
 	private OrderMapper mapper;
-	 
-//	public void orderInsert(OrderFormVO vo)
-//	{
-//		mapper.orderInsert(vo);
-//	}
-//
-//	public List<OrderFormVO> orderFormListData(String user_id)
-//	{
-//		return mapper.orderFormListData(user_id);
-//	}
-//	
-//	public int orderCount(OrderFormVO vo)
-//	{
-//		return mapper.orderCount(vo);
-//	}
-//	public void orderCountUpdate(OrderFormVO vo)
-//	{
-//		mapper.orderCountUpdate(vo);
-//	}
+	
+	public void orderPayInsert(OrderFormVO vo)
+	{
+		mapper.orderPayInsert(vo);
+	}
+	
+	public List<OrderFormVO> orderPayListData(String user_id)
+	{
+		OrderFormVO vo=new OrderFormVO();
+		Date deliver_date=vo.getDeliver_date();
+		return mapper.orderPayListData(user_id);
+	}
 	
 	public void orderInsert(CartVO vo)
 	{
@@ -61,6 +54,14 @@ public class OrderDAO {
 	public List<MemberVO> userData(String userId)
 	{
 		return mapper.userData(userId);
+	}
+	public int orderSumAmount(String userId)
+	{
+		return mapper.orderSumAmount(userId);
+	}
+	public int orderSumPrice(String userId)
+	{
+		return mapper.orderSumPrice(userId);
 	}
 /*
 	public List<OrderFormVO> orderListData(String user_id)
