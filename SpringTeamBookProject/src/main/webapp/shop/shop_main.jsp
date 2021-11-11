@@ -106,7 +106,7 @@ button.float-right {
 				<div class="search__sidebar__item">
 						<div class="search__sidebar__recent shop_bar">
 							<div v-for="(vo,index) in shop_data" :key="vo.id">
-								 <a href="#" class="search__sidebar__recent__item" v-on:click="clickData(index)">
+								 <div class="search__sidebar__recent__item" v-on:click="clickData(index)">
 									<div class="search__sidebar__recent__item__text">
 										<h6 class=name>{{vo.name}}</h6>
 										<span>{{vo.addr}}<br></span>
@@ -114,7 +114,7 @@ button.float-right {
 										<span v-if="vo.open">영업시간: {{vo.open}} - {{vo.close}}</span>
 										<hr>
 									</div>
-								</a>
+								</div>
 							</div>
 						</div>
 				</div>
@@ -152,6 +152,7 @@ button.float-right {
 						</div>
 					</div>
 	   </div>
+	   <jsp:include page="${shop_board}"></jsp:include>
 </body>
 <script>
 	new Vue({
@@ -228,7 +229,7 @@ button.float-right {
 
 					// 마커가 지도 위에 표시되도록 설정합니다
 					marker.setMap(map);
-
+			
 			},
  			paging:function(p){
 				this.page=p;
