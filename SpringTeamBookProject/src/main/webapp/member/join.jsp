@@ -66,6 +66,7 @@ $(function(){
 		})
 	}); 
  	
+ 	// 회원가입 중복체크창 제어
    	$('#okBtn').click(function(){
 		let id=$('#id_check').val();
 		if(id.trim()!="")
