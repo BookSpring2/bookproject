@@ -26,7 +26,9 @@
 
 .nice-select .list{
 	border-radius:0px;
+	width:100%;
 }
+
 </style>
 </head>
 <body>
@@ -123,7 +125,7 @@
 		                   <option value="TR">번역가</option>
 		                  <option value="G">장르</option>
 		                </select>
-		                <input type=text name=ss size=25 class="input-sm" value="${ss }" style="height:46px !important; width:58%; border:solid 1px #e8e8e8; float:left;">
+		                <input type=text name=ss size=25 class="input-sm" value="${ss }" style="height:46px !important; width:58%; border:solid 1px #e8e8e8; float:left; padding-left:15px; font-size:14px;">
 		                <button type="submit" class="site-btn" style="height:46px; width:15%; float:left;">검색</button>
 		              </form>
 

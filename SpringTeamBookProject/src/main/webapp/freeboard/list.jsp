@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
@@ -17,6 +17,39 @@
 	margin: 0 auto;
 	
 }
+
+/* css수정 */
+
+a{
+  color:black;
+}
+
+.freeboard .nice-select{
+	height:42px;
+	font-size:14px;
+	line-height:43px;
+}
+
+.freeboard input{
+	border-radius:0px;
+}
+
+.freeboard .checkout__input input{
+	border-radius:0px;
+	padding:0px;
+	font-size:14px;
+}
+
+.freeboard .btn{
+	font-size:14px;
+	padding:10px 20px;
+}
+
+.btn{
+	float:left;
+	display:block;
+}
+
 </style>
 
 </head>
@@ -39,32 +72,29 @@
 
 <!-- 검색창 & 글쓰기 버튼 -->
 <div class="container">
- <div class="row" style="margin:50px 0px 30px 450px;">
-		<form method="post" action="../freeboard/find.do">
-		<div class="row">
-		 <select name="fs">
-            <option value="S">제목</option>
-            <option value="C">내용</option>
-            <option value="N">닉네임</option>
-         </select>
-         <div class="checkout__input" style="margin:0px 10px;">
-			<input type="text" name="ss" placeholder="검색어를 입력하세요." style="width:280px; height:42px;">
-		 </div>
-		<button type="submit" class="btn"style="background-color:#83AD2E; height:42px;">검색</button>
-		</div>
+ <div class="row freeboard" style="width:80%; min-width:750px;">
+ 	<div class="col-lg-12" style="width:100%;">
+		<form method="post" action="../freeboard/find.do" style="width:100%;">
+			<div style="float:right; margin-top:50px;">
+					 <select name="fs">
+			            <option value="S">제목</option>
+			            <option value="C">내용</option>
+			            <option value="N">닉네임</option>
+			         </select>
+			         <div class="checkout__input" style="float:left;">
+						<input type="text" name="ss" placeholder="검색어를 입력하세요." style="width:280px; height:42px; padding-left:15px;">
+					 </div>
+					<button type="submit" class="btn"style="background-color:black; color:white; height:42px; float:left; border-radius:0px;">검색</button>
+			</div>
 		</form>
-		<div style="margin-left:10px;"></div>
-	<c:if test="${sessionScope.id!=null }">
-	<a href="insert.do"><button type="button" id="loginCheck" class="btn"style="background-color:#83AD2E; height:42px;">글쓰기</button></a>	 
-	</c:if>
-	<div style="margin-left:10px;"></div>
-	<a href="list.do?page=${startPage }"><button type="button" class="btn"style="background-color:#83AD2E; height:42px;">목록</button></a>
- </div>
+	</div>	
+</div>
 </div>
 
 <!-- 리스트 -->
 <div class="container">         
-<div class="row" style="margin-top:50px; width:950px;">
+<div class="row" style="margin-top:30px; width:80%; min-width:750px;">
+	<div class="col-lg-12" style="width:100%;">
    <table class="table table-hover">
     <thead>
       <tr>
@@ -87,6 +117,16 @@
       </c:forEach>    
     </tbody>
   </table>
+  
+    <div style="margin-top:20px; float:right;">
+		<c:if test="${sessionScope.id!=null }">
+		<a href="insert.do"><button type="button" id="loginCheck" class="btn" style="border-radius:0px; background-color:black; color:white; font-size:14px; height:42px; float:left; margin-right:10px; padding:10px 20px;">글쓰기</button></a>	 
+		</c:if>
+		<a href="list.do?page=${startPage }"><button type="button" class="btn" style="border-radius:0px; background-color:black; color:white; font-size:14px; height:42px; float:left; 	padding:10px 20px;">목록</button></a>
+    </div>
+  
+  </div>
+  
 </div>
 </div>
 
