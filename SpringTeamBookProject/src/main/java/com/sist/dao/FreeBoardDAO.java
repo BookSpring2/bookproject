@@ -93,4 +93,9 @@ public class FreeBoardDAO {
 		}
 		mapper.freeBoardReplyDepthDecrement(vo.getRoot());
 	}
+	
+	public int freeBoardReplyCount(int bno)
+	{
+		return mapper.freeBoardReplyCount(bno);
+	}
 }

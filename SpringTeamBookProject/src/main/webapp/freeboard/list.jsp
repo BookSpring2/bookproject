@@ -15,12 +15,13 @@
 <style type="text/css">
 .row{
 	margin: 0 auto;
+	
 }
 </style>
 
 </head>
 <body>
-<section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg">
+<section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb2.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -38,7 +39,7 @@
 
 <!-- 검색창 & 글쓰기 버튼 -->
 <div class="container">
- <div class="row" style="margin:50px 0px 50px 550px;">
+ <div class="row" style="margin:50px 0px 30px 450px;">
 		<form method="post" action="../freeboard/find.do">
 		<div class="row">
 		 <select name="fs">
@@ -63,7 +64,7 @@
 
 <!-- 리스트 -->
 <div class="container">         
-<div class="row" style="margin-top:50px;">
+<div class="row" style="margin-top:50px; width:950px;">
    <table class="table table-hover">
     <thead>
       <tr>
@@ -91,7 +92,8 @@
 
 <!-- 페이지 -->
 <div class="container">
- <div class="row" style="margin:100px 0px 100px 500px;">
+ <div class="row" style="margin:70px 0px 70px 0px;">
+ 	<div style="margin:0 auto">
 		<div class="product__pagination blog__pagination">
 		 <c:if test="${startPage>1 }">
 			 <a href="../freeboard/list.do?page=${startPage-1 }"><i class="fa fa-long-arrow-left"></i></a>
@@ -103,6 +105,7 @@
 			 <a href="../freeboard/list.do?page=${endPage+1 }"><i class="fa fa-long-arrow-right"></i></a>
 		 </c:if>						
  		</div>
+ 	</div>
  </div>
 </div>
 

@@ -33,7 +33,8 @@ $(function(){
 		{
 			return false;
 		}		
-		
+	})
+	
 	 $('.updates').click(function(){
 		 $('.up').hide();
 		 $('.reply').hide();
@@ -52,8 +53,7 @@ $(function(){
 			 u=0;
 		 }
 	 })
-	})
-	
+	 
 	$('.replys').click(function(){
 		$('.up').hide();
 		$('.reply').hide();
@@ -76,18 +76,25 @@ $(function(){
 	
 })
 </script>
+<style type="text/css">
+span{
+	text-align:right;
+}
+</style>
 </head>
 <body>
-	<section class="blog-details-hero set-bg" data-setbg="../img/blog/details/details-hero.jpg">
+	<section class="blog-details-hero set-bg" data-setbg="../img/breadcrumb2.jpg" style="height:187px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="blog__details__hero__text">
-						<h2>${vo.subject }</h2>
-						<ul>
+						<a href="../freeboard/list.do"><h2>자유게시판</h2></a>
+					<!--	<ul>
 							<li>By ${vo.writer }</li>
-							<li>8 Comments</li>
-						</ul>
+							<li>조회수 : ${vo.hit }</li>
+							<li>${replyCount } Comments</li>
+							<li><fmt:formatDate value="${vo.regdate }" pattern="yy-MM-dd [E]"/> </li>			
+						</ul>  -->
 							<input type=hidden name=no value="${vo.no }" id="no">
  							<input type=hidden name=page value="${page }" id="page">
  							<input type="hidden" value="${vo.writer }" id="writer">
@@ -97,30 +104,33 @@ $(function(){
 		</div>
 	</section>
 	<section class="blog-details spad">
-		<div class="container">
+		<div class="container" style="width:900px;">
 			<div class="row">
-				<table class="table">
+				<table class="table" style="font-size:15px;">
+				 <tr>
+				  <th width=15% style="background-color:#E2E2E2;"> &nbsp;제목</th>
+				  <td width=85% colspan="3">${vo.subject }</td>
+				 </tr>
+				  <tr>
+				  <th width=15% style="background-color:#E2E2E2;"> &nbsp;작성자</th>
+				  <td width=85% colspan="3">${vo.writer }</td>
+				 </tr>
+				  <tr> 
+				  <td colspan="4" style="font-size:13px; color:gray;">
+				  	작성일 <fmt:formatDate value="${vo.regdate }" pattern="yy-MM-dd"/> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+				  	조회수 ${vo.hit }	
+				  </td>
+				 </tr>
 					<tr>
-						<th width="20%" class="text-center">제목</th>
-						<td colspan="3" width="80%">${vo.subject }</td>
-					</tr>
-					<tr>
-						<th width=20% class="text-center">번호</th>
-						<td width=30% class="text-center">${vo.no }</td>
-						<th width=20% class="text-center">작성일</th>
-						<td width=30% class="text-center"><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd"/></td>			
-					</tr>
-					<tr>
-						<th width=20% class="text-center">이름</th>
-						<td width=30% class="text-center">${vo.writer }</td>
-						<th width=20% class="text-center">조회수</th>
-						<td width=30% class="text-center">${vo.hit }</td>
+						<td colspan="4" valign="top" height="200">
+							<pre style="font-size:15px;white-space: pre-wrap; border: none; background-color: white;">${vo.content }</pre>
+						</td>
 					</tr>
 					<c:if test="${vo.filecount>0 }">
 						<tr>
-							<th width=20% class="text-center">첨부파일</th>
+							<th width=15%>&nbsp;첨부파일</th>
 							<td colspan="3" class="text-left">
-								<ul>
+								<ul style="list-style:none;">
 									<c:forEach var="fn" items="${fList }" varStatus="s">
 										<li><a href="download.do?fn=${fn }">${fn }</a>&nbsp;(${sList[s.index]}Bytes)</li>
 									</c:forEach>
@@ -128,11 +138,6 @@ $(function(){
 							</td>
 						</tr>
 					</c:if>
-					<tr>
-						<td colspan="4" valign="top" height="200">
-							<pre style="white-space: pre-wrap; border: none; background-color: white">${vo.content }</pre>
-						</td>
-					</tr>
 					<tr>
 						<td colspan="4" class="text-right">
 						<c:if test="${sessionScope.id!=null }">
@@ -165,13 +170,14 @@ $(function(){
 			         </c:forEach>
 			          ↳
 			        </c:if>
-			        	＠${rvo.reply_id }(<span>${rvo.dbday }</span>)
+			        	<img src="../img/users-icon.png" style="width:20px;height:20px;">&nbsp; ${rvo.reply_id }&nbsp;&nbsp;&nbsp;
+			        	<span style="text-align:right;">${rvo.dbday }</span>
 			       </td>
 			       <td class="text-right">
 			        <c:if test="${sessionScope.id!=null }">
 			         <c:if test="${sessionScope.id==rvo.reply_id }">
 			        	<span class="btn updates" data-no="${rvo.no }">수정</span> <!-- data-no는 임시로 만든 속성, 데이터전송을 위해만듬 -->
-			        	<a href="../freeboard/reply_delete.do?no=${rvo.no }&bno=${vo.no}&page=${page}" class="btn">삭제</a>       	
+			        	<a href="../freeboard/reply_delete.do?no=${rvo.no }&bno=${vo.no}&page=${page}" class="btn">삭제</a>
 			         </c:if>
 			         <span class="btn replys" data-no="${rvo.no }">댓글</span>
 			        </c:if>
@@ -191,8 +197,8 @@ $(function(){
 		        	  <input type="hidden" name="no" value="${rvo.no }">
 		        	  <input type="hidden" name="bno" value="${vo.no }"><%-- 게시물 번호 --%>
 		        	  <input type="hidden" name="page" value="${page }">
-		        	  <textarea rows="4" cols="90" name=msg style="float: left">${rvo.msg }</textarea>
-		        	  <input type=submit value="댓글수정" class="btn btn-danger" style="height: 80px;float:left">
+		        	  <textarea rows="4" cols="90" name=msg style="float:left">${rvo.msg }</textarea>
+		        	  <input type="submit" value="댓글수정" class="btn" style="height: 80px;float:left">
 		       		 </form>
 		      		</td>
 		    	   </tr>
@@ -205,7 +211,7 @@ $(function(){
 			         <input type="hidden" name="pno" value="${rvo.no }"> <!-- 댓글 번호 -->
 			         <input type="hidden" name="bno" value="${vo.no }"><!-- 게시물 번호 -->
 			         <input type="hidden" name="page" value="${page }">
-			         <textarea rows="4" cols="90" name="msg" style="float:left"></textarea>
+			         <textarea rows="4" cols="90" name="msg" style="float:left;"></textarea>
 			         <input type="submit" value="댓글쓰기" class="btn" style="height: 80px;float:left">
 			        </form>
 			       </td>
@@ -225,8 +231,11 @@ $(function(){
 				    <form method="post" action="../freeboard/reply_insert.do">
 				     <input type="hidden" name="bno" value="${vo.no }"><!-- 게시물 번호 -->
 			         <input type="hidden" name="page" value="${page }">
-			         <textarea rows="4" cols="90" name="msg" style="float:left"></textarea>
-			         <input type="submit" value="댓글쓰기" class="btn" style="height: 80px;float:left">
+			         <!--<textarea rows="4" cols="90" name="msg" style="float:left"></textarea>-->
+			         <textarea class="form-control" rows="5" name="msg"></textarea>
+			         <br>
+			         <button class="site-btn" type="submit"">댓글쓰기</button>
+			        <!--<input type="submit" value="댓글쓰기" class="btn" style="height: 80px;float:left">--> 
 				    </form>
 				   </td>
 				  </tr>
@@ -236,4 +245,5 @@ $(function(){
 		</div>
 	</section>
 </body>
+<!-- <a href='https://.pngtree.com/so/사용자'>사용자 png에서 .pngtree.com/</a> -->
 </html>

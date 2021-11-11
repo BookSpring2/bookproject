@@ -7,29 +7,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../book/css/book.css">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-<script>
-$( function() {
-    $( "#slider-range" ).slider({
-    	range: true,
-      	min: 0,
-      	max: 100000,
-     	values: [ 0, 18000 ],
-     	slide: function(event,ui){
-    		$( "#amount" ).val(ui.values[0]+"원 - "+ui.values[1]+"원");
-      	},
-      	change: function(event, ui) {  //<---add this to submit the form.
-            $('[name="form"]').submit();
-        }
-    });
-    $( "#amount" ).val($( "#slider-range" ).slider("values",0) + 
-      "원 - " + $( "#slider-range" ).slider("values", 1) + "원");
-    
-  } );
-</script>
+
+ <!-- 별점 -->
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../book/css/jquery.raty.js"></script>
 
 </head>
 <body>
@@ -97,37 +78,59 @@ $( function() {
                     <div class="sidebar__item">
                     <!--
                     <h4>가격</h4>
-                    	<div class="price-range-wrap">
-                    	<form name="form" action="newlistSelectCate.do" method="post">
-	                    	<p>
-								<label for="amount"></label>
-								<input type="text" id="amount"
-							 		style="border:0; color:#85bd22; font-weight:bold;">
-							</p>
-							<div id="slider-range"></div>
-						</form>
-                        </div>
+                    	
                      -->
                      </div>
                     <!-- 신간 도서 -->
                     
                         <div class="sidebar__item">
                             <div class="latest-product__text">
-                            <!--  이미 신간 도서 페이지.
-                                <h4>신간 도서</h4>
+                      
+                                <h4>추천 도서</h4>
                                 <div class="latest-product__slider owl-carousel">
-                                	<div class="latest-prdouct__slider__item">
-                                        <a href="../book/newdetail.do" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="../ogani-master/img/latest-product/lp-1.jpg" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>Crab Pool Security</h6>
-                                                <span>$30.00</span>
-                                            </div>
-                                        </a>
-                                	</div>
-                                </div> -->
+                                    <div class="latest-prdouct__slider__item">
+                                       <c:forEach var="rvo" items="${rlist }">
+	                                        <a href="../book/newdetail.do?bno=${rvo.bno }" class="latest-product__item">
+	                                            <div class="latest-product__item__pic">
+	                                                <img src="${rvo.image}" alt="">
+	                                            </div>
+	                                            <div class="latest-product__item__text">
+	                                                <h6>${rvo.title}</h6>
+	                                                <span>${rvo.price}</span>
+	                                            </div>
+	                                        </a>
+	                                    </c:forEach>
+                                        
+                                    </div>
+                                    <div class="latest-prdouct__slider__item">
+                                       <c:forEach var="r2vo" items="${r2list }">
+	                                        <a href="../book/newdetail.do?bno=${r2vo.bno }" class="latest-product__item">
+	                                            <div class="latest-product__item__pic">
+	                                                <img src="${r2vo.image}" alt="">
+	                                            </div>
+	                                            <div class="latest-product__item__text">
+	                                                <h6>${r2vo.title}</h6>
+	                                                <span>${r2vo.price}</span>
+	                                            </div>
+	                                        </a>
+	                                    </c:forEach>                                       
+                                    </div>
+                                    <div class="latest-prdouct__slider__item">
+                                       <c:forEach var="r3vo" items="${r3list }">
+	                                        <a href="../book/newdetail.do?bno=${r3vo.bno }" class="latest-product__item">
+	                                            <div class="latest-product__item__pic">
+	                                                <img src="${r3vo.image}" alt="">
+	                                            </div>
+	                                            <div class="latest-product__item__text">
+	                                                <h6>${r3vo.title}</h6>
+	                                                <span>${r3vo.price}</span>
+	                                            </div>
+	                                        </a>
+	                                    </c:forEach>                                       
+                                    </div>
+                                </div>
+                               
+                               
                             </div>
                         </div>
                     </div><!-- class="sidebar" -->
@@ -167,32 +170,7 @@ $( function() {
                         </div>
                     </div>
                     
-                    <!--  신간도서라서 이미 출판일 순 정렬임. 
-                    <div class="filter__item">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-5">
-                                <div class="filter__sort">
-                                    <span>Sort By</span>
-                                    <select>
-                                        <option value="0">Default</option>
-                                        <option value="0">Default</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4">
-                                <div class="filter__found">
-                                    <h6><span>총 도서 수</span> Products found</h6>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-3">
-                                <div class="filter__option">
-                                    <span class="icon_grid-2x2"></span>
-                                    <span class="icon_ul"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    -->
+                    
                     <div class="row">
                     <c:forEach var="vo" items="${list }">
                         <div class="col-lg-4 col-md-6 col-sm-6">

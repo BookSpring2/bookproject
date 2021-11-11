@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 
 import com.sist.vo.BookCommentVO;
 import com.sist.vo.BookVO;
+import com.sist.vo.MemberVO;
 
 public interface BookMapper {
 	
@@ -63,23 +64,13 @@ public interface BookMapper {
 		 */
 		
 		//2-3. 신간 - 도서 상세보기.
-		/*
-		*/
-		/*
-		@Select("SELECT t1.bno,t1.title,t1.image,t1.sale,t1.pubdate,t1.introduce,t1.contents,t1.price"
-				+ "t1.TO_NUMBER(REPLACE(REPLACE(price,','),'원')) intprice,"
-				+ "t1.genre,t1.publisher,t1.writer,"
-				+ "t2.COUNT(title) cnt "
-				+ "FROM book_data t1 "
-				+ "JOIN book_detail_comment t2 "
-				+ "WHERE t1.bno IS NOT NULL AND t1.bno=#{t1.bno}")*/
 		@Select("SELECT bno,title,image,sale,pubdate,introduce,contents,price,"
 				+ "TO_NUMBER(REPLACE(REPLACE(price,','),'원')) intprice,"
 				+ "genre,publisher,writer "
 				 +"FROM book_data WHERE bno IS NOT NULL "
 				 +"AND bno=#{bno}")
 		public BookVO bookNewDetailData(int bno);
-		
+		//2-3.1 신간 - 도서 상세보기 - 리뷰 카운트.
 		@Select("SELECT MAX(ccno) cnt "
 				+ "FROM book_detail_comment WHERE dc_bno=#{bno}")
 		public BookCommentVO bookNewCommentCount(int bno);
@@ -104,12 +95,24 @@ public interface BookMapper {
 		public List<BookVO> bookNewListData_SalesRandom(HashMap<String,Object> map);
 		// intprice*0.8 AS saleprice
 		
+		//2-6. 신간 - 추천 도서 출력 기능 (회원 선호 도서 장르)
+		@Select("SELECT bno,title,image,sale,pubdate,genre,price,num "
+				+"FROM (SELECT bno,title,image,sale,pubdate,genre,price,rownum as num "
+				+"FROM (SELECT bno,title,image,sale,pubdate,genre,price "
+				+"FROM book_data WHERE genre IS NOT NULL AND "
+				+ "#{usergenre} LIKE '%'||genre||'%' OR genre LIKE '%'||#{usergenre}||'%' "
+				+ "ORDER BY DBMS_RANDOM.RANDOM)) "
+				+ "WHERE num<=4")
+		public List<BookVO> bookNewRecommendData(HashMap<String, Object> map);
 		
+		@Select("SELECT user_id,genre FROM book_member WHERE user_id=#{myid}")
+		public MemberVO bookNewMemberGenre(String myid);
 		
+		//INSTR(STR, ' ')
 		
 		//3-1. 리뷰 입력 기능
-		@Insert("INSERT INTO book_detail_comment(dc_bno,title,comments,writer,writedate,ccno) "
-				+ "VALUES(#{bno},#{title},#{comments},#{writer},SYSDATE,"
+		@Insert("INSERT INTO book_detail_comment(dc_bno,title,stars,comments,writer,writedate,ccno) "
+				+ "VALUES(#{bno},#{title},#{rating},#{comments},#{writer},SYSDATE,"
 				+ "(SELECT NVL(MAX(ccno),0)+1 FROM book_detail_comment WHERE dc_bno=#{bno})"
 				+ ")")
 		public void bookCommentInputData(HashMap<String, Object> map) throws Exception;
@@ -120,7 +123,7 @@ public interface BookMapper {
 		public List<BookCommentVO> bookCommentListData(int bno);
 		
 		
-	
+		
 	
 	
 }

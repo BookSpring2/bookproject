@@ -95,7 +95,7 @@ public interface FreeBoardMapper {
 	
 	// 댓글 수정
 	@Update("UPDATE book_freeBoardReply SET "
-			+"WHERE msg=#{msg} "
+			+"msg=#{msg} "
 			+"WHERE no=#{no}")
 	public void freeBoardReplyUpdate(FreeBoardReplyVO vo);
 	
@@ -129,7 +129,6 @@ public interface FreeBoardMapper {
 			+"FROM book_freeBoardReply "
 			+"WHERE no=#{no}")
 	public FreeBoardReplyVO freeBoardReplyDepthInfoData(int no);
-	
 	// 2. 댓글 삭제
 	@Delete("DELETE FROM book_freeBoardReply "
 			+"WHERE no=#{no}")
@@ -142,5 +141,10 @@ public interface FreeBoardMapper {
 			+"depth=depth-1 "
 			+"WHERE no=#{no}")
 	public void freeBoardReplyDepthDecrement(int no);
+	
+	
+	// 댓글 갯수 집계
+	@Select("select COUNT(*) FROM book_freeBoardReply WHERE bno=#{bno}")
+	public int freeBoardReplyCount(int no);
 		
 }
