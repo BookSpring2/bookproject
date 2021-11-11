@@ -86,7 +86,7 @@
                             </li>
                             <li class="active"><a href="../main/main.do">홈</a></li>
                             <li><a href="../book/list.do">베스트셀러</a></li>
-                            <li><a href="../book/newlist.do">신간도서</a></li>
+                            <li><a href="../book/newlistSelectCate.do">신간도서</a></li>
                             <li><a href="../blog/list.do">블로그</a></li>
                             <li><a href="#">게시판</a>
                                 <ul class="header__menu__dropdown">
