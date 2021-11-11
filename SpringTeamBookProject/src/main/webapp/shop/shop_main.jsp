@@ -124,8 +124,8 @@ button.float-right {
 			</div>
 						
 						<div class="row bookstore" v-if="show">
-							<table class="table" style="table-layout:fixed">
-									<h4 text-align:center>{{shop_detail.name}}</h4>
+							<h4 style="padding:0px">{{shop_detail.name}}</h4>
+							<table class="table" style="table-layout:fixed; height:320px">
 									<button class="float-right" v-on:click="show=false">X</button>
 								<tr>
 									<th width=20%>영업</th>
@@ -151,8 +151,8 @@ button.float-right {
 							</table>
 						</div>
 					</div>
-	    </div>
 	   </div>
+	   <jsp:include page="shop_board.jsp"></jsp:include>
 </body>
 <script>
 	new Vue({
@@ -167,6 +167,7 @@ button.float-right {
 			totalpage:"",
 			page:1,
 			show:false,
+			tag:""
 		},
 		mounted:function(){
 			// default 출력
@@ -233,7 +234,6 @@ button.float-right {
  			paging:function(p){
 				this.page=p;
 				this.searchList();
-				this.clickData(0);
  			},
  			pageRiset:function(){
  				this.page=1;

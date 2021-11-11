@@ -7,8 +7,28 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../book/css/book.css">
-<script type="text/javascript">
-
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+<script>
+$( function() {
+    $( "#slider-range" ).slider({
+    	range: true,
+      	min: 0,
+      	max: 100000,
+     	values: [ 0, 18000 ],
+     	slide: function(event,ui){
+    		$( "#amount" ).val(ui.values[0]+"원 - "+ui.values[1]+"원");
+      	},
+      	change: function(event, ui) {  //<---add this to submit the form.
+            $('[name="form"]').submit();
+        }
+    });
+    $( "#amount" ).val($( "#slider-range" ).slider("values",0) + 
+      "원 - " + $( "#slider-range" ).slider("values", 1) + "원");
+    
+  } );
 </script>
 
 </head>
@@ -21,7 +41,7 @@
                         <h2>Organi Shop</h2>
                         <div class="breadcrumb__option">
                             <a href="../main/list.do">Home</a>
-                            <span>도서</span>
+                            <span>신간 도서</span>
                         </div>
                     </div>
                 </div>
@@ -29,12 +49,12 @@
         </div>
 </section>
 <section class="product spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-5">
-                    <div class="sidebar">
-                        <div class="sidebar__item">
-                            <h4>분류</h4>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3 col-md-5">
+				<div class="sidebar">
+					<div class="sidebar__item">
+                    <h4>분류</h4>
 							<form action="newlistSelectCate.do" type="post">
 								<input type="hidden" name="select" value="1" />
 								<input type="submit" class="category_menus" value="소설">
@@ -71,69 +91,32 @@
 								<input type="hidden" name="select" value="9" />
 								<input type="submit" class="category_menus" value="자기계발">
 							</form>
-							
+						</div><!-- class="sidebar__item" -->
+                    
+                    
+                    <div class="sidebar__item">
+                    <!--
+                    <h4>가격</h4>
+                    	<div class="price-range-wrap">
+                    	<form name="form" action="newlistSelectCate.do" method="post">
+	                    	<p>
+								<label for="amount"></label>
+								<input type="text" id="amount"
+							 		style="border:0; color:#85bd22; font-weight:bold;">
+							</p>
+							<div id="slider-range"></div>
+						</form>
                         </div>
-                        <div class="sidebar__item">
-                            <h4>가격</h4>
-                            <div class="price-range-wrap">
-                                <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                                    data-min="10" data-max="540">
-                                    <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
-                                    <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                                    <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                                </div>
-                                <div class="range-slider">
-                                    <div class="price-input">
-                                        <input type="text" id="minamount">
-                                        <input type="text" id="maxamount">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="sidebar__item sidebar__item__color--option">
-                            <h4>키워드</h4>
-                            <div class="sidebar__item__color sidebar__item__color--white">
-                                <label for="white">
-                                    키워드
-                                    <input type="radio" id="white">
-                                </label>
-                            </div>
-                            <div class="sidebar__item__color sidebar__item__color--gray">
-                                <label for="gray">
-                                    키워드
-                                    <input type="radio" id="gray">
-                                </label>
-                            </div>
-                            <div class="sidebar__item__color sidebar__item__color--red">
-                                <label for="red">
-                                    키워드
-                                    <input type="radio" id="red">
-                                </label>
-                            </div>
-                            <div class="sidebar__item__color sidebar__item__color--black">
-                                <label for="black">
-                                    키워드
-                                    <input type="radio" id="black">
-                                </label>
-                            </div>
-                            <div class="sidebar__item__color sidebar__item__color--blue">
-                                <label for="blue">
-                                    키워드
-                                    <input type="radio" id="blue">
-                                </label>
-                            </div>
-                            <div class="sidebar__item__color sidebar__item__color--green">
-                                <label for="green">
-                                    키워드
-                                    <input type="radio" id="green">
-                                </label>
-                            </div>
-                        </div>
+                     -->
+                     </div>
+                    <!-- 신간 도서 -->
+                    
                         <div class="sidebar__item">
                             <div class="latest-product__text">
+                            <!--  이미 신간 도서 페이지.
                                 <h4>신간 도서</h4>
                                 <div class="latest-product__slider owl-carousel">
-                                    <div class="latest-prdouct__slider__item">
+                                	<div class="latest-prdouct__slider__item">
                                         <a href="../book/newdetail.do" class="latest-product__item">
                                             <div class="latest-product__item__pic">
                                                 <img src="../ogani-master/img/latest-product/lp-1.jpg" alt="">
@@ -143,59 +126,12 @@
                                                 <span>$30.00</span>
                                             </div>
                                         </a>
-                                        <a href="../book/newdetail.do" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="../ogani-master/img/latest-product/lp-2.jpg" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>Crab Pool Security</h6>
-                                                <span>$30.00</span>
-                                            </div>
-                                        </a>
-                                        <a href="../book/newdetail.do" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="../ogani-master/img/latest-product/lp-3.jpg" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>Crab Pool Security</h6>
-                                                <span>$30.00</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="latest-prdouct__slider__item">
-                                        <a href="../book/newdetail.do" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="../ogani-master/img/latest-product/lp-1.jpg" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>Crab Pool Security</h6>
-                                                <span>$30.00</span>
-                                            </div>
-                                        </a>
-                                        <a href="../book/newdetail.do" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="../ogani-master/img/latest-product/lp-2.jpg" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>Crab Pool Security</h6>
-                                                <span>$30.00</span>
-                                            </div>
-                                        </a>
-                                        <a href="../book/newdetail.do" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="../ogani-master/img/latest-product/lp-3.jpg" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>Crab Pool Security</h6>
-                                                <span>$30.00</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
+                                	</div>
+                                </div> -->
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </div><!-- class="sidebar" -->
+                </div><!--  class="col-lg-3 col-md-5"-->
                 <div class="col-lg-9 col-md-7">
                     <div class="product__discount">
                         <div class="section-title product__discount__title">
@@ -230,6 +166,8 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <!--  신간도서라서 이미 출판일 순 정렬임. 
                     <div class="filter__item">
                         <div class="row">
                             <div class="col-lg-4 col-md-5">
@@ -254,6 +192,7 @@
                             </div>
                         </div>
                     </div>
+                    -->
                     <div class="row">
                     <c:forEach var="vo" items="${list }">
                         <div class="col-lg-4 col-md-6 col-sm-6">
@@ -284,21 +223,22 @@
                     <div class="product__pagination">
 						<ul>
 							<c:if test="${startPage>1 }">
-								<li><a href="../book/newlist.do?page=${startPage-1 }">&laquo;
-										Previous</a></li>
+								<li><a href="../book/newlistSelectCate.do?select=${whatCate }&page=${startPage-1 }">
+									<i class="fa fa-long-arrow-left"></i>
+									</a>
+								</li>
 							</c:if>
 							<c:forEach var="i" begin="${startPage }" end="${endPage }">
 								<c:if test="${i==curpage }">
-									<li class="current"><a
-										href="../book/newlist.do?page=${i }">${i }</a></li>
+									<li class="current"><a href="../book/newlistSelectCate.do?select=${whatCate }&page=${i }">${i }</a></li>
 								</c:if>
 								<c:if test="${i!=curpage }">
-									<li><a href="../book/newlist.do?page=${i }">${i }</a></li>
+									<li><a href="../book/newlistSelectCate.do?select=${whatCate }&page=${i }">${i }</a></li>
 								</c:if>
 							</c:forEach>
 							<c:if test="${endPage<totalpage }">
 								<li>
-									<a href="../book/newlist.do?page=${endPage+1 }">
+									<a  href="../book/newlistSelectCate.do?select=${whatCate }&page=${endPage+1 }">
 										<i class="fa fa-long-arrow-right"></i>
 									</a>
 								</li>

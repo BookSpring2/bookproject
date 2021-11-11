@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
 import com.sist.vo.BookCommentVO;
@@ -41,7 +42,9 @@ public interface BookMapper {
 		public List<BookVO> bookNewListData(HashMap<String,Object> map);
 		
 		//2-1. 신간 - 페이징
-		@Select("SELECT CEIL(COUNT(*)/12.0) FROM ${table_name} WHERE pubdate IS NOT NULL AND cno2 IS NOT NULL")
+		@Select("SELECT CEIL(COUNT(*)/12.0) FROM ${table_name} "
+				+ "WHERE pubdate IS NOT NULL AND cno2 IS NOT NULL "
+				+ "AND genre IS NOT NULL AND genre LIKE '%'||#{cate}||'%'")
 		public int bookNewTotalPage(Map map);
 		
 		//2-2. 신간 - 도서 목록 출력 기능. + 카테고리 선택 기능.
@@ -60,10 +63,26 @@ public interface BookMapper {
 		 */
 		
 		//2-3. 신간 - 도서 상세보기.
-		@Select("SELECT bno,title,image,sale,pubdate,introduce,contents,price,TO_NUMBER(REPLACE(REPLACE(price,','),'원')) intprice,genre,publisher,writer "
+		/*
+		*/
+		/*
+		@Select("SELECT t1.bno,t1.title,t1.image,t1.sale,t1.pubdate,t1.introduce,t1.contents,t1.price"
+				+ "t1.TO_NUMBER(REPLACE(REPLACE(price,','),'원')) intprice,"
+				+ "t1.genre,t1.publisher,t1.writer,"
+				+ "t2.COUNT(title) cnt "
+				+ "FROM book_data t1 "
+				+ "JOIN book_detail_comment t2 "
+				+ "WHERE t1.bno IS NOT NULL AND t1.bno=#{t1.bno}")*/
+		@Select("SELECT bno,title,image,sale,pubdate,introduce,contents,price,"
+				+ "TO_NUMBER(REPLACE(REPLACE(price,','),'원')) intprice,"
+				+ "genre,publisher,writer "
 				 +"FROM book_data WHERE bno IS NOT NULL "
 				 +"AND bno=#{bno}")
 		public BookVO bookNewDetailData(int bno);
+		
+		@Select("SELECT MAX(ccno) cnt "
+				+ "FROM book_detail_comment WHERE dc_bno=#{bno}")
+		public BookCommentVO bookNewCommentCount(int bno);
 		
 		//2-4. 신간 - 관련 도서 출력 기능. (장르가 같은 데이터를 랜덤으로 네개 출력)
 		@Select("SELECT bno,title,image,sale,pubdate,genre,price,num "
@@ -89,12 +108,15 @@ public interface BookMapper {
 		
 		
 		//3-1. 리뷰 입력 기능
-		//@Select("SELECT * FROM book_detail_comment")
-		//public BookCommentVO bookCommentData();
+		@Insert("INSERT INTO book_detail_comment(dc_bno,title,comments,writer,writedate,ccno) "
+				+ "VALUES(#{bno},#{title},#{comments},#{writer},SYSDATE,"
+				+ "(SELECT NVL(MAX(ccno),0)+1 FROM book_detail_comment WHERE dc_bno=#{bno})"
+				+ ")")
+		public void bookCommentInputData(HashMap<String, Object> map) throws Exception;
 		
 		//3-2. 리뷰 출력 기능
-		@Select("SELECT dc_num,writer,userid,title,comments,stars,writedate,dc_bno "
-				+ "FROM book_detail_comment WHERE dc_bno=#{bno}")
+		@Select("SELECT writer,userid,title,comments,stars,writedate,dc_bno "
+				+ "FROM book_detail_comment WHERE dc_bno=#{bno} ORDER BY writedate DESC")
 		public List<BookCommentVO> bookCommentListData(int bno);
 		
 		
