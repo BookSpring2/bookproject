@@ -84,6 +84,28 @@ button.float-right {
     position: absolute;
     background-color:white;
 }
+.blog__sidebar__search input {
+    width: 100%;
+    height: 46px;
+    font-size: 16px;
+    color: #6f6f6f;
+    padding-left: 15px;
+    border: 1px solid #e1e1e1;
+    border-radius: 20px;
+}
+.blog__sidebar__search button {
+    font-size: 16px;
+    color: #6f6f6f;
+    background: transparent;
+    border: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    padding: 0px 18px
+;
+}
+
 </style>
 </head>
 <body>
@@ -94,12 +116,12 @@ button.float-right {
 	 	<div class="store_search_layer">
 	 			<h4 class="text-center" style="padding:15px"><b>매장찾기</b></h4>
 				<div class="blog__sidebar__search">
-					<form action="#">
+						<form onsubmit="return false">
 						<input type="text" placeholder="지역 또는 매장 찾기" v-model="ss">
-						<button type="submit" v-on:click="searchList(),pageRiset()">
+						<button v-on:click="searchList(),pageRiset()">
 							<span class="icon_search"></span>
 						</button>
-					</form>
+						</form>
 				</div>
 				<div style="margin-bottom: 10px;" v-if="shop_data.length!=0">검색결과 총 {{total}}건</div>
 				<div style="margin-bottom: 10px;" v-else>검색결과가 없습니다</div>
