@@ -12,6 +12,10 @@ public class SearchDAO {
 	@Autowired
 	private SearchMapper mapper;
 	
+	public List<BookVO> bookAllSearchData(Map map)
+	{
+		return mapper.bookAllSearchData(map);
+	}
 	// title
 	public List<BookVO> bookTitleData(String title)
 	{
@@ -59,21 +63,4 @@ public class SearchDAO {
 	{
 		return mapper.bookTranslatorTotalPage(translator);
 	}
-	
-	// genre
-	public List<BookVO> bookGenreData(String genre)
-	{
-		return mapper.bookGenreData(genre);
-	}
-	
-	public List<BookVO> bookGenreSearchData(Map map)
-	{
-		return mapper.bookGenreSearchData(map);
-	}
-	
-	public int bookGenreTotalPage(String genre)
-	{
-		return mapper.bookGenreTotalPage(genre);
-	}
-	
 }

@@ -116,14 +116,12 @@
                               <tr>
                                 <th>주문일자</th>
                                 <th>주문번호</th>
-                                <th>주문내역</th>
                                 <th>주문자</th>
                               </tr>
                               <c:forEach var="ovo" items="${olist }">
                               <tr>
                                 <td>${ovo.orderdate }</td>
                                 <td>${ovo.order_no }</td>
-                                <td>${ovo.book_no }</td>
                                 <td>${ovo.name }</td>
                               </tr>
                               </c:forEach>

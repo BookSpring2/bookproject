@@ -79,7 +79,7 @@ $(function(){
                     <div class="col-lg-10 text-center">
                         <textarea rows=20 cols=60 placeholder="공지내용" name=content></textarea>
                     </div>
-                    <div class="col-lg-12 col-md-12">
+                    <div class="col-lg-10 col-md-10">
                         <table class="table" id="imageView">
       
      					</table>

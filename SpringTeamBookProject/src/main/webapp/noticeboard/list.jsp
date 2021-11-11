@@ -84,6 +84,7 @@
 	         <input type="checkbox" value="N" class="input-sm" name="fs">이름
 	         <input type="checkbox" value="S" class="input-sm" name="fs">제목
 	         <input type="checkbox" value="C" class="input-sm" name="fs">내용
+	         <input type=hidden name=page value="${curpage }">
 	         <input type=text name=ss size=15 class="input-sm" style="width:200px;height:50px;font-size:15px;">
 	         <input type=submit class="buttona" value="검색">
 	        </form>

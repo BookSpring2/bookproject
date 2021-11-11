@@ -211,13 +211,14 @@ public class NoticeController {
     }
 	
 	@PostMapping("find.do")
-	public String noticeboard_find(String[] fs,String ss,Model model)
+	public String noticeboard_find(String[] fs,String ss,int page,Model model)
 	{
 	   Map map=new HashMap();
 	   map.put("fsArr", fs);
 	   map.put("ss", ss);
 	   List<NoticeVO> list=dao.NoticeFindData(map);
 	   model.addAttribute("list", list);
+	   model.addAttribute("curpage", page);
 	   model.addAttribute("main_jsp", "../noticeboard/find.jsp");
 	   return "main/main";
 	}

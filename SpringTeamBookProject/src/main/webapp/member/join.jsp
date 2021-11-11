@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
-<!-- <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>  -->
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script type="text/javascript" src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -20,31 +20,17 @@ function postfind()
 		}
 	}).open();
 }
+
+
 </script>
 
 <script>
 $(function(){
+	$('body').attr("style", "overflow:auto");
 	
 	// 핸드폰번호 하이픈(-) 자동추가
 	$(document).on("keyup","#tel",function(){
 		$(this).val($(this).val().replace(/[^0-9]/g,"").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})/,"$1-$2-$3").replace("--","-"));
-	});
-	
-	
-	// 팝업창 열기
-	$('#idBtn').click(function(){
-		$("#dialog_idcheck").dialog({
-			autoOpen:false,
-			width:420,
-			height:150,
-			modal:true
-			
-		}).dialog("open");
-	});
-	
-	// 팝업창 닫기
-	$('#idcanBtn').click(function(){
-		$('#dialog_idcheck').dialog("close");
 	});
 
  	// 아이디 중복체크
@@ -80,12 +66,16 @@ $(function(){
 		})
 	}); 
  	
+ 	// 회원가입 중복체크창 제어
    	$('#okBtn').click(function(){
 		let id=$('#id_check').val();
 		if(id.trim()!="")
 		{
 			$('#id').val(id);
-			$('#dialog_idcheck').dialog("close");
+			$('#id_check').val("");
+			$('#myModal').css('display','none');
+			$('.modal-backdrop').css('display','none');
+			$('body').attr("style", "overflow:auto");
 		}
 		else
 		{
@@ -175,6 +165,10 @@ $(function(){
 </script>
 
 <style>
+body{
+	padding-right:0px !important;
+}
+
 .col-lg-8, .col-md-6, .col-md-12, .col-sm-12, .col-xs-12{
 	float: none;
 	margin:0 auto;
@@ -231,6 +225,10 @@ button{
 	border-radius:3px;
 	border:none;
 }
+
+.hide{
+	display:none;
+}
 </style>
 </head>
 <body>
@@ -282,7 +280,7 @@ button{
 	                            	<div class="checkout__input">
 	                                	<p>아이디<span>*</span></p>
 		                                    <input type="text" name=user_id id=id style="width:60%;" readonly>
-		                                    <input type="button" id="idBtn" class="searchBtn" value="중복체크">
+		                                    <input type="button" id="idBtn" class="searchBtn" value="중복체크" data-toggle="modal" data-target="#myModal">
 	                               </div>
 	                            </div>
 
@@ -359,22 +357,6 @@ button{
 	                            	<div class="checkout__input">
 	                                	<p>선호장르<span>*</span></p>
 	                               </div>
-	                               
-<!-- 	                               	<div class="checkout__input" id="genre" class="genreBox">
-				                        <input type="checkbox" name="genre" value="국내도서">&nbsp;국내도서&nbsp;
-				                        <input type="checkbox" name="genre" value="외국도서">&nbsp;외국도서&nbsp;
-				                        <input type="checkbox" name="genre" class="genreBox" value="EBook">&nbsp;EBook&nbsp;
-				                        <input type="checkbox" name="genre" class="genreBox" value="소설/시">&nbsp;소설/시&nbsp;
-				                        <input type="checkbox" name="genre" class="genreBox" value="경제/경영">&nbsp;경제/경영&nbsp;
-				                        <br>
-				                        <input type="checkbox" name="genre" class="genreBox" value="에세이">&nbsp;에세이&nbsp;
-				                        <input type="checkbox" name="genre" class="genreBox" value="인문">&nbsp;인문&nbsp;
-				                        <input type="checkbox" name="genre" class="genreBox" value="어린이">&nbsp;어린이&nbsp;
-				                        <input type="checkbox" name="genre" class="genreBox" value="외국어">&nbsp;외국어&nbsp;
-				                        <input type="checkbox" name="genre" class="genreBox" value="참고서">&nbsp;참고서&nbsp;
-				                        <input type="checkbox" name="genre" class="genreBox" value="요리">&nbsp;요리&nbsp;
-			                        </div>
-			                         -->
 			                         
 			                      <div class="checkout__input" id="genre" class="genreBox">
 			                        
@@ -412,26 +394,33 @@ button{
         </div>
     </section>
     
-    <!--  아이디 중복체크 -->
-    <div id="dialog_idcheck" title="아이디 중복체크" style="display:none;">
-
-		<table style="margin:0px auto;">
-			<tr style="height:50px; font-size:12px;">
-		      <th width=20%>ID</th>
-		      <td width=80% class="input-sm">
-		      	<input type=text id="id_check" style="border:1px solid #ebebeb; border-radius:3px; height:30px;">
-		      	<input type=button value="중복체크" id="idcheckBtn" style="background:black; color:white; border:none; border-radius:3px; height:30px; padding:5px 10px !important;">
-		     </td>
-		   </tr>
-		    <tr>
-		      <td colspan="2" style="text-align:center;">
-		        <input type=button value="확인" id="okBtn" class="dialogBtn" style="background:black; color:white; display:none;">
-		        <input type=button value="취소" id="idcanBtn" class="dialogBtn" style="background:#E9E9E9">
-		      </td>
-		    </tr>
-		</table>
-    </div>
     
+   <!-- 부트스트랩 모달창  -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" style="font-weight:600;">아이디 중복체크</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <div class="modal-body">
+        	<div style="text-align:center; margin-top:10px;">
+			 ID<input type=text id="id_check" style="border:1px solid #ebebeb; border-radius:3px; width:150px; height:30px; margin:0px 5px !important;">
+		       <input type=button value="중복체크" id="idcheckBtn" style="background:black; color:white; border:none; border-radius:3px; height:30px; padding:3px 10px !important;">
+        	</div>
+        	
+        	<div style="text-align:center; margin-top:20px; margin-bottom:10px;">
+		        <input type=button value="확인" id="okBtn" class="dialogBtn" style="background:black; color:white; border:none; border-radius:3px; height:30px; padding:3px 10px !important; display:none;">
+		        <input type=button value="취소" id="idcanBtn" data-dismiss="modal" class="dialogBtn" style="background:#e9e9e9; color:black; border:none; border-radius:3px; height:30px; padding:3px 10px !important;">
+		    </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
     
 </body>
 </html>
