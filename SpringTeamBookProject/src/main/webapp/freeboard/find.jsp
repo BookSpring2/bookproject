@@ -20,7 +20,7 @@
 </head>
 <body>
 <!-- Find -->
-<section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg">
+<section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb2.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -61,7 +61,7 @@
 
 <!-- 리스트 -->
 <div class="container">         
-<div class="row" style="margin-top:50px;">
+<div class="row" style="margin-top:50px; width:950px;">
    <table class="table table-hover">
     <thead>
       <tr>
