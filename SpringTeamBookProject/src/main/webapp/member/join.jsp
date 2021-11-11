@@ -26,6 +26,7 @@ function postfind()
 
 <script>
 $(function(){
+	$('body').attr("style", "overflow:auto");
 	
 	// 핸드폰번호 하이픈(-) 자동추가
 	$(document).on("keyup","#tel",function(){
@@ -73,7 +74,7 @@ $(function(){
 			$('#id_check').val("");
 			$('#myModal').css('display','none');
 			$('.modal-backdrop').css('display','none');
-			$('body').attr("style", "overflow:auto")
+			$('body').attr("style", "overflow:auto");
 		}
 		else
 		{
@@ -163,9 +164,9 @@ $(function(){
 </script>
 
 <style>
-/* .modal {
-    overflow-y: auto !important;
-} */
+body{
+	padding-right:0px !important;
+}
 
 .col-lg-8, .col-md-6, .col-md-12, .col-sm-12, .col-xs-12{
 	float: none;
