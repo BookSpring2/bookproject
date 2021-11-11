@@ -17,7 +17,7 @@ public interface OrderMapper {
 	@Insert("INSERT INTO book_order VALUES("
 			+"#{order_no}, SYSDATE,"
 			+ "#{name}, #{addr1}, #{addr2}, #{tel}, #{email}, #{msg}, #{post},#{price},#{amount},#{user_id},#{title}, "
-			+ "#{ischeck}, #{issale})")
+			+ "0, 0)")
 	public void orderPayInsert(OrderFormVO vo);
 	
 	// 주문 전체 수량
