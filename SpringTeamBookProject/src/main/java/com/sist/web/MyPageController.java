@@ -39,7 +39,7 @@ public class MyPageController {
 		return "main/main";
 	}
 */	
-	@GetMapping("mypage/mypage")
+	@GetMapping("mypage/mypage.do")
 	public String mypage_mypage(HttpSession session,Model model)
 	{
 		String id=(String)session.getAttribute("id");

@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
-<section class="breadcrumb-section set-bg" data-setbg="../ogani-master/img/breadcrumb.jpg">
+<section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb2.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -35,12 +35,12 @@
                         <div class="sidebar__item">
                             <h4>관리자 메뉴</h4>
                             <ul>
-                                <li><a href="admin/orderList.do">주문 현황</a></li>
-                                <li><a href="admin/memberList.do">회원 관리</a></li>
-                                <li><a href="admin/insert.do">상품 등록</a></li>
-								<li><a href="admin/productList.do">상품 조회</a></li>
-					            <li><a href="admin/update.do">상품 정보 수정</a></li>
-								<li><a href="admin/delete.do">상품 삭제</a></li>
+                                <li><a href="../admin/orderList.do">주문 현황</a></li>
+                                <li><a href="../admin/memberList.do">회원 관리</a></li>
+                                <li><a href="#">상품 등록</a></li>
+								<li><a href="#">상품 조회</a></li>
+					            <li><a href="#">상품 정보 수정</a></li>
+								<li><a href="#">상품 삭제</a></li>
                             </ul>
                         </div>
                      </div>
