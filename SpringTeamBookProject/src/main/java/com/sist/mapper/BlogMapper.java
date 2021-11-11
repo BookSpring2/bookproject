@@ -22,16 +22,16 @@ CATEGORY NOT NULL VARCHAR2(500)
 TAG      NOT NULL VARCHAR2(500)
  */
 public interface BlogMapper {
-	@Select("SELECT no,subject,content,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,name,num,replycount "
-			+"FROM (SELECT no,subject,content,regdate,name,replycount,rownum as num "
-			+"FROM (SELECT no,subject,content,regdate,name,replycount "
+	@Select("SELECT no,subject,content,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,image,name,num,replycount "
+			+"FROM (SELECT no,subject,content,regdate,image,name,replycount,rownum as num "
+			+"FROM (SELECT no,subject,content,regdate,image,name,replycount "
 			+"FROM book_blog ORDER BY no DESC)) "
 			+"WHERE num BETWEEN #{start} AND #{end}")
 	public List<BlogVO> BlogList(Map map);
 	
-	@Select("SELECT no,subject,content,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,name,num,replycount "
-			+"FROM (SELECT no,subject,content,regdate,name,replycount,rownum as num "
-			+"FROM (SELECT no,subject,content,regdate,name,replycount "
+	@Select("SELECT no,subject,content,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,image,name,num,replycount "
+			+"FROM (SELECT no,subject,content,regdate,image,name,replycount,rownum as num "
+			+"FROM (SELECT no,subject,content,regdate,image,name,replycount "
 			+"FROM book_blog WHERE ${col}=#{val} ORDER BY no DESC)) "
 			+"WHERE num BETWEEN #{start} AND #{end}")
 	public List<BlogVO> BlogCList(Map map);
@@ -50,7 +50,7 @@ public interface BlogMapper {
 	public void BlogInsert(BlogVO vo);
 	
 	
-	@Select("SELECT no,user_id,subject,content,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday,category,tag,membership,name,replycount "
+	@Select("SELECT no,user_id,subject,content,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday,image,category,tag,membership,name,replycount "
 			+"FROM book_blog WHERE no=#{no}")
 	public BlogVO BlogDetailData(int no);
 	
@@ -96,5 +96,10 @@ public interface BlogMapper {
 	@Update("UPDATE book_blog SET replycount=replycount-1 WHERE no=#{no}")
 	public void BlogReplyCountDecrement(int no);
 	
+	@Select("SELECT tag FROM (SELECT tag ,COUNT(*) as cnt FROM book_blog group by tag order by cnt desc) WHERE rownum<=4")
+	public List<String> tagList();
+	
+	@Select("SELECT DISTINCT title,url,image FROM book_data WHERE title Like '%'||#{ss}||'%' AND rownum<=1")
+	public BookVO bookList(String ss);
 
 }

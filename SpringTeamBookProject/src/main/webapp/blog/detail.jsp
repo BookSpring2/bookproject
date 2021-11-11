@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,44 +80,28 @@ $(function(){
                                 <button type="submit"><span class="icon_search"></span></button>
                             </form>
                         </div>
-                        <!-- <div class="blog__sidebar__item">
+                        <div class="blog__sidebar__item">
                             <h4>카테고리</h4>
                             <ul>
-                                <li><a href="#">전체</a></li>
-                                <li><a href="#">리뷰</a></li>
-                                <li><a href="#">일상</a></li>
+                                <li><a href="../blog/list.do">전체</a></li>
+                                <li><a href="../blog/list.do?category=리뷰">도서리뷰</a></li>
+                                <li><a href="../blog/list.do?category=일상">일상</a></li>
                             </ul>
-                        </div> -->
-                        <div class="blog__sidebar__item">
-                            <h4>최신 글</h4>
-                            <div class="blog__sidebar__recent">
-                                <a href="#" class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/sr-1.jpg" alt="">
-                                    </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>제목<br /> Protect The Liver</h6>
-                                        <span>작성자</span>
-                                    </div>
-                                </a>
-                            </div>
                         </div>
+           
                         <div class="blog__sidebar__item">
                             <h4>키워드</h4>
                             <div class="blog__sidebar__item__tags">
-                                <a href="#">키워드1</a>
-                                <a href="#">키워드2</a>
-                                <a href="#">키워드3</a>
-                                <a href="#">키워드4</a>
-                                <a href="#">키워드5</a>
-                                <a href="#">키워드6</a>
+                            <c:forEach var="tag" items="${tagList }">
+                                <a href="../blog/list.do?tag=${tag }">${tag }</a>
+                           </c:forEach>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-7 order-md-1 order-1">
                     <div class="blog__details__text">
-                        <img src="../img/blog/details/details-pic.jpg" alt="">
+                        <img src="${vo.image }" alt="">
                         <p>${vo.content }</p>
                     </div>
                     <div class="blog__details__content">
@@ -151,10 +136,10 @@ $(function(){
 			        <input type=hidden name=user_id id=id value="${vo.user_id }">
 			        <input type=hidden name=page id=page value="${curpage }">
 			        <c:set var="user_id" value="${vo.user_id }" />
-			        <c:if test="${sessionScope.name==user_id}">
+			        <c:if test="${sessionScope.id==user_id}">
 			         <a href="../blog/update.do?no=${vo.no }&page=${curpage}" class="buttona">수정</a>
 			         </c:if>
-			         <c:if test="${sessionScope.name==user_id || sessionScope.admin=='y' }">
+			         <c:if test="${sessionScope.id==user_id || sessionScope.admin=='y' }">
 			         <input type="button" id="del" value="삭제">
 			         </c:if>
 			         
@@ -166,7 +151,7 @@ $(function(){
 			     </div>
 			     <hr>
 			     <div class="col-lg-12">
-                <jsp:include page="../blog/replylist.jsp"></jsp:include>
+	                <jsp:include page="../blog/replylist.jsp"></jsp:include>
                 </div>
                 </div>
                 

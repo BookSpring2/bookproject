@@ -82,11 +82,17 @@ $(function(){
                     <div class="col-lg-10 text-center">
                         <textarea rows=20 cols=60 placeholder="글내용" name=content>${vo.content }</textarea>
                     </div>
-                    <div class="col-lg-5 col-md-5">
-                        <input type="text" name=category placeholder="카테고리" value=${vo.category }>
+                    <div class="col-lg-3 col-md-3">
+                        <select name=category onkeyup="reviewShow()">
+                        	<option value="리뷰">리뷰</option>
+                        	<option value="일상">일상</option>
+                        </select>
                     </div>
-                    <div class="col-lg-5 col-md-5">
-                        <input type="text" name=tag placeholder="태그" value=${vo.tag }>
+                    <div class="col-lg-4 col-md-4">
+                        <input onkeyup="filter()" type="text" name=book_title id=book_title placeholder="책 이름" value="${vo.book_title }">
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <input type="text" name=tag placeholder="태그" value="${vo.tag }">
                     </div>
                     
                     <div class="col-lg-10 text-center" style="margin-top:50px;">

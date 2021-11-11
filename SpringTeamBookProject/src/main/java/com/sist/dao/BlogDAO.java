@@ -2,6 +2,7 @@ package com.sist.dao;
 import com.sist.mapper.*;
 import com.sist.vo.BlogReplyVO;
 import com.sist.vo.BlogVO;
+import com.sist.vo.BookVO;
 
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,5 +85,12 @@ public class BlogDAO {
 	{
 		mapper.BlogReplyCountDecrement(no);
 	}
-	
+	public List<String> tagList(){
+		return mapper.tagList();
+	}
+	public BookVO bookList(String ss){
+		return mapper.bookList(ss);
+	}
+
+
 }

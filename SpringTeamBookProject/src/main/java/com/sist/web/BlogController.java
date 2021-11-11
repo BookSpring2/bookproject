@@ -9,6 +9,8 @@ import java.util.*;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -76,6 +78,8 @@ public class BlogController {
 		if(endPage>totalpage)
 			endPage=totalpage;
 		
+		List<String> tagList=dao.tagList();
+		
 		Date date=new Date();
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		model.addAttribute("curpage", curpage);
@@ -86,6 +90,7 @@ public class BlogController {
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("list", list);
+		model.addAttribute("tagList", tagList);
 		model.addAttribute("today", sdf.format(date));
 		model.addAttribute("main_jsp", "../blog/list.jsp");
 		return "main/main";
@@ -94,7 +99,7 @@ public class BlogController {
 	@GetMapping("insert.do")
 	public String blog_insert(Model model,HttpSession session)
 	{
-		BlogVO vo=new BlogVO();		
+				
 		model.addAttribute("main_jsp", "../blog/insert.jsp");
 		return "main/main";
 	}
@@ -110,6 +115,10 @@ public class BlogController {
 		vo.setName(name);
 		System.out.println(vo.getUser_id());
 		System.out.println(vo.getName());
+		System.out.println(vo.getBook_title());
+		System.out.println(vo.getCategory());
+		BookVO bvo=dao.bookList(vo.getBook_title());
+		vo.setImage(bvo.getImage());
 		String path="c:\\download\\";
 		File dir=new File(path);
 		
@@ -134,12 +143,12 @@ public class BlogController {
 				files+=((uuid+"_"+fn)+",");
 				sizes+=file.length()+",";
 			}
-			vo.setImage(files.substring(0,files.lastIndexOf(",")));
+			//vo.setImage(files.substring(0,files.lastIndexOf(",")));
 
 		}
 		else
 		{
-			vo.setImage("");
+			//vo.setImage("");
 		}
 		dao.BlogInsert(vo);
 		return "redirect:../blog/list.do";
@@ -150,7 +159,10 @@ public class BlogController {
 	{
 		BlogVO vo=dao.BlogDetailData(no);
 		List<BlogReplyVO> list=dao.BlogReplyListData(no);
+		List<String> tagList=dao.tagList();
+
 		
+		model.addAttribute("tagList",tagList);
 		model.addAttribute("list",list);
 		model.addAttribute("vo", vo);
 		model.addAttribute("curpage", page);

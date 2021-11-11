@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +25,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 let imageIndex=0;
+var bList;
 $(function(){
 	$('#add').click(function(){
 		$('#imageView').append(
@@ -40,7 +42,7 @@ $(function(){
 				$('#m'+(imageIndex-1)).remove();
 				imageIndex--;
 			}
-	})
+	});		
 });
 </script>
 </head>
@@ -79,15 +81,21 @@ $(function(){
                     <div class="col-lg-10 text-center">
                         <textarea rows=20 cols=60 placeholder="글 내용" name=content></textarea>
                     </div>
-                    <div class="col-lg-5 col-md-5">
-                        <input type="text" name=category placeholder="카테고리">
+                    <div class="col-lg-3 col-md-3">
+                        <select name=category onkeyup="reviewShow()">
+                        	<option value="리뷰">리뷰</option>
+                        	<option value="일상">일상</option>
+                        </select>
                     </div>
-                    <div class="col-lg-5 col-md-5">
+                    <div class="col-lg-4 col-md-4">
+                        <input onkeyup="filter()" type="text" name=book_title id=book_title placeholder="책 이름">
+                    </div>
+                    <div class="col-lg-3 col-md-3">
                         <input type="text" name=tag placeholder="태그">
                     </div>
                     <div class="col-lg-12 col-md-12">
                         <table class="table" id="imageView">
-      
+      						
      					</table>
      					
                         <input type=button value="파일" id="add" style="font-size: 14px;

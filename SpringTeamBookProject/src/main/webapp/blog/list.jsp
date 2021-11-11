@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+ .blog__item__pic img{
+ 	width:230px;
+ 	height:400px;
+ }
+</style>
 </head>
 <body>
 
@@ -59,17 +65,14 @@
                             </c:forEach>
                             </div>
                         </div>
-                        <!-- <div class="blog__sidebar__item">
+                        <div class="blog__sidebar__item">
                             <h4>키워드</h4>
                             <div class="blog__sidebar__item__tags">
-                                <a href="#">키워드1</a>
-                                <a href="#">키워드2</a>
-                                <a href="#">키워드3</a>
-                                <a href="#">키워드4</a>
-                                <a href="#">키워드5</a>
-                                <a href="#">키워드6</a>
+                            <c:forEach var="tag" items="${tagList }">
+                                <a href="../blog/list.do?tag=${tag }">${tag }</a>
+                           </c:forEach>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-7">
@@ -78,7 +81,12 @@
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="blog__item">
                                 <div class="blog__item__pic">
-                                    <img src="../img/blog/blog-2.jpg" alt="">
+                                <c:if test="${vo.image!=null }">
+                                    <img src="${vo.image }">
+                                 </c:if>
+                                 <c:if test="${vo.image==null }">
+                                 	<img src="../img/blog/blog-1.jpg">
+                                 </c:if>
                                 </div>
                                 <div class="blog__item__text">
                                     <ul>

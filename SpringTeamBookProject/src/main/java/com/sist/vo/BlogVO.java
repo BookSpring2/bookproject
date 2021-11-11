@@ -16,11 +16,17 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public class BlogVO {
 	private int no,replycount;
-	private String user_id,subject,image,content,category,tag,dbday,membership,name;
+	private String user_id,subject,image,content,category,tag,dbday,membership,name,book_title;
 	private Date regdate;
 	private List<MultipartFile> files;
 	
 	
+	public String getBook_title() {
+		return book_title;
+	}
+	public void setBook_title(String book_title) {
+		this.book_title = book_title;
+	}
 	public int getReplycount() {
 		return replycount;
 	}

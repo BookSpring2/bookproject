@@ -152,7 +152,6 @@ button.float-right {
 						</div>
 					</div>
 	   </div>
-	   <jsp:include page="shop_board.jsp"></jsp:include>
 </body>
 <script>
 	new Vue({
