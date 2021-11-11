@@ -1,7 +1,7 @@
 package com.sist.vo;
 import java.util.*;
 public class OrderFormVO {
-	private int order_no,book_no,amount;
+	private int order_no,book_no,amount, ischeck, issale;
 	private Date orderdate,deliver_date;
 	private String deliver_situ,deliver_msg,user_id,orderday;
 	
@@ -9,6 +9,18 @@ public class OrderFormVO {
 	private String name,addr1,addr2,tel,email, msg, post;
 	
 	
+	public int getIscheck() {
+		return ischeck;
+	}
+	public void setIscheck(int ischeck) {
+		this.ischeck = ischeck;
+	}
+	public int getIssale() {
+		return issale;
+	}
+	public void setIssale(int issale) {
+		this.issale = issale;
+	}
 	public String getPost() {
 		return post;
 	}

@@ -21,15 +21,9 @@ let amount=$('#amount').text();
 let totalAmount+=parseInt(amount);
 $('#total_amount').val(totalAmount);
 </script>
-<style type="text/css">
-.pay{
-text-aglin:center;
-margin-right:50%
-}
-</style>
 </head>
 <body>
-<section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg" style="background-image: url(&quot;../img/breadcrumb.jpg&quot;);">
+<section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb2.jpg">
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
@@ -145,8 +139,8 @@ margin-right:50%
   		</c:forEach>
      </table>
     </div>
-    <div class="pay">
-        <button type="submit" id="check_module" class="primary-btn">결제하기</button>
+    <div class="row" style="margin:50px 0px 30px 450px;">
+        <button type="submit" id="check_module" class="primary-btn" style="border:none">결제하기</button>
     </div>
   </div>
 </form>

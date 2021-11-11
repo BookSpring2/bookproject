@@ -16,7 +16,8 @@ public interface OrderMapper {
 			statement="SELECT NVL(MAX(order_no)+1, 1) as order_no FROM book_order")
 	@Insert("INSERT INTO book_order VALUES("
 			+"#{order_no}, SYSDATE,"
-			+ "#{name}, #{addr1}, #{addr2}, #{tel}, #{email}, #{msg}, #{post},#{price},#{amount},#{user_id},#{title})")
+			+ "#{name}, #{addr1}, #{addr2}, #{tel}, #{email}, #{msg}, #{post},#{price},#{amount},#{user_id},#{title}, "
+			+ "#{ischeck}, #{issale})")
 	public void orderPayInsert(OrderFormVO vo);
 	
 	// 주문 전체 수량
@@ -34,11 +35,22 @@ public interface OrderMapper {
 	
 	// 구매완료폼출력
 	@Select("SELECT /*+ INDEX_DESC(book_order bo_orderno_pk)*/order_no, user_id, amount, price, title, "
-			+ "name, addr1, addr2, tel, msg, orderdate "
+			+ "name, addr1, addr2, tel, msg, orderdate, issale, ischeck "
 			+ "FROM book_order "
 			+ "WHERE user_id=#{user_id} "
 			+ "AND orderdate>=SYSDATE-3 AND orderdate<=SYSDATE")
 	public List<OrderFormVO> orderPayListData(String user_id);
+	
+	// 구매 요청
+	@Update("UPDATE book_order SET "
+			+ "issale=1 "
+			+ "WHERE order_no=#{order_no}")
+	public void orderSaleUpdate(int order_no);
+	
+	// 구매 취소
+	@Delete("DELETE FROM book_order "
+			+ "WHERE order_no=#{order_no}")
+	public void orderSaleDelete(int order_no);
 	
 	// 주문 추가
 	@SelectKey(keyProperty="cartId", resultType=int.class, before=true,

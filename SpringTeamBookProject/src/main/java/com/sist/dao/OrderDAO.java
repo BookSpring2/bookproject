@@ -27,6 +27,15 @@ public class OrderDAO {
 		return mapper.orderPayListData(user_id);
 	}
 	
+	public void orderSaleUpdate(int order_no)
+	{
+		mapper.orderSaleUpdate(order_no);
+	}
+	public void orderSaleDelete(int order_no)
+	{
+		mapper.orderSaleDelete(order_no);
+	}
+	
 	public void orderInsert(CartVO vo)
 	{
 		mapper.orderInsert(vo);

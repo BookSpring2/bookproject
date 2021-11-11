@@ -91,7 +91,7 @@ $(function(){
 </script>
 </head>
 <body>
-<section class="breadcrumb-section set-bg" data-setbg="../ogani-master/img/breadcrumb.jpg">
+<section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb2.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -110,9 +110,9 @@ $(function(){
         <div class="container">
           
             <div class="row"> 
-              <a href="#" class="primary-btn cart-btn">장바구니</a>
-              <a href="#" class="primary-btn cart-btn">결제</a>
-              <a href="#" class="primary-btn cart-btn">구매내역</a>
+              <a href="../mypage/cart_list.do" class="primary-btn cart-btn">장바구니</a>
+              <a href="../mypage/order_form.do" class="primary-btn cart-btn">결제</a>
+              <a href="../mypage/order_list.do" class="primary-btn cart-btn">구매내역</a>
                 <div class="col-lg-12">
                     <div class="shoping__cart__table">
                         <table>
@@ -198,7 +198,6 @@ $(function(){
                         <ul>
                             <li>배송료<span>${fee }</span></li>
                             <li>총 가격<span id="total_sum"></span></li>
-                            <li>쿠폰 적용 가격<span>$454.98</span></li>
                         </ul>
                         <a href="../mypage/order_form.do" class="primary-btn">주문하기</a>
                     </div>

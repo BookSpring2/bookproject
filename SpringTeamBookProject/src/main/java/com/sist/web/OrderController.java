@@ -92,4 +92,20 @@ public class OrderController {
 		dao.orderPayInsert(vo);
 		return "mypage/pay_order_ok";
 	}
+	
+	// 결제확인요청
+	@GetMapping("mypage/goodsYes.do")
+	public String page_goodsYes(int no)
+	{
+		dao.orderSaleUpdate(no);
+		return "redirect:../mypage/order_list.do";
+	}
+	
+	@GetMapping("mypage/goodsNo.do")
+	public String page_goodsNo(int no)
+	{
+		dao.orderSaleDelete(no);
+		return "redirect:../mypage/order_list.do";
+	}
+	
 }
