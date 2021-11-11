@@ -8,19 +8,28 @@ import org.springframework.stereotype.Repository;
 
 import com.sist.mapper.*;
 import com.sist.vo.MemberVO;
+import com.sist.vo.OrderFormVO;
 
 @Repository
 public class MyPageDAO {
 	@Autowired
 	private MyPageMapper mapper;
 	
-	public List<String> memberListData(String user_id)
+	public List<MemberVO> memberList(String id)
 	{
-		return mapper.memberListData(user_id);
+		return mapper.memberList(id);
+	}
+	public MemberVO memberInfoData(String id)
+	{
+		return mapper.memberInfoData(id);
 	}
 	
-	public List<MemberVO> memberInfoData(String user_id)
+	public List<OrderFormVO> orderList(String id)
 	{
-		return mapper.memberInfoData(user_id);
+		return mapper.orderList(id);
+	}
+	public OrderFormVO orderInfoData(String id)
+	{
+		return mapper.orderInfoData(id);
 	}
 }

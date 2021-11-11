@@ -13,7 +13,7 @@ public class SearchController {
 	@Autowired
 	private SearchDAO dao;
 	
-	@GetMapping("#")
+	@GetMapping("search/search.do")
 	public String book_title(String page,String ss,Model model)
 	{
 		if(ss==null)
@@ -29,7 +29,7 @@ public class SearchController {
 		
 		map.put("start", start);
 		map.put("end", end);
-		map.put("address", ss);
+		map.put("title", ss);
 		
 		List<BookVO> list=dao.bookTitleSearchData(map);
 		int totalpage=dao.bookTitleTotalPage(ss);
@@ -37,6 +37,8 @@ public class SearchController {
 		model.addAttribute("list", list);
 		model.addAttribute("totalpage", totalpage);
 		model.addAttribute("curpage", curpage);
-		return "#";
+		model.addAttribute("ss", ss);
+		model.addAttribute("main_jsp","../search/search.jsp");
+		return "main/main";
 	}
 }

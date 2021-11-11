@@ -85,6 +85,28 @@
                     </div>
                 </div>
             </div>
+            <div class="hero__search">
+                        <div class="hero__search__form" style="left:20%">
+                            <form method="get" action="../search/search.do">
+                                <div class="hero__search__categories">
+                                    통합검색
+                                    <span class="arrow_carrot-down"></span>
+                                </div>
+                                <input type=text name=ss size=25 class="input-sm" value="${ss }">
+                                <button type="submit" class="site-btn">검색</button>
+                            </form>
+           			    </div>	
+                        <div class="hero__search__phone">
+                            <div class="hero__search__phone__icon">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <div class="hero__search__phone__text">
+                                <h5>02-XXXX-XXXX</h5>
+                                <span>고객센터: 9:00-18:00</span>
+                            </div>
+                        </div>
+                    </div>
+            <div style="height:15px"></div>
             <div class="humberger__open">
                 <i class="fa fa-bars"></i>
             </div>

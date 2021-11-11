@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
 </head>
 <body>
 <section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg" style="background-image: url(&quot;../img/breadcrumb.jpg&quot;);">
@@ -29,17 +30,21 @@
             <div class="row">
               <table width=100% cellpadding="0" cellspacing="0" align="center">
               <tbody>
+              
               <tr>
                 <td>
                   <a href="../mypage/mypage.do"><img src="../img/mypage.gif"></a>
                 </td>
+                <c:forEach var="vo" items="${list }">
                 <td width="1000" background="../img/mypage2.gif" style="padding:0 0 0 30px; font-weight:bold;font-size:16px;letter-spacing:-1px;color:#C2EDF3;">
                   <img src="../img/mypage3.gif" align="top">
-                  <span style="color:fff;">땡떙땡님</span>
+                  <span style="color:fff;">${vo.name }님</span>
                   오늘도 즐겁고 행복한 하루 보내세요
                   <img src="../img/mypage4.gif" align="top">
                 </td>
+                </c:forEach>
               </tr>
+              
               </tbody>
               </table>
             </div>
@@ -57,15 +62,18 @@
                             <dl>
                               <dt>
                                 나의 오가니 등급
+                                <c:forEach var="vo" items="${list }">
                                 <strong>
-                                  <span>family</span>
+                                  <span style="color:orange">${vo.membership }</span>
                                 </strong>
+                                </c:forEach>
                               </dt>
                             </dl>
                           </div>
                           <div>
                             <dl>
                               <dt>주문내역</dt>
+                              
                               <dd>
                                 <ul>
                                   <li><a href="../mypage/cart_list.do">장바구니</a></li>
@@ -74,6 +82,7 @@
                                   <li><a href="#">취소 주문 내역</a></li>
                                 </ul>
                               </dd>
+                              
                               <dt>계좌내역</dt>
                               <dd>
                                 <ul>
@@ -98,10 +107,36 @@
                           </div>
                         </td>
                         <td width="586" valign="top" style="padding:10px auto;" align="center">
-                        
+                          <div style="margin: 0 0 30px 0;">
+                            
+                            <div style="position: relative;width: 526px;text-align: left;">
+                              <h7>나의 최근 구매 내역</h7>
+                            </div>
+                            <table class="table">
+                              <tr>
+                                <th>주문일자</th>
+                                <th>주문번호</th>
+                                <th>주문내역</th>
+                                <th>주문자</th>
+                              </tr>
+                              <c:forEach var="ovo" items="${olist }">
+                              <tr>
+                                <td>${ovo.orderdate }</td>
+                                <td>${ovo.order_no }</td>
+                                <td>${ovo.book_no }</td>
+                                <td>${ovo.name }</td>
+                              </tr>
+                              </c:forEach>
+                            </table>
+                          </div>
+                          <div style="margin: 0 0 30px 0;">
+                            <img src="../img/review.gif">
+                          </div>
                         </td>
                         <td width="187" valign="top">
-                        
+                          <div style="width:187px;height:270px;overflow:hidden;text-align:center;margin-bottom:10px;padding-top:2px;">
+                            <a href="#"><img src="../img/event.jpg"></a>
+                          </div>
                         </td>
                       </tr>
                     </tbody>

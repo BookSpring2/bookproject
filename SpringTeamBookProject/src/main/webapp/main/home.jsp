@@ -34,27 +34,7 @@
                     </div>
                 </div>
                 <div class="col-lg-9">
-                    <div class="hero__search">
-                        <div class="hero__search__form">
-                            <form action="#">
-                                <div class="hero__search__categories">
-                                    통합검색
-                                    <span class="arrow_carrot-down"></span>
-                                </div>
-                                <input type="text" placeholder="What do yo u need?">
-                                <button type="submit" class="site-btn">검색</button>
-                            </form>
-                        </div>
-                        <div class="hero__search__phone">
-                            <div class="hero__search__phone__icon">
-                                <i class="fa fa-phone"></i>
-                            </div>
-                            <div class="hero__search__phone__text">
-                                <h5>02-XXXX-XXXX</h5>
-                                <span>고객센터: 9:00-18:00</span>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div class="hero__item set-bg" data-setbg="https://media.istockphoto.com/photos/old-books-on-bookshelves-with-orange-background-picture-id1154728362?k=20&m=1154728362&s=612x612&w=0&h=ksfSax646nSnRMwyaJBxwHFvD1XSJTCXMtiIskOmlRE=">
                         <div class="hero__text">
                             <span style="font-size:30px;">독서의 계절</span>
