@@ -29,8 +29,18 @@ public interface BlogMapper {
 			+"WHERE num BETWEEN #{start} AND #{end}")
 	public List<BlogVO> BlogList(Map map);
 	
+	@Select("SELECT no,subject,content,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,name,num,replycount "
+			+"FROM (SELECT no,subject,content,regdate,name,replycount,rownum as num "
+			+"FROM (SELECT no,subject,content,regdate,name,replycount "
+			+"FROM book_blog WHERE ${col}=#{val} ORDER BY no DESC)) "
+			+"WHERE num BETWEEN #{start} AND #{end}")
+	public List<BlogVO> BlogCList(Map map);
+	
 	@Select("SELECT CEIL(COUNT(*)/6.0) FROM book_blog")
 	public int BlogTotalPage();
+	
+	@Select("SELECT CEIL(COUNT(*)/6.0) FROM book_blog WHERE ${col}=#{val}")
+	public int BlogCTotalPage(Map map);
 	
 	@SelectKey(keyProperty="no", resultType=int.class , before=true,
 		     statement="SELECT NVL(MAX(no)+1,1) as no FROM book_blog")

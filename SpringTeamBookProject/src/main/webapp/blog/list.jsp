@@ -40,9 +40,9 @@
                         <div class="blog__sidebar__item">
                             <h4>카테고리</h4>
                             <ul>
-                                <li><a href="#">전체</a></li>
-                                <li><a href="#">도서리뷰</a></li>
-                                <li><a href="#">일상</a></li>
+                                <li><a href="../blog/list.do">전체</a></li>
+                                <li><a href="../blog/list.do?category=리뷰">도서리뷰</a></li>
+                                <li><a href="../blog/list.do?category=일상">일상</a></li>
                             </ul>
                         </div>
                         <div class="blog__sidebar__item">
@@ -109,19 +109,19 @@
                             <div class="product__pagination blog__pagination" align="center" style="margin-top:50px;">
            
              <c:if test="${startPage>1 }">
-              <a href="../blog/list.do?page=${startPage-1 }">&lt;</a>
+              <a href="../blog/list.do?page=${startPage-1 }&category=${category}&tag=${tag}">&lt;</a>
              </c:if>
                <c:forEach var="i" begin="${startPage }" end="${endPage }">
                 <c:if test="${curpage==i }">
-                  <a href="../blog/list.do?page=${i }">${i }</a>
+                  <a href="../blog/list.do?page=${i }&category=${category}&tag=${tag}">${i }</a>
                 </c:if>
                 <c:if test="${curpage!=i }">
-                  <a href="../blog/list.do?page=${i }">${i }</a>
+                  <a href="../blog/list.do?page=${i }&category=${category}&tag=${tag}">${i }</a>
                 </c:if>
                 
                </c:forEach>
              <c:if test="${endPage<totalpage }">
-			  <a href="../blog/list.do?page=${endPage+1 }">
+			  <a href="../blog/list.do?page=${endPage+1 }&category=${category}&tag=${tag}">
 			  <i class="fa fa-long-arrow-right"></i></a>
 			 </c:if>
 		

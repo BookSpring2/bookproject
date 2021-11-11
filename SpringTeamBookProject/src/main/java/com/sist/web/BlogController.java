@@ -26,10 +26,14 @@ public class BlogController {
 	private BlogDAO dao;
 	
 	@GetMapping("list.do")
-	public String blog_list(String page, Model model)
+	public String blog_list(String page,String category,String tag, Model model)
 	{
 		if(page==null)
 			page="1";
+		if(category==null)
+			category="";
+		if(tag==null)
+			tag="";
 		int curpage=Integer.parseInt(page);
 		Map map=new HashMap();
 		int rowSize=6;
@@ -37,7 +41,24 @@ public class BlogController {
 		int end=(rowSize*curpage);
 		map.put("start", start);
 		map.put("end", end);
-		List<BlogVO> list=dao.BlogList(map);
+		List<BlogVO> list=new ArrayList<BlogVO>();
+		int totalpage=0;
+		if(category==""&& tag=="") {
+			list=dao.BlogList(map);
+			totalpage=dao.BlogTotalPage();
+		}
+		else if(category!="") {
+			map.put("col","category");
+			map.put("val",category);
+			list=dao.BlogCList(map);
+			totalpage=dao.BlogCTotalPage(map);
+		}
+		else if(tag!="") {
+			map.put("col","tag");
+			map.put("val",tag);
+			list=dao.BlogCList(map);
+			totalpage=dao.BlogCTotalPage(map);
+		}
 		
 		for(BlogVO vo:list)
 		  {
@@ -49,7 +70,6 @@ public class BlogController {
 			  }
 		  }
 			
-		int totalpage=dao.BlogTotalPage();
 		final int BLOCK=5;
 		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
 		int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
@@ -59,6 +79,8 @@ public class BlogController {
 		Date date=new Date();
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		model.addAttribute("curpage", curpage);
+		model.addAttribute("category", category);
+		model.addAttribute("tag", tag);
 		model.addAttribute("totalpage", totalpage);
 		model.addAttribute("BLOCK", BLOCK);
 		model.addAttribute("startPage", startPage);

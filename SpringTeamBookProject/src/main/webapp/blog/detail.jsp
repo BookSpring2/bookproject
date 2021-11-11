@@ -136,7 +136,7 @@ $(function(){
                                 <div class="blog__details__widget">
                                     <ul>
                                         <li><span>카테고리 : </span>${vo.category }</li>
-                                        <li><span>태그 : </span>${vo.tag }</li>
+                                        <li><span>태그 : </span><a href="../blog/list.do?tag=${vo.tag }">${vo.tag }</a></li>
                                     </ul>
                                 </div>
                             </div>

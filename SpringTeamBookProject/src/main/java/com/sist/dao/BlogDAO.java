@@ -16,10 +16,18 @@ public class BlogDAO {
 	{
 		return mapper.BlogList(map);
 	}
+	public List<BlogVO> BlogCList(Map map)
+	{
+		return mapper.BlogCList(map);
+	}
 	
 	public int BlogTotalPage()
 	{
 		return mapper.BlogTotalPage();
+	}
+	public int BlogCTotalPage(Map map)
+	{
+		return mapper.BlogCTotalPage(map);
 	}
 	
 	public void BlogInsert(BlogVO vo)
