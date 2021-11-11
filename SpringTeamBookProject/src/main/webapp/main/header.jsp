@@ -84,16 +84,16 @@
                     </div>
                 </div>
             </div>
-            <div class="row" style="margin:15px 0px 15px 350px;">
+            <div class="row" style="margin:15px 0px 15px 250px;">
               <form method="get" action="../search/search.do">
-                <select name=fs class="input-sm" style="height:45px">
+                <select name=fs class="input-sm" style="height:45px; width: 100px;">
                    <option value="All">통합검색</option>
                    <option value="T">제목</option>
                    <option value="W">작가</option>
                    <option value="TR">번역가</option>
                   <option value="G">장르</option>
                 </select>
-                <input type=text name=ss size=25 class="input-sm" value="${ss }" style="height:45px">
+                <input type=text name=ss size=25 class="input-sm" value="${ss }" style="margin-left:5px; height:45px; width:440px;">
                 <button type="submit" class="site-btn">검색</button>
               </form>
            			    <!-- </div>	 -->
@@ -108,8 +108,8 @@
                                 <input type=text name=ss size=25 class="input-sm" value="${ss }">
                                 <button type="submit" class="site-btn">검색</button>
                             </form>
-           			    </div>	
-                        <div class="hero__search__phone">
+           			    </div>	-->
+                        <div class="hero__search__phone" style="margin-left: 20px;">
                             <div class="hero__search__phone__icon">
                                 <i class="fa fa-phone"></i>
                             </div>
@@ -117,7 +117,7 @@
                                 <h5>02-XXXX-XXXX</h5>
                                 <span>고객센터: 9:00-18:00</span>
                             </div>
-                        </div> -->
+                        </div> 
                     <!-- </div> -->
                     </div>
             <div class="humberger__open">
