@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script> 
+<!-- <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>  -->
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script type="text/javascript" src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -234,7 +234,7 @@ button{
 </style>
 </head>
 <body>
-<section class="breadcrumb-section set-bg" data-setbg="../ogani-master/img/breadcrumb.jpg">
+<section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb2.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">

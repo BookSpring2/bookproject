@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 </head>
 <body>
 <header class="header">
@@ -49,7 +48,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="../main/main.do"><img src="../ogani-master/img/logo.png" alt=""></a>
+                        <a href="../main/main.do"><img src="../img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-7">
@@ -86,7 +85,7 @@
                 </div>
             </div>
             <div class="hero__search">
-                        <div class="hero__search__form" style="left:20%">
+                        <div class="hero__search__form" style="left:26%">
                             <form method="get" action="../search/search.do">
                                 <div class="hero__search__categories">
                                     통합검색
