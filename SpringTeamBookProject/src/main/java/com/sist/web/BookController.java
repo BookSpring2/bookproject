@@ -254,7 +254,8 @@ public class BookController {
 			// 신간 도서 상세 페이지
 			@RequestMapping("book/newdetail.do")
 			public String book_newdetail(int bno, Model model) {
-
+HashMap<String, Object> map=new HashMap<String, Object>();
+				
 				//상세 데이터 출력
 				BookVO vo = dao.bookNewDetailData(bno);
 				model.addAttribute("vo", vo);
@@ -269,10 +270,26 @@ public class BookController {
 				model.addAttribute("point",point);
 				
 				//리뷰 데이터 리스트 출력			
-				System.out.println("bno는 "+bno+"입니다.");			
-				List<BookCommentVO> clist = dao.bookCommentListData(bno);//bno를 가져와서 bno==dc_bno인 데이터를 출력.
+				System.out.println("bno는 "+bno+"입니다.");	
+				map.put("bno", bno);
+				List<BookCommentVO> clist = dao.bookCommentListData(map);//bno를 가져와서 bno==dc_bno인 데이터를 출력.
+				
+				//리뷰 데이터 개수 입력
 				BookCommentVO ccvo = dao.bookNewCommentCount(bno);
-	
+				//별점을 통해 평점 출력
+				BookCommentVO starvo = dao.bookCommentStarData(map);
+				//System.out.println("starvo.avgs는:"+starvo.getAvgs()+"입니다.");
+				double aaa = 0.0;
+				if(starvo==null) {
+					System.out.println("값이 없습니다.");
+				}
+				else{
+					aaa = starvo.getAvgs();
+					System.out.println("avgs는:"+aaa+"입니다.");
+				}
+				
+				
+				model.addAttribute("starvo",starvo);
 				model.addAttribute("ccvo",ccvo);
 				model.addAttribute("clist",clist);
 				

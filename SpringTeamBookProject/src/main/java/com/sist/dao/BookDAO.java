@@ -85,10 +85,13 @@ public class BookDAO {
 	}
 
 	// 3-2. 리뷰 출력 기능
-	public List<BookCommentVO> bookCommentListData(int bno){
-		return mapper.bookCommentListData(bno);
+	public List<BookCommentVO> bookCommentListData(HashMap<String,Object> map){
+		return mapper.bookCommentListData(map);
 	}
-
+	//3-3. 별점 평점 출력 기능
+	public BookCommentVO bookCommentStarData(HashMap<String,Object> map) {
+		return mapper.bookCommentStarData(map);
+	}
 
 
 }

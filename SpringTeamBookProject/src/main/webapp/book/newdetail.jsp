@@ -150,14 +150,90 @@ $(function(){
                         <h3> ${vo.title}</h3>
                          
                         <div class="product__details__rating">
-                        <!-- 
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half-o"></i>
-                            <span>( ${ccvo.cnt} 개의 리뷰)</span>
-                        -->
+                        
+                        <span>
+                        <!-- 별점은 사용자가 등록한 별점으로 if문 처리해서 갯수 띄우기. -->
+											<div class="print_comments_stars">
+											<c:if test="${starvo.avgs==5}">
+											        <i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                    </c:if>
+						                    <c:if test="${starvo.avgs>4&&starvo.avgs<5}">
+						                    		<i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star-half-o"></i>
+						                    </c:if>  
+						                     <c:if test="${starvo.avgs==4}">
+						                    		<i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star-o"></i>
+						                    </c:if>
+						                    <c:if test="${starvo.avgs>3&&starvo.avgs<4}">
+						                    		<i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star-half-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                    </c:if> 
+						                    <c:if test="${starvo.avgs==3}">
+						                    		<i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                    </c:if>    
+						                    <c:if test="${starvo.avgs>2&&starvo.avgs<3}">
+						                    		<i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star-half-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                    </c:if>
+						                    <c:if test="${starvo.avgs==2}">
+						                    		<i class="fa fa-star"></i>
+						                            <i class="fa fa-star"></i>
+						                            <i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                    </c:if>
+						                    <c:if test="${starvo.avgs>1&&starvo.avgs<2}">
+						                    		<i class="fa fa-star"></i>
+						                            <i class="fa fa-star-half-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                    </c:if>
+						                    <c:if test="${starvo.avgs==1}">
+						                    		<i class="fa fa-star"></i>
+						                            <i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                    </c:if> 
+						                    <c:if test="${starvo.avgs>0&&starvo.avgs<1}">
+						                    		<i class="fa fa-star-half-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                    </c:if>
+						                    <c:if test="${avgstars==0}">
+						                    		<i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                            <i class="fa fa-star-o"></i>
+						                    </c:if>    
+						                    </div> 
+                        </span>
+                        
                             
                         </div>
                         <div class="product__details__price"><span id="price"> ${vo.price}</span></div>

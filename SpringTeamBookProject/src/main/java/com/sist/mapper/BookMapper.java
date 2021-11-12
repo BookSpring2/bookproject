@@ -136,9 +136,12 @@ public interface BookMapper {
 		//3-2. 리뷰 출력 기능
 		@Select("SELECT writer,userid,title,comments,stars,writedate,dc_bno "
 				+ "FROM book_detail_comment WHERE dc_bno=#{bno} ORDER BY writedate DESC")
-		public List<BookCommentVO> bookCommentListData(int bno);
+		public List<BookCommentVO> bookCommentListData(HashMap<String,Object> map);
 		
-		
+		//3-3. 평점 출력 기능
+		@Select("SELECT AVG(NVL(stars,0)) AS avgs "
+				+ "FROM book_detail_comment WHERE dc_bno=#{bno}")
+		public BookCommentVO bookCommentStarData(HashMap<String,Object> map);
 		
 	
 	

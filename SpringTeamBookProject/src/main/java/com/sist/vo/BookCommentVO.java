@@ -21,7 +21,7 @@ public class BookCommentVO {
 	int dc_bno;
 	String writedate;
 	int cnt; //comment_count
-	
+	double avgs;
 	
 	public String getWriter() {
 		return writer;
@@ -70,6 +70,12 @@ public class BookCommentVO {
 	}
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
+	}
+	public double getAvgs() {
+		return avgs;
+	}
+	public void setAvgs(double avgs) {
+		this.avgs = avgs;
 	}
 
 	
