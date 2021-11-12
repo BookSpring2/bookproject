@@ -63,46 +63,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="sidebar__item sidebar__item__color--option">
-                            <h4>키워드</h4>
-                            <div class="sidebar__item__color sidebar__item__color--white">
-                                <label for="white">
-                                    키워드
-                                    <input type="radio" id="white">
-                                </label>
-                            </div>
-                            <div class="sidebar__item__color sidebar__item__color--gray">
-                                <label for="gray">
-                                    키워드
-                                    <input type="radio" id="gray">
-                                </label>
-                            </div>
-                            <div class="sidebar__item__color sidebar__item__color--red">
-                                <label for="red">
-                                    키워드
-                                    <input type="radio" id="red">
-                                </label>
-                            </div>
-                            <div class="sidebar__item__color sidebar__item__color--black">
-                                <label for="black">
-                                    키워드
-                                    <input type="radio" id="black">
-                                </label>
-                            </div>
-                            <div class="sidebar__item__color sidebar__item__color--blue">
-                                <label for="blue">
-                                    키워드
-                                    <input type="radio" id="blue">
-                                </label>
-                            </div>
-                            <div class="sidebar__item__color sidebar__item__color--green">
-                                <label for="green">
-                                    키워드
-                                    <input type="radio" id="green">
-                                </label>
-                            </div>
-                        </div>
-                        <div class="sidebar__item">
+                        
+                       <!--  <div class="sidebar__item">
                             <div class="latest-product__text">
                                 <h4>신간 도서</h4>
                                 <div class="latest-product__slider owl-carousel">
@@ -166,7 +128,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>ㅈ -->
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-7">
@@ -176,29 +138,12 @@
                         </div>
                         <div class="row">
                             <div class="product__discount__slider owl-carousel">
-<!--                                 <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        	<div class="product__discount__item__pic set-bg"
-                                            data-setbg="../img/product/discount/pd-1.jpg">
-                                            <div class="product__discount__percent">-20%</div>
-                                            <ul class="product__item__pic__hover">
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <span>Dried Fruit</span>
-                                            <h5><a href="../book/detail.do">Raisin</a></h5>
-                                            <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                        </div>
-                                    </div>
-                                </div> -->
-                                
+                              
+                                <c:forEach var="svo" items="${saleslist }">
                                 <div class="col-lg-4">
                                     <div class="product__discount__item">
-                                        	<div class="product__discount__item__pic set-bg" data-setbg="">
-                                            <a href="../book/detail.do"><img src="../ogani-master/img/product/discount/pd-1.jpg"></a>
+                                        <div class="product__discount__item__pic set-bg" data-setbg="${svo.image}">
+                                            <a href="../book/detail.do?bno=${svo.bno }"><img src="${svo.image}"></a>
                                         	<div class="product__discount__item__pic set-bg"></div>
                                             <div class="product__discount__percent">-20%</div>
                                             <ul class="product__item__pic__hover">
@@ -208,104 +153,15 @@
                                             </ul>
                                         </div>
                                         <div class="product__discount__item__text">
-                                            <span>Dried Fruit</span>
-                                            <h5><a href="../book/detail.do">Raisin</a></h5>
-                                            <div class="product__item__price">$30.00 <span>$36.00</span></div>
+                                            <span>${svo.writer}</span>
+                                            <h5><a href="../book/newdetail.do?bno=${svo.bno }">${svo.title}</a></h5>
+                                            <div class="product__item__price">${svo.saleprice}원<span>${svo.price}</span></div>
                                         </div>
-                                    </div>
-                                    
+                                    </div>                                    
                                 </div>
-                                
-                                <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg" data-setbg="">
-                                        <a href="../book/detail.do"><img src="../ogani-master/img/product/discount/pd-2.jpg"></a>
-                                            <div class="product__discount__percent">-20%</div>
-                                            <ul class="product__item__pic__hover">
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <span>Vegetables</span>
-                                            <h5><a href="../book/detail.do">Vegetables’package</a></h5>
-                                            <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg" data-setbg="">
-                                        <a href="../book/detail.do"><img src="../ogani-master/img/product/discount/pd-3.jpg"></a>
-                                            <div class="product__discount__percent">-20%</div>
-                                            <ul class="product__item__pic__hover">
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <span>Dried Fruit</span>
-                                            <h5><a href="../book/detail.do">Mixed Fruits</a></h5>
-                                            <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg" data-setbg="">
-                                        <a href="../book/detail.do"><img src="../ogani-master/img/product/discount/pd-4.jpg"></a>
-                                            <div class="product__discount__percent">-20%</div>
-                                            <ul class="product__item__pic__hover">
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <span>Dried Fruit</span>
-                                            <h5><a href="../book/detail.do">Raisin’n’nuts</a></h5>
-                                            <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg" data-setbg="">
-                                        <a href="../book/detail.do"><img src="../ogani-master/img/product/discount/pd-5.jpg"></a>
-                                            <div class="product__discount__percent">-20%</div>
-                                            <ul class="product__item__pic__hover">
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <span>Dried Fruit</span>
-                                            <h5><a href="../book/detail.do">Raisin’n’nuts</a></h5>
-                                            <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg" data-setbg="">
-                                        <a href="../book/detail.do"><img src="../ogani-master/img/product/discount/pd-6.jpg"></a>
-                                            <div class="product__discount__percent">-20%</div>
-                                            <ul class="product__item__pic__hover">
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <span>Dried Fruit</span>
-                                            <h5><a href="../book/detail.do">Raisin’n’nuts</a></h5>
-                                            <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </c:forEach>
+                                 
+                           
                             </div>
                         </div>
                     </div>

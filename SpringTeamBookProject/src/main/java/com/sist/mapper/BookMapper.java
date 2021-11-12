@@ -12,7 +12,7 @@ import com.sist.vo.BookVO;
 import com.sist.vo.MemberVO;
 
 public interface BookMapper {
-	
+
 	//1. 베스트 셀러 도서 출력 기능
 	@Select("SELECT bno,title,image,sale,num "
 			+"FROM (SELECT bno,title,image,sale,rownum as num "
@@ -20,13 +20,13 @@ public interface BookMapper {
 			+"FROM book_data WHERE SALE>0 AND RANK IS NOT NULL ORDER BY sale DESC)) "
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<BookVO> bookBestListData(Map map);
-	
+
 	@Select("SELECT CEIL(COUNT(*)/12.0) FROM ${table_name}")
 	public int bookTotalPage(Map map);
 	//1. 베스트 셀러 상세 출력
 	@Select("SELECT bno,title,image,sale,pubdate,introduce,contents,price,TO_NUMBER(REPLACE(REPLACE(price,','),'원')) intprice,genre,publisher,writer "
-			 +"FROM book_data WHERE bno IS NOT NULL "
-			 +"AND bno=#{bno}")
+			+"FROM book_data WHERE bno IS NOT NULL "
+			+"AND bno=#{bno}")
 	public BookVO bookDetailData(int bbno);
 	//1-2  베스트셀러 관련
 	@Select("SELECT bno,title,image,sale,pubdate,genre,price,num "
@@ -35,7 +35,16 @@ public interface BookMapper {
 			+"FROM book_data WHERE genre IS NOT NULL AND genre=#{genre} ORDER BY DBMS_RANDOM.RANDOM)) "
 			+ "WHERE num<=4")
 	public List<BookVO> bookRelationListData(String genre);
-	
+	//1-3. 베스트셀러 - 판매 도서 출력 기능. (최상단, 랜덤)
+	@Select("SELECT bno,title,image,writer,sale,pubdate,price,intprice,genre,cno2,saleprice,num "
+			+"FROM (SELECT bno,title,image,writer,sale,pubdate,price,intprice,genre,cno2,intprice*0.8 AS saleprice,rownum as num "
+			+"FROM (SELECT bno,title,image,sale,writer,pubdate,price,TO_NUMBER(REPLACE(REPLACE(price,','),'원')) intprice,genre,cno2 "
+			+"FROM book_data "
+			+ "WHERE pubdate IS NOT NULL AND cno2 IS NOT NULL AND genre LIKE '%'||#{cate}||'%' "
+			+ "ORDER BY DBMS_RANDOM.RANDOM)) "
+			+ "WHERE num<=10")
+	public List<BookVO> bookListData_SalesRandom(HashMap<String,Object> map);
+
 	
 	
 	

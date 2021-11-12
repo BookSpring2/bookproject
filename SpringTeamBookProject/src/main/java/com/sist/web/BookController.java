@@ -57,6 +57,7 @@ public class BookController {
 		int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
 		if(endPage>totalpage)
 			endPage=totalpage;
+		/* List<BookVO> saleslist2=dao.bookListData_SalesRandom(map); */
 		
 		model.addAttribute("curpage", curpage);
 		model.addAttribute("totalpage",totalpage);
@@ -77,6 +78,8 @@ public class BookController {
 		model.addAttribute("vo", vo);
 		model.addAttribute("bno", bno);	
 		model.addAttribute("main_jsp", "../book/detail.jsp");
+		
+		
 		
 		String genre = vo.getGenre();			
 		//System.out.println("해당책의 장르는 "+genre+"입니다."); //확인용.
