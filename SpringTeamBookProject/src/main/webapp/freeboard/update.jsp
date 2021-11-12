@@ -5,8 +5,45 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<style type="text/css">
+.row{
+	margin: 0 auto;
+}
+a{
+  color:black;
+}
+
+.freeboard .nice-select{
+	height:42px;
+	font-size:14px;
+	line-height:43px;
+}
+
+.freeboard input{
+	border-radius:0px;
+}
+
+.freeboard .checkout__input input{
+	border-radius:0px;
+	padding:0px;
+	font-size:14px;
+}
+
+.freeboard .btn{
+	font-size:14px;
+	padding:10px 20px;
+}
+
+.btn{
+	float:left;
+	display:block;
+	border-radius:0px;
+	background-color:black;
+	color:white;
+	font-size:14px; 
+}
+</style>
 <script type="text/javascript">
 $(function(){
 	$('#updateBtn').click(function(){
@@ -87,8 +124,8 @@ $(function(){
                                 <p>내용<span>*</span></p>
                                 <textarea class="form-control" rows="10" id="content" name="content">${vo.content }</textarea>
                             </div>        
-                            <button class="site-btn" id="updateBtn">수정하기</button>
-                            <button type="button" class="site-btn" onclick="javascript:history.back()">취소</button>
+                            <button class="btn" id="updateBtn" style="margin-right:10px;">수정하기</button>
+                            <button type="button" class="btn" onclick="javascript:history.back()">취소</button>
                         <!--  </form>  -->
                         </div>
 	                 </div>           
