@@ -64,7 +64,7 @@
                             </div>
                         </div>
                         
-                        <div class="sidebar__item">
+                       <!--  <div class="sidebar__item">
                             <div class="latest-product__text">
                                 <h4>신간 도서</h4>
                                 <div class="latest-product__slider owl-carousel">
@@ -128,7 +128,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-7">
