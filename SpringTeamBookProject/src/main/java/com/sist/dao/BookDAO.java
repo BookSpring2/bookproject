@@ -17,7 +17,7 @@ public class BookDAO {
 	
 	@Autowired
 	private BookMapper mapper;
-	
+
 	//1. 베스트 셀러 도서 출력 기능
 	public List<BookVO> bookBestListData(Map map)
 	{
@@ -31,6 +31,10 @@ public class BookDAO {
 	public BookVO bookDetailData(int bno) 
 	{
 		return mapper.bookDetailData(bno);
+	}
+	// 1-3. 신간 - 관련 도서 출력 기능
+	public List<BookVO> bookRelationListData(String genre) {
+		return mapper.bookRelationListData(genre);
 	}
 
 	

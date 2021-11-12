@@ -77,6 +77,12 @@ public class BookController {
 		model.addAttribute("vo", vo);
 		model.addAttribute("bno", bno);	
 		model.addAttribute("main_jsp", "../book/detail.jsp");
+		
+		String genre = vo.getGenre();			
+		//System.out.println("해당책의 장르는 "+genre+"입니다."); //확인용.
+		List<BookVO> list = dao.bookNewRelationListData(genre);
+		model.addAttribute("list", list);
+		
 		return "main/main";
 	}
 	

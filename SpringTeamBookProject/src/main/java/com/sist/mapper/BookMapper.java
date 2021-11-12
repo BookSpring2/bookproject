@@ -28,6 +28,13 @@ public interface BookMapper {
 			 +"FROM book_data WHERE bno IS NOT NULL "
 			 +"AND bno=#{bno}")
 	public BookVO bookDetailData(int bbno);
+	//1-2  베스트셀러 관련
+	@Select("SELECT bno,title,image,sale,pubdate,genre,price,num "
+			+"FROM (SELECT bno,title,image,sale,pubdate,genre,price,rownum as num "
+			+"FROM (SELECT bno,title,image,sale,pubdate,genre,price "
+			+"FROM book_data WHERE genre IS NOT NULL AND genre=#{genre} ORDER BY DBMS_RANDOM.RANDOM)) "
+			+ "WHERE num<=4")
+	public List<BookVO> bookRelationListData(String genre);
 	
 	
 	
