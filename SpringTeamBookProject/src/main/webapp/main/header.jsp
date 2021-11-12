@@ -71,7 +71,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="../main/main.do"><img src="../ogani-master/img/logo.png" alt=""></a>
+                        <a href="../main/main.do"><img src="../img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-7">
