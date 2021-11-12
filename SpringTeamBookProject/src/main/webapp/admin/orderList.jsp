@@ -15,7 +15,7 @@
     <div class="row">
       <div class="col-lg-12 text-center">
         <div class="breadcrumb__text">
-          <h2>주문관리</h2>
+          <h2>관리자페이지</h2>
           <div class="breadcrumb__option">
             <a href="../main/main.do">Home</a>
             <span>주문관리</span>
@@ -68,7 +68,7 @@
 	        <td class="text-center">2,500원</td>
 	        <td class="text-center">
 	          <c:if test="${vo.ischeck==0 }">
-	            <a href="../admin/goodsAdminYes.do?no=${vo.order_no }" class="btn btn-sm btn-primary">승인요청</a>
+	            <a href="../admin/goodsAdminYes.do?no=${vo.order_no }" class="btn btn-sm btn-primary">결제확인</a>
 	           </c:if>
 	           <c:if test="${vo.ischeck==1 }">
 	             <span style="color:gray">승인완료</span>

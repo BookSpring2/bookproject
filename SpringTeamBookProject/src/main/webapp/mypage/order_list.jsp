@@ -15,10 +15,10 @@
     <div class="row">
       <div class="col-lg-12 text-center">
         <div class="breadcrumb__text">
-          <h2>주문하기</h2>
+          <h2>주문내역</h2>
           <div class="breadcrumb__option">
             <a href="../main/main.do">Home</a>
-            <span>주문하기</span>
+            <span>주문내역</span>
           </div>
         </div>
       </div>

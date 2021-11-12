@@ -15,7 +15,7 @@
     <div class="row">
       <div class="col-lg-12 text-center">
         <div class="breadcrumb__text">
-          <h2>Admin Page</h2>
+          <h2>관리자페이지</h2>
           <div class="breadcrumb__option">
             <a href="../main/main.do">Home</a>
             <span>회원관리</span>

@@ -39,6 +39,8 @@ $(function(){
    	} else {
 	var msg = '결제에 실패하였습니다.';
 	msg += '에러내용 : ' + rsp.error_msg;
+	confirm("결제에 실패하였습니다. 이전화면으로 돌아가시겠습니까?")
+	location.href="../mypage/order_form.do";
 	}
 	alert(msg);
 	});
