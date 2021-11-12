@@ -81,11 +81,9 @@ $(function(){
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>대제목</h2>
+                        <h2>베스트셀러</h2>
                         <div class="breadcrumb__option">
-                            <a href="../main/main.do">Home</a>
-                            <a href="#">대분류</a>
-                            <span>중분류</span>
+                            
                         </div>
                     </div>
                 </div>
