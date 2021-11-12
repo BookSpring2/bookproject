@@ -80,6 +80,8 @@ span{
 	text-align:right;
 }
 .btn{
+	background-color:black;
+	color:white;
 	border-radius:0px;
 }
 </style>
@@ -236,7 +238,7 @@ span{
 			         <!--<textarea rows="4" cols="90" name="msg" style="float:left"></textarea>-->
 			         <textarea class="form-control" rows="5" name="msg"></textarea>
 			         <br>
-			         <button class="site-btn" type="submit"">댓글쓰기</button>
+			         <button class="btn" type="submit"">댓글쓰기</button>
 			        <!--<input type="submit" value="댓글쓰기" class="btn" style="height: 80px;float:left">--> 
 				    </form>
 				   </td>

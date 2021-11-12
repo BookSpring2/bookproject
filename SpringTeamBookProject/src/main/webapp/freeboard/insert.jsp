@@ -5,8 +5,45 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<style type="text/css">
+.row{
+	margin: 0 auto;
+}
+a{
+  color:black;
+}
+
+.freeboard .nice-select{
+	height:42px;
+	font-size:14px;
+	line-height:43px;
+}
+
+.freeboard input{
+	border-radius:0px;
+}
+
+.freeboard .checkout__input input{
+	border-radius:0px;
+	padding:0px;
+	font-size:14px;
+}
+
+.freeboard .btn{
+	font-size:14px;
+	padding:10px 20px;
+}
+
+.btn{
+	float:left;
+	display:block;
+	border-radius:0px;
+	background-color:black;
+	color:white;
+	font-size:14px; 
+}
+</style>
 <script type="text/javascript">
 let fileIndex=0; // 전역변수 
 $(function(){
@@ -78,12 +115,12 @@ $(function(){
                             </div>        
                             <div class="checkout__input">
 								<p>첨부파일</p>
-								<button type="button" class="btn" style="background-color:#83AD2E;color:white" id="add">추가</button>
-								<button type="button" class="btn" style="background-color:#83AD2E;color:white" id="remove">삭제</button>             		
+								<button type="button" class="btn" style="background-color:black;color:white;margin-right:10px;" id="add">추가</button>
+								<button type="button" class="btn" style="background-color:black;color:white" id="remove">삭제</button>             		
 								<table class="table" id="fileView"></table>
 							</div>
-                            <button class="site-btn" id="insert">작성하기</button>
-                            <button type="button" class="site-btn" onclick="javascript:history.back()">취소</button>
+                            <button class="btn" id="insert" style="margin-right:10px;">작성하기</button>
+                            <button type="button" class="btn" onclick="javascript:history.back()">취소</button>
                          <!--  <input size="10" class="site-btn" onclick="javascript:history.back()" value="취소"> -->  
                         </form>                 
                         </div>
