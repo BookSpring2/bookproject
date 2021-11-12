@@ -119,6 +119,7 @@ public class BlogController {
 		System.out.println(vo.getCategory());
 		BookVO bvo=dao.bookList(vo.getBook_title());
 		vo.setImage(bvo.getImage());
+		
 		String path="c:\\download\\";
 		File dir=new File(path);
 		
@@ -160,8 +161,13 @@ public class BlogController {
 		BlogVO vo=dao.BlogDetailData(no);
 		List<BlogReplyVO> list=dao.BlogReplyListData(no);
 		List<String> tagList=dao.tagList();
-
+		String url="";
+		if(vo.getImage()!=null) {
+		url=vo.getImage().substring(vo.getImage().lastIndexOf("/")+1,vo.getImage().length()-5);
+		url="../book/detail.do?bno="+url;
+		}
 		
+		model.addAttribute("url", url);
 		model.addAttribute("tagList",tagList);
 		model.addAttribute("list",list);
 		model.addAttribute("vo", vo);

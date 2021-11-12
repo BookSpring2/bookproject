@@ -101,7 +101,9 @@ $(function(){
                 </div>
                 <div class="col-lg-8 col-md-7 order-md-1 order-1">
                     <div class="blog__details__text">
-                        <img src="${vo.image }" alt="">
+                    	<c:if test="${vo.image!=null }">
+                        	<a href="${url }"><img src="${vo.image }" alt=""></a>
+                        </c:if>
                         <p>${vo.content }</p>
                     </div>
                     <div class="blog__details__content">
