@@ -45,10 +45,10 @@
                     </div>
                     <div class="col-lg-6 col-md-6" >
                         <div class="header__top__right" style="min-width:500px;">
-                          <div class="header__top__right__auth">
-                            	<a href="../member/join_update.do"><i class="fa fa-user"></i>회원정보수정</a>		
+                          <div class="header__top__right__auth">	
                             <c:if test="${sessionScope.id!=null }">
-                            	<a href="../member/logout.do" id="login"><i class="fa fa-user"></i>로그아웃</a>		
+                            	<a href="../member/logout.do" id="login"><i class="fa fa-user"></i>로그아웃</a>
+                            	<a href="../member/join_update.do"><i class=""></i>회원정보수정</a>	
                             </c:if>
                             <c:if test="${sessionScope.id==null }">
                             	<a href="../member/login.do" id="login"><i class="fa fa-user"></i>로그인</a>	

@@ -32,9 +32,13 @@ public class BookDAO {
 	{
 		return mapper.bookDetailData(bno);
 	}
-	// 1-3. 신간 - 관련 도서 출력 기능
+	// 1-3. 베스트셀러 - 관련 도서 출력 기능
 	public List<BookVO> bookRelationListData(String genre) {
 		return mapper.bookRelationListData(genre);
+	}
+	// 1-4. 베스트셀러 - 판매 도서 출력 기능. (최상단, 랜덤)
+	public List<BookVO> bookListData_SalesRandom(HashMap<String, Object> map){
+		return mapper.bookListData_SalesRandom(map);
 	}
 
 	

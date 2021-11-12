@@ -75,6 +75,7 @@ a{
  <div class="row freeboard" style="width:80%; min-width:750px;">
  	<div class="col-lg-12" style="width:100%;">
 		<form method="post" action="../freeboard/find.do" style="width:100%;">
+			<input type="hidden" name="page" value="${curpage }">
 			<div style="float:right; margin-top:50px;">
 					 <select name="fs">
 			            <option value="S">제목</option>

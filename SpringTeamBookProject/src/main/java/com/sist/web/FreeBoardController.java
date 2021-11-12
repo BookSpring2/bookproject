@@ -190,7 +190,7 @@ public class FreeBoardController {
 	
 	// Search
 	@PostMapping("find.do")
-	public String find(String ss,String[] fs, Model model)
+	public String find(String ss,String[] fs, int page,Model model)
 	{
 		int startPage=1;
 		Map map=new HashMap();
@@ -199,6 +199,7 @@ public class FreeBoardController {
 		List<FreeBoardVO> list=dao.freeBoardFind(map);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("list", list);
+		model.addAttribute("page",page);
 		model.addAttribute("main_jsp", "../freeboard/find.jsp");
 		return "main/main";
 	}

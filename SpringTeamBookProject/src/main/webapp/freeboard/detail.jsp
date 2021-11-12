@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 let u=0; // update
@@ -80,6 +79,9 @@ $(function(){
 span{
 	text-align:right;
 }
+.btn{
+	border-radius:0px;
+}
 </style>
 </head>
 <body>
@@ -143,13 +145,13 @@ span{
 						<c:if test="${sessionScope.id!=null }">
 						<c:if test="${sessionScope.id==vo.writer }">
 						<a href="update.do?no=${vo.no }&page=${page}">
-							<button class="btn" style="background-color:#83AD2E;color:white">수정</button>
+							<button class="btn" style="background-color:black;color:white">수정</button>
 						</a>			
-							<button class="btn" style="background-color:#83AD2E;color:white" id="delBtn">삭제</button>
+							<button class="btn" style="background-color:black;color:white" id="delBtn">삭제</button>
 						</c:if>
 						</c:if>	
 						<a href="list.do?page=${page }">
-							<button class="btn" style="background-color:#83AD2E;color:white">목록</button>
+							<button class="btn" style="background-color:black;color:white">목록</button>
 						</a>
 						</td>
 					</tr>
