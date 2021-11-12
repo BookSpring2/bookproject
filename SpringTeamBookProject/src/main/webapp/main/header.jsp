@@ -50,6 +50,7 @@
                             	<a href="../member/logout.do" id="login"><i class="fa fa-user"></i>로그아웃</a>
                             	<a href="../member/join_update.do"><i class=""></i>회원정보수정</a>	
                             </c:if>
+                            
                             <c:if test="${sessionScope.id==null }">
                             	<a href="../member/login.do" id="login"><i class="fa fa-user"></i>로그인</a>	
                             	<a href="../member/join.do"><i class=""></i>회원가입</a>	
