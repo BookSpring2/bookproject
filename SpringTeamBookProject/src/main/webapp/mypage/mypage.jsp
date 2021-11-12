@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,10 +62,11 @@
                           <div>
                             <dl>
                               <dt>
-                                나의 오가니 등급
                                 <c:forEach var="vo" items="${list }">
                                 <strong>
-                                  <span style="color:orange">${vo.membership }</span>
+                                  나의 오가니 등급<span style="color:orange">&nbsp;${vo.membership }</span>
+                                  <br>
+                                  나의 포인트<span style="color:orange">&nbsp;${vo.point }</span>
                                 </strong>
                                 </c:forEach>
                               </dt>
@@ -94,13 +96,13 @@
                               <dd>
                                 <ul>
                                   <li><a href="../member/join_update.do">나의 정보</a></li>
-                                  <li><a href="#">회원탈퇴</a></li>
+                                  <li><a href="../member/join_delete.do">회원탈퇴</a></li>
                                 </ul>
                               </dd>
                               <dt>내 블로그</dt>
                               <dd>
                                 <ul>
-                                  <li><a href="#">나의 블로그</a></li>
+                                  <li><a href="../blog/list.do">나의 블로그</a></li>
                                 </ul>
                               </dd>
                             </dl>
@@ -110,19 +112,22 @@
                           <div style="margin: 0 0 30px 0;">
                             
                             <div style="position: relative;width: 526px;text-align: left;">
-                              <h7>나의 최근 구매 내역</h7>
                             </div>
                             <table class="table">
                               <tr>
-                                <th>주문일자</th>
-                                <th>주문번호</th>
-                                <th>주문자</th>
+                                <th style="text-align: center">주문일자</th>
+                                <th style="text-align: center">주문번호</th>
+                                <th style="text-align: center">상세내용</th>
+                                <th style="text-align: center">총 수량</th>
+                                <th style="text-align: center">총 금액</th>
                               </tr>
                               <c:forEach var="ovo" items="${olist }">
                               <tr>
-                                <td>${ovo.orderdate }</td>
-                                <td>${ovo.order_no }</td>
-                                <td>${ovo.name }</td>
+                                <td style="text-align: center"><fmt:formatDate value="${ovo.orderdate }" pattern="MM-dd"/></td>
+                                <td style="text-align: center">${ovo.order_no }</td>
+                                <td style="width:300px">${ovo.title }</td>
+                                <td style="text-align: center">${ovo.amount }</td>
+                                <td style="text-align: center">${ovo.price }</td>
                               </tr>
                               </c:forEach>
                             </table>

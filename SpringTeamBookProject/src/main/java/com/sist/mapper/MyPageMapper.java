@@ -16,7 +16,7 @@ public interface MyPageMapper {
 	@Select("SELECT * FROM book_member WHERE user_id=#{id}")
 	public MemberVO memberInfoData(String id);
 	
-	@Select("SELECT order_no,user_id,name,orderdate "
+	@Select("SELECT order_no,user_id,name,orderdate,msg,price,amount,title "
 			+"FROM book_order "
 			+"WHERE user_id=#{id} "
 			+"ORDER BY order_no ASC")
