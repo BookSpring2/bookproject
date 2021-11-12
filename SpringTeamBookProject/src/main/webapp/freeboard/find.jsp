@@ -70,6 +70,7 @@ a{
  	<div class="col-lg-12" style="width:100%;">
 		<form method="post" action="../freeboard/find.do" style="width:100%;">
 			<div style="float:right; margin-top:50px;">
+				<input type="hidden" name="page" value="${page }">
 					 <select name="fs">
 			            <option value="S">제목</option>
 			            <option value="C">내용</option>
@@ -102,7 +103,7 @@ a{
      <c:forEach items="${list }" var="vo">
       <tr>
         <td class="text-center">${vo.no }</td>	
-        <td><a href="detail.do?no=${vo.no }&page=${curpage}">${vo.subject }</a></td>
+        <td><a href="detail.do?no=${vo.no }&page=${page}">${vo.subject }</a></td>
         <td class="text-center">${vo.writer }</td>
         <td class="text-center"><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd"/></td>
         <td class="text-center">${vo.hit }</td>
