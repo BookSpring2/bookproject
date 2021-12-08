@@ -10,11 +10,11 @@
 
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-let u=0;// 전역변수
+let u=0;
 $(function(){
 	$('.updates').click(function(){
-		$('.up').hide();// 출력된 수정창을 닫는다
-		let no=$(this).attr("data-value"); // 출력할 위치를 확인 (어떤것이 수정할 지 확인 )
+		$('.up').hide();// 출력된 수정창 닫기
+		let no=$(this).attr("data-value"); // 출력할 위치 확인
 		if(u==0) // 열고
 		{
 			u=1; // 닫기
@@ -79,7 +79,7 @@ $(function(){
           
          </c:forEach> 
         </ul>
-        <%-- session에 등록 (회원가입) --%>
+        
       </div>
       <c:if test="${sessionScope.id!=null }"><!-- 로그인된 경우만 사용이 가능  -->
 	      <table class="table">

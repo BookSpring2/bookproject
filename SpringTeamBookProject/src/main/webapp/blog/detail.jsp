@@ -161,36 +161,6 @@ $(function(){
             
         </div>
     </section>
-    <!-- Blog Details Section End -->
 
-    <!-- Related Blog Section Begin -->
-    <!-- <section class="related-blog spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title related-blog-title">
-                        <h2>당신이 좋아할 게시글(키워드?태그?추천)</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="img/blog/blog-1.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i>작성날짜</li>
-                                <li><i class="fa fa-comment-o"></i>댓글갯수</li>
-                            </ul>
-                            <h5><a href="#">제목</a></h5>
-                            <p>글내용 일부 발췌</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
 </body>
 </html>
